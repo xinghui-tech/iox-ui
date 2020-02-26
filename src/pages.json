@@ -1,0 +1,23 @@
+{
+	"pages": [
+		{
+			"path": "pages/index",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "IOX-UI",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		}
+	],
+	"subPackages": [
+	],
+	"preloadRule": {
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "IOX-UI",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	}
+}
