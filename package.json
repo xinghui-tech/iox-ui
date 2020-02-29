@@ -1,12 +1,12 @@
 {
   "name": "@zhuyin/iox-ui",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "serve": "npm run dev:mp-weixin",
-    "clean": "rimraf lib/* & rimraf zhuyin-iox-ui-$npm_package_version.tgz",
+    "clean": "rimraf lib/*",
     "prebuild": "npm run clean",
-    "build": "npm run build:lib",
+    "build": "npm run build:mp-weixin",
     "postbuild": "yarn link",
     "build:app-plus": "cross-env NODE_ENV=production UNI_PLATFORM=app-plus vue-cli-service uni-build",
     "build:custom": "cross-env NODE_ENV=production uniapp-cli custom",
@@ -26,8 +26,7 @@
     "dev:mp-qq": "cross-env NODE_ENV=development UNI_PLATFORM=mp-qq vue-cli-service uni-build --watch",
     "dev:mp-toutiao": "cross-env NODE_ENV=development UNI_PLATFORM=mp-toutiao vue-cli-service uni-build --watch",
     "dev:mp-weixin": "cross-env NODE_ENV=development UNI_PLATFORM=mp-weixin vue-cli-service uni-build --watch",
-    "info": "node node_modules/@dcloudio/vue-cli-plugin-uni/commands/info.js",
-    "build:lib": "node build/build-lib.js"
+    "info": "node node_modules/@dcloudio/vue-cli-plugin-uni/commands/info.js"
   },
   "dependencies": {
   },

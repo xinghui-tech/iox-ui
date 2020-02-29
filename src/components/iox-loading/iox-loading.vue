@@ -1,5 +1,5 @@
 <template>
-  <view :class="'custom-class iox-loading ' + vertical ? 'iox-loading--vertical' : '' ">
+  <view :class="'custom-class iox-loading ' + (vertical ? 'iox-loading--vertical' : '') ">
     <view
       :class="'iox-loading__spinner iox-loading__spinner--' + type "
       :style="'color: ' + color + '; width: ' + utils.addUnit(size) + '; height: ' + utils.addUnit(size)"
