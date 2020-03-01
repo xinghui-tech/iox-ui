@@ -7,11 +7,12 @@ types/
 temp/
 .gitignore
 .npmignore
+assets.config.js
 babel.config.js
 postcss.config.js
-vue.config.js
 package-lock.json
 tsconfig.ts
+vue.config.js
 .editorconfig
 LICENSE
 uni.scss

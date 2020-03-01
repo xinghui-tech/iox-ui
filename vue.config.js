@@ -10,9 +10,8 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        '@/': path.join(__dirname, 'src')
+        '@/': path.join(__dirname, 'src'),
 			},
-			modules: ['node_modules', 'src']
 		},
 		plugins: [
 			new CopyWebpackPlugin(
