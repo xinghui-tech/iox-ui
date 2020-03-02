@@ -1,7 +1,7 @@
 <template>
   <view>
     hello IOX-UI!
-    <iox-loading type="spinner" />
+    <iox-button :loading="loading" loadingText="loading" @click="onClick">click me!</iox-button>
   </view>
 </template>
 
@@ -11,16 +11,29 @@ import Component from 'vue-class-component';
 import { Watch } from 'vue-property-decorator';
 import { logger } from '@zhuyin/common';
 
-import IoxLoading from '../components/iox-loading/iox-loading.vue';
+import ioxButton from '@/components/iox-button/iox-button.vue';
 
 @Component({
   components: {
-    IoxLoading,
+    ioxButton,
   }
 })
 export default class Index extends Vue {
   // vuex
+  loading: boolean = true;
 
+  onLoad() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
+  }
+
+  onClick() {
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
+  }
 }
 </script>
 

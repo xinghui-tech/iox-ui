@@ -1,8 +1,8 @@
 <template>
-  <view :class="'custom-class iox-loading ' + (vertical ? 'iox-loading--vertical' : '') ">
+  <view :class="mainClass" :style="mainStyle">
     <view
-      :class="'iox-loading__spinner iox-loading__spinner--' + type "
-      :style="'color: ' + color + '; width: ' + utils.addUnit(size) + '; height: ' + utils.addUnit(size)"
+      :class="spinnerClass"
+      :style="spinnerStyle"
     >
       <template v-if="type === 'spinner'">
         <view
@@ -12,7 +12,7 @@
         />
       </template>
     </view>
-    <view class="iox-loading__text" :style="'font-size: ' + utils.addUnit(textSize) + ';'">
+    <view class="iox-loading__text" :style="textStyle">
       <slot />
     </view>
   </view>
@@ -20,12 +20,16 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Component from 'vue-class-component';
+import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
 import * as utils from '../../utils/utils';
+import base, { props } from '../../mixins/base';
 
-@Component
-export default class IoxLoading extends Vue {
+const classPrefix = 'iox-loading';
+@Component({
+  mixins: [props]
+})
+export default class IoxLoading extends mixins(base) {
   @Prop({
     type: String,
     default: 'circular',
@@ -45,19 +49,39 @@ export default class IoxLoading extends Vue {
   color!: string;
 
   @Prop({
-    type: Number,
+    type: [String, Number],
     default: 32,
   })
-  size!: number;
+  size!: number | string;
 
   @Prop({
-    type: Number,
+    type: [Number, String],
     default: 16,
   })
-  textSize!: number;
+  textSize!: number | string;
 
   get utils() {
     return utils;
+  }
+
+  get classPrefix() {
+    return classPrefix;
+  }
+
+  get mainClass() {
+    return `${this.customClass || ''} ${this.classPrefix} ${this.vertical ? this.classPrefix + '--vertical' : ''}`;
+  }
+
+  get spinnerClass() {
+    return `${this.classPrefix}__spinner ${this.classPrefix}__spinner--${this.type}`;
+  }
+
+  get spinnerStyle() {
+    return `color: ${this.color}; width: ${utils.addUnit(this.size)}; height: ${utils.addUnit(this.size)}`;
+  }
+
+  get textStyle() {
+    return `font-size: ${utils.addUnit(this.textSize)};`
   }
 }
 </script>

@@ -1458,6 +1458,11 @@
   resolved "https://npm-registry.zhayanmao.com/@zhuyin/common/download/@zhuyin/common-2.0.5.tgz#403d88447ffa43ac787bdff347636022dd3ca84b"
   integrity sha1-QD2IRH/6Q6x4e9/zR2NgIt08qEs=
 
+"@zhuyin/mp-api-typings@^2.10.1-1":
+  version "2.10.1-1"
+  resolved "https://npm-registry.zhayanmao.com/@zhuyin/mp-api-typings/download/@zhuyin/mp-api-typings-2.10.1-1.tgz#34d19fbf1586b2e32de3a70228ce7f2be4dfad89"
+  integrity sha1-NNGfvxWGsuMt46cCKM5/K+TfrYk=
+
 accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.7:
   version "1.3.7"
   resolved "https://registry.npm.taobao.org/accepts/download/accepts-1.3.7.tgz#531bc726517a3b2b41f850021c6cc15eaab507cd"

@@ -21,16 +21,16 @@ export function nextTick(fn: Function) {
   }, 1000 / 30);
 }
 
-// let systemInfo: WechatMiniprogram.GetSystemInfoSuccessCallbackResult = null;
-// export function getSystemInfoSync() {
-//   if (systemInfo == null) {
-//     systemInfo = wx.getSystemInfoSync();
-//   }
+let systemInfoCache: WechatMiniprogram.GetSystemInfoSyncResult;
+export function getSystemInfoSync(): WechatMiniprogram.GetSystemInfoSyncResult {
+  if (!systemInfoCache) {
+    systemInfoCache = wx.getSystemInfoSync();
+  }
 
-//   return systemInfo;
-// }
+  return systemInfoCache;
+}
 
-export function addUnit(value?: string | number): string | undefined {
+export function addUnit(value?: string | number | null): string | undefined {
   if (!isDef(value)) {
     return undefined;
   }

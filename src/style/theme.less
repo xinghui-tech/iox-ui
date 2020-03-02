@@ -7,6 +7,6 @@
 }
 
 .var(@var, @val) {
-  @v: replace(@var, '@([^() ]+)', '$1', 'ig');
+  @v: e(replace(@var, '@([^() ]+)', '$1', 'ig'));
   --@{v}: @val;
 }
