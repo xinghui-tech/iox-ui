@@ -4,7 +4,7 @@ const assets = require('./assets.config')
 
 const production = process.env.NODE_ENV === 'production'
 const root = path.join(__dirname, './')
-const lib = path.join(root, 'lib')
+const dist = path.join(root, 'dist', production ? 'build' : 'dev', process.env.UNI_PLATFORM)
 
 module.exports = {
   configureWebpack: {
@@ -21,9 +21,22 @@ module.exports = {
 					if (typeof s !== 'string' && s.to) {
 						to = s.to
 					}
-
+					// convert from
+					if (from.startsWith('~')) {
+						from = path.join('node_modules', from.substring(1))
+					} else if (from.startsWith('@/')) {
+						from = from.substring(2);
+					}
+					// convert to
+					if (to.startsWith('~')) {
+						to = path.join(dist, 'node-modules', to.substring(1))
+					} else if (to.startsWith('@/')) {
+						to = path.join(root, to.substring(2));
+					} else {
+						to = path.join(dist, to)
+					}
+					
 					from = path.join(root, from)
-					to = path.join(lib, to)
 					console.log('copy', from, to)
 					return { from, to }
 				})

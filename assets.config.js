@@ -1,14 +1,18 @@
+/**
+ * root of from is project root dir
+ * root of to is dist dir.
+ */
 const assets = []
 
 // components
-assets.push({ from: '/src/components', to: 'widget' })
+assets.push({ from: '/src/components', to: '@/lib/widget' })
 // mixins
-assets.push({ from: '/src/mixins', to: 'mixins' })
+assets.push({ from: '/src/mixins', to: '@/lib/mixins' })
 // styles
-assets.push({ from: '/src/style', to: 'style' })
+assets.push({ from: '/src/style', to: '@/lib/style' })
 // utils
-assets.push({ from: '/src/utils', to: 'utils' })
+assets.push({ from: '/src/utils', to: '@/lib/utils' })
 // static
-assets.push({ from: '/src/static', to: 'static' })
+assets.push({ from: '/src/static', to: '@/lib/static' })
 
 module.exports = assets
