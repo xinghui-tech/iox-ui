@@ -1,3 +1,4 @@
+import esverify from './utils/es-shim';
 import Vue from 'vue';
 import { logger } from '@zhuyin/common';
 
@@ -9,6 +10,8 @@ Vue.config.productionTip = false;
 /* init front sdk */
 // logger level
 logger.level = process.env.NODE_ENV === 'development' ? 'VERBOSE' : 'WARN';
+// es shim info
+esverify();
 
 // $app() mixin
 Vue.mixin({
