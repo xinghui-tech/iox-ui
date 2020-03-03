@@ -54,8 +54,6 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Prop, Mixins } from 'vue-property-decorator';
-import ioxLoading from '../iox-loading/iox-loading.vue';
-import ioxIcon from '../iox-icon/iox-icon.vue';
 
 import base, { props } from '../../mixins/base';
 import { props as buttonProps } from '../../mixins/button';
@@ -63,9 +61,6 @@ import openType, { props as opentypeProps } from '../../mixins/open-type';
 
 const classPrefix = 'iox-button';
 @Component({
-  components: {
-    ioxLoading, ioxIcon
-  },
   mixins: [props, buttonProps, opentypeProps],
 })
 export default class IoxButton extends Mixins(base, openType) {

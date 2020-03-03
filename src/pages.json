@@ -19,5 +19,11 @@
 		"navigationBarTitleText": "IOX-UI",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
+	},
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"iox-(.*)": "@/components/iox-$1/iox-$1.vue"
+		}
 	}
 }

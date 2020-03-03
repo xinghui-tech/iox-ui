@@ -26,13 +26,8 @@ import { Prop } from 'vue-property-decorator';
 import * as utils from '../../utils/utils';
 import base, { props } from '../../mixins/base';
 
-import ioxInfo from '../iox-info/iox-info.vue';
-
 const classPrefix = 'iox-icon';
 @Component({
-  components: {
-    ioxInfo
-  },
   mixins: [props]
 })
 export default class IoxIcon extends mixins(base) {
