@@ -11,7 +11,8 @@ assets.config.js
 babel.config.js
 postcss.config.js
 package-lock.json
-tsconfig.ts
+tsconfig.json
+yarn-error.log
 vue.config.js
 .editorconfig
 LICENSE
