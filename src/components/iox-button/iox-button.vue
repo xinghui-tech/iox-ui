@@ -53,7 +53,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { Prop, Mixins } from 'vue-property-decorator';
+import { Prop, Mixins, Watch } from 'vue-property-decorator';
+import bem from '../../utils/bem';
 
 import base, { props } from '../../mixins/base';
 import { props as buttonProps } from '../../mixins/button';
@@ -64,6 +65,23 @@ const classPrefix = 'iox-button';
   mixins: [props, buttonProps, opentypeProps],
 })
 export default class IoxButton extends Mixins(base, openType) {
+  @Prop({
+    type: String,
+    default: 'default'
+  })
+  type!: string;
+
+  @Prop({
+    type: String,
+    default: 'normal'
+  })
+  size!: string;
+
+  @Prop({
+    type: String,
+  })
+  color?: string;
+  
   @Prop({
     type: Boolean,
     default: false,
@@ -93,12 +111,95 @@ export default class IoxButton extends Mixins(base, openType) {
   })
   loadingText?: string;
 
+  @Prop({
+    type: Boolean,
+    default: false,
+  })
+  plain!: boolean;
+
+  @Prop({
+    type: Boolean,
+    default: false,
+  })
+  block!: boolean;
+
+  @Prop({
+    type: Boolean,
+    default: false,
+  })
+  round!: boolean;
+
+  @Prop({
+    type: Boolean,
+    default: false,
+  })
+  square!: boolean;
+
+  @Prop({
+    type: Boolean,
+    default: false,
+  })
+  hairline!: boolean;
+
+  baseStyle: string = '';
+
+  @Watch('color')
+  colorChanged(newVal?: string, old?: string) {
+    let style = '';
+
+    if (newVal) {
+      style += `color: ${this.plain ? newVal : 'white'};`;
+
+      if (!this.plain) {
+        // Use background instead of backgroundColor to make linear-gradient work
+        style += `background: ${newVal};`;
+      }
+
+      // hide border when color is linear-gradient
+      if (newVal.indexOf('gradient') !== -1) {
+        style += 'border: 0;';
+      } else {
+        style += `border-color: ${newVal};`;
+      }
+    }
+
+    if (style !== this.baseStyle) {
+      this.baseStyle = style;
+    }
+  }
+
   get classPrefix() {
     return classPrefix;
   }
 
+  get mainClass() {
+    const cls = bem('button', [this.type, this.size, { 
+      block: this.block, 
+      round: this.round,
+      plain: this.plain, 
+      square: this.square,
+      loading: this.loading, 
+      disabled: this.disabled,
+      hairline: this.hairline, 
+      unclickable: this.disabled || this.loading 
+    }]);
+    
+    return `${this.customClass || ''} ${cls} ${this.hairline ? 'iox-hairline--surround' : ''}`;
+  }
+
+  get mainStyle() {
+    return `${this.baseStyle} ${this.customStyle || ''}`;
+  }
+
   get loadingColor() {
-    return '';
+      if(this.plain) {
+        return this.color ? this.color: '#c9c9c9';
+      }
+
+      if(this.type === 'default') {
+        return '#c9c9c9';
+      }
+      return 'white';
   }
 
   onClick() {

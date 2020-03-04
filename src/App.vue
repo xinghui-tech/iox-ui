@@ -28,6 +28,8 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+<style lang="less">
 /*每个页面公共css */
+@import 'style/index.less';
+
 </style>

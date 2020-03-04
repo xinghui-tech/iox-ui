@@ -1,7 +1,7 @@
 <template>
   <view>
     hello IOX-UI!
-    <iox-button :loading="loading" loadingText="loading" @click="onClick">click me!</iox-button>
+    <iox-button :loading="loading" loadingType="spinner" loadingText="loading" @click="onClick" type="primary" hairline >click me!</iox-button>
   </view>
 </template>
 
