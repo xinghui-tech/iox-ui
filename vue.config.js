@@ -35,7 +35,7 @@ module.exports = {
 					} else {
 						to = path.join(dist, to)
 					}
-					
+
 					from = path.join(root, from)
 					console.log('copy', from, to)
 					return { from, to }

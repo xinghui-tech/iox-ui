@@ -1,0 +1,81 @@
+@import '../../theme.less';
+
+.iox-transition {
+  transition-timing-function: ease;
+}
+
+.iox-fade-enter-active,
+.iox-fade-leave-active {
+  transition-property: opacity;
+}
+
+.iox-fade-enter,
+.iox-fade-leave-to {
+  opacity: 0;
+}
+
+.iox-fade-up-enter-active,
+.iox-fade-up-leave-active,
+.iox-fade-down-enter-active,
+.iox-fade-down-leave-active,
+.iox-fade-left-enter-active,
+.iox-fade-left-leave-active,
+.iox-fade-right-enter-active,
+.iox-fade-right-leave-active {
+  transition-property: opacity, transform;
+}
+
+.iox-fade-up-enter,
+.iox-fade-up-leave-to {
+  transform: translate3d(0, 100%, 0);
+  opacity  : 0;
+}
+
+.iox-fade-down-enter,
+.iox-fade-down-leave-to {
+  transform: translate3d(0, -100%, 0);
+  opacity  : 0;
+}
+
+.iox-fade-left-enter,
+.iox-fade-left-leave-to {
+  transform: translate3d(-100%, 0, 0);
+  opacity  : 0;
+}
+
+.iox-fade-right-enter,
+.iox-fade-right-leave-to {
+  transform: translate3d(100%, 0, 0);
+  opacity  : 0;
+}
+
+.iox-slide-up-enter-active,
+.iox-slide-up-leave-active,
+.iox-slide-down-enter-active,
+.iox-slide-down-leave-active,
+.iox-slide-left-enter-active,
+.iox-slide-left-leave-active,
+.iox-slide-right-enter-active,
+.iox-slide-right-leave-active {
+  transition-property: transform;
+}
+
+.iox-slide-up-enter,
+.iox-slide-up-leave-to {
+  transform: translate3d(0, 100%, 0);
+}
+
+.iox-slide-down-enter,
+.iox-slide-down-leave-to {
+  transform: translate3d(0, -100%, 0);
+}
+
+.iox-slide-left-enter,
+.iox-slide-left-leave-to {
+  transform: translate3d(-100%, 0, 0);
+}
+
+.iox-slide-right-enter,
+.iox-slide-right-leave-to {
+  transform: translate3d(100%, 0, 0);
+}
