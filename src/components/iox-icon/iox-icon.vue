@@ -5,7 +5,7 @@
     @tap="onClick"
   >
     <iox-info
-      v-if="nfo !== null || dot"
+      v-if="info !== null || dot"
       :dot="dot"
       :info="info"
       custom-class="iox-icon__info"
@@ -41,7 +41,7 @@ export default class IoxIcon extends mixins(base) {
     type: String,
     default: null,
   })
-  inf!: string | null;
+  info!: string | null;
 
   @Prop({
     type: Boolean,

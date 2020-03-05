@@ -17,15 +17,11 @@ import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
 import * as utils from '../../utils/utils';
 import base, { props } from '../../mixins/base';
-import ioxTransition from '@/components/iox-transition/iox-transition.vue';
 
 const classPrefix = 'iox-overlay';
 
 @Component({
   mixins: [ props ],
-  components: {
-    ioxTransition,
-  }
 })
 export default class IoxTransition extends mixins(base) {
   @Prop({
@@ -55,7 +51,7 @@ export default class IoxTransition extends mixins(base) {
   }
 
   get mainStyle() {
-    return `${'z-index:'+this.zIndex+';'+this.customStyle} `;
+    return `z-index: ${this.zIndex}; ${this.customStyle}`;
   }
 
   onClick() {
