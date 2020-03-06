@@ -11,7 +11,7 @@ const props = {
 
 export {
   props
-}
+};
 @Component
 export default class OpenType extends Vue {
   onGetUserInfo(event: CustomEvent<WechatMiniprogram.GetUserInfoSuccessCallbackResult>) {

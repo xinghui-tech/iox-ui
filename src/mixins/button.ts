@@ -17,4 +17,4 @@ const props = {
 
 export {
   props
-}
+};

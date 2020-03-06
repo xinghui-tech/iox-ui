@@ -19,7 +19,7 @@ export type Duration = {
 @Component
 export default class Transition extends Vue {
   // datas
-  showTransition: boolean = true;
+  showTransition = true;
   /**
    * 毫秒
    */
@@ -27,7 +27,7 @@ export default class Transition extends Vue {
   /**
    * default is fade, options: fade, slide
    */
-  transitionType: string = 'fade';
+  transitionType = 'fade';
   
   transitionClasses: string = [
     'enter-class',
@@ -38,9 +38,9 @@ export default class Transition extends Vue {
     'leave-to-class'
   ].join(' ');
 
-  transitionInited: boolean = false;
-  transitionCurrentDuration: number = 300;;
-  transitionDisplay: boolean = false;
+  transitionInited = false;
+  transitionCurrentDuration = 300;;
+  transitionDisplay = false;
 
   private mTransitionStatus?: 'enter' | 'leave';
   private mTransitionEnded?: boolean;

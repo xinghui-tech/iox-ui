@@ -67,7 +67,7 @@ export default class IoxIcon extends mixins(base) {
   size!: number;
 
   get isImageName() {
-    return this.name.indexOf('/') !== -1
+    return this.name.indexOf('/') !== -1;
   }
 
   get utils() {

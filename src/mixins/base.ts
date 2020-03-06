@@ -7,11 +7,11 @@ const props = {
     customClass: String,
     customStyle: String,
   },
-}
+};
 
 export {
   props
-}
+};
 @Component({
 })
 export default class base extends Vue {

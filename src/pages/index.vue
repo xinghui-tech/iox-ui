@@ -10,14 +10,12 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from 'vue-class-component';
-import { Watch } from 'vue-property-decorator';
-import { logger } from '@zhuyin/common';
 
 @Component
 export default class Index extends Vue {
   // vuex
-  loading: boolean = true;
-  popup: boolean = false;
+  loading = true;
+  popup = false;
 
   onLoad() {
     setTimeout(() => {

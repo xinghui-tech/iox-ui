@@ -45,7 +45,7 @@ export default class IoxInfo extends mixins(base) {
   color!: string;
 
   get isImageName() {
-    return this.name.indexOf('/') !== -1
+    return this.name.indexOf('/') !== -1;
   }
 
   get utils() {

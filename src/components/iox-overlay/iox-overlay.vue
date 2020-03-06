@@ -28,7 +28,7 @@ export default class IoxTransition extends mixins(base) {
     type: Boolean,
     default: false,
   })
-  show!:boolean;
+  show!: boolean;
 
   @Prop({
     type: [Number, Object],

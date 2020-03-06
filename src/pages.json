@@ -26,4 +26,4 @@
 			"iox-(.*)": "@/components/iox-$1/iox-$1.vue"
 		}
 	}
-}
+};

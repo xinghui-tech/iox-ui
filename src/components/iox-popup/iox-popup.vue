@@ -168,15 +168,15 @@ export default class Ioxpopup extends mixins(base, transition) {
 
   get mainStyle() {
     return (
-      `z-index: ${this.zIndex}; -webkit-transition-duration: ${this.transitionCurrentDuration}ms; transition-duration: ${this.transitionCurrentDuration}ms;` +
-      `${this.transitionDisplay ? "" : "display: none;"} ${this.customStyle}`
+      `z-index: ${this.zIndex}; -webkit-transition-duration: ${this.transitionCurrentDuration}ms; transition-duration: ${this.transitionCurrentDuration}ms;`
+      + `${this.transitionDisplay ? "" : "display: none;"} ${this.customStyle}`
     );
   }
 
   get spinnerClass() {
-    return `${this.classPrefix + "__close-icon"} ${this.classPrefix +
-      "__close-icon--" +
-      this.closeIconPosition} `;
+    return `${this.classPrefix + "__close-icon"} ${this.classPrefix
+      + "__close-icon--"
+      + this.closeIconPosition} `;
   }
 
   protected created() {
@@ -185,7 +185,7 @@ export default class Ioxpopup extends mixins(base, transition) {
   }
 
   private _updateTransition() {
-    let show = this.show;
+    const show = this.show;
 
     // old
     let type = this.transitionType;

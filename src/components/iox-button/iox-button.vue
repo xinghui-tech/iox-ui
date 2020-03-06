@@ -141,7 +141,7 @@ export default class IoxButton extends Mixins(base, openType) {
   })
   hairline!: boolean;
 
-  baseStyle: string = '';
+  baseStyle = '';
 
   @Watch('color')
   colorChanged(newVal?: string, old?: string) {

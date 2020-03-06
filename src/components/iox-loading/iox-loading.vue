@@ -81,7 +81,7 @@ export default class IoxLoading extends mixins(base) {
   }
 
   get textStyle() {
-    return `font-size: ${utils.addUnit(this.textSize)};`
+    return `font-size: ${utils.addUnit(this.textSize)};`;
   }
 }
 </script>
