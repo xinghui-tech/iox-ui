@@ -12,7 +12,8 @@ const props = {
 export {
   props
 }
-@Component
+@Component({
+})
 export default class base extends Vue {
   customClass?: string;
   customStyle?: string;
@@ -22,7 +23,7 @@ export default class base extends Vue {
   }
 
   get mainClass() {
-    return `${this.customClass || ''} ${this.classPrefix}`;
+    return `custom-class ${this.customClass || ''} ${this.classPrefix}`;
   }
 
   get mainStyle() {

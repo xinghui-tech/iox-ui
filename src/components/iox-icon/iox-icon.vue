@@ -79,7 +79,7 @@ export default class IoxIcon extends mixins(base) {
   }
 
   get mainClass() {
-    return `${this.customClass || ''} ${this.classPrefix} ${ this.isImageName ? this.classPrefix + '--image' : this.classPrefix + '-' + this.name }`;
+    return `custom-class ${this.customClass || ''} ${this.classPrefix} ${ this.isImageName ? this.classPrefix + '--image' : this.classPrefix + '-' + this.name }`;
   }
 
   get mainStyle() {

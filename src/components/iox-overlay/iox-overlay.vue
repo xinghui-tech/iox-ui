@@ -1,7 +1,7 @@
 <template>
   <iox-transition
     :show="show"
-    :custom-class="classPrefix"
+    :custom-class="'^' + classPrefix"
     :custom-style="mainStyle"
     :duration="duration"
     @tap="onClick"

@@ -163,7 +163,7 @@ export default class Ioxpopup extends mixins(base, transition) {
         safeTop: this.safeAreaInsetTop
       }
     ]);
-    return `${this.customClass || ""} ${classes} ${this.transitionClasses}`;
+    return `custom-class ${this.customClass || ''} ${classes} ${this.transitionClasses}`;
   }
 
   get mainStyle() {

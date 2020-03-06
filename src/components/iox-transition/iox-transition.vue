@@ -77,7 +77,7 @@ export default class IoxTransition extends mixins(base, transition) {
   }
 
   get mainClass() {
-    return `${this.customClass || ''} ${this.classPrefix} ${this.transitionClasses}`;
+    return `custom-class ${this.customClass || ''} ${this.classPrefix} ${this.transitionClasses}`;
   }
 
   get mainStyle() {

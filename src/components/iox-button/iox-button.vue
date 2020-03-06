@@ -184,7 +184,7 @@ export default class IoxButton extends Mixins(base, openType) {
       unclickable: this.disabled || this.loading 
     }]);
     
-    return `${this.customClass || ''} ${cls} ${this.hairline ? 'iox-hairline--surround' : ''}`;
+    return `custom-class ${this.customClass || ''} ${cls} ${this.hairline ? 'iox-hairline--surround' : ''}`;
   }
 
   get mainStyle() {
