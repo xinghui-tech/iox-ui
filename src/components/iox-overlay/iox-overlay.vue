@@ -21,12 +21,12 @@ import base, { props } from '../../mixins/base';
 const classPrefix = 'iox-overlay';
 
 @Component({
-  mixins: [ props ],
+  mixins: [props],
 })
 export default class IoxTransition extends mixins(base) {
   @Prop({
-    type:Boolean,
-    default:false,
+    type: Boolean,
+    default: false,
   })
   show!:boolean;
 

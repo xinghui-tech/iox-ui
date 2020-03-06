@@ -19,7 +19,7 @@ import transition, { Duration } from '../../mixins/transition';
 const classPrefix = 'iox-transition';
 
 @Component({
-  mixins: [ props ],
+  mixins: [props],
 })
 export default class IoxTransition extends mixins(base, transition) {
   @Prop({
@@ -40,7 +40,7 @@ export default class IoxTransition extends mixins(base, transition) {
     validator(val: any) {
       if (typeof val === 'number') {
         return val > 0;
-      } else if (typeof val === 'object'){
+      } else if (typeof val === 'object') {
         if (!val.hasOwnProperty('enter')) {
           return false;
         }
@@ -81,7 +81,7 @@ export default class IoxTransition extends mixins(base, transition) {
   }
 
   get mainStyle() {
-    return `-webkit-transition-duration: ${this.transitionCurrentDuration}ms; transition-duration: ${this.transitionCurrentDuration}ms; ` 
+    return `-webkit-transition-duration: ${this.transitionCurrentDuration}ms; transition-duration: ${this.transitionCurrentDuration}ms; `
             + `${this.transitionDisplay ? '' : 'display: none;'} ${this.customStyle}`;
   }
 
@@ -108,7 +108,6 @@ export default class IoxTransition extends mixins(base, transition) {
       this.$emit('after-leave');
     });
   }
-
 }
 </script>
 
