@@ -5,12 +5,15 @@ module.exports = {
     },
     "extends": [
         "plugin:vue/essential",
-        "standard"
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
+    "parser": "vue-eslint-parser",
     "parserOptions": {
         "ecmaVersion": 2018,
         "parser": "@typescript-eslint/parser",
@@ -30,6 +33,16 @@ module.exports = {
         "comma-dangle": ["off"],
         "eol-last": ["off"],
         "no-prototype-builtins": ["off"],
-        "operator-linebreak": ["error", "before", { "overrides": { "?": "after", ":": "before" } }]
+        "operator-linebreak": ["error", "before", { "overrides": { "?": "after", ":": "before" } }],
+        "quotes": ["off"],
+        "dot-notation": ["warn"],
+        "no-undef": ["off"],
+        "eqeqeq": ["error", "smart"],
+        // typescript
+        "@typescript-eslint/no-explicit-any": ["off"],
+        "@typescript-eslint/explicit-function-return-type": ["off"],
+        "@typescript-eslint/no-non-null-assertion": ["off"],
+        "@typescript-eslint/no-empty-function": ["off"],
+        "@typescript-eslint/no-unused-vars": ["warn", {"args": "none"}]
     }
 };
