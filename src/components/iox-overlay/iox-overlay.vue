@@ -1,7 +1,7 @@
 <template>
   <iox-transition
     :show="show"
-    :custom-class="'^' + classPrefix"
+    :custom-class="classPrefix"
     :custom-style="mainStyle"
     :duration="duration"
     @tap="onClick"
@@ -12,18 +12,15 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
 import * as utils from '../../utils/utils';
-import base, { props } from '../../mixins/base';
+import Base from '../../mixins/base';
 
 const classPrefix = 'iox-overlay';
 
-@Component({
-  mixins: [props],
-})
-export default class IoxTransition extends mixins(base) {
+@Component
+export default class IoxTransition extends mixins(Base) {
   @Prop({
     type: Boolean,
     default: false,

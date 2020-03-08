@@ -26,28 +26,18 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import Component, { mixins } from "vue-class-component";
 import { Prop, Watch } from "vue-property-decorator";
 import * as utils from "../../utils/utils";
 import bem from "../../utils/bem";
-import base, { props } from "../../mixins/base";
+import Base from "../../mixins/base";
 import transition, { Duration } from "../../mixins/transition";
-
-import ioxOverlay from "@/components/iox-overlay/iox-overlay.vue";
-import ioxIcon from "@/components/iox-icon/iox-icon.vue";
 
 type Transition = string | boolean | { type: string; duration: Duration };
 
 const classPrefix = "iox-popup";
-@Component({
-  mixins: [props],
-  components: {
-    ioxOverlay,
-    ioxIcon
-  }
-})
-export default class Ioxpopup extends mixins(base, transition) {
+@Component
+export default class Ioxpopup extends mixins(Base, transition) {
   // props
   @Prop({
     type: Boolean,

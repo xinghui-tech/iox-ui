@@ -19,17 +19,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
 import * as utils from '../../utils/utils';
-import base, { props } from '../../mixins/base';
+import Base from '../../mixins/base';
 
 const classPrefix = 'iox-loading';
-@Component({
-  mixins: [props]
-})
-export default class IoxLoading extends mixins(base) {
+@Component
+export default class IoxLoading extends mixins(Base) {
   @Prop({
     type: String,
     default: 'circular',

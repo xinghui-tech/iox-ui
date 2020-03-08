@@ -9,19 +9,16 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import Component, { mixins } from 'vue-class-component';
 import { Prop, Watch } from 'vue-property-decorator';
 import * as utils from '../../utils/utils';
-import base, { props } from '../../mixins/base';
+import Base from '../../mixins/base';
 import transition, { Duration } from '../../mixins/transition';
 
 const classPrefix = 'iox-transition';
 
-@Component({
-  mixins: [props],
-})
-export default class IoxTransition extends mixins(base, transition) {
+@Component
+export default class IoxTransition extends mixins(Base, transition) {
   @Prop({
     type: Boolean,
     default: true

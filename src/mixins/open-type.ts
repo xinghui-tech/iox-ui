@@ -1,19 +1,14 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { Prop } from 'vue-property-decorator';
 
-const props = {
-  props: {
-    openType: {
-      type: String,
-    }
-  }
-};
-
-export {
-  props
-};
 @Component
 export default class OpenType extends Vue {
+  @Prop({
+    type: String,
+  })
+  openType?: string;
+
   onGetUserInfo(event: CustomEvent<WechatMiniprogram.GetUserInfoSuccessCallbackResult>) {
     this.$emit('getuserinfo', event.detail);
   }

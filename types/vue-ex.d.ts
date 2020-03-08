@@ -9,3 +9,10 @@ declare module 'vue/types/vue' {
     globalData: any;
   }
 }
+
+// ComponentOptions is declared in types/options.d.ts
+declare module 'vue/types/options' {
+  interface ComponentOptions<V extends Vue> {
+    externalClasses?: string | string[];
+  }
+}

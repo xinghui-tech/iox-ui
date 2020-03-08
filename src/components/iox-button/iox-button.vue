@@ -51,20 +51,17 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Prop, Mixins, Watch } from 'vue-property-decorator';
 import bem from '../../utils/bem';
 
-import base, { props } from '../../mixins/base';
-import { props as buttonProps } from '../../mixins/button';
-import openType, { props as opentypeProps } from '../../mixins/open-type';
+import Base from '../../mixins/base';
+import ButtonProps from '../../mixins/button';
+import OpenType from '../../mixins/open-type';
 
 const classPrefix = 'iox-button';
-@Component({
-  mixins: [props, buttonProps, opentypeProps],
-})
-export default class IoxButton extends Mixins(base, openType) {
+@Component
+export default class IoxButton extends Mixins(Base, ButtonProps, OpenType) {
   @Prop({
     type: String,
     default: 'default'

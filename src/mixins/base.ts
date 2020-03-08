@@ -1,22 +1,23 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { Prop } from 'vue-property-decorator';
 const classPrefix = 'iox';
 
-const props = {
-  props: {
-    customClass: String,
-    customStyle: String,
-  },
-};
-
-export {
-  props
-};
 @Component({
+  externalClasses: ['custom-class']
 })
-export default class base extends Vue {
+export default class Base extends Vue {
   customClass?: string;
+  @Prop({
+    type: String,
+  })
   customStyle?: string;
+
+  @Prop({
+    type: String,
+    default: 'test'
+  })
+  baseProp!: string;
  
   get classPrefix() {
     return classPrefix;

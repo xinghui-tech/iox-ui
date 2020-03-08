@@ -3,7 +3,7 @@
     hello IOX-UI!
     <iox-button :loading="loading" loadingType="spinner" loadingText="loading" @click="onClick" type="primary" hairline >click me!</iox-button>
     <iox-transition custom-class="block">fade!</iox-transition>
-    <iox-popup :show="popup" closeable>Popup!</iox-popup>
+    <iox-popup :show="popup" closeable @close="onClosePopup">Popup!</iox-popup>
   </view>
 </template>
 
@@ -25,6 +25,10 @@ export default class Index extends Vue {
 
   onClick() {
     this.popup = !this.popup;
+  }
+
+  onClosePopup() {
+    this.popup = false;
   }
 }
 </script>

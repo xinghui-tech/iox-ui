@@ -1,4 +1,6 @@
-const props = {
+import Vue from 'vue';
+
+export default Vue.extend({
   props: {
     lang: {
       type: String,
@@ -13,8 +15,4 @@ const props = {
     appParameter: String,
     ariaLabel: String
   }
-};
-
-export {
-  props
-};
+});
