@@ -13,12 +13,12 @@ import Component, { mixins } from 'vue-class-component';
 import { Prop, Watch } from 'vue-property-decorator';
 import * as utils from '../../utils/utils';
 import Base from '../../mixins/base';
-import transition, { Duration } from '../../mixins/transition';
+import Transition, { Duration } from '../../mixins/transition';
 
 const classPrefix = 'iox-transition';
 
 @Component
-export default class IoxTransition extends mixins(Base, transition) {
+export default class IoxTransition extends mixins(Base, Transition) {
   @Prop({
     type: Boolean,
     default: true
@@ -84,6 +84,7 @@ export default class IoxTransition extends mixins(Base, transition) {
 
   created() {
     this.showTransition = this.show;
+    // this.transitionType = this.type || 'fade';
     // transfer event
     this.$on('transition-before-enter', () => {
       this.$emit('before-enter');

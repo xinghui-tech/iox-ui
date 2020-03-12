@@ -80,7 +80,7 @@ export default class IoxIcon extends mixins(Base) {
   }
 
   get mainStyle() {
-    return `${this.customStyle || ''} color: ${ this.color }; font-size: ${ utils.addUnit(this.size) }; ${ this.customStyle }`;
+    return `color: ${ this.color }; font-size: ${ utils.addUnit(this.size) }; ${ this.customStyle }`;
   }
 
   onClick() {

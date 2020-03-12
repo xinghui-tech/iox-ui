@@ -6,6 +6,7 @@
       :z-index="zIndex"
       :custom-style="overlayStyle"
       :duration="duration"
+      :transition="transition"
       @click="onClickOverlay"
     />
     <view
@@ -31,13 +32,13 @@ import { Prop, Watch } from "vue-property-decorator";
 import * as utils from "../../utils/utils";
 import bem from "../../utils/bem";
 import Base from "../../mixins/base";
-import transition, { Duration } from "../../mixins/transition";
+import Transition , { Duration } from "../../mixins/transition";
 
-type Transition = string | boolean | { type: string; duration: Duration };
+type Transitiontype = string | boolean | { type: string; duration: Duration };
 
 const classPrefix = "iox-popup";
 @Component
-export default class Ioxpopup extends mixins(Base, transition) {
+export default class Ioxpopup extends mixins(Base, Transition) {
   // props
   @Prop({
     type: Boolean,
@@ -67,7 +68,7 @@ export default class Ioxpopup extends mixins(Base, transition) {
     type: [String, Boolean, Object],
     default: "fade"
   })
-  transition!: Transition;
+  transition!: Transitiontype;
 
   @Prop({
     type: Number,
@@ -119,12 +120,12 @@ export default class Ioxpopup extends mixins(Base, transition) {
 
   // watchs
   @Watch("show")
-  showChanged(newVal: boolean, oldVal: boolean) {
+  showChanged(newVal: boolean, oldVal: boolean ) {
     this.showTransition = newVal;
   }
 
   @Watch("transition")
-  transitionChanged(newVal?: Transition, oldVal?: Transition) {
+  transitionChanged(newVal?: Transitiontype, oldVal?: Transitiontype) {
     this._updateTransition();
   }
 

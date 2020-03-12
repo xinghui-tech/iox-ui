@@ -4,6 +4,7 @@
     :custom-class="classPrefix"
     :custom-style="mainStyle"
     :duration="duration"
+    :type="transition"
     @tap="onClick"
     @touchmove.stop="noop"
   >
@@ -21,6 +22,7 @@ const classPrefix = 'iox-overlay';
 
 @Component
 export default class IoxTransition extends mixins(Base) {
+  //datas
   @Prop({
     type: Boolean,
     default: false,
@@ -38,6 +40,12 @@ export default class IoxTransition extends mixins(Base) {
     default: 1,
   })
   zIndex!: number;
+
+  @Prop({
+    type: String,
+    default: 'fade',
+  })
+  transition!: string;
 
   get utils() {
     return utils;
