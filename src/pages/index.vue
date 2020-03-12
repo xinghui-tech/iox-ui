@@ -4,6 +4,7 @@
     <iox-button :loading="loading" loadingType="spinner" loadingText="loading" @click="onClick" type="primary" hairline >click me!</iox-button>
     <iox-transition custom-class="block">fade!</iox-transition>
     <iox-popup :show="popup" closeable @close="onClosePopup">Popup!</iox-popup>
+    <iox-icon name="bell" />
   </view>
 </template>
 

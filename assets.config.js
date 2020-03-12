@@ -14,5 +14,7 @@ assets.push({ from: '/src/style', to: '@/lib/style' })
 assets.push({ from: '/src/utils', to: '@/lib/utils' })
 // static
 assets.push({ from: '/src/static', to: '@/lib/static' })
+// fonts
+assets.push({ from: '/src/fonts', to: '@/lib/fonts' })
 
 module.exports = assets

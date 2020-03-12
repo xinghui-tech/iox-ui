@@ -8,6 +8,13 @@ export default Vue.extend({
   globalData: {
   },
   onLaunch(options: App.LaunchShowOption) {
+    wx.loadFontFace({
+      global: true,
+      family: 'FontAwesome',
+      source: 'url("https://w-test.zhuyin.club/assets/fonts/fontawesome-webfont.woff")',
+      success: console.log,
+      fail: console.warn
+    });
     logger.log("App Launch");
   },
   onShow() {
