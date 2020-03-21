@@ -727,10 +727,10 @@
     mustache "^3.1.0"
     stricter-htmlparser2 "^3.9.6"
 
-"@dcloudio/uni-mp-weixin@zhuyin":
-  version "2.0.0-26120200226001-zhuyin"
-  resolved "https://npm-registry.zhayanmao.com/@dcloudio/uni-mp-weixin/download/@dcloudio/uni-mp-weixin-2.0.0-26120200226001-zhuyin.tgz#771c2f08f9d828fb0efa86f19dc7e09b05578062"
-  integrity sha1-dxwvCPnYKPsO+obxncfgmwVXgGI=
+"@dcloudio/uni-mp-weixin@^2.0.0-26520200314001":
+  version "2.0.0-26520200314001"
+  resolved "https://npm-registry.zhayanmao.com/@dcloudio/uni-mp-weixin/download/@dcloudio/uni-mp-weixin-2.0.0-26520200314001.tgz#af592cc46167f2f47a46b1f48510231ff9700330"
+  integrity sha1-r1ksxGFn8vR6RrH0hRAjH/lwAzA=
 
 "@dcloudio/uni-stat@^2.0.0-alpha-26320200304005":
   version "2.0.0-alpha-26320200304005"
