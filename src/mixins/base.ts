@@ -18,7 +18,7 @@ export default class Base extends Vue {
     default: 'test'
   })
   baseProp!: string;
- 
+
   get classPrefix() {
     return classPrefix;
   }

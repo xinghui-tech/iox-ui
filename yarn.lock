@@ -727,7 +727,7 @@
     mustache "^3.1.0"
     stricter-htmlparser2 "^3.9.6"
 
-"@dcloudio/uni-mp-weixin@^2.0.0-26520200314001":
+"@dcloudio/uni-mp-weixin@zhuyin":
   version "2.0.0-26520200314001"
   resolved "https://npm-registry.zhayanmao.com/@dcloudio/uni-mp-weixin/download/@dcloudio/uni-mp-weixin-2.0.0-26520200314001.tgz#af592cc46167f2f47a46b1f48510231ff9700330"
   integrity sha1-r1ksxGFn8vR6RrH0hRAjH/lwAzA=

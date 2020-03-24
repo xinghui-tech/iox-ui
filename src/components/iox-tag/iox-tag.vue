@@ -5,8 +5,9 @@
     <slot />
     <iox-icon
       v-if="closeable"
-      name="cross"
+      name="close"
       :custom-class="spinnerClass"
+      custom-style="font-size:12px;"
       @click="onClose"
     />
   </view>

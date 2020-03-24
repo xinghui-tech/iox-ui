@@ -6,12 +6,16 @@
     <iox-transition custom-class="block">fade!</iox-transition>
     <iox-icon name="bell" />
     <!-- popup -->
-    <iox-popup :show="popup" :overlay="true"
+    <iox-popup :show="popup"
+    overlay
     :round="false"
     closeable
+    closeIcon="close"
+    closeIconPosition="top-right"
+    :closeOnClickOverlay="false"
     transition="slide"
-    custom-style="height: 100%;width:20%;"
-    position="left"
+    custom-style="padding:100rpx;"
+    position="center"
     @close="onClosePopup">
       Popup!!
     </iox-popup>
@@ -98,9 +102,8 @@ export default class Index extends Vue {
     this.popup = false;
   }
 
-  onClose(event: TouchEvent) {
-    const dataset: any = event.currentTarget;
-    (this as any).show[dataset.id] = false;
+  onClose(v: string) {
+    (this as any).show[v] = false;
   }
 }
 </script>
