@@ -1,7 +1,7 @@
 <template>
   <view>
     <iox-cell title="单元格cell" url="/pages/cells" isLink />
-    <iox-cell title="标签tag" url="/pages/tags" />
+    <iox-cell title="标签tag" url="/pages/tags" isLink />
   </view>
 </template>
 

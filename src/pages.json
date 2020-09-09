@@ -34,7 +34,10 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "IOX-UI",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+		"usingComponents": {
+			"demo-block": "/wxcomponents/demo-block/index"
+		}
 	},
 	"easycom": {
 		"autoscan": true,
