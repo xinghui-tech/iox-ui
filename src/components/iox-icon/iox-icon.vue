@@ -53,13 +53,12 @@ export default class IoxIcon extends mixins(Base) {
 
   @Prop({
     type: String,
-    default: '',
   })
-  color!: string;
+  color?: string;
 
   @Prop({
     type: [Number, String],
-    default: 32,
+    default: 16,
   })
   size!: number;
 
@@ -80,7 +79,7 @@ export default class IoxIcon extends mixins(Base) {
   }
 
   get mainStyle() {
-    return `color: ${ this.color }; font-size: ${ utils.addUnit(this.size) }; ${ this.customStyle }`;
+    return `${ this.color ? 'color: ' + this.color + ";" : '' } font-size: ${ utils.addUnit(this.size) }; ${ this.customStyle }`;
   }
 
   onClick() {

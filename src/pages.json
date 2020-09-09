@@ -8,6 +8,22 @@
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}
+		},{
+			"path": "pages/tags",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Tags",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/cells",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Cells",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
 		}
 	],
 	"subPackages": [
