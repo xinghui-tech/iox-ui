@@ -35,9 +35,8 @@ export default class IoxLoading extends mixins(Base) {
 
   @Prop({
     type: Boolean,
-    default: true,
   })
-  vertical!: boolean;
+  vertical?: boolean;
 
   @Prop({
     type: String,

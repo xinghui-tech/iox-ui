@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <block>
     <iox-overlay
       v-if="overlay"
       :show="show"
@@ -10,7 +10,7 @@
       @click="onClickOverlay"
     />
     <view
-      v-if="transitionInited"
+      v-if="inited"
       :class="mainClass"
       :style="mainStyle"
       @transitionend="onTransitionEnd"
@@ -23,21 +23,29 @@
         @tap="onClickCloseIcon"
       />
     </view>
-  </view>
+  </block>
 </template>
 
 <script lang="ts">
 import Component, { mixins } from "vue-class-component";
 import { Prop, Watch } from "vue-property-decorator";
-import * as utils from "../../utils/utils";
 import bem from "../../utils/bem";
 import Base from "../../mixins/base";
-import Transition , { Duration } from "../../mixins/transition";
-
-type Transitiontype = string | boolean | { type: string; duration: Duration };
+import Transition from "../../mixins/transition";
 
 const classPrefix = "iox-popup";
-@Component
+@Component({
+  externalClasses: [
+    'enter-class',
+    'enter-active-class',
+    'enter-to-class',
+    'leave-class',
+    'leave-active-class',
+    'leave-to-class',
+    'close-icon-class',
+    'custom-class'
+  ]
+})
 export default class Ioxpopup extends mixins(Base, Transition) {
   // props
   @Prop({
@@ -65,10 +73,9 @@ export default class Ioxpopup extends mixins(Base, Transition) {
   overlayStyle!: string;
 
   @Prop({
-    type: [String, Boolean, Object],
-    default: "fade"
+    type: String,
   })
-  transition!: Transitiontype;
+  transition?: string;
 
   @Prop({
     type: Number,
@@ -84,7 +91,7 @@ export default class Ioxpopup extends mixins(Base, Transition) {
 
   @Prop({
     type: String,
-    default: "cross"
+    default: "close"
   })
   closeIcon!: string;
 
@@ -118,27 +125,27 @@ export default class Ioxpopup extends mixins(Base, Transition) {
   })
   safeAreaInsetTop!: boolean;
 
+  // data
+  originDuration?: number | null = null;
+
   // watchs
-  @Watch("show")
-  showChanged(newVal: boolean, oldVal: boolean ) {
-    this.showTransition = newVal;
+  @Watch('show')
+  showChanged(newVal: boolean, oldVal: boolean) {
+    if (newVal === oldVal) {
+      return;
+    }
+
+    newVal ? this.enter() : this.leave();
   }
 
   @Watch("transition")
-  transitionChanged(newVal?: Transitiontype, oldVal?: Transitiontype) {
+  transitionChanged(newVal?: string, oldVal?: string) {
     this._updateTransition();
   }
 
   @Watch("position")
-  positionChanged(newVal?: any, oldVal?: any) {
+  positionChanged(newVal?: string, oldVal?: string) {
     this._updateTransition();
-  }
-
-  get utils() {
-    return utils;
-  }
-  get bem() {
-    return bem;
   }
 
   get classPrefix() {
@@ -154,20 +161,16 @@ export default class Ioxpopup extends mixins(Base, Transition) {
         safeTop: this.safeAreaInsetTop
       }
     ]);
-    return `custom-class ${this.customClass || ''} ${classes} ${this.transitionClasses}`;
+    return `custom-class ${this.customClass || ''} ${this.classes} ${classes}`;
   }
 
   get mainStyle() {
-    return (
-      `z-index: ${this.zIndex}; -webkit-transition-duration: ${this.transitionCurrentDuration}ms; transition-duration: ${this.transitionCurrentDuration}ms;`
-      + `${this.transitionDisplay ? "" : "display: none;"} ${this.customStyle}`
-    );
+    return `z-index: ${this.zIndex}; -webkit-transition-duration: ${this.currentDuration}ms; transition-duration: ${this.currentDuration}ms;`
+      + `${this.display ? "" : "display: none;"} ${this.customStyle}`;
   }
 
   get spinnerClass() {
-    return `${this.classPrefix + "__close-icon"} ${this.classPrefix
-      + "__close-icon--"
-      + this.closeIconPosition} `;
+    return `${this.classPrefix}__close-icon ${this.classPrefix}__close-icon--${this.closeIconPosition}`;
   }
 
   protected created() {
@@ -176,30 +179,24 @@ export default class Ioxpopup extends mixins(Base, Transition) {
   }
 
   private _updateTransition() {
-    const show = this.show;
+      const { transition, position, duration } = (this as any);
 
-    // old
-    let type = this.transitionType;
-    let duration = this.transitionDuration;
+      const updateData: { [key: string]: any } = {
+        name: transition || position,
+      };
 
-    const newVal = this.transition;
-    if (newVal === false) {
-      duration = 0;
-      type = this.position;
-    } else if (newVal === true) {
-      // default
-      duration = 300;
-      type = this.position;
-    } else if (typeof newVal === "string") {
-      duration = 300;
-      type = newVal;
-    } else if (typeof newVal === "object") {
-      type = newVal.type;
-      duration = newVal.duration;
-    }
-    this.transitionType = type;
-    this.transitionDuration = duration;
-    this.showTransition = show;
+      if (transition === 'none') {
+        updateData.duration = 0;
+        this.originDuration = duration;
+      } else if (this.originDuration != null) {
+        updateData.duration = this.originDuration;
+      }
+
+      for (const key in updateData) {
+        if (Object.prototype.hasOwnProperty.call(updateData, key)) {
+          (this as any)[key] = updateData[key];
+        }
+      }
   }
 
   onClickCloseIcon() {

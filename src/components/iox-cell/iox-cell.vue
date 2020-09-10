@@ -6,7 +6,7 @@
     hover-stay-time="70"
     @tap="onClick"
   >
-    <ioxicon
+    <iox-icon
       v-if="icon"
       :name="icon"
       class="iox-cell__left-icon-wrap"
@@ -53,7 +53,16 @@ import Base from '../../mixins/base';
 import Link from '../../mixins/link';
 
 const classPrefix = 'iox-cell';
-@Component
+@Component({
+  externalClasses: [
+    'title-class',
+    'label-class',
+    'value-class',
+    'right-icon-class',
+    'hover-class',
+    'custom-class'
+  ]
+})
 export default class IoxCell extends mixins(Base, Link) {
   @Prop({
     type: String,

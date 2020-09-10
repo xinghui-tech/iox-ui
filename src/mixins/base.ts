@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
+import bem from '../utils/bem';
+
 const classPrefix = 'iox';
 
 @Component({
@@ -13,12 +15,6 @@ export default class Base extends Vue {
   })
   customStyle?: string;
 
-  @Prop({
-    type: String,
-    default: 'test'
-  })
-  baseProp!: string;
-
   get classPrefix() {
     return classPrefix;
   }
@@ -29,5 +25,9 @@ export default class Base extends Vue {
 
   get mainStyle() {
     return this.customStyle || '';
+  }
+
+  protected bem(name: string, conf?: any) {
+    return bem(name, conf);
   }
 }

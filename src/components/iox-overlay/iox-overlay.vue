@@ -4,11 +4,11 @@
     :custom-class="classPrefix"
     :custom-style="mainStyle"
     :duration="duration"
-    :type="transition"
+    :name="transition"
     @tap="onClick"
     @touchmove.stop="noop"
   >
-    <slot></slot>
+    <slot />
   </iox-transition>
 </template>
 
@@ -17,6 +17,7 @@ import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
 import * as utils from '../../utils/utils';
 import Base from '../../mixins/base';
+import { Duration } from '@/mixins/transition';
 
 const classPrefix = 'iox-overlay';
 
@@ -33,7 +34,7 @@ export default class IoxTransition extends mixins(Base) {
     type: [Number, Object],
     default: 300,
   })
-  duration!: number | boolean;
+  duration!: number | Duration;
 
   @Prop({
     type: Number,

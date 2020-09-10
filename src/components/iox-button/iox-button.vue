@@ -39,7 +39,7 @@
       <iox-icon
         v-if="icon"
         size="1.2em"
-        name="icon"
+        :name="icon"
         class="iox-button__icon"
         custom-style="line-height: inherit;"
       />
@@ -53,14 +53,15 @@
 <script lang="ts">
 import Component from 'vue-class-component';
 import { Prop, Mixins, Watch } from 'vue-property-decorator';
-import bem from '../../utils/bem';
 
 import Base from '../../mixins/base';
 import ButtonProps from '../../mixins/button';
 import OpenType from '../../mixins/open-type';
 
 const classPrefix = 'iox-button';
-@Component
+@Component({
+  externalClasses: ['hover-class', 'loading-class', 'custom-class']
+})
 export default class IoxButton extends Mixins(Base, ButtonProps, OpenType) {
   @Prop({
     type: String,
@@ -79,6 +80,11 @@ export default class IoxButton extends Mixins(Base, ButtonProps, OpenType) {
   })
   color?: string;
   
+  @Prop({
+    type: String,
+  })
+  icon?: string;
+
   @Prop({
     type: Boolean,
     default: false,
@@ -170,21 +176,18 @@ export default class IoxButton extends Mixins(Base, ButtonProps, OpenType) {
   }
 
   get mainClass() {
-    const cls = bem('button', [this.type, this.size, { 
-      block: this.block, 
-      round: this.round,
-      plain: this.plain, 
-      square: this.square,
-      loading: this.loading, 
-      disabled: this.disabled,
-      hairline: this.hairline, 
+    const { block, round, plain, square, loading, disabled, hairline } = this;
+    const classes = this.bem('button', [this.type, this.size, { 
+      block, round, plain, square, loading, disabled, hairline, 
       unclickable: this.disabled || this.loading 
     }]);
     
-    return `custom-class ${this.customClass || ''} ${cls} ${this.hairline ? 'iox-hairline--surround' : ''}`;
+    return `custom-class ${this.customClass || ''} ${classes} ${this.hairline ? 'iox-hairline--surround' : ''}`;
   }
 
   get mainStyle() {
+    // calculate style
+    this.colorChanged(this.color);
     return `${this.baseStyle} ${this.customStyle || ''}`;
   }
 

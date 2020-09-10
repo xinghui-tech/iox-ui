@@ -9,10 +9,10 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
-			"path": "pages/tags",
+			"path": "pages/buttons",
 			"style": {
 				"navigationStyle": "default",
-				"navigationBarTitleText": "Tags",
+				"navigationBarTitleText": "Buttons",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}
@@ -21,6 +21,46 @@
 			"style": {
 				"navigationStyle": "default",
 				"navigationBarTitleText": "Cells",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/icons",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Icons",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/popups",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Popups",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/transitions",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Transitions",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/tags",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Tags",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/loadings",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Loadings",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}
@@ -34,6 +74,7 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "IOX-UI",
 		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundTextStyle": "dark",
 		"backgroundColor": "#F8F8F8",
 		"usingComponents": {
 			"demo-block": "/wxcomponents/demo-block/index"

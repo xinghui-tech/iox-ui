@@ -35,7 +35,7 @@
       <iox-cell
         title="单元格"
         value="内容"
-        icon="location-o"
+        icon="bath"
         :border="false"
       />
     </demo-block>
@@ -71,7 +71,7 @@
     </demo-block>
 
     <demo-block title="使用插槽">
-      <iox-cell value="内容" icon="shop-o" is-link>
+      <iox-cell value="内容" icon="shopping-cart " is-link>
         <view slot="title">
           <view class="title">单元格</view>
           <iox-tag type="danger">标签</iox-tag>
@@ -95,14 +95,15 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Component from 'vue-class-component';
+import Component, { mixins } from 'vue-class-component';
+import Fonts from '../mixins/font';
 
 @Component
-export default class Index extends Vue {
+export default class Index extends mixins(Fonts) {
   show = {
     success: true,
     primary: true
-  }
+  };
 
   onLoad() {
   }
@@ -110,4 +111,9 @@ export default class Index extends Vue {
 </script>
 
 <style lang="less">
+.title {
+  margin-right: 5px;
+  display: inline-block;
+  vertical-align: middle;
+}
 </style>

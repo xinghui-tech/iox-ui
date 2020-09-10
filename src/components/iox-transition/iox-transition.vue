@@ -1,6 +1,6 @@
 <template>
   <view
-    v-if="transitionInited"
+    v-if="inited"
     :class="mainClass" :style="mainStyle"
     @transitionend="onTransitionEnd"
   >
@@ -10,63 +10,37 @@
 
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component';
-import { Prop, Watch } from 'vue-property-decorator';
-import * as utils from '../../utils/utils';
 import Base from '../../mixins/base';
-import Transition, { Duration } from '../../mixins/transition';
+import Transition from '../../mixins/transition';
+import { Prop, Watch } from 'vue-property-decorator';
 
 const classPrefix = 'iox-transition';
 
-@Component
+@Component({
+  externalClasses: [
+    'enter-class',
+    'enter-active-class',
+    'enter-to-class',
+    'leave-class',
+    'leave-active-class',
+    'leave-to-class',
+    'custom-class'
+  ]
+})
 export default class IoxTransition extends mixins(Base, Transition) {
   @Prop({
     type: Boolean,
-    default: true
+    default: false
   })
   show!: boolean;
-
-  @Prop({
-    type: String,
-    default: 'fade'
-  })
-  type!: string;
-
-  @Prop({
-    type: [Number, Object],
-    default: 300,
-    validator(val: any) {
-      if (typeof val === 'number') {
-        return val > 0;
-      } else if (typeof val === 'object') {
-        if (!val.hasOwnProperty('enter')) {
-          return false;
-        }
-        if (!val.hasOwnProperty('leave')) {
-          return false;
-        }
-      }
-      return false;
-    }
-  })
-  duration!: Duration;
-
+  
   @Watch('show')
   showChanged(newVal: boolean, oldVal: boolean) {
-    this.showTransition = newVal;
-  }
+    if (newVal === oldVal) {
+      return;
+    }
 
-  @Watch('type')
-  typeChanged(newVal: string, oldVal: string) {
-    this.transitionType = newVal || 'fade';
-  }
-
-  @Watch('duration')
-  durationChanged(newVal: Duration, oldVal: Duration) {
-    this.transitionDuration = newVal || 300;
-  }
-
-  get utils() {
-    return utils;
+    newVal ? this.enter() : this.leave();
   }
 
   get classPrefix() {
@@ -74,37 +48,12 @@ export default class IoxTransition extends mixins(Base, Transition) {
   }
 
   get mainClass() {
-    return `custom-class ${this.customClass || ''} ${this.classPrefix} ${this.transitionClasses}`;
+    return `custom-class ${this.customClass || ''} ${this.classPrefix} ${this.classes}`;
   }
 
   get mainStyle() {
-    return `-webkit-transition-duration: ${this.transitionCurrentDuration}ms; transition-duration: ${this.transitionCurrentDuration}ms; `
-            + `${this.transitionDisplay ? '' : 'display: none;'} ${this.customStyle}`;
-  }
-
-  created() {
-    this.showTransition = this.show;
-    // this.transitionType = this.type || 'fade';
-    // transfer event
-    this.$on('transition-before-enter', () => {
-      this.$emit('before-enter');
-    });
-    this.$on('transition-enter', () => {
-      this.$emit('enter');
-    });
-    this.$on('transition-after-enter', () => {
-      this.$emit('after-enter');
-    });
-
-    this.$on('transition-before-leave', () => {
-      this.$emit('before-leave');
-    });
-    this.$on('transition-leave', () => {
-      this.$emit('leave');
-    });
-    this.$on('transition-after-leave', () => {
-      this.$emit('after-leave');
-    });
+    return `-webkit-transition-duration: ${this.currentDuration}ms; transition-duration: ${this.currentDuration}ms; `
+            + `${this.display ? '' : 'display: none;'} ${this.customStyle}`;
   }
 }
 </script>

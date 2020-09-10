@@ -1,15 +1,14 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { Watch } from 'vue-property-decorator';
+import { Watch, Prop } from 'vue-property-decorator';
+import { isObj, requestAnimationFrame } from '../utils/utils';
 
-const getTransitionClasses = (type: string) => ({
-  enter: `iox-${type}-enter iox-${type}-enter-active enter-class enter-active-class`,
-  enterTo: `iox-${type}-enter-to iox-${type}-enter-active enter-to-class enter-active-class`,
-  leave: `iox-${type}-leave iox-${type}-leave-active leave-class leave-active-class`,
-  leaveTo: `iox-${type}-leave-to iox-${type}-leave-active leave-to-class leave-active-class`
+const getClassNames = (name: string) => ({
+  enter: `iox-${name}-enter iox-${name}-enter-active enter-class enter-active-class`,
+  'enter-to': `iox-${name}-enter-to iox-${name}-enter-active enter-to-class enter-active-class`,
+  leave: `iox-${name}-leave iox-${name}-leave-active leave-class leave-active-class`,
+  'leave-to': `iox-${name}-leave-to iox-${name}-leave-active leave-to-class leave-active-class`,
 });
-
-const nextTick = () => new Promise(resolve => setTimeout(resolve, 1000 / 30));
 
 export type Duration = {
   enter: number;
@@ -18,128 +17,112 @@ export type Duration = {
 
 @Component
 export default class Transition extends Vue {
-  // datas
-  showTransition = true;
-  /**
-   * 毫秒
-   */
-  transitionDuration: Duration = 300;
-  /**
-   * default is fade, options: fade, slide
-   */
-  transitionType = 'fade';
-  
-  transitionClasses: string = [
-    'enter-class',
-    'enter-active-class',
-    'enter-to-class',
-    'leave-class',
-    'leave-active-class',
-    'leave-to-class'
-  ].join(' ');
+  @Prop({
+    type: String,
+    default: 'fade'
+  })
+  name!: string;
 
-  transitionInited = false;
-  transitionCurrentDuration = 300;;
-  transitionDisplay = false;
-
-  private mTransitionStatus?: 'enter' | 'leave';
-  private mTransitionEnded?: boolean;
-
-
-  // watch
-  @Watch('showTransition')
-  showTransitionChanged(newVal?: boolean, oldVal?: boolean){
-    (newVal && newVal !== oldVal) ? this.enter() : this.leave();
-  }
-
-  // hooks
-  protected mounted() {
-    this.$nextTick(() => {
-      if (this.showTransition) {
-        this.enter();
+  @Prop({
+    type: [Number, Object],
+    default: 300,
+    validator(val: any) {
+      if (typeof val === 'number') {
+        return val > 0;
+      } else if (typeof val === 'object') {
+        if (!val.hasOwnProperty('enter') || !val.hasOwnProperty('leave')) {
+          return false;
+        }
+        return true;
       }
+      return false;
+    }
+  })
+  duration!: Duration;
+
+  // data
+  type = '';
+  inited = false;
+  display = false;
+
+  // 内部变量
+  classes?: string | null = null;
+  status?: string | null = null;
+  transitionEnded = false;
+  currentDuration = 300;
+
+  enter() {
+    const { duration, name } = (this as any);
+    const classNames = getClassNames(name);
+    const currentDuration = isObj(duration) ? duration.enter : duration;
+
+    this.status = 'enter';
+    this.$emit('before-enter');
+
+    requestAnimationFrame(() => {
+      this.checkStatus('enter');
+      this.$emit('enter');
+
+      this.inited = true;
+      this.display = true;
+      this.classes = classNames.enter;
+      this.currentDuration = currentDuration;
+
+      requestAnimationFrame(() => {
+        this.checkStatus('enter');
+        this.transitionEnded = false;
+
+        this.classes =  classNames['enter-to'];
+      });
     });
   }
 
-  protected  onTransitionEnd() {
-    if (this.mTransitionEnded) {
+  leave() {
+    if (!this.display) {
       return;
     }
 
-    this.mTransitionEnded = true;
-    this.$emit(`transition-after-${this.mTransitionStatus}`);
+    const { duration, name } = (this as any);
+    const classNames = getClassNames(name);
+    const currentDuration = isObj(duration) ? duration.leave : duration;
 
-    const show = this.showTransition;
-    const display = this.transitionDisplay;
-    if (!show && display) {
-      this.transitionDisplay = false;
-    }
-  }
+    this.status = 'leave';
+    this.$emit('before-leave');
 
-  // methods
-  private enter(): void {
-    const duration = this.transitionDuration;
-    const classes = getTransitionClasses(this.transitionType);
-    const currentDuration = typeof duration === 'number' ? duration : duration.enter;
+    requestAnimationFrame(() => {
+      this.checkStatus('leave');
+      this.$emit('leave');
 
-    this.mTransitionStatus = 'enter';
-    this.$emit('transition-before-enter');
+      this.classes = classNames.leave;
+      this.currentDuration = currentDuration;
 
-    Promise.resolve()
-      .then(nextTick)
-      .then(() => {
-        this.checkStatus('enter');
-        this.$emit('transition-enter');
-
-        this.transitionInited = true;
-        this.transitionDisplay = true;
-        this.transitionClasses = classes.enter;
-        this.transitionCurrentDuration = currentDuration;
-      })
-      .then(nextTick)
-      .then(() => {
-        this.checkStatus('enter');
-        this.mTransitionEnded = false;
-        this.transitionClasses = classes.enterTo;
-      })
-      .catch(() => { });
-  }
-
-  private leave(): void {
-    if (!this.transitionDisplay) {
-      return;
-    }
-
-    const duration = this.transitionDuration;
-    const classes = getTransitionClasses(this.transitionType);
-    const currentDuration = typeof duration === 'number' ? duration : duration.leave;
-
-    this.mTransitionStatus = 'leave';
-    this.$emit('transition-before-leave');
-
-    Promise.resolve()
-      .then(nextTick)
-      .then(() => {
+      requestAnimationFrame(() => {
         this.checkStatus('leave');
-        this.$emit('transition-leave');
-
-        this.transitionClasses = classes.leave;
-        this.transitionCurrentDuration = currentDuration;
-      })
-      .then(nextTick)
-      .then(() => {
-        this.checkStatus('leave');
-        this.mTransitionEnded = false;
+        this.transitionEnded = false;
         setTimeout(() => this.onTransitionEnd(), currentDuration);
 
-        this.transitionClasses = classes.leaveTo;
-      })
-      .catch(() => { });
+        this.classes = classNames['leave-to'];
+      });
+    });
   }
 
-  private  checkStatus(status: 'enter' | 'leave'): void {
-    if (status !== this.mTransitionStatus) {
+  checkStatus(status: 'enter' | 'leave') {
+    if (status !== this.status) {
       throw new Error(`incongruent status: ${status}`);
+    }
+  }
+
+  onTransitionEnd() {
+    if (this.transitionEnded) {
+      return;
+    }
+
+    this.transitionEnded = true;
+    this.$emit(`after-${this.status}`);
+
+    const { show, display } = (this as any);
+    if (!show && display) {
+      this.display = false;
     }
   }
 }
