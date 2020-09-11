@@ -7,7 +7,7 @@ import { getSystemInfoSync, compareVersion } from '../utils/utils';
  */
 @Component
 export default class Font extends Vue {
-  onLoad() {
+  created() {
     const app = (this as any).$app();
     const info: WechatMiniprogram.GetSystemInfoSyncResult = getSystemInfoSync();
     if (info && compareVersion(info.SDKVersion, '2.10.0') < 0) {
