@@ -14,11 +14,15 @@
     custom-class="iox-field"
     title-class="label-class"
   >
-    <slot name="left-icon" slot="icon" />
+    <block slot="icon">
+      <slot name="left-icon" />
+    </block>
     <view v-if="label" :class="[bem('field__label', { disabled })]" slot="title">
       {{ label }}
     </view>
-    <slot v-else name="label" slot="title" />
+    <block v-else slot="title">
+      <slot name="label" />
+    </block>
     <view :class="[bem('field__body', [type])]">
       <textarea
         v-if="type === 'textarea'"
@@ -173,6 +177,7 @@ export default class IoxField extends mixins(Base) {
     return this.value ? this.value.toString().length : 0;
   }
 
+  @Watch('value')
   @Watch('readonly')
   @Watch('clearable')
   setShowClear() {
@@ -183,7 +188,6 @@ export default class IoxField extends mixins(Base) {
 
   onInput(event: CustomEvent) {
     this.emitChange(event.detail.value);
-    this.setShowClear();
   }
 
   onFocus(event: CustomEvent) {
@@ -204,18 +208,15 @@ export default class IoxField extends mixins(Base) {
 
   onClear() {
     this.emitChange('');
-    this.setShowClear();
   }
 
   onConfirm(event: CustomEvent) {
     this.emitChange(event.detail.value);
-    this.setShowClear();
     this.$emit('confirm', event.detail.value);
   }
 
   setValue(value: any) {
     this.emitChange(value);
-    this.setShowClear();
   }
 
   onLineChange(event: CustomEvent) {
@@ -227,9 +228,7 @@ export default class IoxField extends mixins(Base) {
   }
 
   emitChange(value: any) {
-    this.$nextTick(() => {
-      this.$emit('input', value);
-    });
+    this.$emit('input', value);
   }
 
   inputStyle(autosize: any) {

@@ -73,6 +73,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/panels",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Panel",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/stickies",
 			"style": {
 				"navigationStyle": "default",
@@ -93,6 +101,14 @@
 			"style": {
 				"navigationStyle": "default",
 				"navigationBarTitleText": "Loadings",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/grids",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Grid",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}
