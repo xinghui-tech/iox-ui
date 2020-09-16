@@ -11,7 +11,6 @@
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
-import * as utils from '../../utils/utils';
 import Base from '../../mixins/base';
 
 const classPrefix = 'iox-info';
@@ -43,10 +42,6 @@ export default class IoxInfo extends mixins(Base) {
 
   get isImageName() {
     return this.name.indexOf('/') !== -1;
-  }
-
-  get utils() {
-    return utils;
   }
 
   get classPrefix() {

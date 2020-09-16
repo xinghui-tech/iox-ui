@@ -14,6 +14,7 @@ declare module 'vue/types/vue' {
 declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {
     externalClasses?: string | string[];
+    behaviors?: string | string[];
     /*
     relations?: {
       [name: string]: {

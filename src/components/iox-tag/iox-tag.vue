@@ -16,8 +16,6 @@
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
-import * as utils from '../../utils/utils';
-import bem from '../../utils/bem';
 import Base from '../../mixins/base';
 
 const classPrefix = 'iox-tag';
@@ -76,18 +74,12 @@ export default class IoxTag extends mixins(Base) {
   })
   closeable!: boolean;
 
-
-
-  get utils() {
-    return utils;
-  }
-
   get classPrefix() {
     return classPrefix;
   }
 
   get mainClass() {
-    const tag: string = bem('tag', [
+    const tag: string = this.bem('tag', [
       this.type,
       this.size,
       {

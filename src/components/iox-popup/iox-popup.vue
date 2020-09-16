@@ -29,7 +29,6 @@
 <script lang="ts">
 import Component, { mixins } from "vue-class-component";
 import { Prop, Watch } from "vue-property-decorator";
-import bem from "../../utils/bem";
 import Base from "../../mixins/base";
 import { transition } from "../../mixins/transition";
 
@@ -138,7 +137,7 @@ export default class Ioxpopup extends mixins(Base, transition(false)) {
   }
 
   get mainClass() {
-    const classes = bem("popup", [
+    const classes = this.bem("popup", [
       this.position,
       {
         round: this.round,

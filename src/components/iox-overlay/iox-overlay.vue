@@ -15,7 +15,6 @@
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
-import * as utils from '../../utils/utils';
 import Base from '../../mixins/base';
 import { Duration } from '@/mixins/transition';
 
@@ -47,10 +46,6 @@ export default class IoxTransition extends mixins(Base) {
     default: 'fade',
   })
   transition!: string;
-
-  get utils() {
-    return utils;
-  }
 
   get classPrefix() {
     return classPrefix;

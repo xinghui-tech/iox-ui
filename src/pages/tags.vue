@@ -50,8 +50,7 @@
         type="primary"
         size="medium"
         closeable
-        id="primary"
-        bind:close="onClose"
+        @close="onClose('primary')"
         >标签</iox-tag
       >
       <iox-tag
@@ -60,8 +59,7 @@
         type="success"
         size="medium"
         closeable
-        id="success"
-        bind:close="onClose"
+        @close="onClose('success')"
         >标签</iox-tag
       >
     </demo-block>
@@ -80,8 +78,8 @@ export default class Index extends mixins(Fonts) {
     primary: true
   };
 
-  onClose(event: CustomEvent) {
-    
+  onClose(tag: string) {
+    (this.show as any)[tag] = false;
   }
 }
 </script>

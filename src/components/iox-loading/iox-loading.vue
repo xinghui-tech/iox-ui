@@ -56,10 +56,6 @@ export default class IoxLoading extends mixins(Base) {
   })
   textSize!: number | string;
 
-  get utils() {
-    return utils;
-  }
-
   get classPrefix() {
     return classPrefix;
   }

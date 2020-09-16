@@ -60,6 +60,7 @@ import OpenType from '../../mixins/open-type';
 
 const classPrefix = 'iox-button';
 @Component({
+  behaviors: ['uni://form-field'],
   externalClasses: ['hover-class', 'loading-class', 'custom-class']
 })
 export default class IoxButton extends Mixins(Base, ButtonProps, OpenType) {

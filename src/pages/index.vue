@@ -9,6 +9,9 @@
       <iox-cell title="Layout 布局" url="/pages/cols" isLink />
       <iox-cell title="Transition 动画" url="/pages/transitions" isLink />
     </demo-block>
+    <demo-block title="表单组件">
+      <iox-cell title="Field 输入框" url="/pages/fields" isLink />
+    </demo-block>
     <demo-block title="反馈组件">
       <iox-cell title="Loading 加载" url="/pages/loadings" isLink />
     </demo-block>

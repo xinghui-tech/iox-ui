@@ -61,10 +61,6 @@ export default class IoxIcon extends mixins(Base) {
     return this.name.indexOf('/') !== -1;
   }
 
-  get utils() {
-    return utils;
-  }
-
   get classPrefix() {
     return classPrefix;
   }

@@ -65,6 +65,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/fields",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Field",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/stickies",
 			"style": {
 				"navigationStyle": "default",

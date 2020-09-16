@@ -15,7 +15,6 @@
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
-import * as utils from '../../utils/utils';
 import Base from '../../mixins/base';
 
 const classPrefix = 'iox-cell-group';
@@ -32,10 +31,6 @@ export default class IoxCellGroup extends mixins(Base) {
     default: true,
   })
   border = true;
-  
-  get utils() {
-    return utils;
-  }
 
   get classPrefix() {
     return classPrefix;

@@ -123,10 +123,6 @@ export default class IoxImage extends mixins(Base, Button, OpenType) {
   viewStyle = '';
   mode: string = FIT_MODE_MAP[this.fit];
 
-  get utils() {
-    return utils;
-  }
-
   get classPrefix() {
     return classPrefix;
   }

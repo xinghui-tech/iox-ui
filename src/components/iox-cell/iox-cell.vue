@@ -47,8 +47,6 @@
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
-import * as utils from '../../utils/utils';
-import bem from '../../utils/bem';
 import Base from '../../mixins/base';
 import Link from '../../mixins/link';
 
@@ -137,16 +135,12 @@ export default class IoxCell extends mixins(Base, Link) {
   })
   titleStyle?: string;
 
-  get utils() {
-    return utils;
-  }
-
   get classPrefix() {
     return classPrefix;
   }
 
   get mainClass() {
-    const classes: string = bem('cell', [
+    const classes: string = this.bem('cell', [
       this.size,
       {
         center: this.center,
