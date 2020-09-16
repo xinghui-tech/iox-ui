@@ -75,7 +75,7 @@ export default class IoxCell extends mixins(Base, Link) {
     default: null
   })
   value?: string | null;
- 
+
   @Prop({
     type: String,
   })
@@ -130,13 +130,13 @@ export default class IoxCell extends mixins(Base, Link) {
     type: Boolean,
     default: true,
   })
-  border = true;
+  border?: boolean;
 
   @Prop({
     type: String,
   })
   titleStyle?: string;
-  
+
   get utils() {
     return utils;
   }
@@ -147,11 +147,11 @@ export default class IoxCell extends mixins(Base, Link) {
 
   get mainClass() {
     const classes: string = bem('cell', [
-      this.size, 
-      { 
-        center: this.center, 
-        required: this.required, 
-        borderless: !this.border, 
+      this.size,
+      {
+        center: this.center,
+        required: this.required,
+        borderless: !this.border,
         clickable: this.isLink || this.clickable,
       }
     ]);
