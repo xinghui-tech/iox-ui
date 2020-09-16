@@ -31,7 +31,7 @@ import Component, { mixins } from "vue-class-component";
 import { Prop, Watch } from "vue-property-decorator";
 import bem from "../../utils/bem";
 import Base from "../../mixins/base";
-import Transition from "../../mixins/transition";
+import { transition } from "../../mixins/transition";
 
 const classPrefix = "iox-popup";
 @Component({
@@ -46,14 +46,8 @@ const classPrefix = "iox-popup";
     'custom-class'
   ]
 })
-export default class Ioxpopup extends mixins(Base, Transition) {
+export default class Ioxpopup extends mixins(Base, transition(false)) {
   // props
-  @Prop({
-    type: Boolean,
-    default: false
-  })
-  show!: boolean;
-
   @Prop({
     type: Boolean,
     default: false
@@ -129,15 +123,6 @@ export default class Ioxpopup extends mixins(Base, Transition) {
   originDuration?: number | null = null;
 
   // watchs
-  @Watch('show')
-  showChanged(newVal: boolean, oldVal: boolean) {
-    if (newVal === oldVal) {
-      return;
-    }
-
-    newVal ? this.enter() : this.leave();
-  }
-
   @Watch("transition")
   transitionChanged(newVal?: string, oldVal?: string) {
     this._updateTransition();

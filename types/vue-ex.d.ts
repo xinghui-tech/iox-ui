@@ -14,5 +14,16 @@ declare module 'vue/types/vue' {
 declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {
     externalClasses?: string | string[];
+    /*
+    relations?: {
+      [name: string]: {
+        type: 'child' | 'parent' | 'ancestor' | 'descendant';
+        linked?: (target: any) => void;
+        linkChanged?: (target: any) => void;
+        unlinked?: (target: any) => void;
+        target?: string;
+      };
+    };
+    */
   }
 }

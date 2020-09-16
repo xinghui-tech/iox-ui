@@ -1,83 +1,211 @@
 <template>
-<block>
-  <demo-block title="按钮类型" padding>
-    <view class="row">
-      <iox-button class="demo-margin-right">默认按钮</iox-button>
-      <iox-button type="primary" class="demo-margin-right">主要按钮</iox-button>
-      <iox-button type="info" class="demo-margin-right">信息按钮</iox-button>
-    </view>
-    <iox-button type="danger" class="demo-margin-right">危险按钮</iox-button>
-    <iox-button type="warning">警告按钮</iox-button>
-  </demo-block>
-
-  <demo-block title="朴素按钮" padding>
-    <iox-button type="primary" plain class="demo-margin-right">朴素按钮</iox-button>
-    <iox-button type="info" plain>朴素按钮</iox-button>
-  </demo-block>
-
-  <demo-block title="细边框" padding>
-    <iox-button type="primary" plain hairline class="demo-margin-right">细边框按钮</iox-button>
-    <iox-button type="info" plain hairline>细边框按钮</iox-button>
-  </demo-block>
-
-  <demo-block title="禁用状态" padding>
-    <iox-button type="primary" disabled class="demo-margin-right">禁用状态</iox-button>
-    <iox-button type="info" disabled>禁用状态</iox-button>
-  </demo-block>
-
-  <demo-block title="加载状态" padding>
-    <iox-button loading type="primary" class="demo-margin-right" />
-    <iox-button loading type="primary" loading-type="spinner" class="demo-margin-right" />
-    <iox-button loading type="info" loading-text="加载中..." />
-  </demo-block>
-
-  <demo-block title="按钮形状" padding>
-    <iox-button type="primary" square class="demo-margin-right">方形按钮</iox-button>
-    <iox-button type="info" round>圆形按钮</iox-button>
-  </demo-block>
-
-  <demo-block title="图标按钮" padding>
-    <iox-button type="primary" icon="star-o" class="demo-margin-right" />
-    <iox-button type="primary" icon="star-o" class="demo-margin-right">按钮</iox-button>
-    <iox-button plain type="primary" icon="https://img.yzcdn.cn/vant/logo.png">按钮</iox-button>
-  </demo-block>
-
-  <demo-block title="按钮尺寸" padding>
-    <iox-button type="primary" size="large" block custom-class="demo-margin-bottom">大号按钮</iox-button>
-    <iox-button type="primary" class="demo-margin-right">普通按钮</iox-button>
-    <iox-button type="primary" size="small" class="demo-margin-right">小型按钮</iox-button>
-    <iox-button type="primary" size="mini">迷你按钮</iox-button>
-  </demo-block>
-
-  <demo-block title="块级元素" padding>
-    <iox-button type="primary" custom-class="demo-margin-bottom">普通按钮</iox-button>
-    <iox-button type="primary" block>块级元素</iox-button>
-  </demo-block>
-
-  <demo-block title="自定义颜色" padding>
-    <iox-button color="#7232dd" class="demo-margin-right">单色按钮</iox-button>
-    <iox-button color="#7232dd" class="demo-margin-right" plain>单色按钮</iox-button>
-    <iox-button color="linear-gradient(to right, #4bb0ff, #6149f6)">渐变色按钮</iox-button>
-  </demo-block>
-</block>
+  <iox-tabs
+    :active="active"
+    color="#1989fa"
+    @change="onSwitch"
+  >
+  <iox-tab title="用法示例" custom-class="demo-tab-pane">
+    <demo-block title="基础用法">
+      <iox-col
+        custom-class="col"
+        span="6"
+      >
+        <iox-icon
+          :name="demoIcon"
+          size="32px"
+          custom-class="icon"
+        />
+      </iox-col>
+      <iox-col
+        custom-class="col"
+        span="6"
+      >
+        <iox-icon
+          :name="demoImage"
+          size="32px"
+          custom-class="icon"
+        />
+      </iox-col>
+    </demo-block>
+    <demo-block title="提示信息">
+      <iox-col
+        custom-class="col"
+        span="6"
+      >
+        <iox-icon
+          :name="demoIcon"
+          size="32px"
+          custom-class="icon"
+          dot
+        />
+      </iox-col>
+      <iox-col
+        custom-class="col"
+        span="6"
+      >
+        <iox-icon
+          :name="demoIcon"
+          size="32px"
+          custom-class="icon"
+          info="9"
+        />
+      </iox-col>
+      <iox-col
+        custom-class="col"
+        span="6"
+      >
+        <iox-icon
+          :name="demoIcon"
+          size="32px"
+          custom-class="icon"
+          info="99+"
+        />
+      </iox-col>
+    </demo-block>
+      <demo-block title="图标颜色">
+        <iox-col
+          custom-class="col"
+          span="6"
+        >
+          <iox-icon
+            :name="demoIcon"
+            size="32px"
+            custom-class="icon"
+            color="#1989fa"
+          />
+        </iox-col>
+        <iox-col
+          custom-class="col"
+          span="6"
+        >
+          <iox-icon
+            :name="demoIcon"
+            size="32px"
+            custom-class="icon"
+            color="#07c160"
+          />
+        </iox-col>
+      </demo-block>
+      <demo-block title="图标大小">
+        <iox-col
+          custom-class="col"
+          span="6"
+        >
+          <iox-icon
+            :name="demoIcon"
+            size="40"
+            custom-class="icon"
+          />
+        </iox-col>
+        <iox-col
+          custom-class="col"
+          span="6"
+        >
+          <iox-icon
+            :name="demoIcon"
+            size="3rem"
+            custom-class="icon"
+          />
+        </iox-col>
+      </demo-block>
+    </iox-tab>
+    <iox-tab title="基础图标" custom-class="demo-tab-pane">
+      <iox-col
+        v-for="(item, index) in icons.basic"
+        :key="index"
+        custom-class="col"
+        span="6"
+      >
+        <iox-icon
+          :name="item"
+          size="32px"
+          custom-class="icon"
+        />
+        <view class="text">{{ item }}</view>
+      </iox-col>
+    </iox-tab>
+    <iox-tab title="线框风格" custom-class="demo-tab-pane">
+      <iox-col
+        v-for="(item, index) in icons.outline"
+        :key="index"
+        custom-class="col"
+        span="6"
+      >
+        <iox-icon
+          :name="item"
+          size="32px"
+          custom-class="icon"
+        />
+        <view class="text">{{ item }}</view>
+      </iox-col>
+    </iox-tab>
+    <iox-tab title="实底风格" custom-class="demo-tab-pane">
+      <iox-col
+        v-for="(item, index) in icons.filled"
+        :key="index"
+        custom-class="col"
+        span="6"
+      >
+        <iox-icon
+          :name="item"
+          size="32px"
+          custom-class="icon"
+        />
+        <view class="text">{{ item }}</view>
+      </iox-col>
+    </iox-tab>
+  </iox-tabs>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import Component, { mixins } from 'vue-class-component';
 import Fonts from '../mixins/font';
+import awesomefonts from '../awesome-font-icons';
 
 @Component
 export default class Index extends mixins(Fonts) {
+  icons = awesomefonts;
+  active = 0;
+  demoIcon = 'wechat';
+  demoImage = 'https://b.yzcdn.cn/vant/icon-demo-1126.png';
 
-  onLoad() {
+  onSwitch(tab: any) {
+    this.active = tab.index;
   }
 }
 </script>
 
 <style lang="less">
-.row {
-  height: 44px;
-  margin-bottom: 15px;
+page {
+  padding-bottom: 0;
+}
+
+.col {
+  display: inline-block;
+  float: none;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.icon {
+  display: block;
+  margin: 16px 0;
+  color: #323233;
+}
+
+.text {
+  display: block;
+  height: 36px;
+  margin: -4px 0 4px;
+  padding: 0 5px;
+  color: #646566;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.demo-tab-pane {
+  margin: 20px;
+  background-color: #fff;
 }
 </style>

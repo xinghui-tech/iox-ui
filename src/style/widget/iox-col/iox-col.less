@@ -1,0 +1,17 @@
+@import '../../theme.less';
+
+.iox-col {
+  float: left;
+  box-sizing: border-box;
+}
+
+.generate(24);
+.generate(@n, @i: 1) when (@i =< @n) {
+  .iox-col--@{i} {
+    width: @i * 100% / 24;
+  }
+  .iox-col--offset-@{i} {
+    margin-left: @i * 100% / 24;
+  }
+  .generate(@n, (@i + 1));
+}

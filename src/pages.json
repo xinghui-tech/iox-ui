@@ -41,10 +41,34 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/images",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Images",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/cols",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Layout",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/transitions",
 			"style": {
 				"navigationStyle": "default",
 				"navigationBarTitleText": "Transitions",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/stickies",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Sticky",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}
@@ -61,6 +85,14 @@
 			"style": {
 				"navigationStyle": "default",
 				"navigationBarTitleText": "Loadings",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/tabs",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Tabs",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}

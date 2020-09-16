@@ -49,11 +49,6 @@ export default class IoxIcon extends mixins(Base) {
   @Prop({
     type: String,
   })
-  customStyle?: string;
-
-  @Prop({
-    type: String,
-  })
   color?: string;
 
   @Prop({

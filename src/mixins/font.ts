@@ -1,12 +1,10 @@
 import Vue from 'vue';
-import Component from 'vue-class-component';
 import { getSystemInfoSync, compareVersion } from '../utils/utils';
 
 /**
  * if SDK version less than 2.10.0, load fonts for each page.
  */
-@Component
-export default class Font extends Vue {
+export default Vue.extend({
   created() {
     const app = (this as any).$app();
     const info: WechatMiniprogram.GetSystemInfoSyncResult = getSystemInfoSync();
@@ -21,4 +19,4 @@ export default class Font extends Vue {
       });
     }
   }
-}
+});

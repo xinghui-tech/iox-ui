@@ -1,0 +1,213 @@
+<template>
+  <view :class="mainClass" 
+    :style="mainStyle">
+    <view :class="[bem('sticky-wrap', { fixed })]" 
+      :style="'' + wrapStyle({ fixed, offsetTop, transform, zIndex })">
+      <slot />
+    </view>
+  </view>
+</template>
+
+<script lang="ts">
+import Component, { mixins } from 'vue-class-component';
+import { Prop, Watch } from 'vue-property-decorator';
+import Base from '../../mixins/base';
+import pagescroll from '../../mixins/page-scroll';
+import { extractFunc } from '../../utils/func-utils';
+
+type IPageScrollOption = WechatMiniprogram.Page.IPageScrollOption;
+
+const PageScroll = pagescroll(function (this: Vue, event?: IPageScrollOption) {
+  if ((this as any).scrollTop !== null) {
+    return;
+  }
+  (this as any).onScroll(event);
+});
+
+const ROOT_ELEMENT = '.iox-sticky';
+
+const classPrefix = 'iox-sticky';
+
+// FIXME for uniapp framework, page which using iox-sticky must have function onPageScroll() {}.
+@Component
+export default class IoxSticky extends mixins(Base, PageScroll) {
+
+  @Prop({
+    type: Number,
+    default: 99,
+  })
+  zIndex!: number;
+
+  @Prop({
+    type: Number,
+    default: 0,
+  })
+  offsetTop!: number;
+
+  @Prop({
+    type: Boolean,
+  })
+  disabled?: boolean;
+
+  @Prop({
+    type: Symbol,
+    default: null
+  })
+  container?: symbol;
+
+  @Prop({
+    type: Number,
+    default: null
+  })
+  scrollTop?: number | null;
+
+  // data
+  height = 0;
+  fixed = false;
+  transform = 0;
+  currentScrollTop: null | number = null;
+
+  get classPrefix() {
+    return classPrefix;
+  }
+
+  get mainStyle() {
+    const { fixed, height, zIndex } = this;
+    return this.containerStyle({ fixed, height, zIndex });
+  }
+
+  mounted() {
+    this.onScroll();
+  }
+
+  @Watch('offsetTop')
+  @Watch('disabled')
+  @Watch('container')
+  onScrollerChanged() {
+    this.onScroll();
+  }
+
+  @Watch('scrollTop')
+  onScrollTopChanged(val: number) {
+    this.onScroll({ scrollTop: val });
+  }
+
+  onScroll(val: any = {}) {
+    const { scrollTop } = val;
+    const { container, offsetTop, disabled } = this;
+
+    if (disabled) {
+      this.setDataAfterDiff({
+        fixed: false,
+        transform: 0,
+      });
+      return;
+    }
+
+    this.currentScrollTop = scrollTop || this.currentScrollTop;
+
+    if (container) {
+      Promise.all([this.getRect(ROOT_ELEMENT) as NodeInfo, this.getContainerRect()]).then(
+        ([root, container]: NodeInfo[]) => {
+          if (offsetTop + root.height! > container.height! + container.top!) {
+            this.setDataAfterDiff({
+              fixed: false,
+              transform: container.height! - root.height!,
+            });
+          } else if (offsetTop >= root.top!) {
+            this.setDataAfterDiff({
+              fixed: true,
+              height: root.height,
+              transform: 0,
+            });
+          } else {
+            this.setDataAfterDiff({ fixed: false, transform: 0 });
+          }
+        }
+      );
+
+      return;
+    }
+
+    this.getRect(ROOT_ELEMENT).then((root: NodeInfo | NodeInfo[]) => {
+      if (offsetTop >= (root as NodeInfo).top!) {
+        this.setDataAfterDiff({ fixed: true, height: (root as NodeInfo).height! });
+        this.transform = 0;
+      } else {
+        this.setDataAfterDiff({ fixed: false });
+      }
+    });
+  }
+
+  setDataAfterDiff(data: any) {
+    this.$nextTick(() => {
+      const diff = Object.keys(data).reduce((prev: any, key) => {
+        if (data[key] !== (this as any)[key]) {
+          prev[key] = data[key];
+        }
+
+        return prev;
+      }, {});
+
+      for (const key in diff) {
+        if (Object.prototype.hasOwnProperty.call(diff, key)) {
+          (this as any)[key] = diff[key];
+        }
+      }
+
+      this.$emit('scroll', {
+        scrollTop: this.scrollTop,
+        isFixed: data.fixed || this.fixed,
+      });
+    });
+  }
+
+  getContainerRect(): Promise<NodeInfo> {
+    if (!this.container) {
+      return Promise.reject('no container.');
+    }
+    const nodesRef: NodesRef = extractFunc(this.container)();
+    
+    return new Promise((resolve) =>
+      nodesRef.boundingClientRect(resolve).exec()
+    );
+  }
+
+  wrapStyle(data: any) {
+    let style = '';
+
+    if (data.transform) {
+      style += 'transform: translate3d(0, ' + data.transform + 'px, 0);';
+    }
+
+    if (data.fixed) {
+      style += 'top: ' + data.offsetTop + 'px;';
+    }
+
+    if (data.zIndex) {
+      style += 'z-index: ' + data.zIndex + ';';
+    }
+
+    return style;
+  }
+
+  containerStyle(data: any) {
+    let style = '';
+
+    if (data.fixed) {
+      style += 'height: ' + data.height + 'px;';
+    }
+
+    if (data.zIndex) {
+      style += 'z-index: ' + data.zIndex + ';';
+    }
+
+    return style;
+  }
+}
+</script>
+
+<style lang="less">
+@import '../../style/widget/iox-sticky/iox-sticky.less';
+
+</style>

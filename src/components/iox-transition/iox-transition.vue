@@ -11,7 +11,7 @@
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component';
 import Base from '../../mixins/base';
-import Transition from '../../mixins/transition';
+import { transition } from '../../mixins/transition';
 import { Prop, Watch } from 'vue-property-decorator';
 
 const classPrefix = 'iox-transition';
@@ -27,22 +27,8 @@ const classPrefix = 'iox-transition';
     'custom-class'
   ]
 })
-export default class IoxTransition extends mixins(Base, Transition) {
-  @Prop({
-    type: Boolean,
-    default: false
-  })
-  show!: boolean;
+export default class IoxTransition extends mixins(Base, transition(true)) {
   
-  @Watch('show')
-  showChanged(newVal: boolean, oldVal: boolean) {
-    if (newVal === oldVal) {
-      return;
-    }
-
-    newVal ? this.enter() : this.leave();
-  }
-
   get classPrefix() {
     return classPrefix;
   }

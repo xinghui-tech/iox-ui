@@ -21,7 +21,7 @@ import bem from '../../utils/bem';
 import Base from '../../mixins/base';
 
 const classPrefix = 'iox-tag';
-declare type TYpe ={
+declare type Type ={
   type?: string;
   value?: 'default';
 } | string;
@@ -68,7 +68,7 @@ export default class IoxTag extends mixins(Base) {
     type: [String,Object],
     default: 'primary',
   })
-  type!: TYpe;
+  type!: Type;
 
   @Prop({
     type: Boolean,
