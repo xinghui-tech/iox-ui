@@ -180,7 +180,7 @@ export default class IoxTabs extends mixins(Base, Touch) {
   scrollable = false;
   trackStyle = '';
   currentIndex: number | null = null;
-  container: symbol | null = null;
+  container: string | null = null;
   children!: Vue[];
 
   get classPrefix() {

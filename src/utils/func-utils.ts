@@ -36,18 +36,19 @@ export function makeReactive(target: any, source: any,
 }
 
 const globalFunctions: Record<keyof any, Function> = {};
-export function wrapFunc(func: Function): symbol {
-  const ref = Symbol();
+let seq = 0;
+export function wrapFunc(func: Function): string {
+  const ref = `__fuc_r${seq++}`;
 
-  (globalFunctions as any)[ref] = func;
+  globalFunctions[ref] = func;
 
   return ref;
 }
 
-export function extractFunc(ref: symbol): Function {
-  return (globalFunctions as any)[ref];
+export function extractFunc(ref: string): Function {
+  return globalFunctions[ref];
 }
 
-export function releaseFunc(ref: symbol): void {
-  delete (globalFunctions as any)[ref];
+export function releaseFunc(ref: string): void {
+  delete globalFunctions[ref];
 } 

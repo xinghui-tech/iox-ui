@@ -50,10 +50,10 @@ export default class IoxSticky extends mixins(Base, PageScroll) {
   disabled?: boolean;
 
   @Prop({
-    type: Symbol,
+    type: String,
     default: null
   })
-  container?: symbol;
+  container?: string;
 
   @Prop({
     type: Number,

@@ -53,7 +53,7 @@ import { wrapFunc, releaseFunc } from '@/utils/func-utils';
 
 @Component
 export default class Index extends mixins(Fonts) {
-  container: null | symbol = null;
+  container: null | string = null;
   scrollTop = 0;
   offsetTop = 0;
 
