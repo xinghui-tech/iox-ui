@@ -47,8 +47,8 @@ export default class IoxRow extends mixins(Base) {
   }
 
   setGutter(gutter: number) {
-    const padding = `${gutter / 2}px`;
-    const viewStyle = gutter ? `padding-left: ${padding}; padding-right: ${padding};` : '';
+    const margin = `-${Number(gutter) / 2}px`;
+    const viewStyle = gutter ? `margin-right: ${margin}; margin-left: ${margin};` : '';
 
     if (viewStyle !== this.viewStyle) {
       this.viewStyle = viewStyle;

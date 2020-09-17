@@ -76,9 +76,9 @@ export default class IoxImage extends mixins(Base, Button, OpenType) {
   height?: number | string;
 
   @Prop({
-    type: Number,
+    type: [String, Number],
   })
-  radius?: number;
+  radius?: string | number;
 
   @Prop({
     type: Boolean,

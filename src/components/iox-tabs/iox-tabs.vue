@@ -121,10 +121,10 @@ export default class IoxTabs extends mixins(Base, Touch) {
 
 
   @Prop({
-    type: Number,
+    type: [Number, String],
     default: -1,
   })
-  lineHeight!: number;
+  lineHeight!: number | string;
 
   @Prop({
     type: [String, Number],
