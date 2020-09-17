@@ -10,10 +10,13 @@
       <iox-cell title="Transition 动画" url="/pages/transitions" isLink />
     </demo-block>
     <demo-block title="表单组件">
+      <iox-cell title="Checkbox 复选框" url="/pages/checkboxs" isLink />
       <iox-cell title="Field 输入框" url="/pages/fields" isLink />
+      <iox-cell title="Radio 点选框" url="/pages/radios" isLink />
     </demo-block>
     <demo-block title="反馈组件">
       <iox-cell title="Loading 加载" url="/pages/loadings" isLink />
+      <iox-cell title="Overlay 遮罩层" url="/pages/overlays" isLink />
     </demo-block>
     <demo-block title="展示组件">
       <iox-cell title="Panel 面板" url="/pages/panels" isLink />

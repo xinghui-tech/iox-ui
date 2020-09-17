@@ -156,15 +156,18 @@ const classPrefix = 'iox-field';
   },
 })
 export default class IoxField extends mixins(Base) {
+  // props
+  @Model('input', { type: [String, Number] })
+  readonly value?: string | number;
+
   type!: string;
   size?: string;
   clearable?: boolean;
   readonly?: boolean;
   disabled?: boolean;
 
-  @Model('input', { type: String })
-  readonly value?: string;
 
+  // data
   focused = false;
   innerValue = '';
   showClear = false;
@@ -229,6 +232,7 @@ export default class IoxField extends mixins(Base) {
 
   emitChange(value: any) {
     this.$emit('input', value);
+    this.$emit('change', value);
   }
 
   inputStyle(autosize: any) {

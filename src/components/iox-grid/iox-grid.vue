@@ -86,9 +86,11 @@ export default class IoxTabs extends mixins(Base) {
       (item as any).index = this.children.length - 1;
     });
     this.$on('grid-item-detached', (item: Vue) => {
-      this.children = this.children.map((child: Vue) => {
-          (child as any).index = (item as any).index;
-          return child;
+      const index: number = (item as any).index;
+      this.children = this.children.filter((c: any) => c.index !== index)
+        .map((c: any, i) => {
+          c.index = i;
+          return c;
         }
       );
     });

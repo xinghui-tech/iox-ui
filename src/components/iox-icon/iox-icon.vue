@@ -73,8 +73,8 @@ export default class IoxIcon extends mixins(Base) {
     return `${ this.color ? 'color: ' + this.color + ";" : '' } font-size: ${ utils.addUnit(this.size) }; ${ this.customStyle }`;
   }
 
-  onClick() {
-    this.$emit('click');
+  onClick(event: Event) {
+    this.$emit('click', event);
   }
 }
 </script>

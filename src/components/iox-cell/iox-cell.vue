@@ -152,8 +152,8 @@ export default class IoxCell extends mixins(Base, Link) {
     return `custom-class ${this.customClass || ''} ${classes}`;
   }
 
-  onClick(event: CustomEvent) {
-    this.$emit('click', event.detail);
+  onClick(event: TouchEvent) {
+    this.$emit('click', event);
     this.jumpLink();
   }
 }

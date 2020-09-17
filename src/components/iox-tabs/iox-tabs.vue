@@ -232,9 +232,11 @@ export default class IoxTabs extends mixins(Base, Touch) {
       this.updateTabs();
     });
     this.$on('tab-detached', (tab: Vue) => {
-      this.children = this.children.map((child: Vue) => {
-          (child as any).index = (tab as any).index;
-          return child;
+      const index: number = (tab as any).index;
+      this.children = this.children.filter((c: any) => c.index !== index)
+        .map((c: any, i) => {
+          c.index = i;
+          return c;
         }
       );
       this.updateTabs();

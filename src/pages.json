@@ -65,10 +65,26 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/checkboxs",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Checkboxs",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/fields",
 			"style": {
 				"navigationStyle": "default",
-				"navigationBarTitleText": "Field",
+				"navigationBarTitleText": "Fields",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/radios",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Radios",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}
@@ -105,10 +121,18 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/overlays",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Overlays",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/grids",
 			"style": {
 				"navigationStyle": "default",
-				"navigationBarTitleText": "Grid",
+				"navigationBarTitleText": "Grids",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}

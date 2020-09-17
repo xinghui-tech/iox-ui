@@ -32,7 +32,7 @@ export default class Index extends mixins(Fonts) {
     primary: true
   };
 
-  onClose(event: CustomEvent) {
+  onClose(event: Event) {
     
   }
 }
