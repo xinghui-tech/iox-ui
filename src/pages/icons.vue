@@ -4,64 +4,64 @@
     color="#1989fa"
     @change="onSwitch"
   >
-  <iox-tab title="用法示例" custom-class="demo-tab-pane">
-    <demo-block title="基础用法">
-      <iox-col
-        custom-class="col"
-        span="6"
-      >
-        <iox-icon
-          :name="demoIcon"
-          size="32px"
-          custom-class="icon"
-        />
-      </iox-col>
-      <iox-col
-        custom-class="col"
-        span="6"
-      >
-        <iox-icon
-          :name="demoImage"
-          size="32px"
-          custom-class="icon"
-        />
-      </iox-col>
-    </demo-block>
-    <demo-block title="提示信息">
-      <iox-col
-        custom-class="col"
-        span="6"
-      >
-        <iox-icon
-          :name="demoIcon"
-          size="32px"
-          custom-class="icon"
-          dot
-        />
-      </iox-col>
-      <iox-col
-        custom-class="col"
-        span="6"
-      >
-        <iox-icon
-          :name="demoIcon"
-          size="32px"
-          custom-class="icon"
-          info="9"
-        />
-      </iox-col>
-      <iox-col
-        custom-class="col"
-        span="6"
-      >
-        <iox-icon
-          :name="demoIcon"
-          size="32px"
-          custom-class="icon"
-          info="99+"
-        />
-      </iox-col>
-    </demo-block>
+    <iox-tab title="用法示例" custom-class="demo-tab-pane">
+      <demo-block title="基础用法">
+        <iox-col
+          custom-class="col"
+          span="6"
+        >
+          <iox-icon
+            :name="demoIcon"
+            size="32px"
+            custom-class="icon"
+          />
+        </iox-col>
+        <iox-col
+          custom-class="col"
+          span="6"
+        >
+          <iox-icon
+            :name="demoImage"
+            size="32px"
+            custom-class="icon"
+          />
+        </iox-col>
+      </demo-block>
+      <demo-block title="提示信息">
+        <iox-col
+          custom-class="col"
+          span="6"
+        >
+          <iox-icon
+            :name="demoIcon"
+            size="32px"
+            custom-class="icon"
+            dot
+          />
+        </iox-col>
+        <iox-col
+          custom-class="col"
+          span="6"
+        >
+          <iox-icon
+            :name="demoIcon"
+            size="32px"
+            custom-class="icon"
+            info="9"
+          />
+        </iox-col>
+        <iox-col
+          custom-class="col"
+          span="6"
+        >
+          <iox-icon
+            :name="demoIcon"
+            size="32px"
+            custom-class="icon"
+            info="99+"
+          />
+        </iox-col>
+      </demo-block>
       <demo-block title="图标颜色">
         <iox-col
           custom-class="col"
