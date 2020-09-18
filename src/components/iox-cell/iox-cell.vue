@@ -130,7 +130,7 @@ export default class IoxCell extends mixins(Base, Link) {
     type: Boolean,
     default: true,
   })
-  border?: boolean;
+  border!: boolean;
 
   @Prop({
     type: String,

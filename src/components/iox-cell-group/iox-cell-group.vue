@@ -30,7 +30,7 @@ export default class IoxCellGroup extends mixins(Base) {
     type: Boolean,
     default: true,
   })
-  border = true;
+  border!: boolean;
 
   get classPrefix() {
     return classPrefix;
