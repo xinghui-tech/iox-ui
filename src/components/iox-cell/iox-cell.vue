@@ -6,6 +6,8 @@
     hover-stay-time="70"
     @tap="onClick"
   >
+    <slot v-if="extraPosition === 'top'" name="extra" />
+    
     <iox-icon
       v-if="icon"
       :name="icon"
@@ -40,7 +42,7 @@
     />
     <slot v-else name="right-icon" />
 
-    <slot name="extra" />
+    <slot v-if="extraPosition !== 'top'" name="extra" />
   </view>
 </template>
 
@@ -134,6 +136,12 @@ export default class IoxCell extends mixins(Base, Link) {
     type: String,
   })
   titleStyle?: string;
+
+  @Prop({
+    type: String,
+    default: 'bottom'
+  })
+  extraPosition!: string;
 
   get classPrefix() {
     return classPrefix;
