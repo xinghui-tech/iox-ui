@@ -35,7 +35,7 @@
     </view>
 
     <iox-icon
-      v-if="isLink"
+      v-if="isLink && !useRightIconSlot"
       :name="arrowDirection ? 'chevron' + '-' + arrowDirection : 'chevron-right'"
       class="iox-cell__right-icon-wrap right-icon-class"
       custom-class="iox-cell__right-icon"
@@ -125,6 +125,11 @@ export default class IoxCell extends mixins(Base, Link) {
     type: Boolean,
   })
   useLabelSlot?: boolean;
+
+  @Prop({
+    type: Boolean,
+  })
+  useRightIconSlot?: boolean;
 
   @Prop({
     type: Boolean,

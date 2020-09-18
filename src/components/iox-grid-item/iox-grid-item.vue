@@ -173,6 +173,8 @@ export default class IoxGridItem extends mixins(Base, Emitter, Link) {
     this.clickable = clickable;
     this.direction = direction;
     this.iconSize = iconSize;
+
+    this.$emit('resize', columnNum);
   }
 
   onClick() {

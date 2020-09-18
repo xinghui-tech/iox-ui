@@ -30,13 +30,13 @@ export function getSystemInfoSync(): WechatMiniprogram.GetSystemInfoSyncResult {
   return systemInfoCache;
 }
 
-export function addUnit(value?: string | number | null): string | undefined {
+export function addUnit(value?: string | number | null, unit = 'px'): string | undefined {
   if (!isDef(value)) {
     return undefined;
   }
 
   value = String(value);
-  return isNumber(value) ? `${value}px` : value;
+  return isNumber(value) ? `${value}${unit}` : value;
 }
 
 export function compareVersion(v1: string, v2: string) {
