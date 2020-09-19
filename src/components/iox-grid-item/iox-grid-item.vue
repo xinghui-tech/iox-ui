@@ -110,7 +110,9 @@ export default class IoxGridItem extends mixins(Base, Emitter, Link) {
 
   mounted() {
     this.$$dispatch('iox-grid', 'grid-item-attached', this);
-    this.updateStyle();
+    this.$nextTick(() => {
+      this.updateStyle();
+    });
   }
 
   destroyed() {
