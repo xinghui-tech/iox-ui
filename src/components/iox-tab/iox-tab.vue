@@ -69,7 +69,7 @@ export default class IoxTab extends mixins(Base, Emitter) {
 
   get mainClass() {
     const classes = this.bem('tab__pane', { active: this.active, inactive: !this.active });
-    return `custom-class ${this.customClass || ''} ${classes}`;
+    return `custom-class ${this.classPrefix} ${classes}`;
   }
 
   get spinnerClass() {

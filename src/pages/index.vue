@@ -13,8 +13,10 @@
       <iox-cell title="Checkbox 复选框" url="/pages/checkboxs" isLink />
       <iox-cell title="Field 输入框" url="/pages/fields" isLink />
       <iox-cell title="Radio 点选框" url="/pages/radios" isLink />
+      <iox-cell title="Switch 开关" url="/pages/switchs" isLink />
     </demo-block>
     <demo-block title="反馈组件">
+      <iox-cell title="DropdownMenu 下拉菜单" url="/pages/dropdowns" isLink />
       <iox-cell title="Loading 加载" url="/pages/loadings" isLink />
       <iox-cell title="Overlay 遮罩层" url="/pages/overlays" isLink />
     </demo-block>

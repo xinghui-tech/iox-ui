@@ -129,11 +129,11 @@ export default class IoxImage extends mixins(Base, Button, OpenType) {
 
   get mainClass() {
     const classes = this.bem('image', { round: this.round });
-    return `custom-class ${this.customClass || ''} ${this.classPrefix} ${classes}`;
+    return `custom-class ${classes}`;
   }
 
   get mainStyle() {
-    return `${this.viewStyle} ${ this.customStyle }`;
+    return `${this.viewStyle} ${this.customStyle || ''}`;
   }
 
   @Watch('src')

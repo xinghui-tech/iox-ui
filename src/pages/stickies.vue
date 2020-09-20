@@ -49,7 +49,7 @@
 import Vue from "vue";
 import Component, { mixins } from 'vue-class-component';
 import Fonts from '../mixins/font';
-import { wrapFunc, releaseFunc } from '@/utils/func-utils';
+import { wrapFunc, releaseFunc } from '../utils/func-utils';
 
 @Component
 export default class Index extends mixins(Fonts) {

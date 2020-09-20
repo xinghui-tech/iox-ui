@@ -37,7 +37,7 @@ export default class IoxCellGroup extends mixins(Base) {
   }
 
   get mainClass() {
-    return `custom-class ${this.customClass || ''} ${this.classPrefix} ${ this.border ? 'iox-hairline--top-bottom' : '' }`;
+    return `custom-class ${this.classPrefix} ${ this.border ? 'iox-hairline--top-bottom' : '' }`;
   }
 
 }

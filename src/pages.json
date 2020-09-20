@@ -89,6 +89,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/switchs",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Switchs",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/panels",
 			"style": {
 				"navigationStyle": "default",
@@ -109,6 +117,14 @@
 			"style": {
 				"navigationStyle": "default",
 				"navigationBarTitleText": "Tags",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/dropdowns",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Dropdowns",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}

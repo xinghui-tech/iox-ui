@@ -61,7 +61,7 @@ export default class IoxLoading extends mixins(Base) {
   }
 
   get mainClass() {
-    return `custom-class ${this.customClass || ''} ${this.classPrefix} ${this.vertical ? this.classPrefix + '--vertical' : ''}`;
+    return `custom-class ${this.classPrefix} ${this.vertical ? this.classPrefix + '--vertical' : ''}`;
   }
 
   get spinnerClass() {

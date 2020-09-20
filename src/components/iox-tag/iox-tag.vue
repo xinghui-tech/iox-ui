@@ -79,7 +79,7 @@ export default class IoxTag extends mixins(Base) {
   }
 
   get mainClass() {
-    const tag: string = this.bem('tag', [
+    const classes: string = this.bem('tag', [
       this.type,
       this.size,
       {
@@ -88,11 +88,11 @@ export default class IoxTag extends mixins(Base) {
         round: this.round,
       }
     ]);
-    return `custom-class ${this.customClass || ''} ${tag} ${this.plain ? 'iox-hairline--surround' : ''}`;
+    return `custom-class ${classes} ${this.plain ? 'iox-hairline--surround' : ''}`;
   }
 
   get mainStyle() {
-    return `${this.color && !this.plain ? 'background-color: '+ this.color + ';' : ''} ${this.textColor || (this.color && this.plain) ? 'color: ' + (this.textColor || this.color) + ';' : '' }`;
+    return `${this.color && !this.plain ? 'background-color: '+ this.color + ';' : ''} ${this.textColor || (this.color && this.plain) ? 'color: ' + (this.textColor || this.color) + ';' : '' } ${this.customStyle || ''}`;
   }
 
   get spinnerClass() {

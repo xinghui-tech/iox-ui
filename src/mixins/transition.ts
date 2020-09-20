@@ -25,7 +25,7 @@ export const transition = function (showDefaultValue: boolean) {
         default: 300,
         validator(val: any) {
           if (typeof val === 'number') {
-            return val > 0;
+            return val >= 0;
           } else if (typeof val === 'object') {
             if (!val.hasOwnProperty('enter') || !val.hasOwnProperty('leave')) {
               return false;
@@ -59,6 +59,11 @@ export const transition = function (showDefaultValue: boolean) {
         }
     
         newVal ? this.enter() : this.leave();
+      }
+    },
+    mounted() {
+      if (this.show) {
+        this.enter();
       }
     },
     methods: {

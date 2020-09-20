@@ -6,7 +6,6 @@
       :z-index="zIndex"
       :custom-style="overlayStyle"
       :duration="duration"
-      :transition="transition"
       @click="onClickOverlay"
     />
     <view
@@ -45,7 +44,7 @@ const classPrefix = "iox-popup";
     'custom-class'
   ]
 })
-export default class Ioxpopup extends mixins(Base, transition(false)) {
+export default class IoxPopup extends mixins(Base, transition(false)) {
   // props
   @Prop({
     type: Boolean,
@@ -145,12 +144,12 @@ export default class Ioxpopup extends mixins(Base, transition(false)) {
         safeTop: this.safeAreaInsetTop
       }
     ]);
-    return `custom-class ${this.customClass || ''} ${this.classes} ${classes}`;
+    return `custom-class ${this.classes} ${classes}`;
   }
 
   get mainStyle() {
     return `z-index: ${this.zIndex}; -webkit-transition-duration: ${this.currentDuration}ms; transition-duration: ${this.currentDuration}ms;`
-      + `${this.display ? "" : "display: none;"} ${this.customStyle}`;
+      + `${this.display ? "" : "display: none;"} ${this.customStyle || ''}`;
   }
 
   get spinnerClass() {

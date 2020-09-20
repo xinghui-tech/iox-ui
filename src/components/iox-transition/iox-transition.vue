@@ -12,7 +12,6 @@
 import Component, { mixins } from 'vue-class-component';
 import Base from '../../mixins/base';
 import { transition } from '../../mixins/transition';
-import { Prop, Watch } from 'vue-property-decorator';
 
 const classPrefix = 'iox-transition';
 
@@ -34,12 +33,12 @@ export default class IoxTransition extends mixins(Base, transition(true)) {
   }
 
   get mainClass() {
-    return `custom-class ${this.customClass || ''} ${this.classPrefix} ${this.classes}`;
+    return `custom-class ${this.classPrefix} ${this.classes}`;
   }
 
   get mainStyle() {
     return `-webkit-transition-duration: ${this.currentDuration}ms; transition-duration: ${this.currentDuration}ms; `
-            + `${this.display ? '' : 'display: none;'} ${this.customStyle}`;
+            + `${this.display ? '' : 'display: none;'} ${this.customStyle || ''}`;
   }
 }
 </script>

@@ -1,0 +1,32 @@
+@import '../../theme.less';
+
+.iox-dropdown-item {
+  position: fixed;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+
+  &__option {
+    text-align: left;
+
+    &--active {
+      .iox-dropdown-item__title,
+      .iox-dropdown-item__icon {
+        .theme(color, '@dropdown-menu-option-active-color');
+      }
+    }
+  }
+
+  &--up {
+    top: 0;
+  }
+
+  &--down {
+    bottom: 0;
+  }
+
+  &__icon {
+    display: block;
+    line-height: inherit;
+  }
+}

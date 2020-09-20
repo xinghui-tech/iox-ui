@@ -42,12 +42,12 @@ export default class IoxCol extends mixins(Base) {
   }
 
   get mainStyle() {
-    return `${this.customStyle || ''} ${this.viewStyle}`;
+    return `${this.viewStyle} ${this.customStyle || ''}`;
   }
 
   get mainClass() {
     const classes = this.bem('col', [this.span]);
-    return `custom-class ${this.customClass || ''} ${classes} ${this.offset ? 'iox-col--offset-' + this.offset : ''}`;
+    return `custom-class ${classes} ${this.offset ? 'iox-col--offset-' + this.offset : ''}`;
   }
 
   @Watch('gutter', { deep: true })

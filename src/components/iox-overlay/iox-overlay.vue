@@ -16,12 +16,12 @@
 import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
 import Base from '../../mixins/base';
-import { Duration } from '@/mixins/transition';
+import { Duration } from '../../mixins/transition';
 
 const classPrefix = 'iox-overlay';
 
 @Component
-export default class IoxTransition extends mixins(Base) {
+export default class IoxOverlay extends mixins(Base) {
   //datas
   @Prop({
     type: Boolean,
@@ -52,7 +52,7 @@ export default class IoxTransition extends mixins(Base) {
   }
 
   get mainStyle() {
-    return `z-index: ${this.zIndex}; ${this.customStyle}`;
+    return `z-index: ${this.zIndex}; ${this.customStyle || ''}`;
   }
 
   onClick() {

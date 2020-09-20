@@ -94,12 +94,12 @@ export default class IoxGridItem extends mixins(Base, Emitter, Link) {
   }
 
   get mainStyle() {
-    return `${this.customStyle || ''} ${this.viewStyle}`;
+    return `${this.viewStyle} ${this.customStyle || ''}`;
   }
 
   get mainClass() {
     const classes = this.bem('grid-item', { square: this.square });
-    return `custom-class ${this.customClass || ''} ${classes}`;
+    return `custom-class ${classes}`;
   }
 
   get contentClass() {

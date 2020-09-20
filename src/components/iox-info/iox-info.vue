@@ -49,7 +49,7 @@ export default class IoxInfo extends mixins(Base) {
   }
 
   get mainClass() {
-    return `custom-class ${this.customClass || ''} ${this.classPrefix} ${this.dot ? this.classPrefix + '--dot' : ''}`;
+    return `custom-class ${this.classPrefix} ${this.dot ? this.classPrefix + '--dot' : ''}`;
   }
 
   onClick() {

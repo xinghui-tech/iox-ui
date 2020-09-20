@@ -38,7 +38,7 @@ export default class IoxRow extends mixins(Base) {
   }
 
   get mainStyle() {
-    return `${this.customStyle || ''} ${this.viewStyle}`;
+    return `${this.viewStyle} ${this.customStyle || ''}`;
   }
 
   @Watch('gutter')

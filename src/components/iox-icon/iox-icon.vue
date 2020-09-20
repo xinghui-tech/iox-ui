@@ -66,11 +66,11 @@ export default class IoxIcon extends mixins(Base) {
   }
 
   get mainClass() {
-    return `custom-class ${this.customClass || ''} ${this.classPrefix} ${ this.isImageName ? this.classPrefix + '--image' : 'fa fa-' + this.name }`;
+    return `custom-class ${this.classPrefix} ${ this.isImageName ? this.classPrefix + '--image' : 'fa fa-' + this.name }`;
   }
 
   get mainStyle() {
-    return `${ this.color ? 'color: ' + this.color + ";" : '' } font-size: ${ utils.addUnit(this.size) }; ${ this.customStyle }`;
+    return `${ this.color ? 'color: ' + this.color + ";" : '' } font-size: ${ utils.addUnit(this.size) }; ${this.customStyle || ''}`;
   }
 
   onClick(event: Event) {

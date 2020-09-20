@@ -183,7 +183,7 @@ export default class IoxButton extends Mixins(Base, ButtonProps, OpenType) {
       unclickable: this.disabled || this.loading 
     }]);
     
-    return `custom-class ${this.customClass || ''} ${classes} ${this.hairline ? 'iox-hairline--surround' : ''}`;
+    return `custom-class ${classes} ${this.hairline ? 'iox-hairline--surround' : ''}`;
   }
 
   get mainStyle() {

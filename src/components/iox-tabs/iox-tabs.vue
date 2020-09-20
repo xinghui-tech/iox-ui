@@ -189,7 +189,7 @@ export default class IoxTabs extends mixins(Base, Touch) {
 
   get mainClass() {
     const classes = this.bem('tabs', [this.type]);
-    return `custom-class ${this.customClass || ''} ${classes}`;
+    return `custom-class ${classes}`;
   }
 
   @Watch('color')

@@ -57,7 +57,7 @@ export default class IoxPanel extends mixins(Base) {
   }
 
   get mainClass() {
-    return `custom-class ${this.customClass || ''} ${this.classPrefix} iox-hairline--top-bottom`;
+    return `custom-class ${this.classPrefix} iox-hairline--top-bottom`;
   }
 }
 </script>
