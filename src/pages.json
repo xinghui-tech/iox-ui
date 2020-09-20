@@ -121,6 +121,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/dialogs",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Dialogs",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/dropdowns",
 			"style": {
 				"navigationStyle": "default",
@@ -141,6 +149,14 @@
 			"style": {
 				"navigationStyle": "default",
 				"navigationBarTitleText": "Overlays",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/toasts",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Toasts",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}

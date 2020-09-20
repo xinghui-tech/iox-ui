@@ -16,9 +16,11 @@
       <iox-cell title="Switch 开关" url="/pages/switchs" isLink />
     </demo-block>
     <demo-block title="反馈组件">
+      <iox-cell title="Dialog 对话框" url="/pages/dialogs" isLink />
       <iox-cell title="DropdownMenu 下拉菜单" url="/pages/dropdowns" isLink />
       <iox-cell title="Loading 加载" url="/pages/loadings" isLink />
       <iox-cell title="Overlay 遮罩层" url="/pages/overlays" isLink />
+      <iox-cell title="Toast 轻提示" url="/pages/toasts" isLink />
     </demo-block>
     <demo-block title="展示组件">
       <iox-cell title="Panel 面板" url="/pages/panels" isLink />

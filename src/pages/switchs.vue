@@ -43,7 +43,11 @@
       />
     </demo-block>
 
-    <!-- <iox-dialog id="iox-dialog" /> -->
+    <iox-dialog :show="showDialog" title="提示" 
+      message="是否切换开关？" 
+      @close="showDialog=false"
+      @confirm="checked2='checked2'"
+    />
   </block>
 </template>
 
@@ -57,13 +61,10 @@ export default class Index extends mixins(Fonts) {
   checked = true;
   checked2 = true;
 
-  onChange2(value: any) {
-    // Dialog.confirm({
-    //   title: '提示',
-    //   message: '是否切换开关？'
-    // }).then((res) => {
-    //   this.checked2 = value;
-    // });
+  showDialog = false;
+
+  onChange2() {
+    this.showDialog = true;
   }
 }
 </script>
