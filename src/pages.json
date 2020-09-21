@@ -153,6 +153,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/steps",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Steps 步骤条",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/toasts",
 			"style": {
 				"navigationStyle": "default",
