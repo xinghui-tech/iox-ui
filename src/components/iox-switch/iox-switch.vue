@@ -27,11 +27,6 @@ export default class IoxSwitch extends mixins(Base) {
 
   @Prop({
     type: String,
-  })
-  name?: string;
-
-  @Prop({
-    type: String,
     default: '30px'
   })
   size!: string;
@@ -67,6 +62,8 @@ export default class IoxSwitch extends mixins(Base) {
     default: false,
   })
   inactiveValue!: boolean | any;
+
+  name?: string;
 
   get classPrefix() {
     return classPrefix;

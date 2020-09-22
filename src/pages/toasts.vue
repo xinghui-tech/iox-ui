@@ -38,40 +38,19 @@
 import Vue from "vue";
 import Component, { mixins } from 'vue-class-component';
 import Fonts from '../mixins/font';
-
-type ToastOptions = {
-  show?: boolean;
-  type?: string;
-  mask?: boolean;
-  zIndex?: number;
-  position?: string;
-  duration?: number;
-  forbidClick?: boolean;
-  loadingType?: string;
-  message?: string | number;
-}
-
-const defaultToastOptions: ToastOptions = {
-  type: 'text',
-  mask: false,
-  message: '',
-  show: false,
-  zIndex: 1000,
-  duration: 2000,
-  position: 'middle',
-  forbidClick: false,
-  loadingType: 'circular',
-};
+import { 
+  ToastOptions, toast,
+  success as toastSuccess, 
+  loading as toastLoading, 
+  fail as toastFail 
+} from '../utils/toast';
 
 @Component
 export default class Index extends mixins(Fonts) {
-  toast: ToastOptions = {...defaultToastOptions};
+  toast: ToastOptions = toast();
 
-  showToast(toast: ToastOptions | string = '提示内容') {
-    if (typeof toast === 'string') {
-      toast = { message: toast };
-    }
-    this.toast = {...defaultToastOptions, ...toast, ...{show: true}};
+  showToast(options: ToastOptions | string = '提示内容') {
+    this.toast = toast(options);
   }
 
   showLongToast() {
@@ -79,30 +58,28 @@ export default class Index extends mixins(Fonts) {
   }
 
   showLoadingToast() {
-    this.showToast({ message: '加载中...', type: 'loading', forbidClick: true, mask: true });
+    this.toast = toastLoading({ message: '加载中...', forbidClick: true, mask: true });
   }
 
   showCustomLoadingToast() {
-    this.showToast({
+    this.toast = toastLoading({
       message: '加载中...',
-      type: 'loading',
       forbidClick: true,
       loadingType: 'spinner',
     });
   }
 
   showSuccessToast() {
-    this.showToast({message: '成功文案', type: 'check'});
+    this.toast = toastSuccess('成功文案');
   }
 
   showFailToast() {
-    this.showToast({message: '失败提示', type: 'exclamation'});
+    this.toast = toastFail('失败提示');
   }
 
   showCustomizedToast() {
     const text = (second: number) => `倒计时 ${second} 秒`;
-    this.showToast({
-      type: 'loading',
+    this.toast = toastLoading({
       duration: 0,
       forbidClick: true,
       message: text(3),

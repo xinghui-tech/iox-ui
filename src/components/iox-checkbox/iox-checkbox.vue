@@ -46,11 +46,6 @@ export default class IoxCheckbox extends mixins(Base, Emitter) {
   readonly value?: string | number;
 
   @Prop({
-    type: String,
-  })
-  name?: string;
-  
-  @Prop({
     type: Boolean,
   })
   disabled?: boolean;
@@ -87,6 +82,7 @@ export default class IoxCheckbox extends mixins(Base, Emitter) {
   })
   iconSize!: string | number;
 
+  name?: string;
   parent?: Vue;
   parentDisabled = false;
 

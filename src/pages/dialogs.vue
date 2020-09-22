@@ -24,12 +24,6 @@
       </iox-button>
     </demo-block>
 
-    <demo-block title="异步关闭" padding>
-      <iox-button type="primary" @click="onClickAsyncClose">
-        异步关闭
-      </iox-button>
-    </demo-block>
-
     <demo-block title="组件调用" padding>
       <iox-button type="primary" class="demo-margin-right" @click="showCustomDialog">
         组件调用
@@ -50,7 +44,13 @@
       </iox-dialog>
     </demo-block>
 
-    <iox-dialog id="iox-dialog" />
+    <iox-dialog 
+      :show="dialog.show"
+      :title="dialog.title"
+      :message="dialog.message"
+      :theme="dialog.theme"
+      :show-cancel-button="dialog.showCancelButton"
+      @close="dialog.show = false"/>
   </block>
 </template>
 
@@ -58,16 +58,17 @@
 import Vue from "vue";
 import Component, { mixins } from 'vue-class-component';
 import Fonts from '../mixins/font';
+import { 
+  DialogOptions, dialog,
+  confirm as confirmDialog, 
+} from '../utils/dialog';
+
 
 const message = '代码是写出来给人看的，附带能在机器上运行';
-
 @Component
 export default class Index extends mixins(Fonts) {
   show = false;
-
-  showDialog(options: any) {
-
-  }
+  dialog: DialogOptions = dialog();
 
   showCustomDialog() {
     this.show = true;
@@ -78,52 +79,25 @@ export default class Index extends mixins(Fonts) {
   }
 
   onClickThemeAlert() {
-    this.showDialog({
-      title: '标题',
-      theme: 'round-button',
-      message
-    });
+    this.dialog = dialog(message, '标题', {theme: 'round-button'});
   }
 
   onClickThemeAlert2() {
-    this.showDialog({
+    this.dialog = dialog(message, '', {
       theme: 'round-button',
-      message
     });
   }
 
   onClickAlert() {
-    this.showDialog({
-      title: '标题',
-      message
-    });
+    this.dialog = dialog(message, '标题');
   }
 
   onClickAlert2() {
-    this.showDialog({
-      message
-    });
+    this.dialog = dialog(message);
   }
 
   onClickConfirm() {
-    this.showDialog({
-      title: '标题',
-      message
-    });
-  }
-
-  onClickAsyncClose() {
-    // this.showDialog({
-    //   title: '标题',
-    //   message,
-    //   asyncClose: true
-    // }).then(() => {
-    //   setTimeout(() => {
-    //     Dialog.close();
-    //   }, 1000);
-    // }).catch(() => {
-    //   Dialog.close();
-    // });
+    this.dialog = confirmDialog(message, '标题');
   }
 
   onClose() {

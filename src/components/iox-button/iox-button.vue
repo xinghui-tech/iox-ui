@@ -193,14 +193,14 @@ export default class IoxButton extends Mixins(Base, ButtonProps, OpenType) {
   }
 
   get loadingColor() {
-      if(this.plain) {
-        return this.color ? this.color: '#c9c9c9';
-      }
+    if(this.plain) {
+      return this.color ? this.color: '#c9c9c9';
+    }
 
-      if(this.type === 'default') {
-        return '#c9c9c9';
-      }
-      return 'white';
+    if(this.type === 'default') {
+      return '#c9c9c9';
+    }
+    return 'white';
   }
 
   onClick() {

@@ -26,7 +26,49 @@
       <text class="iox-dialog__message-text">{{ message }}</text>
     </view>
 
-    <view class="iox-hairline--top iox-dialog__footer">
+    <view v-if="theme === 'round-button'" custom-class="iox-dialog__footer--round-button">
+      <iox-button
+        v-if="showCancelButton"
+        size="large"
+        :loading="loading.cancel"
+        class="iox-dialog__button iox-hairline--right"
+        custom-class="iox-dialog__cancel"
+        :custom-style="'color: ' + cancelButtonColor"
+        @click="onCancel"
+      >
+        {{ cancelButtonText }}
+      </iox-button>
+      <iox-button
+        v-if="showConfirmButton"
+        size="large"
+        class="iox-dialog__button"
+        :loading="loading.confirm"
+        custom-class="iox-dialog__confirm"
+        :custom-style="'color: ' + confirmButtonColor"
+
+        :open-type="confirmButtonOpenType"
+        :lang="lang"
+        :business-id="businessId"
+        :session-from="sessionFrom"
+        :send-message-title="sendMessageTitle"
+        :send-message-path="sendMessagePath"
+        :send-message-img="sendMessageImg"
+        :show-message-card="showMessageCard"
+        :app-parameter="appParameter"
+
+        @click="onConfirm"
+        @getuserinfo="onGetUserInfo"
+        @contact="onContact"
+        @getphonenumber="onGetPhoneNumber"
+        @error="onError"
+        @launchapp="onLaunchApp"
+        @opensetting="onOpenSetting"
+      >
+        {{ confirmButtonText }}
+      </iox-button>
+    </view>
+
+    <view v-else class="iox-hairline--top iox-dialog__footer">
       <iox-button
         v-if="showCancelButton"
         size="large"
@@ -96,7 +138,6 @@ const classPrefix = 'iox-dialog';
     useSlot: Boolean,
     className: String,
     customStyle: String,
-    asyncClose: Boolean,
     messageAlign: String,
     overlayStyle: String,
     useTitleSlot: Boolean,
@@ -135,16 +176,17 @@ const classPrefix = 'iox-dialog';
     transition: {
       type: String,
       default: 'scale'
-    }
+    },
+    value: [Object, Number, Boolean, Array]
   },
 })
 export default class IoxDialog extends mixins(Base, Button, OpenType) {
   // props
   show?: boolean;
   theme!: string;
-  asyncClose?: boolean;
   width?: string | number;
   className?: string;
+  value?: any;
 
 
   @Watch('show')
@@ -183,10 +225,7 @@ export default class IoxDialog extends mixins(Base, Button, OpenType) {
   }
 
   handleAction(action: Action) {
-    if (this.asyncClose) {
-      (this.loading as any)[action] = true;
-    }
-
+    (this.loading as any)[action] = true;
     this.onClose(action);
   }
 
@@ -198,10 +237,8 @@ export default class IoxDialog extends mixins(Base, Button, OpenType) {
   }
 
   onClose(action?: Action) {
-    
-    // 把 dialog 实例传递出去，可以通过 stopLoading() 在外部关闭按钮的 loading
     if (action) {
-      this.$emit(action, { dialog: this });
+      this.$emit(action, this.value);
     }
     this.$emit('close', action);
   }

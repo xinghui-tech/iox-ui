@@ -8,27 +8,27 @@ export default Vue.extend({
   },
   methods: {
     onGetUserInfo(event: CustomEvent<WechatMiniprogram.GetUserInfoSuccessCallbackResult>) {
-      this.$emit('getuserinfo', event.detail);
+      this.$emit('getuserinfo', event);
     },
 
     onContact(event: CustomEvent<any>) {
-      this.$emit('contact', event.detail);
+      this.$emit('contact', event);
     },
 
     onGetPhoneNumber(event: CustomEvent<any>) {
-      this.$emit('getphonenumber', event.detail);
+      this.$emit('getphonenumber', event);
     },
 
     onError(event: CustomEvent<any>) {
-      this.$emit('error', event.detail);
+      this.$emit('error', event);
     },
 
     onLaunchApp(event: CustomEvent<any>) {
-      this.$emit('launchapp', event.detail);
+      this.$emit('launchapp', event);
     },
 
     onOpenSetting(event: CustomEvent<WechatMiniprogram.OpenSettingSuccessCallbackResult>) {
-      this.$emit('opensetting', event.detail);
+      this.$emit('opensetting', event);
     },
   }
 });
