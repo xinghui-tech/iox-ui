@@ -195,13 +195,13 @@ export default class IoxField extends mixins(Base) {
   onFocus(event: CustomEvent) {
     this.focused = true;
     this.setShowClear();
-    this.$emit('focus', event.detail);
+    this.$emit('focus', event);
   }
 
   onBlur(event: CustomEvent) {
     this.focused = false;
     this.setShowClear();
-    this.$emit('blur', event.detail);
+    this.$emit('blur', event);
   }
 
   onClickIcon() {
@@ -210,6 +210,7 @@ export default class IoxField extends mixins(Base) {
 
   onClear() {
     this.emitChange('');
+    this.$emit('clear');
   }
 
   onConfirm(event: CustomEvent) {

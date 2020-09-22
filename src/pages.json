@@ -161,6 +161,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/searchs",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Search 搜索",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/steps",
 			"style": {
 				"navigationStyle": "default",

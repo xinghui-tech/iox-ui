@@ -65,6 +65,16 @@ export function compareVersion(v1: string, v2: string) {
   return 0;
 }
 
+export function canIUseModel() {
+  const system = getSystemInfoSync();
+  return compareVersion(system.SDKVersion, '2.9.3') >= 0;
+}
+
+export function canIUseFormFieldButton() {
+  const system = getSystemInfoSync();
+  return compareVersion(system.SDKVersion, '2.10.3') >= 0;
+}
+
 export function requestAnimationFrame(cb: Function) {
   const systemInfo = getSystemInfoSync();
 

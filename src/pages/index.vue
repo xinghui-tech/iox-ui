@@ -14,6 +14,7 @@
       <iox-cell title="Checkbox 复选框" url="/pages/checkboxs" isLink />
       <iox-cell title="Field 输入框" url="/pages/fields" isLink />
       <iox-cell title="Radio 点选框" url="/pages/radios" isLink />
+      <iox-cell title="Search 搜索" url="/pages/searchs" isLink />
       <iox-cell title="Switch 开关" url="/pages/switchs" isLink />
     </demo-block>
     <demo-block title="反馈组件">
