@@ -2,6 +2,7 @@
   <view>
     <demo-block title="基础组件">
       <iox-cell title="Button 按钮" url="/pages/buttons" isLink />
+      <iox-cell title="Button Group 按钮组" url="/pages/button-groups" isLink />
       <iox-cell title="Cell 单元格" url="/pages/cells" isLink />
       <iox-cell title="Icon 图标" url="/pages/icons" isLink />
       <iox-cell title="Image 图片" url="/pages/images" isLink />

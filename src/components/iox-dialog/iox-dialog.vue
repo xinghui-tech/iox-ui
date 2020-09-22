@@ -26,8 +26,8 @@
       <text class="iox-dialog__message-text">{{ message }}</text>
     </view>
 
-    <view v-if="theme === 'round-button'" custom-class="iox-dialog__footer--round-button">
-      <iox-button
+    <iox-button-group v-if="theme === 'round-button'" custom-class="iox-dialog__footer--round-button">
+      <iox-button-item
         v-if="showCancelButton"
         size="large"
         :loading="loading.cancel"
@@ -37,8 +37,8 @@
         @click="onCancel"
       >
         {{ cancelButtonText }}
-      </iox-button>
-      <iox-button
+      </iox-button-item>
+      <iox-button-item
         v-if="showConfirmButton"
         size="large"
         class="iox-dialog__button"
@@ -65,8 +65,8 @@
         @opensetting="onOpenSetting"
       >
         {{ confirmButtonText }}
-      </iox-button>
-    </view>
+      </iox-button-item>
+    </iox-button-group>
 
     <view v-else class="iox-hairline--top iox-dialog__footer">
       <iox-button

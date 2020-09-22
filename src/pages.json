@@ -17,6 +17,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/button-groups",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Button Groups",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/cells",
 			"style": {
 				"navigationStyle": "default",

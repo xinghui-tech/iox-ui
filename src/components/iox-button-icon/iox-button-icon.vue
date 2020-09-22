@@ -8,20 +8,22 @@
     :disabled="disabled"
     :open-type="openType"
     :business-id="businessId"
+    :style="mainStyle"
     custom-class="iox-button-icon"
+    hover-class="hover-class"
     :session-from="sessionFrom"
     :app-parameter="appParameter"
     :send-message-img="sendMessageImg"
     :send-message-path="sendMessagePath"
     :show-message-card="showMessageCard"
     :send-message-title="sendMessageTitle"
-    :bind:click="onClick"
-    :binderror="bindError"
-    :bindcontact="bindContact"
-    :bindopensetting="bindOpenSetting"
-    :bindgetuserinfo="bindGetUserInfo"
-    :bindgetphonenumber="bindGetPhoneNumber"
-    :bindlaunchapp="bindLaunchApp"
+    @click="onClick"
+    @error="onError"
+    @contact="onContact"
+    @opensetting="onOpenSetting"
+    @getuserinfo="onGetUserInfo"
+    @getphonenumber="onGetPhoneNumber"
+    @launchapp="onLaunchApp"
   >
     <view class="iox-button-icon__content">
       <iox-icon
@@ -50,13 +52,18 @@ import Link from '../../mixins/link';
 
 const classPrefix = 'iox-button-icon';
 @Component({
-  externalClasses: ['icon-class', 'text-class', 'custom-class']
+  externalClasses: ['hover-class', 'icon-class', 'text-class', 'custom-class']
 })
-export default class IoxButton extends Mixins(Base, Link, ButtonProps, OpenType) {
+export default class IoxButtonIcon extends Mixins(Base, Link, ButtonProps, OpenType) {
   @Prop({
     type: String,
   })
   text?: string;
+
+  @Prop({
+    type: String,
+  })
+  icon?: string;
 
   @Prop({
     type: Boolean,
