@@ -26,8 +26,8 @@
     <demo-block title="展示组件">
       <iox-cell title="Panel 面板" url="/pages/panels" isLink />
       <iox-cell title="Sticky 粘性布局" url="/pages/stickies" isLink />
-      <iox-cell title="Tag 标签" url="/pages/tags" isLink />
       <iox-cell title="Steps 步骤条" url="/pages/steps" isLink />
+      <iox-cell title="Tag 标签" url="/pages/tags" isLink />
     </demo-block>
     <demo-block title="导航组件">
       <iox-cell title="Grid 宫格" url="/pages/grids" isLink />

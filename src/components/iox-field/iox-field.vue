@@ -10,8 +10,8 @@
     :title-width="titleWidth"
     :arrow-direction="arrowDirection"
     title-style="margin-right: 12px;"
-    custom-style="customStyle"
-    custom-class="iox-field"
+    custom-class="iox-field custom-class"
+    :custom-style="mainStyle"
     title-class="label-class"
   >
     <block slot="icon">
@@ -138,7 +138,6 @@ const classPrefix = 'iox-field';
     iconClass: String,
     clickable: Boolean,
     inputAlign: String,
-    customStyle: String,
     errorMessage: String,
     arrowDirection: String,
     showWordLimit: Boolean,

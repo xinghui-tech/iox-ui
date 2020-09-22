@@ -7,7 +7,7 @@
     @tap="onClick"
   >
     <slot v-if="extraPosition === 'top'" name="extra" />
-    
+
     <iox-icon
       v-if="icon"
       :name="icon"
@@ -36,7 +36,7 @@
 
     <iox-icon
       v-if="isLink && !useRightIconSlot"
-      :name="arrowDirection ? 'chevron' + '-' + arrowDirection : 'chevron-right'"
+      :name="arrowDirection ? 'angle' + '-' + arrowDirection : 'angle-right'"
       class="iox-cell__right-icon-wrap right-icon-class"
       custom-class="iox-cell__right-icon"
     />

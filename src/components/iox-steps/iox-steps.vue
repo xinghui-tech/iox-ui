@@ -82,7 +82,7 @@ export default class IoxSteps extends mixins(Base) {
 
   @Prop({
     type: String,
-    default: 'checked',
+    default: 'check',
   },)
   activeIcon!: string;
 

@@ -5,6 +5,7 @@
         :steps="steps"
         :active="active"
         @click-step="onClick"
+        active-icon="check"
         custom-class="demo-margin-bottom"
       />
 
@@ -15,9 +16,9 @@
       <iox-steps
         :steps="steps"
         :active="active"
-        active-icon="check-circle"
+        active-icon="check"
         active-color="#38f"
-        inactive-icon="chevron-right"
+        inactive-icon="angle-right"
       />
     </demo-block>
 
@@ -35,7 +36,6 @@
         direction="vertical"
         active-icon="check-circle"
         active-color="#ee0a24"
-        inactive-icon="chevron-down"
       />
     </demo-block>
 
@@ -124,7 +124,7 @@ export default class Index extends mixins(Fonts) {
   };
 
   onClick(event: TouchEvent) {
-    this.showToast({ message: `Index: ${event.detail}`, type: 'success', forbidClick: true, mask: true });
+    this.showToast({ message: `Index: ${event.detail}`, type: 'success', forbidClick: true, mask: true});
   };
 }
 </script>

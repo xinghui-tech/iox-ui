@@ -2,13 +2,14 @@
   <view
   :class="mainClass" :style="mainStyle"
   >
-    <iox-cell 
+    <iox-cell
       v-if="title || desc || status"
       :title="title"
       :label="desc"
       :value="status"
-      custom-class="header-class"
+      :border="border"
       value-class="iox-panel__header-value"
+      custom-class="header-class"
     />
     <slot v-else name="header" />
 
@@ -50,6 +51,11 @@ export default class IoxPanel extends mixins(Base) {
   @Prop({
     type: Boolean
   })
+  border?: boolean;
+
+  @Prop({
+    type: Boolean
+  })
   useFooterSlot?: boolean;
 
   get classPrefix() {
@@ -57,7 +63,7 @@ export default class IoxPanel extends mixins(Base) {
   }
 
   get mainClass() {
-    return `custom-class ${this.classPrefix} iox-hairline--top-bottom`;
+    return `${this.classPrefix} iox-hairline--top-bottom custom-class`;
   }
 }
 </script>
