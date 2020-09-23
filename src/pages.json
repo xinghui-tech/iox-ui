@@ -73,6 +73,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/datetime-pickers",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Datetime pickers",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/checkboxs",
 			"style": {
 				"navigationStyle": "default",
@@ -85,6 +93,14 @@
 			"style": {
 				"navigationStyle": "default",
 				"navigationBarTitleText": "Fields",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/pickers",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Pickers",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}
