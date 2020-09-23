@@ -49,6 +49,9 @@ export function extractFunc(ref: string): Function {
   return globalFunctions[ref];
 }
 
-export function releaseFunc(ref: string): void {
+export function releaseFunc(ref?: string | null): void {
+  if (!ref) {
+    return;
+  }
   delete globalFunctions[ref];
 } 

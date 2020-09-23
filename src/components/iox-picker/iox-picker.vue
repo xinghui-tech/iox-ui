@@ -293,7 +293,7 @@ export default class IoxPicker extends mixins(Base) {
   }
 
   // set values of all columns
-  setValues(values: []) {
+  setValues(values: any[] = []) {
     const stack = values.map((value, index) =>
       this.setColumnValue(index, value)
     );
@@ -301,10 +301,10 @@ export default class IoxPicker extends mixins(Base) {
   }
 
   // get indexes of all columns
-  getIndexes() {
+  getIndexes(): number[] {
     return this.children.map(
       (child: any) =>
-        child.data.currentIndex
+        child.currentIndex
     );
   }
 
