@@ -89,6 +89,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/pickers",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Pickers",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/radios",
 			"style": {
 				"navigationStyle": "default",
