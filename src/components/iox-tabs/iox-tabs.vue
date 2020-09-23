@@ -14,10 +14,10 @@
           :scroll-x="scrollable"
           scroll-with-animation
           :scroll-left="scrollLeft"
-          :class="[bem('tabs__scroll', [type])]"
+          :class="[bem('tabs__scroll', [type]), 'nav-wrop-class']"
           :style="color ? 'border-color: ' + color : ''"
         >
-          <view :class="[bem('tabs__nav', [type, { complete: !ellipsis }]), 'nav-class']" 
+          <view :class="[bem('tabs__nav', [type, { complete: !ellipsis }]), 'nav-class']"
             :style="'' + tabCardTypeBorderStyle(color, type)">
             <view v-if="type === 'line'" class="iox-tabs__line" :style="lineStyle" />
             <view
@@ -75,7 +75,7 @@ type BoundingClientRect = WechatMiniprogram.BoundingClientRectCallbackResult;
 const classPrefix = 'iox-tabs';
 @Component({
   name: 'iox-tabs',
-  externalClasses: ['nav-class', 'tab-class', 'tab-active-class', 'line-class', 'custom-class'],
+  externalClasses: ['nav-class', 'nav-wrop-class', 'tab-class', 'tab-active-class', 'line-class', 'custom-class'],
 })
 export default class IoxTabs extends mixins(Base, Touch) {
   @Prop({
@@ -254,7 +254,7 @@ export default class IoxTabs extends mixins(Base, Touch) {
     if (this.container) {
       releaseFunc(this.container);
     }
-    
+
     this.container = wrapFunc(() => uni.createSelectorQuery().in(this).select('.iox-tabs'));
   }
 

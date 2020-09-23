@@ -76,19 +76,11 @@ export default class Index extends mixins(Fonts) {
 
   onSearch() {
     if (this.value) {
-      // wx.showToast({
-      //   title: '搜索：' + this.value,
-      //   icon: 'none'
-      // });
-
       wx.showToast({
-        title: '成功',
-        icon: 'success',
-        duration: 2000
-      })
+        title: '搜索：' + this.value,
+        icon: 'none'
+      });
     }
-
-
   }
 
   onClick() {

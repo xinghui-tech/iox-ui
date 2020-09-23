@@ -26,7 +26,7 @@ export default class IoxButtonGroup extends Mixins(Base) {
   }
 
   get mainClass() {
-    return `custom-class ${this.bem('button-group', { safe: this.safeAreaInsetBottom }) }`;
+    return `${this.bem('button-group', { safe: this.safeAreaInsetBottom }) } custom-class`;
   }
 
   children!: Vue[];
