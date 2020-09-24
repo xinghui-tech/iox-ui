@@ -4,7 +4,7 @@
 			"path": "pages/index",
 			"style": {
 				"navigationStyle": "default",
-				"navigationBarTitleText": "IOX-UI",
+				"navigationBarTitleText": "IOX UI 组件库演示",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}

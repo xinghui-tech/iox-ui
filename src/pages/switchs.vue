@@ -72,6 +72,10 @@ export default class Index extends mixins(Fonts) {
   onConfirm(value: any) {
     this.checked2 = value;
   }
+
+  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+    
+  }
 }
 </script>
 

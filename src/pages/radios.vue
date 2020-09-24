@@ -128,6 +128,10 @@ export default class Index extends mixins(Fonts) {
   onClick(name: string) {
     this.radio5 = name;
   }
+
+  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+    
+  }
 }
 </script>
 

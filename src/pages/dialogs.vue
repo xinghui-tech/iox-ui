@@ -103,6 +103,10 @@ export default class Index extends mixins(Fonts) {
   onClose() {
     this.show = false;
   }
+
+  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+    
+  }
 }
 </script>
 

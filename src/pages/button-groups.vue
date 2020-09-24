@@ -85,6 +85,10 @@ export default class Index extends mixins(Fonts) {
   onClickButton() {
     this.toast = toast('点击按钮');
   }
+
+  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+    
+  }
 }
 </script>
 

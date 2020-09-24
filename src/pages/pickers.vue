@@ -112,6 +112,10 @@ export default class Index extends mixins(Fonts) {
     const { value } = column;
     (this.$refs.picker as any).setColumnValues(1, (this.column3 as any)[value[0]]);
   }
+
+  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+    
+  }
 }
 </script>
 

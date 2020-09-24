@@ -122,6 +122,10 @@ export default class Index extends mixins(Fonts) {
   onAfterLeave() {
     console.log('after leave');
   }
+
+  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+    
+  }
 }
 </script>
 

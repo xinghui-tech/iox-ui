@@ -124,6 +124,10 @@ export default class Index extends mixins(Fonts) {
       title: '点击图标'
     });
   }
+
+  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+    
+  }
 }
 </script>
 

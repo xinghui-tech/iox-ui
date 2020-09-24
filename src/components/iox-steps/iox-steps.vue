@@ -99,7 +99,7 @@ export default class IoxSteps extends mixins(Base) {
   }
 
   get mainClass() {
-    return `${this.classPrefix} ${this.bem('steps', [this.direction])} custom-class`;
+    return `${this.bem('steps', [this.direction])} custom-class`;
   }
 
   get mainStyle() {

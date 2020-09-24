@@ -114,18 +114,22 @@ export default class Index extends mixins(Fonts) {
 
   nextStep() {
     this.active = ++this.active % 4;
-  };
+  }
 
   showToast(toast: ToastOptions | string = '提示内容') {
     if (typeof toast === 'string') {
       toast = { message: toast };
     }
     this.toast = {...defaultToastOptions, ...toast, ...{show: true}};
-  };
+  }
 
   onClick(event: TouchEvent) {
     this.showToast({ message: `Index: ${event.detail}`, type: 'success', forbidClick: true, mask: true});
-  };
+  }
+
+  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+    
+  }
 }
 </script>
 
