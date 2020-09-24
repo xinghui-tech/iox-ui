@@ -10,8 +10,9 @@
           :style="status(index, active) === 'inactive' ? 'color: ' + inactiveColor: ''"
         >
           <view class="iox-step__title" :style="(index === active) ? 'color: ' + activeColor : ''">
-            <view>{{ item.text }}</view>
-            <view class="desc-class">{{ item.desc }}</view>
+            <view :class="(index === active) ? 'text-class' : 'inactive-text-class'">{{ item.text }}</view>
+            <view :class="(index === active) ? 'title-class' : 'inactive-title-class'">{{ item.title }}</view>
+            <view :class="(index === active) ? 'desc-class' : 'inactive-desc-class'">{{ item.desc }}</view>
           </view>
           <view class="iox-step__circle-container">
             <block v-if="index !== active">
@@ -48,7 +49,7 @@ import { GREEN, GRAY_DARK } from '../../utils/color';
 
 const classPrefix = 'iox-steps';
 @Component({
-  externalClasses: [ 'desc-class', ]
+  externalClasses: [ 'text-class', 'title-class', 'desc-class', 'inactive-text-class', 'inactive-title-class', 'inactive-desc-class' ]
 })
 export default class IoxSteps extends mixins(Base) {
 
@@ -98,7 +99,7 @@ export default class IoxSteps extends mixins(Base) {
   }
 
   get mainClass() {
-    return `custom-class ${this.classPrefix} ${this.bem('steps', [this.direction])}`;
+    return `${this.classPrefix} ${this.bem('steps', [this.direction])} custom-class`;
   }
 
   get mainStyle() {

@@ -2,7 +2,7 @@
   <block>
     <view
       v-if="title"
-      class="iox-cell-group__title"
+      class="iox-cell-group__title title-class"
     >
       {{ title }}
     </view>
@@ -18,7 +18,9 @@ import { Prop } from 'vue-property-decorator';
 import Base from '../../mixins/base';
 
 const classPrefix = 'iox-cell-group';
-@Component
+@Component({
+  externalClasses: [ 'title-class', ]
+})
 export default class IoxCellGroup extends mixins(Base) {
   @Prop({
     type: String,
