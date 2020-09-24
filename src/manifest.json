@@ -1,6 +1,6 @@
 {
     "name": "iox-ui",
-    "appid": "wxf08cf432441cee52",
+    "appid": "wxa3a53e39a5f479e8",
     "description": "",
     "versionName": "1.0.0",
     "versionCode": "100",
@@ -48,7 +48,7 @@
     },
     "mp-weixin": {
         "usingComponents": true,
-        "appid": "wxf08cf432441cee52",
+        "appid": "wxa3a53e39a5f479e8",
         "setting" : {
         	"urlCheck" : true
         },
