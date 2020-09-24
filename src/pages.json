@@ -121,6 +121,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/collapses",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Collapses",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/panels",
 			"style": {
 				"navigationStyle": "default",

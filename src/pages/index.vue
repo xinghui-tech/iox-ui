@@ -27,6 +27,7 @@
       <iox-cell title="Toast 轻提示" url="/pages/toasts" isLink />
     </demo-block>
     <demo-block title="展示组件">
+      <iox-cell title="Collapse 折叠面板" url="/pages/collapses" isLink />
       <iox-cell title="Panel 面板" url="/pages/panels" isLink />
       <iox-cell title="Sticky 粘性布局" url="/pages/stickies" isLink />
       <iox-cell title="Steps 步骤条" url="/pages/steps" isLink />

@@ -1,0 +1,39 @@
+@import '../../theme.less';
+
+.iox-collapse-item {
+  &__title {
+    .iox-cell__right-icon {
+      transform: rotate(90deg);
+      .theme(transition, 'transform @collapse-item-transition-duration');
+    }
+
+    &--expanded {
+      .iox-cell__right-icon {
+        transform: rotate(-90deg);
+      }
+    }
+
+    &--disabled {
+      .iox-cell,
+      .iox-cell__right-icon {
+        .theme(color, '@collapse-item-title-disabled-color') !important;
+      }
+
+      .iox-cell--hover {
+        .theme(background-color, '@white') !important;
+      }
+    }
+  }
+
+  &__wrapper {
+    overflow: hidden;
+  }
+
+  &__content {
+    .theme(padding, '@collapse-item-content-padding');
+    .theme(color, '@collapse-item-content-text-color');
+    .theme(font-size, '@collapse-item-content-font-size');
+    .theme(line-height, '@collapse-item-content-line-height');
+    .theme(background-color, '@collapse-item-content-background-color');
+  }
+}
