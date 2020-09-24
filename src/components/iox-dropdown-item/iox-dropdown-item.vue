@@ -203,7 +203,7 @@ export default class IoxDropdownItem extends mixins(Base, Emitter) {
     }
   }
 
-  mounted() {
+  beforeMount() {
     this.$$dispatch('iox-dropdown-menu', 'item-attached', this);
   }
 

@@ -159,7 +159,7 @@ export default class IoxCheckbox extends mixins(Base, Emitter) {
 
   }
 
-  mounted() {
+  beforeMount() {
     this.$$dispatch('iox-checkbox-group', 'checkbox-attached', this);
   }
 

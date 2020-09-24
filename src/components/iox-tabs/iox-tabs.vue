@@ -245,7 +245,7 @@ export default class IoxTabs extends mixins(Base, Touch) {
 
   mounted() {
     this.$nextTick(() => {
-      this.setLine(true);
+      this.setLine();
       this.scrollIntoView();
     });
   }

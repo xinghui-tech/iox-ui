@@ -129,7 +129,7 @@ export default class IoxRadio extends mixins(Base, Emitter) {
     }
   }
 
-  mounted() {
+  beforeMount() {
     this.$$dispatch('iox-radio-group', 'radio-attached', this);
   }
 

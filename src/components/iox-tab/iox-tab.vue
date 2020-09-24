@@ -93,7 +93,7 @@ export default class IoxTab extends mixins(Base, Emitter) {
     }
   }
 
-  mounted() {
+  beforeMount() {
     this.$$dispatch('iox-tabs', 'tab-attached', this);
   }
 

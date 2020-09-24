@@ -108,7 +108,7 @@ export default class IoxGridItem extends mixins(Base, Emitter, Link) {
     return `content-class ${ classes } ${ this.border ? 'iox-hairline--surround' : '' }`;
   }
 
-  mounted() {
+  beforeMount() {
     this.$$dispatch('iox-grid', 'grid-item-attached', this);
     this.$nextTick(() => {
       this.updateStyle();

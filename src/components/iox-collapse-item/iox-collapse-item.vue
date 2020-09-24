@@ -127,9 +127,11 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
     });
   }
 
-  mounted() {
+  beforeMount() {
     this.$$dispatch('iox-collapse', 'item-attached', this);
+  }
 
+  mounted() {
     this.updateExpanded();
 
     this.inited = true;

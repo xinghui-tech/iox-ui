@@ -113,7 +113,7 @@ export default class IoxButtonItem extends Mixins(Base, Link, ButtonProps, OpenT
     this.jumpLink();
   }
 
-  mounted() {
+  beforeMount() {
     this.$$dispatch('iox-button-group', 'button-attached', this);
   }
 
