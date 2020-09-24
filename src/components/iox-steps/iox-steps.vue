@@ -11,7 +11,7 @@
         >
           <view class="iox-step__title" :style="(index === active) ? 'color: ' + activeColor : ''">
             <view :class="(index === active) ? 'text-class' : 'inactive-text-class'">{{ item.text }}</view>
-            <view :class="(index === active) ? 'title-class' : 'inactive-title-class'">{{ item.title }}</view>
+            <view v-if="item.title" :class="(index === active) ? 'title-class' : 'inactive-title-class'">{{ item.title }}</view>
             <view :class="(index === active) ? 'desc-class' : 'inactive-desc-class'">{{ item.desc }}</view>
           </view>
           <view class="iox-step__circle-container">
