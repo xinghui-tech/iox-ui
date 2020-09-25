@@ -34,6 +34,7 @@
         <iox-cell title="DropdownMenu 下拉菜单" url="/pages/dropdowns" isLink />
         <iox-cell title="Loading 加载" url="/pages/loadings" isLink />
         <iox-cell title="Overlay 遮罩层" url="/pages/overlays" isLink />
+        <iox-cell title="Share Sheet 分享面板" url="/pages/share-sheet" isLink />
         <iox-cell title="Toast 轻提示" url="/pages/toasts" isLink />
       </demo-block>
       <demo-block title="展示组件">
@@ -62,7 +63,7 @@ export default class Index extends mixins(Fonts) {
   }
 
   onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
-    
+
   }
 }
 </script>

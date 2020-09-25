@@ -201,6 +201,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/share-sheet",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Share Sheet 分享面板",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/toasts",
 			"style": {
 				"navigationStyle": "default",
