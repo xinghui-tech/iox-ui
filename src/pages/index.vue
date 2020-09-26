@@ -21,6 +21,7 @@
         <iox-cell title="Transition 动画" url="/pages/transitions" isLink />
       </demo-block>
       <demo-block title="表单组件">
+        <iox-cell title="Calendar 日历" url="/pages/calendars" isLink />
         <iox-cell title="Checkbox 复选框" url="/pages/checkboxs" isLink />
         <iox-cell title="Datetime Picker 时间选择器" url="/pages/datetime-pickers" isLink />
         <iox-cell title="Field 输入框" url="/pages/fields" isLink />

@@ -20,7 +20,7 @@ export default class Base extends Vue {
   }
 
   get mainClass() {
-    return `custom-class ${this.classPrefix}`;
+    return `${this.classPrefix} custom-class`;
   }
 
   get mainStyle() {

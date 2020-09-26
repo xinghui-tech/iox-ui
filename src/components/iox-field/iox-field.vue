@@ -14,9 +14,7 @@
     :custom-style="mainStyle"
     title-class="label-class"
   >
-    <block slot="icon">
-      <slot name="left-icon" />
-    </block>
+    <block><block slot="icon"><slot name="left-icon" /></block></block>
     <view v-if="label" :class="[bem('field__label', { disabled })]" slot="title">
       {{ label }}
     </view>

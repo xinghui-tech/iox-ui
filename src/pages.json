@@ -81,6 +81,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/calendars",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Calendars",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/checkboxs",
 			"style": {
 				"navigationStyle": "default",

@@ -1,116 +1,60 @@
 <template>
-  <view
-  :class="mainClass" :style="mainStyle"
-  >
-    <slot />
-    <iox-icon
-      v-if="closeable"
-      name="close"
-      :custom-class="spinnerClass"
-      custom-style="font-size:12px;"
-      @click="onClose"
-    />
+  <view class="iox-calendar__header">
+    <block v-if="showTitle">
+      <view class="iox-calendar__header-title"><slot name="title" /></view>
+      <view class="iox-calendar__header-title">{{ title }}</view>
+    </block>
+
+    <view v-if="showSubtitle" class="iox-calendar__header-subtitle">
+      {{ subtitle }}
+    </view>
+
+    <view class="iox-calendar__weekdays">
+      <view v-for="(item, index) in weekdays" :key="index" class="iox-calendar__weekday">
+        {{ item }}
+      </view>
+    </view>
   </view>
 </template>
 
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
-import Base from '../../mixins/base';
+import Base from '../../../mixins/base';
 
-const classPrefix = 'iox-tag';
-declare type Type ={
-  type?: string;
-  value?: 'default';
-} | string;
-
+const classPrefix = 'iox-calendar';
 @Component
-export default class IoxTag extends mixins(Base) {
+export default class IoxCalendarHeader extends mixins(Base) {
   @Prop({
     type: String,
-    default: ''
+    default: '日期选择',
   })
-  size!: string;
-
-  @Prop({
-    type: Boolean,
-    default: false
-  })
-  mark!: boolean;
+  title!: string;
 
   @Prop({
     type: String,
-    default: '',
   })
-  color!: string;
+  subtitle?: string;
 
   @Prop({
     type: Boolean,
-    default: false,
   })
-  plain!: boolean;
+  showTitle?: boolean;
 
   @Prop({
     type: Boolean,
-    default: false,
   })
-  round!: boolean;
+  showSubtitle?: boolean;
 
-  @Prop({
-    type: String,
-    default: '',
-  })
-  textColor!: string;
-
-  @Prop({
-    type: [String,Object],
-    default: 'primary',
-  })
-  type!: Type;
-
-  @Prop({
-    type: Boolean,
-    default: false,
-  })
-  closeable!: boolean;
+  weekdays = ['日', '一', '二', '三', '四', '五', '六'];
 
   get classPrefix() {
     return classPrefix;
-  }
-
-  get mainClass() {
-    const classes: string = this.bem('tag', [
-      this.type,
-      this.size,
-      {
-        mark: this.mark,
-        plain: this.plain,
-        round: this.round,
-      }
-    ]);
-    return `custom-class ${classes} ${this.plain ? 'iox-hairline--surround' : ''}`;
-  }
-
-  get mainStyle() {
-    return `${this.color && !this.plain ? 'background-color: '+ this.color + ';' : ''} ${this.textColor || (this.color && this.plain) ? 'color: ' + (this.textColor || this.color) + ';' : '' } ${this.customStyle || ''}`;
-  }
-
-  get spinnerClass() {
-    return `${this.classPrefix}__close`;
-  }
-
-  //hooks
-  created() {
-  }
-
-  //methods
-  onClose() {
-    this.$emit('close');
   }
 }
 </script>
 
 <style lang="less">
-@import '../../style/widget/iox-tag/iox-tag.less';
+@import '../../../style/widget/iox-calendar/header.less';
 
 </style>
