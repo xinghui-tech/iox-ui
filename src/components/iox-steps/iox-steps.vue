@@ -29,7 +29,7 @@
               />
             </block>
 
-            <iox-icon v-else :name="item.activeIcon || activeIcon" :color="activeColor" custom-class="iox-step__icon" />
+            <iox-icon v-else :name="item.activeIcon || activeIcon" :color="activeColor" custom-class="iox-step__icon"/>
           </view>
           <view
             v-if="index !== (steps.length - 1)"
@@ -52,6 +52,11 @@ const classPrefix = 'iox-steps';
   externalClasses: [ 'text-class', 'title-class', 'desc-class', 'inactive-text-class', 'inactive-title-class', 'inactive-desc-class' ]
 })
 export default class IoxSteps extends mixins(Base) {
+
+  @Prop({
+    type: String,
+  },)
+  icon!: string;
 
   @Prop({
     type: Array

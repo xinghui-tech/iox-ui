@@ -10,7 +10,7 @@
 
     .iox-step__wrapper {
       position: relative;
-      display : flex;
+      display: flex;
       overflow: hidden;
     }
   }
@@ -26,7 +26,7 @@
 
 .iox-step {
   position: relative;
-  flex    : 1;
+  flex: 1;
   .theme(font-size, '@step-font-size');
   .theme(color, '@step-text-color');
 
@@ -50,49 +50,49 @@
       }
 
       .iox-step__circle-container {
-        padding  : 0 8px 0 0;
+        padding: 0 8px 0 0;
         transform: translate3d(0, 50%, 0);
       }
     }
 
     &:last-child {
       position: absolute;
-      right   : 0;
-      width   : auto;
+      right: 0;
+      width: auto;
 
       .iox-step__title {
         text-align: right;
-        transform : none;
+        transform: none;
       }
 
       .iox-step__circle-container {
-        right    : 0;
-        padding  : 0 0 0 8px;
+        right: 0;
+        padding: 0 0 0 8px;
         transform: translate3d(0, 50%, 0);
       }
     }
 
     .iox-step__circle-container {
-      position : absolute;
-      bottom   : 6px;
-      z-index  : 1;
+      position: absolute;
+      bottom: 6px;
+      z-index: 1;
       transform: translate3d(-50%, 50%, 0);
       .theme(background-color, '@white');
       .theme(padding, '0 @padding-xs');
     }
 
     .iox-step__title {
-      display  : inline-block;
+      display: inline-block;
       transform: translate3d(-50%, 0, 0);
       .theme(font-size, '@step-horizontal-title-font-size');
     }
 
     .iox-step__line {
-      position : absolute;
-      right    : 0;
-      bottom   : 6px;
-      left     : 0;
-      height   : 1px;
+      position: absolute;
+      right: 0;
+      bottom: 6px;
+      left: 0;
+      height: 1px;
       transform: translate3d(0, 50%, 0);
       .theme(background-color, '@step-line-color');
     }
@@ -101,7 +101,7 @@
       .theme(color, '@step-process-text-color');
 
       .iox-step__icon {
-        display    : block;
+        display: block;
         line-height: 1;
         .theme(font-size, '@step-icon-size');
       }
@@ -109,7 +109,7 @@
   }
 
   &--vertical {
-    padding    : 10px 10px 10px 0;
+    padding: 10px 10px 10px 0;
     line-height: 18px;
 
     &::after {
@@ -123,12 +123,12 @@
     &:first-child {
       &::before {
         position: absolute;
-        top     : 0;
-        left    : -15px;
-        z-index : 1;
-        width   : 1px;
-        height  : 20px;
-        content : '';
+        top: 0;
+        left: -15px;
+        z-index: 1;
+        width: 1px;
+        height: 20px;
+        content: '';
         .theme(background-color, '@white');
       }
     }
@@ -136,10 +136,10 @@
     .iox-step__icon,
     .iox-step__circle,
     .iox-step__line {
-      position : absolute;
-      top      : 19px;
-      left     : -14px;
-      z-index  : 2;
+      position: absolute;
+      top: 19px;
+      left: -14px;
+      z-index: 2;
       transform: translate3d(-50%, -50%, 0);
     }
 
@@ -149,9 +149,9 @@
     }
 
     .iox-step__line {
-      z-index  : 1;
-      width    : 1px;
-      height   : 100%;
+      z-index: 1;
+      width: 1px;
+      height: 100%;
       transform: translate3d(-50%, 0, 0);
       .theme(background-color, '@step-line-color');
     }

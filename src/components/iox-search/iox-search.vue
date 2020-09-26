@@ -30,6 +30,7 @@
         @blur="onBlur"
         @focus="onFocus"
         @confirm="onSearch"
+        @change="onChange"
         @clear="onClear"
       >
         <slot v-if="useLeftIconSlot" name="left-icon" slot="left-icon" />
@@ -171,11 +172,15 @@ export default class IoxSearch extends mixins(Base) {
   }
 
   get mainClass() {
-    return `custom-class ${this.classPrefix} ${this.bem('search', { withaction: this.showAction || this.useActionSlot })}`;
+    return `${this.classPrefix} ${this.bem('search', { withaction: this.showAction || this.useActionSlot })} custom-class`;
   }
 
   get mainStyle() {
-    return `${this.customStyle || ''};background:${this.background}`;
+    return `${this.customStyle || ''};background:${this.background};`;
+  }
+
+  onChange(value: string | number) {
+    this.$emit('change', value);
   }
 
   onInput(value: string | number) {
