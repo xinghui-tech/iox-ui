@@ -30,6 +30,7 @@
             :key="index"
             :id="'month' + index"
             class="month"
+            :data-date="item"
             :date="item"
             :type="type"
             :color="color"
@@ -84,6 +85,7 @@
           :key="index"
           :id="'month' + index"
           class="month"
+          :data-date="item"
           :date="item"
           :type="type"
           :color="color"
@@ -312,7 +314,7 @@ export default class IoxCalendar extends mixins(Base) {
   subtitle = '';
   currentDate: number | number[] | [number, number | null] = new Date().getTime();
   scrollIntoView = '';
-  contentObserver: IntersectionObserver | null = null;
+  contentObserver?: IntersectionObserver;
 
   get classPrefix() {
     return classPrefix;
@@ -330,6 +332,12 @@ export default class IoxCalendar extends mixins(Base) {
     if (this.show || !this.poppable) {
       this.initRect();
       this.doScrollIntoView();
+    }
+  }
+
+  beforeDestroy() {
+    if (this.contentObserver) {
+      this.contentObserver.disconnect();
     }
   }
 
@@ -354,13 +362,14 @@ export default class IoxCalendar extends mixins(Base) {
   }
 
   initRect() {
-    if (this.contentObserver != null) {
+    if (this.contentObserver) {
       this.contentObserver.disconnect();
     }
 
-    const contentObserver = uni.createIntersectionObserver({
+    const contentObserver: IntersectionObserver = (uni as any).createIntersectionObserver(this, {
       thresholds: [0, 0.1, 0.9, 1],
       selectAll: true,
+      observeAll: true,
     });
 
     this.contentObserver = contentObserver;
