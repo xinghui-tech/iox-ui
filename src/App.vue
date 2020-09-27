@@ -1,6 +1,5 @@
 <script lang="ts">
 import Vue from "vue";
-import { logger } from "@zhuyin/common";
 import defaultConfig from "./config";
 
 
@@ -18,16 +17,16 @@ export default Vue.extend({
       success: console.log,
       fail: console.warn
     });
-    logger.log("App Launch");
+    console.log("App Launch");
   },
   onShow() {
-    logger.log("App Show");
+    console.log("App Show");
   },
   onHide() {
-    logger.log("App Hide");
+    console.log("App Hide");
   },
   onPageNotFound(options: App.PageNotFoundOption) {
-    logger.warn(`page not found: ${options.path}/${options.query}`);
+    console.warn(`page not found: ${options.path}/${options.query}`);
   },
   computed: {
   },

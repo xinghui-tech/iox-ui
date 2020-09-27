@@ -1508,11 +1508,6 @@
   resolved "https://registry.npm.taobao.org/@xtuc/long/download/@xtuc/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha1-0pHGpOl5ibXGHZrPOWrk/hM6cY0=
 
-"@zhuyin/common@^2.0.5":
-  version "2.0.5"
-  resolved "https://npm-registry.zhayanmao.com/@zhuyin/common/download/@zhuyin/common-2.0.5.tgz#403d88447ffa43ac787bdff347636022dd3ca84b"
-  integrity sha1-QD2IRH/6Q6x4e9/zR2NgIt08qEs=
-
 "@zhuyin/mp-api-typings@^2.10.1-1":
   version "2.10.1-1"
   resolved "https://npm-registry.zhayanmao.com/@zhuyin/mp-api-typings/download/@zhuyin/mp-api-typings-2.10.1-1.tgz#34d19fbf1586b2e32de3a70228ce7f2be4dfad89"
