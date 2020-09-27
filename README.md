@@ -49,7 +49,7 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 </script>
 ```
 
-## 参考手持
+## 参考手册
 <img alt="logo" src="https://img.yzcdn.cn/vant/logo.png" width="32" height="32" style="margin-bottom: 10px;" align="middle">https://youzan.github.io/vant/
 
 ## 组件一览表
