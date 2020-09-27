@@ -1,12 +1,6 @@
-export const ROW_HEIGHT = 64;
+export { Day } from '../../utils/calendar';
 
-export type Day = {
-  date: Date;
-  type?: string;
-  text: string | number;
-  topInfo?: string;
-  bottomInfo?: string;
-}
+export const ROW_HEIGHT = 64;
 
 export function formatMonthTitle(date: Date) {
   if (!(date instanceof Date)) {

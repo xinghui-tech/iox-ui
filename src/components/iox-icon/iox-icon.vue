@@ -57,6 +57,12 @@ export default class IoxIcon extends mixins(Base) {
   })
   size!: number | string;
 
+  @Prop({
+    type: String,
+    default: 'fa',
+  })
+  lib!: string;
+
   get isImageName() {
     return this.name.indexOf('/') !== -1;
   }
@@ -66,7 +72,7 @@ export default class IoxIcon extends mixins(Base) {
   }
 
   get mainClass() {
-    return `custom-class ${this.classPrefix} ${ this.isImageName ? this.classPrefix + '--image' : 'fa fa-' + this.name }`;
+    return `custom-class ${this.classPrefix} ${ this.isImageName ? this.classPrefix + '--image' : this.lib + ' ' + this.lib + '-' + this.name }`;
   }
 
   get mainStyle() {

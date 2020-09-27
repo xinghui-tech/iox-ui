@@ -247,7 +247,7 @@ export default class Index extends mixins(Fonts) {
       case 'customDayText':
         data.minDate = new Date(2010, 4, 1).getTime();
         data.maxDate = new Date(2010, 4, 31).getTime();
-        data.formatter = this.setFormater(this.dayFormatter);
+        data.formatter = this.dayFormatter;
         break;
       case 'customPosition':
         data.round = false;
@@ -277,6 +277,7 @@ export default class Index extends mixins(Fonts) {
       if (date === 1) {
         day.topInfo = '劳动节';
       } else if (date === 4) {
+        day.icon = 'https://res.oss.zhuyin.club/assets/images/iox-ui.png';
         day.topInfo = '五四青年节';
       } else if (date === 11) {
         day.text = '今天';
@@ -284,8 +285,10 @@ export default class Index extends mixins(Fonts) {
     }
 
     if (day.type === 'start') {
+      day.icon = 'sign-in';
       day.bottomInfo = '入店';
     } else if (day.type === 'end') {
+      day.icon = 'sign-out';
       day.bottomInfo = '离店';
     }
 

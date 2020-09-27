@@ -18,6 +18,7 @@
       >
         <view v-if="item.type === 'selected'" class="iox-calendar__selected-day" :style="'background: ' + color">
           <view v-if="item.topInfo" class="iox-calendar__top-info">{{ item.topInfo }}</view>
+          <iox-icon v-if="item.icon" :name="item.icon" />
           {{ item.text }}
           <view v-if="item.bottomInfo" class="iox-calendar__bottom-info">
             {{ item.bottomInfo }}
@@ -26,6 +27,7 @@
 
         <view v-else>
           <view v-if="item.topInfo" class="iox-calendar__top-info">{{ item.topInfo }}</view>
+          <iox-icon v-if="item.icon" :name="item.icon" />
           {{ item.text }}
           <view v-if="item.bottomInfo" class="iox-calendar__bottom-info">
             {{ item.bottomInfo }}
