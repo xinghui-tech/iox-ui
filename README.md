@@ -15,6 +15,7 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 
 ## UNIAPP使用
 参考uniapp的[easycom](https://uniapp.dcloud.io/collocation/pages?id=easycom)配置。
+### 引入
 >pages.json
 ```json
 {
@@ -28,7 +29,7 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
   //...
 }
 ```
-
+### 使用
 ```vue
 <template>
     <view>
@@ -48,12 +49,12 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 </script>
 ```
 
-## 使用参考
+## 参考手持
 <img alt="logo" src="https://img.yzcdn.cn/vant/logo.png" width="32" height="32" style="margin-bottom: 10px;" align="middle">https://youzan.github.io/vant/
 
 ## 组件一览表
 
-|组件|Vant weapp|IOX UI|备注|
+|组件|Vant Weapp|IOX UI|备注|
 |:-|:-:|:-:|:--|
 |**基础组件**|
 |Button 按钮|✅|✅|
