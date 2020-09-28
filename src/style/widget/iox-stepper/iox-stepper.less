@@ -1,0 +1,94 @@
+@import '../../theme.less';
+
+.iox-stepper {
+  font-size: 0;
+
+  &__minus,
+  &__plus {
+    position: relative;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 1px;
+    vertical-align: middle;
+    border: 0;
+    .theme(background-color, '@stepper-background-color');
+    .theme(color, '@stepper-button-icon-color');
+    .theme(width, '@stepper-input-height');
+    .theme(height, '@stepper-input-height');
+    .theme(padding, '@padding-base');
+
+    &::before {
+      width: 9px;
+      height: 1px;
+    }
+
+    &::after {
+      width: 1px;
+      height: 9px;
+    }
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      background-color: currentColor;
+      content: '';
+    }
+
+    &--hover {
+      .theme(background-color, '@stepper-active-color');
+    }
+
+    &--disabled {
+      .theme(color, '@stepper-button-disabled-icon-color');
+      .theme(background-color, '@stepper-button-disabled-color');
+    }
+
+    &--disabled&--hover {
+      .theme(background-color, '@stepper-button-disabled-color');
+    }
+  }
+
+  &__minus {
+    .theme(border-radius, '@stepper-border-radius 0 0 @stepper-border-radius');
+
+    &::after {
+      display: none;
+    }
+  }
+
+  &__plus {
+    .theme(border-radius, '0 @stepper-border-radius @stepper-border-radius 0');
+  }
+
+  &__input {
+    display: inline-block;
+    box-sizing: border-box;
+    // 覆盖 common style 中 input 的 min-height: 1.4rem;
+    // 避免 button-size 对 input 设置的 height 不生效
+    min-height: 0;
+    margin: 1px;
+    padding: 1px;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+    border: 0;
+    border-width: 1px 0;
+    border-radius: 0;
+    -webkit-appearance: none;
+    .theme(font-size, '@stepper-input-font-size');
+    .theme(color, '@stepper-input-text-color');
+    .theme(background-color, '@stepper-background-color');
+    .theme(width, '@stepper-input-width');
+    .theme(height, '@stepper-input-height');
+
+    &--disabled {
+      .theme(color, '@stepper-input-disabled-text-color');
+      .theme(background-color, '@stepper-input-disabled-background-color');
+    }
+  }
+}

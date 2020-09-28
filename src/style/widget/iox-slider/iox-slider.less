@@ -1,0 +1,43 @@
+@import '../../theme.less';
+
+.iox-slider {
+  position: relative;
+  .theme(border-radius, '@border-radius-max');
+  .theme(background-color, '@slider-inactive-background-color');
+
+  // use pseudo element to expand click area
+  &::before {
+    position: absolute;
+    right: 0;
+    left: 0;
+    content: '';
+    .theme(top, '-@padding-xs');
+    .theme(bottom, '-@padding-xs');
+  }
+
+  &__bar {
+    position: relative;
+    border-radius: inherit;
+    .theme(transition, 'width @animation-duration-fast');
+    .theme(background-color, '@slider-active-background-color');
+  }
+
+  &__button {
+    width: @slider-button-width;
+    height: @slider-button-height;
+    border-radius: @slider-button-border-radius;
+    box-shadow: @slider-button-box-shadow;
+    .theme(background-color, '@slider-button-background-color');
+
+    &-wrapper {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translate3d(50%, -50%, 0);
+    }
+  }
+
+  &--disabled {
+    opacity: @slider-disabled-opacity;
+  }
+}

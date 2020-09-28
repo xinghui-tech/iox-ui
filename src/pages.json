@@ -193,10 +193,34 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/rate",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Rate 评分",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/searchs",
 			"style": {
 				"navigationStyle": "default",
 				"navigationBarTitleText": "Search 搜索",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/slider",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Slider 滑块",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/stepper",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Stepper 步进器",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}

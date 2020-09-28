@@ -1,0 +1,25 @@
+@import '../../theme.less';
+
+.iox-rate {
+  display: inline-flex;
+  user-select: none;
+
+  &__item {
+    position: relative;
+    .theme(padding, '0 @rate-horizontal-padding');
+  }
+
+  &__icon {
+    display: block;
+    // height: 1em;
+    .theme(font-size, '@rate-icon-size');
+
+    &--half {
+      position: absolute;
+      top: 0;
+      width: 0.3em;
+      overflow: hidden;
+      .theme(left, '@rate-horizontal-padding');
+    }
+  }
+}

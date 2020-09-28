@@ -162,7 +162,7 @@ export default class IoxCell extends mixins(Base, Link) {
         clickable: this.isLink || this.clickable,
       }
     ]);
-    return `custom-class ${classes}`;
+    return `${classes} custom-class`;
   }
 
   onClick(event: TouchEvent) {

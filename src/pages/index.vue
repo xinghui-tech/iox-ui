@@ -27,7 +27,10 @@
         <iox-cell title="Field 输入框" url="/pages/fields" isLink />
         <iox-cell title="Picker 选择器" url="/pages/pickers" isLink />
         <iox-cell title="Radio 单选框" url="/pages/radios" isLink />
+        <iox-cell title="Rate 评分" url="/pages/rate" isLink />
+        <iox-cell title="Slider 滑块" url="/pages/slider" isLink />
         <iox-cell title="Search 搜索" url="/pages/searchs" isLink />
+        <iox-cell title="Stepper 步进器" url="/pages/stepper" isLink />
         <iox-cell title="Switch 开关" url="/pages/switchs" isLink />
       </demo-block>
       <demo-block title="反馈组件">
