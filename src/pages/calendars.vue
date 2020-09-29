@@ -247,7 +247,7 @@ export default class Index extends mixins(Fonts) {
       case 'customDayText':
         data.minDate = new Date(2010, 4, 1).getTime();
         data.maxDate = new Date(2010, 4, 31).getTime();
-        data.formatter = this.dayFormatter;
+        data.formatter = (day: Day) => this.dayFormatter(day);
         break;
       case 'customPosition':
         data.round = false;
@@ -322,7 +322,7 @@ export default class Index extends mixins(Fonts) {
   }
 
   onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
-    
+
   }
 
   setFormater(formater: Function) {

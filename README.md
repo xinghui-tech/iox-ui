@@ -88,7 +88,7 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 |Notify 消息通知|✅|✅|
 |Overlay 遮罩层|✅|✅|
 |Share Sheet 分享面板|✅|✅|
-|Swipe Cell 活动单元格|✅||
+|Swipe Cell 活动单元格|✅|✅|
 |Toast 轻提示|✅|✅|遵从Vue使用方式|
 ||
 |**展示组件**|

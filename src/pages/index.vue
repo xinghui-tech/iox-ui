@@ -41,6 +41,7 @@
         <iox-cell title="Notify 消息通知" url="/pages/notify" isLink />
         <iox-cell title="Overlay 遮罩层" url="/pages/overlays" isLink />
         <iox-cell title="Share Sheet 分享面板" url="/pages/share-sheet" isLink />
+        <iox-cell title="SwipeCell 滑动单元格" url="/pages/swipe-cell" isLink />
         <iox-cell title="Toast 轻提示" url="/pages/toasts" isLink />
       </demo-block>
       <demo-block title="展示组件">

@@ -257,6 +257,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/swipe-cell",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "SwipeCell 滑动单元格",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/toasts",
 			"style": {
 				"navigationStyle": "default",
