@@ -86,7 +86,6 @@ export default class Index extends mixins(Fonts) {
 
     setTimeout(() => {
       this.toast.show = false;
-      this.value = event.detail;
     }, 500);
   }
 
