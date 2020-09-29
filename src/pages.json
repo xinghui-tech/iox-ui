@@ -161,6 +161,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/action-sheet",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "ActionSheet 上拉菜单",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/dialogs",
 			"style": {
 				"navigationStyle": "default",
@@ -181,6 +189,14 @@
 			"style": {
 				"navigationStyle": "default",
 				"navigationBarTitleText": "Loadings",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/notify",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Notify 消息通知",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}
