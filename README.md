@@ -54,46 +54,46 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 
 ## 组件一览表
 
-|组件|Vant Weapp|IOX UI|备注|
-|:-|:-:|:-:|:--|
+|组件|Vant Weapp|IOX UI|备注|贡献者|
+|:-|:-:|:-:|:-:|:-|
 |**基础组件**|
-|Button 按钮|✅|✅|
-|Button Group 按钮组|☑️|✅|GoodActions 商品导航|
-|Cell 单元格|✅|✅|
-|Icon 图标|✅|✅|使用 [Font Awesome字体图标](http://www.fontawesome.com.cn/)
-|Image 图片|✅|✅|
-|Layout 布局|✅|✅|
-|Popup 弹出层|✅|✅|
-|Transition 动画|✅|✅|
+|Button 按钮|✅|✅||老糊涂|
+|Button Group 按钮组|☑️|✅|GoodActions 商品导航|老糊涂|
+|Cell 单元格|✅|✅||老糊涂|
+|Icon 图标|✅|✅|使用 [Font Awesome字体图标](http://www.fontawesome.com.cn/)|老糊涂|
+|Image 图片|✅|✅||老糊涂|
+|Layout 布局|✅|✅||老糊涂|
+|Popup 弹出层|✅|✅||老糊涂|
+|Transition 动画|✅|✅||老糊涂|
 ||
 |**表单组件**|
-|Calendar 日历|✅|✅|支持日期添加图标|
-|Checkbox 复选框|✅|✅|
-|Datetime Picker 时间选择|✅|✅|
-|Field 输入框|✅|✅|
-|Picker 选择器|✅|✅|
-|Radio 单选框|✅|✅|
-|Rate 评分|✅|✅|
-|Search 搜索|✅|✅|
-|Slider 滑块|✅|✅|
-|Stepper 步进器|✅|✅|
-|Switch 开关|✅|✅|
+|Calendar 日历|✅|✅|支持日期添加图标|老糊涂|
+|Checkbox 复选框|✅|✅||老糊涂|
+|Datetime Picker 时间选择|✅|✅||老糊涂|
+|Field 输入框|✅|✅||老糊涂|
+|Picker 选择器|✅|✅||老糊涂|
+|Radio 单选框|✅|✅||老糊涂|
+|Rate 评分|✅|✅||春雨|
+|Search 搜索|✅|✅||春雨|
+|Slider 滑块|✅|✅||春雨|
+|Stepper 步进器|✅|✅||春雨|
+|Switch 开关|✅|✅||老糊涂|
 |Uploader 文件上传|✅||
 ||
 |**反馈组件**|
-|Action Sheet 上拉菜单|✅|✅|
-|Dialog 弹出框|✅|✅|遵从Vue使用方式|
-|Dropdown Menu 下拉菜单|✅|✅|
-|Loading 加载|✅|✅|
-|Notify 消息通知|✅|✅|
-|Overlay 遮罩层|✅|✅|
-|Share Sheet 分享面板|✅|✅|
-|Swipe Cell 活动单元格|✅|✅|
-|Toast 轻提示|✅|✅|遵从Vue使用方式|
+|Action Sheet 上拉菜单|✅|✅||春雨|
+|Dialog 弹出框|✅|✅|遵从Vue使用方式|老糊涂|
+|Dropdown Menu 下拉菜单|✅|✅||老糊涂|
+|Loading 加载|✅|✅||老糊涂|
+|Notify 消息通知|✅|✅||春雨|
+|Overlay 遮罩层|✅|✅||老糊涂|
+|Share Sheet 分享面板|✅|✅||春雨|
+|Swipe Cell 活动单元格|✅|✅||春雨|
+|Toast 轻提示|✅|✅|遵从Vue使用方式|老糊涂|
 ||
 |**展示组件**|
 |Circle 进度条|✅||
-|Collapse 折叠面板|✅|✅||
+|Collapse 折叠面板|✅|✅||老糊涂|
 |Countdown 倒计时|✅||
 |Divider 分割线|✅||
 |Empty 空状态|✅||
@@ -102,16 +102,16 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 |Progress 进度条|✅||
 |Skeleton 骨架屏|✅||
 |Steps 步骤条|✅||
-|Sticky 粘性布局|✅|✅|
-|Tag 标记|✅|✅|
+|Sticky 粘性布局|✅|✅||老糊涂|
+|Tag 标记|✅|✅||老糊涂|
 |Tree Select 分类选择|✅||
 ||
 |**导航组件**|
-|Grid 宫格|✅|✅|
+|Grid 宫格|✅|✅||老糊涂|
 |IndexBar 索引栏|✅|||
 |Sidebar 侧边导航|✅||
 |NavBar 导航栏|✅||
-|Tab 标签页|✅|✅|
+|Tab 标签页|✅|✅||老糊涂|
 |Tabbar 标签栏|✅||
 
 
