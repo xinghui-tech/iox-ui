@@ -46,12 +46,12 @@ import { canIUseModel } from '../../utils/utils';
 const classPrefix = 'iox-rate';
 @Component({
   behaviors: ['uni://form-field'],
-  externalClasses: ['icon-class'],
+  externalClasses: ['icon-class', 'custom-class'],
 })
 export default class IoxRate extends mixins(Base) {
 
-  @Model('input', { type: [String, Number] })
-  readonly value?: string | number;
+  @Model('input', { type: Number, default: 0 })
+  readonly value!: number;
 
 
   @Prop({
@@ -141,7 +141,8 @@ export default class IoxRate extends mixins(Base) {
     return `${this.classPrefix} custom-class`;
   }
 
-  mounted() {
+  created() {
+    this.innerValue = this.value;
   }
 
   protected addUnit(value: string | number | null, unit = 'px'):string | undefined  {
