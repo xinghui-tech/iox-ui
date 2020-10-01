@@ -288,6 +288,15 @@
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}
+		},
+		{
+			"path": "pages/tabbars",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Tabbars",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
 		}
 	],
 	"subPackages": [

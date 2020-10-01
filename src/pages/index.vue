@@ -54,6 +54,7 @@
       <demo-block title="导航组件">
         <iox-cell title="Grid 宫格" url="/pages/grids" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Tab 标签页" url="/pages/tabs" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Tabbar 标签栏" url="/pages/tabbars" :icon="iconVant" value="老糊涂" isLink />
       </demo-block>
     </view>
   </block>
