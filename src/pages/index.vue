@@ -30,7 +30,7 @@
         <iox-cell title="Rate 评分" url="/pages/rate" :icon="iconVant" value="春雨" isLink />
         <iox-cell title="Slider 滑块" url="/pages/slider" :icon="iconVant" value="春雨" isLink />
         <iox-cell title="Search 搜索" url="/pages/searchs" :icon="iconVant" value="春雨" isLink />
-        <iox-cell title="Stepper 步进器" url="/pages/stepper" :icon="iconVant" value="春雨" isLink />
+        <iox-cell title="Stepper 步进器" url="/pages/steppers" :icon="iconVant" value="春雨" isLink />
         <iox-cell title="Switch 开关" url="/pages/switchs" :icon="iconVant" value="老糊涂" isLink />
       </demo-block>
       <demo-block title="反馈组件">
@@ -53,6 +53,8 @@
       </demo-block>
       <demo-block title="导航组件">
         <iox-cell title="Grid 宫格" url="/pages/grids" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Navbar 导航栏" url="/pages/navbars" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Sidebar 侧边导航" url="/pages/sidebars" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Tab 标签页" url="/pages/tabs" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Tabbar 标签栏" url="/pages/tabbars" :icon="iconVant" value="老糊涂" isLink />
       </demo-block>

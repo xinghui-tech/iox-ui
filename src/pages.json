@@ -233,7 +233,7 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
-			"path": "pages/stepper",
+			"path": "pages/steppers",
 			"style": {
 				"navigationStyle": "default",
 				"navigationBarTitleText": "Stepper 步进器",
@@ -277,6 +277,22 @@
 			"style": {
 				"navigationStyle": "default",
 				"navigationBarTitleText": "Grids",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/navbars",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Navbars",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/sidebars",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Sidebars",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}

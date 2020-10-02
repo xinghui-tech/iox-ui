@@ -98,19 +98,19 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 |Divider 分割线|✅||
 |Empty 空状态|✅||
 |NoticeBar 通告栏|✅||
-|Panel 面板|✅|✅|
+|Panel 面板|✅|✅||老糊涂|
 |Progress 进度条|✅||
 |Skeleton 骨架屏|✅||
-|Steps 步骤条|✅||
+|Steps 步骤条|✅|✅||春雨|
 |Sticky 粘性布局|✅|✅||老糊涂|
 |Tag 标记|✅|✅||老糊涂|
 |Tree Select 分类选择|✅||
 ||
 |**导航组件**|
 |Grid 宫格|✅|✅||老糊涂|
-|IndexBar 索引栏|✅|||
-|Sidebar 侧边导航|✅||
-|NavBar 导航栏|✅||
+|IndexBar 索引栏|✅|✅||老糊涂|
+|Sidebar 侧边导航|✅|✅||老糊涂|
+|NavBar 导航栏|✅|✅||老糊涂|
 |Tab 标签页|✅|✅||老糊涂|
 |Tabbar 标签栏|✅|✅||老糊涂|
 
