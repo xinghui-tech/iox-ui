@@ -6,7 +6,7 @@
           <iox-icon
             v-if="leftArrow"
             size="16px"
-            name="arrow-left"
+            name="angle-left"
             custom-class="iox-nav-bar__arrow"
           />
           <view
