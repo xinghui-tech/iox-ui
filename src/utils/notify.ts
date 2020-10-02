@@ -24,7 +24,7 @@ export const defaultOptions: NotifyOptions = {
   safeAreaInsetTop: false,
 };
 
-export function notify(options?: NotifyOptions | string | { [key: string]: any }) {
+export function notify(options: NotifyOptions | string | { [key: string]: any } = {show: false}) {
   options = typeof options === 'string' ? { message: options } : options;
-  return { ...defaultOptions, ...options };
+  return { ...defaultOptions, show: true, ...options };
 }
