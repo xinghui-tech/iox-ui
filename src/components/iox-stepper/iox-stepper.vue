@@ -2,19 +2,18 @@
   <view :class="mainClass" :style="mainStyle">
     <view
       v-if="showMinus"
-      data-type="minus"
-      :style="'width: '+addUnit(buttonSize)+';height:'+addUnit(buttonSize)+';'"
-      :class="['minus-class',bem('stepper__minus', { disabled: disabled || disableMinus || currentValue <= min })]"
+      :style="'width: ' + addUnit(buttonSize) + ';height:' + addUnit(buttonSize) + ';'"
+      :class="['minus-class', bem('stepper__minus', { disabled: disabled || disableMinus || currentValue <= min })]"
       hover-class="iox-stepper__minus--hover"
       hover-stay-time="70"
-      @tap="onTap"
-      @touchstart="onTouchStart"
-      @touchend="onTouchEnd"
+      @tap="onTap('minus')"
+      @touchstart="onTouchStart('minus')"
+      @touchend="onTouchEnd('minus')"
     />
     <input
       :type="integer ? 'number' : 'digit'"
-      :class="['input-class',bem('stepper__input', { disabled: disabled || disableInput })]"
-      :style="'width:'+addUnit(inputWidth)+';height:'+addUnit(buttonSize)+';'"
+      :class="['input-class', bem('stepper__input', { disabled: disabled || disableInput })]"
+      :style="'width:' + addUnit(inputWidth) + ';height:' + addUnit(buttonSize) + ';'"
       :value="currentValue"
       :focus="focus"
       :disabled="disabled || disableInput"
@@ -24,14 +23,13 @@
     />
     <view
       v-if="showPlus"
-      data-type="plus"
-      :style="'width:'+addUnit(buttonSize)+';height:'+addUnit(buttonSize)+';'"
+      :style="'width:' + addUnit(buttonSize) + ';height:' + addUnit(buttonSize) + ';'"
       :class="['plus-class',bem('stepper__plus', { disabled: disabled || disablePlus || currentValue >= max })]"
       hover-class="iox-stepper__plus--hover"
       hover-stay-time="70"
-      @tap="onTap"
-      @touchstart="onTouchStart"
-      @touchend="onTouchEnd"
+      @tap="onTap('plus')"
+      @touchstart="onTouchStart('plus')"
+      @touchend="onTouchEnd('plus')"
     />
   </view>
 </template>
@@ -60,26 +58,29 @@ function equal(value1: number | string, value2: number | string) {
 const classPrefix = 'iox-stepper';
 @Component({
   behaviors: ['uni://form-field'],
-  externalClasses: ['input-class', 'plus-class', 'minus-class'],
+  externalClasses: ['input-class', 'plus-class', 'minus-class', 'custom-class'],
 })
 export default class IoxStepper extends mixins(Base, Touch) {
-
-  @Model('focus', { type: [String, Number] })
-  @Model('blur', { type: [String, Number] })
   @Model('change', { type: [String, Number] })
-  readonly value!:  number;
+  readonly value!:  number | string;
 
+  @Prop({type: Boolean})
+  integer?: boolean;
 
-  @Prop() integer?: boolean;
-  @Prop() disabled?: boolean;
-  @Prop() inputWidth?: null;
-  @Prop() buttonSize?: null;
-  @Prop() asyncChange?: boolean;
-  @Prop() disableInput?: boolean;
+  @Prop({type: Boolean})
+  disabled?: boolean;
+
+  @Prop({type: [Number, String]})
+  inputWidth?: number | string;
+
+  @Prop({type: [Number, String]})
+  buttonSize?: number | string;
+
+  @Prop({type: Boolean})
+  disableInput?: boolean;
 
   @Prop({
     type: Number,
-    default: null
   })
   decimalLength?: number;
 
@@ -87,45 +88,48 @@ export default class IoxStepper extends mixins(Base, Touch) {
     type: Number,
     default: 1
   })
-  min?: number;
+  min!: number;
 
   @Prop({
     type: Number,
     default: Number.MAX_SAFE_INTEGER
   })
-  max?: number;
+  max!: number;
 
   @Prop({
     type: Number,
     default: 1
   })
-  step?: number;
+  step!: number;
 
   @Prop({
     type: Boolean,
     default: true
   })
-  showPlus?: boolean;
+  showPlus!: boolean;
 
   @Prop({
     type: Boolean,
     default: true
   })
-  showMinus?: boolean;
+  showMinus!: boolean;
 
-  @Prop() disablePlus?: boolean;
-  @Prop() disableMinus?: boolean;
+  @Prop({type: Boolean})
+  disablePlus?: boolean;
+
+  @Prop({type: Boolean})
+  disableMinus?: boolean;
 
   @Prop({
     type: Boolean,
     default: true
   })
-  longPress?: boolean;
+  longPress!: boolean;
 
   currentValue: number | string = -1;
-  type: string = '';
-  longPressTimer: any = null;
-  isLongPress: boolean = false;
+  type = '';
+  longPressTimer?: number;
+  isLongPress = false;
 
 
   @Watch('value')
@@ -135,16 +139,6 @@ export default class IoxStepper extends mixins(Base, Touch) {
     }
   }
 
-
-  @Watch('integer')
-  @Watch('decimalLength')
-  @Watch('min')
-  @Watch('max')
-  changed(newVal: number, oldVal: number) {
-     this.check();
-  }
-
-
   get classPrefix() {
     return classPrefix;
   }
@@ -152,7 +146,6 @@ export default class IoxStepper extends mixins(Base, Touch) {
   get mainClass() {
     return `${this.classPrefix} custom-class`;
   }
-
 
   mounted() {
     this.currentValue = this.format(this.value);
@@ -167,6 +160,10 @@ export default class IoxStepper extends mixins(Base, Touch) {
   }
 
 
+  @Watch('integer')
+  @Watch('decimalLength')
+  @Watch('min')
+  @Watch('max')
   check() {
     const val = this.format(this.currentValue);
     if (!equal(val, this.currentValue)) {
@@ -246,10 +243,7 @@ export default class IoxStepper extends mixins(Base, Touch) {
   }
 
   emitChange(value: string | number) {
-    if (!this.asyncChange) {
-      this.currentValue = value;
-    }
-
+    this.$emit('input', value);
     this.$emit('change', value);
   }
 
@@ -275,19 +269,17 @@ export default class IoxStepper extends mixins(Base, Touch) {
     }, LONG_PRESS_INTERVAL);
   }
 
-  onTap(event: any) {
-    const { type } = event.currentTarget.dataset;
+  onTap(type: string) {
     this.type = type;
     this.onChange();
   }
 
-  onTouchStart(event: any) {
+  onTouchStart(type: string) {
     if (!this.longPress) {
       return;
     }
     clearTimeout(this.longPressTimer);
 
-    const { type } = event.currentTarget.dataset;
     this.type = type;
     this.isLongPress = false;
 

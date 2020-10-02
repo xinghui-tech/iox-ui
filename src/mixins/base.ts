@@ -31,7 +31,7 @@ export default class Base extends Vue {
     return bem(name, conf);
   }
 
-  protected setThen(data: any) {
+  public setThen(data: any) {
     for (const k in data) {
       if (Object.prototype.hasOwnProperty.call(data, k)) {
         (this as any)[k] = data[k];
@@ -40,7 +40,7 @@ export default class Base extends Vue {
     return new Promise((resolve) => this.$nextTick(resolve));
   }
 
-  protected getRect(selector: string, all?: boolean): Promise<NodeInfo | NodeInfo[]> {
+  public getRect(selector: string, all?: boolean): Promise<NodeInfo | NodeInfo[]> {
     return new Promise((resolve) => {
       uni.createSelectorQuery()
         .in(this)[all ? 'selectAll' : 'select'](selector)
