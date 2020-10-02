@@ -30,9 +30,8 @@
 
     <iox-cell center title="异步变更">
       <iox-stepper
-        v-model="value8"
-        async-change
-        @change="onChange"
+        :value="value8"
+        @change="(value) => onChange('value8', value)"
       />
     </iox-cell>
 
@@ -61,9 +60,7 @@ import Component, { mixins } from 'vue-class-component';
 import Fonts from '../mixins/font';
 import {
   ToastOptions, toast,
-  success as toastSuccess,
   loading as toastLoading,
-  fail as toastFail
 } from '../utils/toast';
 
 @Component
@@ -80,15 +77,14 @@ export default class Index extends mixins(Fonts) {
   value8= 1;
   value9= 1;
 
-
-  onChange(event: any) {
+  onChange(target: string, value: number) {
     this.toast = toastLoading({  forbidClick: true });
 
     setTimeout(() => {
       this.toast.show = false;
+      (this as any)[target] = value;
     }, 500);
   }
-
 
   onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
 
