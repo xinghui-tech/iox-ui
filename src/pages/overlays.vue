@@ -13,7 +13,7 @@
       </iox-button>
       <iox-overlay :show="showEmbedded" @click="onClickHideEmbedded">
         <view class="wrapper">
-          <div class="block" catch:tap="noop" />
+          <div class="block" @tap.stop="noop" />
         </view>
       </iox-overlay>
     </demo-block>

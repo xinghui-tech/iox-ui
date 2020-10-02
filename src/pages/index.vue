@@ -52,6 +52,7 @@
         <iox-cell title="Tag 标签" url="/pages/tags" :icon="iconVant" value="老糊涂" isLink />
       </demo-block>
       <demo-block title="导航组件">
+        <iox-cell title="Indexbar 索引栏" url="/pages/indexbars" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Grid 宫格" url="/pages/grids" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Navbar 导航栏" url="/pages/navbars" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Sidebar 侧边导航" url="/pages/sidebars" :icon="iconVant" value="老糊涂" isLink />

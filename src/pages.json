@@ -281,6 +281,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/indexbars",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Indexbars",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/navbars",
 			"style": {
 				"navigationStyle": "default",
