@@ -153,6 +153,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/progresses",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Progresses",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/stickies",
 			"style": {
 				"navigationStyle": "default",
