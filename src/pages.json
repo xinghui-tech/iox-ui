@@ -161,6 +161,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/skeletons",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Skeletons",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/stickies",
 			"style": {
 				"navigationStyle": "default",

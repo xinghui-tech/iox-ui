@@ -49,6 +49,7 @@
         <iox-cell title="Noticebar 通告栏" url="/pages/noticebars" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Panel 面板" url="/pages/panels" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Progress 进度条" url="/pages/progresses" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Skeleton 骨架屏" url="/pages/skeletons" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Sticky 粘性布局" url="/pages/stickies" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Steps 步骤条" url="/pages/steps" :icon="iconVant" value="春雨" isLink />
         <iox-cell title="Tag 标签" url="/pages/tags" :icon="iconVant" value="老糊涂" isLink />

@@ -97,10 +97,10 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 |Countdown 倒计时|✅||
 |Divider 分割线|✅||
 |Empty 空状态|✅||
-|NoticeBar 通告栏|✅||
+|NoticeBar 通告栏|✅|✅||老糊涂|
 |Panel 面板|✅|✅||老糊涂|
-|Progress 进度条|✅||
-|Skeleton 骨架屏|✅||
+|Progress 进度条|✅|✅||老糊涂|
+|Skeleton 骨架屏|✅|✅||老糊涂|
 |Steps 步骤条|✅|✅||春雨|
 |Sticky 粘性布局|✅|✅||老糊涂|
 |Tag 标记|✅|✅||老糊涂|
