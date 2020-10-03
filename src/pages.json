@@ -137,6 +137,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/noticebars",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Noticebars",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/panels",
 			"style": {
 				"navigationStyle": "default",

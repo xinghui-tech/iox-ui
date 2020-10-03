@@ -46,6 +46,7 @@
       </demo-block>
       <demo-block title="展示组件">
         <iox-cell title="Collapse 折叠面板" url="/pages/collapses" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Noticebar 通告栏" url="/pages/noticebars" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Panel 面板" url="/pages/panels" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Sticky 粘性布局" url="/pages/stickies" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Steps 步骤条" url="/pages/steps" :icon="iconVant" value="春雨" isLink />
