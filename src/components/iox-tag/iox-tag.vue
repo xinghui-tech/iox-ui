@@ -1,7 +1,5 @@
 <template>
-  <view
-  :class="mainClass" :style="mainStyle"
-  >
+  <view :class="mainClass" :style="mainStyle" >
     <slot />
     <iox-icon
       v-if="closeable"

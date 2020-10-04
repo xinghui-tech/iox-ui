@@ -153,6 +153,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/dividers",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Dividers",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/empties",
 			"style": {
 				"navigationStyle": "default",
