@@ -92,11 +92,11 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 |Toast 轻提示|✅|✅|遵从Vue使用方式|老糊涂|
 ||
 |**展示组件**|
-|Circle 进度条|✅||
+|Circle 进度条|✅|✅||老糊涂|
 |Collapse 折叠面板|✅|✅||老糊涂|
-|Countdown 倒计时|✅||
+|Countdown 倒计时|✅|✅||老糊涂|
 |Divider 分割线|✅||
-|Empty 空状态|✅||
+|Empty 空状态|✅|✅||老糊涂|
 |NoticeBar 通告栏|✅|✅||老糊涂|
 |Panel 面板|✅|✅||老糊涂|
 |Progress 进度条|✅|✅||老糊涂|
