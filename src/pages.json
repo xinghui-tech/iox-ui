@@ -129,6 +129,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/uploaders",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Uploaders",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/circles",
 			"style": {
 				"navigationStyle": "default",

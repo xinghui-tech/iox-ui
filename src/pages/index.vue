@@ -32,6 +32,7 @@
         <iox-cell title="Search 搜索" url="/pages/searchs" :icon="iconVant" value="春雨" isLink />
         <iox-cell title="Stepper 步进器" url="/pages/steppers" :icon="iconVant" value="春雨" isLink />
         <iox-cell title="Switch 开关" url="/pages/switchs" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Uploaders 文件上传" url="/pages/uploaders" :icon="iconVant" value="老糊涂" isLink />
       </demo-block>
       <demo-block title="反馈组件">
         <iox-cell title="Action-Sheet 上拉菜单" url="/pages/action-sheet" :icon="iconVant" value="春雨" isLink />
