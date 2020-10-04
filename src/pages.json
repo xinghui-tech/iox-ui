@@ -217,6 +217,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/tree-selects",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Tree Selects",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/action-sheet",
 			"style": {
 				"navigationStyle": "default",

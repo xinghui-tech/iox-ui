@@ -57,6 +57,7 @@
         <iox-cell title="Sticky 粘性布局" url="/pages/stickies" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Steps 步骤条" url="/pages/steps" :icon="iconVant" value="春雨" isLink />
         <iox-cell title="Tag 标签" url="/pages/tags" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Tree Select 分类选择" url="/pages/tree-selects" :icon="iconVant" value="老糊涂" isLink />
       </demo-block>
       <demo-block title="导航组件">
         <iox-cell title="Indexbar 索引栏" url="/pages/indexbars" :icon="iconVant" value="老糊涂" isLink />

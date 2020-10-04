@@ -78,7 +78,7 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 |Slider 滑块|✅|✅||春雨|
 |Stepper 步进器|✅|✅||春雨|
 |Switch 开关|✅|✅||老糊涂|
-|Uploader 文件上传|✅||
+|Uploader 文件上传|✅|✅||老糊涂|
 ||
 |**反馈组件**|
 |Action Sheet 上拉菜单|✅|✅||春雨|
@@ -95,7 +95,7 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 |Circle 进度条|✅|✅||老糊涂|
 |Collapse 折叠面板|✅|✅||老糊涂|
 |Countdown 倒计时|✅|✅||老糊涂|
-|Divider 分割线|✅||
+|Divider 分割线|✅|✅||老糊涂|
 |Empty 空状态|✅|✅||老糊涂|
 |NoticeBar 通告栏|✅|✅||老糊涂|
 |Panel 面板|✅|✅||老糊涂|
@@ -104,7 +104,7 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 |Steps 步骤条|✅|✅||春雨|
 |Sticky 粘性布局|✅|✅||老糊涂|
 |Tag 标记|✅|✅||老糊涂|
-|Tree Select 分类选择|✅||
+|Tree Select 分类选择|✅|✅||老糊涂|
 ||
 |**导航组件**|
 |Grid 宫格|✅|✅||老糊涂|
