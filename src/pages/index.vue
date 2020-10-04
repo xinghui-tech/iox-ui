@@ -45,7 +45,10 @@
         <iox-cell title="Toast 轻提示" url="/pages/toasts" :icon="iconVant" value="老糊涂" isLink />
       </demo-block>
       <demo-block title="展示组件">
+        <iox-cell title="Circle 进度条" url="/pages/circles" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Collapse 折叠面板" url="/pages/collapses" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="CountDown 倒计时" url="/pages/countdowns" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Empty 倒计时" url="/pages/empties" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Noticebar 通告栏" url="/pages/noticebars" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Panel 面板" url="/pages/panels" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Progress 进度条" url="/pages/progresses" :icon="iconVant" value="老糊涂" isLink />
