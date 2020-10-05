@@ -5,15 +5,18 @@
     </demo-block>
 
     <demo-block title="样式定制">
-      <iox-circle :value="value" :stroke-width="6" text="宽度定制" />
-      <iox-circle :value="value" layer-color="#eee" color="#ee0a24" text="颜色定制" />
-      <iox-circle :value="value" :color="gradientColor" text="渐变色" />
-      <iox-circle :value="value" color="#07c160" :clockwise="false" text="逆时针" />
-      <iox-circle :value="value" :size="120" text="大小定制" />
+      <view>
+        <iox-circle :value="value" :stroke-width="6" text="宽度定制" />
+        <iox-circle :value="value" layer-color="#eee" color="#ee0a24" text="颜色定制" />
+        <iox-circle :value="value" :color="gradientColor" text="渐变色" />
+        <iox-circle :value="value" color="#07c160" :clockwise="false" text="逆时针" />
+        <iox-circle :value="value" :size="120" text="大小定制" />
+      </view>
     </demo-block>
-
-    <iox-button type="primary" size="small" @tap="run(10)">增加</iox-button>
-    <iox-button type="danger" size="small" @tap="run(-10)">减少</iox-button>
+    <view>
+      <iox-button type="primary" size="small" @tap="run(10)">增加</iox-button>
+      <iox-button type="danger" size="small" @tap="run(-10)">减少</iox-button>
+    </view>
   </block>
 </template>
 
