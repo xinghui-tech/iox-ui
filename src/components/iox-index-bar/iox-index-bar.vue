@@ -150,8 +150,8 @@ export default class IoxIndexBar extends mixins(Base, PageScroll) {
       this.children.map((anchor: Vue) =>
         (anchor as Base).getRect('.iox-index-anchor-wrapper')
           .then(rect => {
-              (anchor as any).height = (rect as NodeInfo).height;
-              (anchor as any).top = (rect as NodeInfo).top! + this.scrollTop;
+              (anchor as any).height = (rect as UniApp.NodeInfo).height;
+              (anchor as any).top = (rect as UniApp.NodeInfo).top! + this.scrollTop;
             }
           )
       )
@@ -161,8 +161,8 @@ export default class IoxIndexBar extends mixins(Base, PageScroll) {
   setListRect() {
     return this.getRect('.iox-index-bar').then(
       (rect) => {
-        this.height = (rect as NodeInfo).height!;
-        this.top = (rect as NodeInfo).top! + this.scrollTop;
+        this.height = (rect as UniApp.NodeInfo).height!;
+        this.top = (rect as UniApp.NodeInfo).top! + this.scrollTop;
       }
     );
   }
@@ -170,8 +170,8 @@ export default class IoxIndexBar extends mixins(Base, PageScroll) {
   setSiderbarRect() {
     return this.getRect('.iox-index-bar__sidebar').then((rect) => {
       this.sidebar = {
-        height: (rect as NodeInfo).height!,
-        top: (rect as NodeInfo).top!,
+        height: (rect as UniApp.NodeInfo).height!,
+        top: (rect as UniApp.NodeInfo).top!,
       };
     });
   }
@@ -193,8 +193,8 @@ export default class IoxIndexBar extends mixins(Base, PageScroll) {
   getAnchorRect(anchor: Base) {
     return anchor.getRect('.iox-index-anchor-wrapper')
       .then((rect) => ({
-        height: (rect as NodeInfo).height,
-        top: (rect as NodeInfo).top,
+        height: (rect as UniApp.NodeInfo).height,
+        top: (rect as UniApp.NodeInfo).top,
       }));
   }
 

@@ -101,7 +101,7 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
   expanded = false;
   parent?: Vue;
   animation!: WechatMiniprogram.Animation;
-  animations: WechatMiniprogram.IAnyObject[] | null = null;
+  animations: WechatMiniprogram.AnimationExportResult | null = null;
   inited = false;
 
   get classPrefix() {
@@ -159,7 +159,7 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
   updateStyle(expanded: boolean) {
     const { inited } = this;
     this.getRect('.iox-collapse-item__content')
-      .then((rect) => (rect as NodeInfo).height!)
+      .then((rect) => (rect as UniApp.NodeInfo).height!)
       .then((height: number) => {
         const { animation } = this;
         if (!animation) {

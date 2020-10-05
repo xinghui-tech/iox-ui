@@ -25,7 +25,7 @@ import Component, { mixins } from 'vue-class-component';
 import { Prop, Watch } from 'vue-property-decorator';
 import Base from '../../mixins/base';
 import Emitter from '../../mixins/emitter';
-import { addUnit } from '../../utils/utils';
+import { addUnit, getSystemInfoSync } from '../../utils/utils';
 
 let Menus: IoxDrowdownMenu[] = [];
 
@@ -97,7 +97,7 @@ export default class IoxDrowdownMenu extends mixins(Base, Emitter) {
   }
 
   created() {
-    const { windowHeight } = wx.getSystemInfoSync();
+    const { windowHeight } = getSystemInfoSync();
     this.windowHeight = windowHeight;
 
     this.children = [];
@@ -175,7 +175,7 @@ export default class IoxDrowdownMenu extends mixins(Base, Emitter) {
 
     return this.getRect('.iox-dropdown-menu').then(
       (rect) => {
-        const { top = 0, bottom = 0 } = rect as NodeInfo;
+        const { top = 0, bottom = 0 } = rect as UniApp.NodeInfo;
         const offset = direction === 'down' ? bottom : this.windowHeight! - top;
 
         let wrapperStyle = `z-index: ${zIndex};`;

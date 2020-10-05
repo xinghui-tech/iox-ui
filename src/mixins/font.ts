@@ -7,7 +7,7 @@ import { getSystemInfoSync, compareVersion } from '../utils/utils';
 export default Vue.extend({
   created() {
     const app = (this as any).$app();
-    const info: WechatMiniprogram.GetSystemInfoSyncResult = getSystemInfoSync();
+    const info = getSystemInfoSync();
     if (info && compareVersion(info.SDKVersion, '2.10.0') < 0) {
       const fontUrl = `${app.globalData.config.urls.baseResUrl}/assets/fonts/fontawesome-webfont.woff`;
       wx.loadFontFace({

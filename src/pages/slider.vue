@@ -76,7 +76,7 @@ export default class Index extends mixins(Fonts) {
   onChange(id: number , v: any) {
     const key = `currentValue${id}`;
     (this as any)[key] = v;
-    wx.showToast({
+    uni.showToast({
       icon: 'none',
       title: `当前值：${v}`
     });

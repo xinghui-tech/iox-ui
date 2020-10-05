@@ -304,13 +304,13 @@ export default class IoxUploader extends mixins(Base) {
     const { lists } = this;
     const item = lists[index];
 
-    wx.previewImage({
+    uni.previewImage({
       urls: lists
         .filter((item) => item.isImage)
         .map((item) => item.url || item.path),
       current: item.url || item.path,
       fail() {
-        wx.showToast({ title: '预览图片失败', icon: 'none' });
+        uni.showToast({ title: '预览图片失败', icon: 'none' });
       },
     });
   }

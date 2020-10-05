@@ -152,7 +152,7 @@ export default class Index extends mixins(Fonts) {
   beforeRead(params: any) {
     const { file, callback = () => {} } = params;
     if (file.path.indexOf('jpeg') < 0) {
-      wx.showToast({ title: '请选择jpg图片上传', icon: 'none' });
+      uni.showToast({ title: '请选择jpg图片上传', icon: 'none' });
       callback(false);
       return;
     }
@@ -167,7 +167,7 @@ export default class Index extends mixins(Fonts) {
   }
 
   oversize() {
-    wx.showToast({ title: '文件超出大小限制', icon: 'none' });
+    uni.showToast({ title: '文件超出大小限制', icon: 'none' });
   }
 
   deleteItem(item: any) {
@@ -183,18 +183,18 @@ export default class Index extends mixins(Fonts) {
     wx.cloud.init();
     const { fileList6: fileList = [] } = this;
     if (!fileList.length) {
-      wx.showToast({ title: '请选择图片', icon: 'none' });
+      uni.showToast({ title: '请选择图片', icon: 'none' });
     } else {
       const uploadTasks = fileList.map((file, index) =>
         this.uploadFilePromise(`my-photo${index}.png`, file)
       );
       Promise.all(uploadTasks).then(data => {
-        wx.showToast({ title: '上传成功', icon: 'none' });
+        uni.showToast({ title: '上传成功', icon: 'none' });
         const fileList = data.map(item => ({ url: item.fileID }));
         this.cloudPath = data;
         this.fileList6 = fileList;
       }).catch(e => {
-        wx.showToast({ title: '上传失败', icon: 'none' });
+        uni.showToast({ title: '上传失败', icon: 'none' });
         console.log(e);
       });
     }

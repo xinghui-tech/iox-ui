@@ -121,7 +121,7 @@ export default class IoxNoticeBar extends mixins(Base) {
   wrapWidth = 0;
   contentWidth = 0;
   duration = 300;
-  animationData: Record<string,any>[] = [];
+  animationData: WechatMiniprogram.AnimationExportResult | null = null;
 
   get classPrefix() {
     return classPrefix;
@@ -162,7 +162,7 @@ export default class IoxNoticeBar extends mixins(Base) {
       this.getRect('.iox-notice-bar__content'),
       this.getRect('.iox-notice-bar__wrap'),
     ]).then((rects) => {
-      const [contentRect, wrapRect] = rects as NodeInfo[];
+      const [contentRect, wrapRect] = rects as UniApp.NodeInfo[];
       if ( contentRect == null || wrapRect == null || !contentRect.width || !wrapRect.width
       ) {
         return;

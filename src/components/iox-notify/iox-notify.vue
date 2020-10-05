@@ -23,7 +23,7 @@
 import Component, { mixins } from 'vue-class-component';
 import { Prop, Watch } from 'vue-property-decorator';
 import Base from '../../mixins/base';
-import { addUnit } from '../../utils/utils';
+import { addUnit, getSystemInfoSync } from '../../utils/utils';
 import { WHITE } from '../../utils/color';
 
 declare namespace NotifyOptions {
@@ -116,12 +116,12 @@ export default class IoxNotify extends mixins(Base) {
   }
 
   created() {
-    const { statusBarHeight } = wx.getSystemInfoSync();
+    const { statusBarHeight } = getSystemInfoSync();
     this.statusBarHeight = statusBarHeight;
   }
 
   mounted() {
-    const { statusBarHeight } = wx.getSystemInfoSync();
+    const { statusBarHeight } = getSystemInfoSync();
     this.statusBarHeight = statusBarHeight;
   }
 

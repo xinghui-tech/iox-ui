@@ -26,11 +26,11 @@ import Fonts from '../mixins/font';
 @Component
 export default class Index extends mixins(Fonts) {
   onClickLeft() {
-    wx.showToast({ title: '点击返回', icon: 'none' });
+    uni.showToast({ title: '点击返回', icon: 'none' });
   }
 
   onClickRight() {
-    wx.showToast({ title: '点击按钮', icon: 'none' });
+    uni.showToast({ title: '点击按钮', icon: 'none' });
   }
 
   onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {

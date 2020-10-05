@@ -104,7 +104,7 @@ export default class Index extends mixins(Fonts) {
   }
 
   onOpenedCall() {
-    wx.showToast({
+    uni.showToast({
       title: '我想开了',
       icon: 'none',
       duration: 1000,
@@ -120,7 +120,7 @@ export default class Index extends mixins(Fonts) {
   }
 
   onClickCall() {
-    wx.showToast({
+    uni.showToast({
       title: '我被点击了',
       icon: 'none',
       duration: 1000,

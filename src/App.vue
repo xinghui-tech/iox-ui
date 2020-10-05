@@ -36,14 +36,14 @@ export default Vue.extend({
   methods: {
     checkUpdate() {
       //检查版本更新
-      const updateManager = wx.getUpdateManager();
+      const updateManager = uni.getUpdateManager();
 
       updateManager.onCheckForUpdate(function (res) {
         // 请求完新版本信息的回调
       });
 
       updateManager.onUpdateReady(function () {
-        wx.showModal({
+        uni.showModal({
           title: '更新提示',
           content: '新版本已经准备好，是否重启应用？',
           success: function (res) {

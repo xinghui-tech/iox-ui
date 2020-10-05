@@ -294,7 +294,7 @@ export default class IoxTabs extends mixins(Base, Touch) {
       this.trigger('disabled', child);
     } else {
       this.setCurrentIndex(index);
-      wx.nextTick(() => {
+      this.$nextTick(() => {
         this.trigger('click');
       });
     }
@@ -367,8 +367,8 @@ export default class IoxTabs extends mixins(Base, Touch) {
     } = this;
 
     this.getRect('.iox-tab', true).then(
-      (rects: NodeInfo | NodeInfo[] = []) => {
-        const rect = (rects as NodeInfo[])[currentIndex || 0];
+      (rects: UniApp.NodeInfo | UniApp.NodeInfo[] = []) => {
+        const rect = (rects as UniApp.NodeInfo[])[currentIndex || 0];
         if (rect == null) {
           return;
         }
@@ -376,7 +376,7 @@ export default class IoxTabs extends mixins(Base, Touch) {
             `height: ${addUnit(lineHeight)}; border-radius: ${addUnit(lineHeight)};`
             : '';
 
-        let left = (rects as NodeInfo[]).slice(0, currentIndex||0)
+        let left = (rects as UniApp.NodeInfo[]).slice(0, currentIndex||0)
                         .reduce((prev, curr) => prev + curr.width!, 0);
 
         left += (rect.width! - lineWidth) / 2;
@@ -409,14 +409,14 @@ export default class IoxTabs extends mixins(Base, Touch) {
       this.getRect('.iox-tabs__nav'),
     ]).then(
       ([tabRects, navRect]: [
-        NodeInfo | NodeInfo[],
-        NodeInfo | NodeInfo[]
+        UniApp.NodeInfo | UniApp.NodeInfo[],
+        UniApp.NodeInfo | UniApp.NodeInfo[]
       ]) => {
-        const tabRect = (tabRects as NodeInfo[])[currentIndex || 0];
-        const offsetLeft = (tabRects as NodeInfo[]).slice(0, currentIndex || 0)
+        const tabRect = (tabRects as UniApp.NodeInfo[])[currentIndex || 0];
+        const offsetLeft = (tabRects as UniApp.NodeInfo[]).slice(0, currentIndex || 0)
           .reduce((prev, curr) => prev + curr.width!, 0);
 
-        this.scrollLeft = offsetLeft - ((navRect as NodeInfo).width! - (tabRect as NodeInfo).width!) / 2;
+        this.scrollLeft = offsetLeft - ((navRect as UniApp.NodeInfo).width! - (tabRect as UniApp.NodeInfo).width!) / 2;
       }
     );
   }

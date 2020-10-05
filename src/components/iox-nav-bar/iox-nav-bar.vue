@@ -148,10 +148,10 @@ export default class IoxNavBar extends mixins(Base) {
       return;
     }
 
-    wx.nextTick(() => {
+    this.$nextTick(() => {
       this.getRect('.iox-nav-bar').then(
         (res) => {
-          this.height = (res as NodeInfo).height!;
+          this.height = (res as UniApp.NodeInfo).height!;
         }
       );
     });

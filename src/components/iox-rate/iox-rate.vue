@@ -153,7 +153,7 @@ export default class IoxRate extends mixins(Base) {
     const score = v;
     if (!this.disabled && !this.readonly) {
       this.innerValue = score + 1;
-      wx.nextTick(() => {
+      this.$nextTick(() => {
         this.$emit('input', score + 1);
         this.$emit('change', score + 1);
       });

@@ -170,28 +170,28 @@ export default class Index extends mixins(Fonts) {
   ];
 
   onClickDisabled(tab: any) {
-    wx.showToast({
+    uni.showToast({
       title: `标签 ${tab.index + 1} 已被禁用`,
       icon: 'none'
     });
   }
 
   onChange(tab: any) {
-    wx.showToast({
+    uni.showToast({
       title: `切换到标签 ${tab.index + 1}`,
       icon: 'none'
     });
   }
 
   onClickNavRight() {
-    wx.showToast({
+    uni.showToast({
       title: '点击 right nav',
       icon: 'none'
     });
   }
 
   onClick(tab: any) {
-    wx.showToast({
+    uni.showToast({
       title: `点击标签 ${tab.index + 1}`,
       icon: 'none'
     });
