@@ -1,0 +1,17 @@
+@import '../../theme.less';
+
+.iox-circle {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+
+    .theme(color, '@circle-text-color');
+  }
+}

@@ -1,7 +1,5 @@
 <template>
-  <view
-  :class="mainClass" :style="mainStyle"
-  >
+  <view :class="mainClass" :style="mainStyle" >
     <slot />
     <iox-icon
       v-if="closeable"
@@ -88,7 +86,7 @@ export default class IoxTag extends mixins(Base) {
         round: this.round,
       }
     ]);
-    return `custom-class ${classes} ${this.plain ? 'iox-hairline--surround' : ''}`;
+    return `${classes} ${this.plain ? 'iox-hairline--surround' : ''} custom-class`;
   }
 
   get mainStyle() {

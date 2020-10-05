@@ -119,7 +119,7 @@ export default class Index extends mixins(Fonts) {
   phone = '1365577';
 
   onClickIcon() {
-    wx.showToast({
+    uni.showToast({
       icon: 'none',
       title: '点击图标'
     });

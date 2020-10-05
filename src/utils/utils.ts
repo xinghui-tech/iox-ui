@@ -21,10 +21,10 @@ export function nextTick(fn: Function) {
   }, 1000 / 30);
 }
 
-let systemInfoCache: WechatMiniprogram.GetSystemInfoSyncResult;
-export function getSystemInfoSync(): WechatMiniprogram.GetSystemInfoSyncResult {
+let systemInfoCache: UniApp.GetSystemInfoResult;
+export function getSystemInfoSync(): UniApp.GetSystemInfoResult {
   if (!systemInfoCache) {
-    systemInfoCache = wx.getSystemInfoSync();
+    systemInfoCache = uni.getSystemInfoSync();
   }
 
   return systemInfoCache;
@@ -82,8 +82,7 @@ export function requestAnimationFrame(cb: Function) {
     return nextTick(cb);
   }
 
-  return uni
-    .createSelectorQuery()
+  return wx.createSelectorQuery()
     .selectViewport()
     .boundingClientRect()
     .exec(() => {

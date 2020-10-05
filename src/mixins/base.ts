@@ -40,7 +40,7 @@ export default class Base extends Vue {
     return new Promise((resolve) => this.$nextTick(resolve));
   }
 
-  public getRect(selector: string, all?: boolean): Promise<NodeInfo | NodeInfo[]> {
+  public getRect(selector: string, all?: boolean): Promise<UniApp.NodeInfo | UniApp.NodeInfo[]> {
     return new Promise((resolve) => {
       uni.createSelectorQuery()
         .in(this)[all ? 'selectAll' : 'select'](selector)

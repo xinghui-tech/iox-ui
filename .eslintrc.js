@@ -43,6 +43,7 @@ module.exports = {
         "@typescript-eslint/explicit-function-return-type": ["off"],
         "@typescript-eslint/no-non-null-assertion": ["off"],
         "@typescript-eslint/no-empty-function": ["off"],
-        "@typescript-eslint/no-unused-vars": ["warn", {"args": "none"}]
+        "@typescript-eslint/no-unused-vars": ["warn", {"args": "none"}],
+        "@typescript-eslint/explicit-module-boundary-types": "off"
     }
 };

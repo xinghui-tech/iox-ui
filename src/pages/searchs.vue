@@ -76,7 +76,7 @@ export default class Index extends mixins(Fonts) {
 
   onSearch() {
     if (this.value) {
-      wx.showToast({
+      uni.showToast({
         title: '搜索：' + this.value,
         icon: 'none'
       });
@@ -85,7 +85,7 @@ export default class Index extends mixins(Fonts) {
 
   onClick() {
     if (this.value) {
-      wx.showToast({
+      uni.showToast({
         title: '搜索：' + this.value,
         icon: 'none'
       });
@@ -93,14 +93,14 @@ export default class Index extends mixins(Fonts) {
   }
 
   onCancel() {
-    wx.showToast({
+    uni.showToast({
       title: '取消',
       icon: 'none'
     });
   }
 
   onClear() {
-    wx.showToast({
+    uni.showToast({
       title: '清空',
       icon: 'none'
     });

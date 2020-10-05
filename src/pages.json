@@ -129,6 +129,22 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/uploaders",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Uploaders",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/circles",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Circles",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/collapses",
 			"style": {
 				"navigationStyle": "default",
@@ -137,10 +153,58 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/countdowns",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Countdowns",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/dividers",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Dividers",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/empties",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Empties",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/noticebars",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Noticebars",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/panels",
 			"style": {
 				"navigationStyle": "default",
 				"navigationBarTitleText": "Panel",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/progresses",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Progresses",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/skeletons",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Skeletons",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}
@@ -157,6 +221,14 @@
 			"style": {
 				"navigationStyle": "default",
 				"navigationBarTitleText": "Tags",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
+			"path": "pages/tree-selects",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Tree Selects",
 				"backgroundColor": "#ffffff",
 				"navigationBarTextStyle": "black"
 			}

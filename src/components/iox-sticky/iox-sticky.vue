@@ -107,17 +107,17 @@ export default class IoxSticky extends mixins(Base, PageScroll) {
     this.currentScrollTop = scrollTop || this.currentScrollTop;
 
     if (container) {
-      Promise.all([this.getRect(ROOT_ELEMENT) as NodeInfo, this.getContainerRect()]).then(
-        ([root, container]: NodeInfo[]) => {
-          if (offsetTop + root.height! > container.height! + container.top!) {
+      Promise.all([this.getRect(ROOT_ELEMENT), this.getContainerRect()]).then(
+        ([root, container]) => {
+          if (offsetTop + (root as UniApp.NodeInfo).height! > container.height! + container.top!) {
             this.setDataAfterDiff({
               fixed: false,
-              transform: container.height! - root.height!,
+              transform: container.height! - (root as UniApp.NodeInfo).height!,
             });
-          } else if (offsetTop >= root.top!) {
+          } else if (offsetTop >= (root as UniApp.NodeInfo).top!) {
             this.setDataAfterDiff({
               fixed: true,
-              height: root.height,
+              height: (root as UniApp.NodeInfo).height,
               transform: 0,
             });
           } else {
@@ -129,9 +129,9 @@ export default class IoxSticky extends mixins(Base, PageScroll) {
       return;
     }
 
-    this.getRect(ROOT_ELEMENT).then((root: NodeInfo | NodeInfo[]) => {
-      if (offsetTop >= (root as NodeInfo).top!) {
-        this.setDataAfterDiff({ fixed: true, height: (root as NodeInfo).height! });
+    this.getRect(ROOT_ELEMENT).then(root => {
+      if (offsetTop >= (root as UniApp.NodeInfo).top!) {
+        this.setDataAfterDiff({ fixed: true, height: (root as UniApp.NodeInfo).height! });
         this.transform = 0;
       } else {
         this.setDataAfterDiff({ fixed: false });
@@ -162,11 +162,11 @@ export default class IoxSticky extends mixins(Base, PageScroll) {
     });
   }
 
-  getContainerRect(): Promise<NodeInfo> {
+  getContainerRect(): Promise<UniApp.NodeInfo> {
     if (!this.container) {
       return Promise.reject('no container.');
     }
-    const nodesRef: NodesRef = extractFunc(this.container)();
+    const nodesRef: UniApp.NodesRef = extractFunc(this.container)();
     
     return new Promise((resolve) =>
       nodesRef.boundingClientRect(resolve).exec()

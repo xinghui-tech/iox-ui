@@ -131,7 +131,7 @@ export default class Index extends mixins(Fonts) {
 
   handleChange(key: string, value: number | string) {
     (this as any)[key] = value;
-    wx.showToast({ title: `点击标签 ${value as number + 1}`, icon: 'none' });
+    uni.showToast({ title: `点击标签 ${value as number + 1}`, icon: 'none' });
   }
 
   onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {

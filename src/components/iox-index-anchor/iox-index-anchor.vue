@@ -74,7 +74,7 @@ export default class IoxIndexAnchor extends mixins(Base, Emitter) {
       (rect) => {
         uni.pageScrollTo({
           duration: 0,
-          scrollTop: scrollTop + (rect as NodeInfo).top! - (this.parent as any).stickyOffsetTop,
+          scrollTop: scrollTop + (rect as UniApp.NodeInfo).top! - (this.parent as any).stickyOffsetTop,
         });
       }
     );

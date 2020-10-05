@@ -314,7 +314,7 @@ export default class IoxCalendar extends mixins(Base) {
   subtitle = '';
   currentDate: number | number[] | [number, number | null] = new Date().getTime();
   scrollIntoView = '';
-  contentObserver?: IntersectionObserver;
+  contentObserver?: UniApp.IntersectionObserver;
 
   get classPrefix() {
     return classPrefix;
@@ -366,15 +366,14 @@ export default class IoxCalendar extends mixins(Base) {
       this.contentObserver.disconnect();
     }
 
-    const contentObserver: IntersectionObserver = (uni as any).createIntersectionObserver(this, {
+    const contentObserver: UniApp.IntersectionObserver = uni.createIntersectionObserver(this, {
       thresholds: [0, 0.1, 0.9, 1],
-      selectAll: true,
       observeAll: true,
     });
 
     this.contentObserver = contentObserver;
 
-    contentObserver.relativeTo('.iox-calendar__body');
+    contentObserver.relativeTo('.iox-calendar__body', 0);
     contentObserver.observe('.month', (res) => {
       if (res.boundingClientRect!.top! <= res.relativeRect!.top!) {
         this.subtitle = formatMonthTitle((res as any).dataset.date);

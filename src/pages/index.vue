@@ -32,6 +32,7 @@
         <iox-cell title="Search 搜索" url="/pages/searchs" :icon="iconVant" value="春雨" isLink />
         <iox-cell title="Stepper 步进器" url="/pages/steppers" :icon="iconVant" value="春雨" isLink />
         <iox-cell title="Switch 开关" url="/pages/switchs" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Uploaders 文件上传" url="/pages/uploaders" :icon="iconVant" value="老糊涂" isLink />
       </demo-block>
       <demo-block title="反馈组件">
         <iox-cell title="Action-Sheet 上拉菜单" url="/pages/action-sheet" :icon="iconVant" value="春雨" isLink />
@@ -45,11 +46,19 @@
         <iox-cell title="Toast 轻提示" url="/pages/toasts" :icon="iconVant" value="老糊涂" isLink />
       </demo-block>
       <demo-block title="展示组件">
+        <iox-cell title="Circle 进度条" url="/pages/circles" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Collapse 折叠面板" url="/pages/collapses" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="CountDown 倒计时" url="/pages/countdowns" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Divider 分割线" url="/pages/dividers" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Empty 倒计时" url="/pages/empties" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Noticebar 通告栏" url="/pages/noticebars" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Panel 面板" url="/pages/panels" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Progress 进度条" url="/pages/progresses" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Skeleton 骨架屏" url="/pages/skeletons" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Sticky 粘性布局" url="/pages/stickies" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Steps 步骤条" url="/pages/steps" :icon="iconVant" value="春雨" isLink />
         <iox-cell title="Tag 标签" url="/pages/tags" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Tree Select 分类选择" url="/pages/tree-selects" :icon="iconVant" value="老糊涂" isLink />
       </demo-block>
       <demo-block title="导航组件">
         <iox-cell title="Indexbar 索引栏" url="/pages/indexbars" :icon="iconVant" value="老糊涂" isLink />
