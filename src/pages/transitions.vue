@@ -123,7 +123,7 @@ export default class Index extends mixins(Fonts) {
     console.log('after leave');
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

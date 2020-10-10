@@ -127,7 +127,7 @@ export default class Index extends mixins(Fonts) {
     this.showToast({ message: `Index: ${event.detail}`, type: 'success', forbidClick: true, mask: true});
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

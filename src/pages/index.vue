@@ -85,7 +85,7 @@ export default class Index extends mixins(Fonts) {
   iconVant = "https://img.yzcdn.cn/vant/logo.png";
   iconVantX = "https://res.oss.zhuyin.club/assets/images/iox-ui.png";
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
 
   }
 }

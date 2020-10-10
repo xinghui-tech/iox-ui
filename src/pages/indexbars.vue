@@ -71,7 +71,7 @@ export default class Index extends mixins(Fonts) {
     this.scrollTop = (event as any).scrollTop;
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

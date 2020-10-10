@@ -36,7 +36,7 @@ import Fonts from '../mixins/font';
 export default class Index extends mixins(Fonts) {
   gutter = 20;
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

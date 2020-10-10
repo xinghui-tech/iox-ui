@@ -120,7 +120,7 @@ export default class Index extends mixins(Fonts) {
   ];
   src = 'https://img.yzcdn.cn/vant/cat.jpeg';
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

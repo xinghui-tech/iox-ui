@@ -52,7 +52,7 @@ export default class Index extends mixins(Fonts) {
     this.activeTab = tab.index;
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

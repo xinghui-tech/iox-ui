@@ -33,7 +33,7 @@ export default class Index extends mixins(Fonts) {
     uni.showToast({ title: '点击按钮', icon: 'none' });
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

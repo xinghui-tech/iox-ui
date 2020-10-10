@@ -174,7 +174,7 @@ export default class Index extends mixins(Fonts) {
     this.active = tab.index;
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

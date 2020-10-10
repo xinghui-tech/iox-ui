@@ -109,7 +109,7 @@ export default class Index extends mixins(Fonts) {
     this.showToast('倒计时结束');
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

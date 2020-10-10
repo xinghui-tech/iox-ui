@@ -81,7 +81,7 @@ export default class Index extends mixins(Fonts) {
   value5= 4;
   value6= 3;
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
 
   }
 }

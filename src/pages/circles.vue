@@ -39,7 +39,7 @@ export default class Index extends mixins(Fonts) {
     this.value = format((this.value += step));
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

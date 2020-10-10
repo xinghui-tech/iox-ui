@@ -33,7 +33,7 @@ import Fonts from '../mixins/font';
 
 @Component
 export default class Index extends mixins(Fonts) {
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }
