@@ -30,7 +30,7 @@ import Touch from '../../mixins/touch';
 import { range } from '../../utils/utils';
 
 const THRESHOLD = 0.3;
-let ARRAY: WechatMiniprogram.Component.TrivialInstance[] = [];
+let ARRAY: Vue[] = [];
 
 const classPrefix = 'iox-swipe-cell';
 @Component({})
@@ -59,9 +59,13 @@ export default class IoxSwipeCell extends mixins(Base, Touch) {
 
   catchMove = false;
   offset = 0;
-  dragging: boolean = false;
+  dragging = false;
   wrapperStyle = '';
   startOffset: number | null = null;
+
+  get classPrefix() {
+    return classPrefix;
+  }
 
   get mainClass() {
     return `${this.classPrefix} custom-class`;
@@ -163,7 +167,7 @@ export default class IoxSwipeCell extends mixins(Base, Touch) {
     }
 
     this.dragging = true;
-    ARRAY.filter((item) => item !== this).forEach((item) => item.close());
+    ARRAY.filter((item) => item !== this).forEach((item: any) => item.close());
     this.catchMove = true;
     this.swipeMove(this.startOffset! + this.deltaX);
   }
