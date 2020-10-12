@@ -406,12 +406,12 @@
 		"backgroundTextStyle": "dark",
 		"backgroundColor": "#F8F8F8",
 		"usingComponents": {
-			"demo-block": "/wxcomponents/demo-block/index"
 		}
 	},
 	"easycom": {
 		"autoscan": true,
 		"custom": {
+			"demo-block": "@/demo-components/demo-block.vue",
 			"iox-(.*)": "@/components/iox-$1/iox-$1.vue"
 		}
 	}
