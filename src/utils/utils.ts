@@ -25,6 +25,7 @@ let systemInfoCache: UniApp.GetSystemInfoResult;
 export function getSystemInfoSync(): UniApp.GetSystemInfoResult {
   if (!systemInfoCache) {
     systemInfoCache = uni.getSystemInfoSync();
+    systemInfoCache.SDKVersion = systemInfoCache.SDKVersion || '1.1.0';
   }
 
   return systemInfoCache;
