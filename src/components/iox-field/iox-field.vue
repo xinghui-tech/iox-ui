@@ -36,6 +36,7 @@
         :placeholder-style="placeholderStyle"
         :placeholder-class="bem('field__placeholder', { error, disabled })"
         :auto-height="!!autosize"
+        :data-style="inputStyle(autosize)"
         :style="'' + inputStyle(autosize)"
         :cursor-spacing="cursorSpacing"
         :adjust-position="adjustPosition"
@@ -236,7 +237,7 @@ export default class IoxField extends mixins(Base) {
   }
 
   inputStyle(autosize: any) {
-    if (autosize && autosize.constructor === 'Object') {
+    if (autosize && Object.prototype.toString.call(autosize) === '[object Object]') {
       let style = '';
       if (autosize.minHeight) {
         style += 'min-height:' + utils.addUnit(autosize.minHeight) + ';';
