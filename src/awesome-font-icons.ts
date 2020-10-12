@@ -9,6 +9,10 @@ export default {
     'chevron-left',
     'chevron-up',
     'chevron-down',
+    'angle-right',
+    'angle-left',
+    'angle-up',
+    'angle-down',
   ],
   outline: [
     // has corresponding filled icon
