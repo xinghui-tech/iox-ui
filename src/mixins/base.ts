@@ -5,22 +5,34 @@ import bem from '../utils/bem';
 
 const classPrefix = 'iox';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['custom-class']
+  // #endif
 })
 export default class Base extends Vue {
-  customClass?: string;
 
   @Prop({
     type: String,
   })
   customStyle?: string;
 
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({
+    type: String,
+  })
+  customClass?: string;
+  // #endif
+
   get classPrefix() {
     return classPrefix;
   }
 
   get mainClass() {
-    return `${this.classPrefix} custom-class`;
+    let classes = `${this.classPrefix} custom-class`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    classes = `${this.classPrefix} ${this.customClass || ''}`;
+    // #endif
+    return classes;
   }
 
   get mainStyle() {

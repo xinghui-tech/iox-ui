@@ -37,7 +37,9 @@ const classPrefix = 'iox-grid-item';
 
 @Component({
   name: 'iox-grid-item',
-  externalClasses: ['content-class', 'icon-class', 'text-class'],
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
+  externalClasses: ['content-class', 'icon-class', 'text-class', 'custom-class'],
+  // #endif
 })
 export default class IoxGridItem extends mixins(Base, Emitter, Link) {
   @Prop({

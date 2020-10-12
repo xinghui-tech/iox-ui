@@ -28,7 +28,9 @@ const classPrefix = 'iox-sidebar-item';
 
 @Component({
   name: 'iox-sidebar-item',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['active-class', 'disabled-class', 'custom-class']
+  // #endif
 })
 export default class IoxSidebarItem extends mixins(Base, Emitter) {
   @Prop({

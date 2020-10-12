@@ -31,9 +31,7 @@ declare type Arr = [
     [key: string]: any
   }
 ]
-@Component({
-  externalClasses: []
-})
+@Component
 export default class Options extends mixins(Base) {
 
   @Prop({

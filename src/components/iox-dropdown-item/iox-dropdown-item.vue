@@ -61,7 +61,9 @@ type Option = {
 const classPrefix = 'iox-dropdown-item';
 @Component({
   name: 'iox-dropdown-item',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
+  // #endif
 })
 export default class IoxDropdownItem extends mixins(Base, Emitter) {
   @Model('change', { type: [String, Number] })

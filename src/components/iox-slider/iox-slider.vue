@@ -40,7 +40,9 @@ import { canIUseModel } from '../../utils/utils';
 
 const classPrefix = 'iox-slider';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
+  // #endif
 })
 export default class IoxSlider extends mixins(Base, Touch) {
 

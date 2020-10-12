@@ -52,7 +52,9 @@ import Link from '../../mixins/link';
 
 const classPrefix = 'iox-button-icon';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['hover-class', 'icon-class', 'text-class', 'custom-class']
+  // #endif
 })
 export default class IoxButtonIcon extends Mixins(Base, Link, ButtonProps, OpenType) {
   @Prop({

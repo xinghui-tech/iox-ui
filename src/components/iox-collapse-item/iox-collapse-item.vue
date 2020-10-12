@@ -46,7 +46,9 @@ const classPrefix = 'iox-collapse-item';
 
 @Component({
   name: 'iox-collapse-item',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['title-class', 'content-class', 'custom-class'],
+  // #endif
 })
 export default class IoxCollapseItem extends mixins(Base, Emitter) {
   @Prop({

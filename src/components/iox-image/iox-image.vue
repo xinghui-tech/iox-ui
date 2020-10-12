@@ -51,7 +51,9 @@ const FIT_MODE_MAP: {[k: string]: string} = {
 
 const classPrefix = 'iox-image';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['custom-class', 'loading-class', 'error-class', 'image-class'],
+  // #endif
 })
 export default class IoxImage extends mixins(Base, Button, OpenType) {
   @Prop({

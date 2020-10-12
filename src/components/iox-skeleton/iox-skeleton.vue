@@ -38,7 +38,9 @@ import Base from '../../mixins/base';
 const classPrefix = 'iox-skeleton';
 
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['avatar-class', 'title-class', 'row-class', 'custom-class'],
+  // #endif
 })
 export default class IoxSkeleton extends mixins(Base) {
   @Prop({

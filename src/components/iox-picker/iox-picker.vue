@@ -87,7 +87,9 @@ interface Column {
 
 const classPrefix = 'iox-picker';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['active-class', 'toolbar-class', 'column-class'],
+  // #endif
 })
 export default class IoxPicker extends mixins(Base) {
   @Prop({

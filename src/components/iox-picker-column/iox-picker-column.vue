@@ -28,7 +28,9 @@ const DEFAULT_DURATION = 200;
 
 const classPrefix = 'iox-picker-column';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['active-class'],
+  // #endif
 })
 export default class IoxPickerColumn extends mixins(Base) {
   @Prop({

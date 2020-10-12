@@ -33,6 +33,7 @@ import { transition } from "../../mixins/transition";
 
 const classPrefix = "iox-popup";
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: [
     'enter-class',
     'enter-active-class',
@@ -43,6 +44,7 @@ const classPrefix = "iox-popup";
     'close-icon-class',
     'custom-class'
   ]
+  // #endif
 })
 export default class IoxPopup extends mixins(Base, transition(false)) {
   // props

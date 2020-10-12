@@ -65,7 +65,9 @@ const defaultFormatter = (_: string, value: string) => value;
 
 const classPrefix = 'iox-datetime-picker';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['active-class', 'toolbar-class', 'column-class'],
+  // #endif
 })
 export default class IoxDatetimePicker extends mixins(Base) {
   @Prop({

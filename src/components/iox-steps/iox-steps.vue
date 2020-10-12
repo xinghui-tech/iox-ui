@@ -49,7 +49,9 @@ import { GREEN, GRAY_DARK } from '../../utils/color';
 
 const classPrefix = 'iox-steps';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: [ 'text-class', 'title-class', 'desc-class', 'inactive-text-class', 'inactive-title-class', 'inactive-desc-class' ]
+  // #endif
 })
 export default class IoxSteps extends mixins(Base) {
 

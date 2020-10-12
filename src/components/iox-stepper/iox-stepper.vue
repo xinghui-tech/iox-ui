@@ -57,8 +57,10 @@ function equal(value1: number | string, value2: number | string) {
 
 const classPrefix = 'iox-stepper';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
   externalClasses: ['input-class', 'plus-class', 'minus-class', 'custom-class'],
+  // #endif
 })
 export default class IoxStepper extends mixins(Base, Touch) {
   @Model('change', { type: [String, Number] })

@@ -45,8 +45,10 @@ import { canIUseModel } from '../../utils/utils';
 
 const classPrefix = 'iox-rate';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
   externalClasses: ['icon-class', 'custom-class'],
+  // #endif
 })
 export default class IoxRate extends mixins(Base) {
 

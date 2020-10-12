@@ -117,8 +117,10 @@ import { commonProps, inputProps, textareaProps } from './props';
 
 const classPrefix = 'iox-field';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
   externalClasses: ['input-class', 'right-icon-class', 'label-class', 'custom-class'],
+  // #endif
   props: {
     ...commonProps,
     ...inputProps,

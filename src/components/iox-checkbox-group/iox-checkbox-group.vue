@@ -14,7 +14,9 @@ const classPrefix = 'iox-checkbox-group';
 
 @Component({
   name: 'iox-checkbox-group',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
+  // #endif
 })
 export default class IoxCheckboxGroup extends mixins(Base, Emitter) {
   @Model('input', { type: Array, default: [] })

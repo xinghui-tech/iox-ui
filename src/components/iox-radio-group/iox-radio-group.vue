@@ -14,7 +14,9 @@ const classPrefix = 'iox-radio-group';
 
 @Component({
   name: 'iox-radio-group',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
+  // #endif
 })
 export default class IoxRadioGroup extends mixins(Base, Emitter) {
   @Model('input', { type: Array, default: [] })

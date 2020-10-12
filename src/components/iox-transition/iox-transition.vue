@@ -16,6 +16,7 @@ import { transition } from '../../mixins/transition';
 const classPrefix = 'iox-transition';
 
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: [
     'enter-class',
     'enter-active-class',
@@ -25,6 +26,7 @@ const classPrefix = 'iox-transition';
     'leave-to-class',
     'custom-class'
   ]
+  // #endif
 })
 export default class IoxTransition extends mixins(Base, transition(true)) {
   

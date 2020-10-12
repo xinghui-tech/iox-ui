@@ -58,7 +58,6 @@ const classPrefix = 'iox-share-sheet';
   components: {
     options,
   },
-  externalClasses: []
 })
 export default class IoxShareSheet extends mixins(Base) {
 

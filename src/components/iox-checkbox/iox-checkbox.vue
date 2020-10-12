@@ -38,8 +38,10 @@ function emit(
 const classPrefix = 'iox-checkbox';
 @Component({
   name: 'iox-checkbox',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
   externalClasses: ['icon-class', 'label-class', 'custom-class'],
+  // #endif
 })
 export default class IoxCheckbox extends mixins(Base, Emitter) {
   @Model('change', { type: [String, Number] })

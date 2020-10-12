@@ -60,8 +60,10 @@ import OpenType from '../../mixins/open-type';
 
 const classPrefix = 'iox-button';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
   externalClasses: ['hover-class', 'loading-class', 'custom-class']
+  // #endif
 })
 export default class IoxButton extends Mixins(Base, ButtonProps, OpenType) {
   @Prop({

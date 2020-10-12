@@ -45,7 +45,9 @@ import Emitter from '../../mixins/emitter';
 const classPrefix = 'iox-button-button';
 @Component({
   name: 'iox-button-item',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['hover-class', 'loading-class', 'custom-class'],
+  // #endif
 })
 export default class IoxButtonItem extends Mixins(Base, Link, ButtonProps, OpenType, Emitter) {
   @Prop({

@@ -17,8 +17,10 @@ import { BLUE, GRAY_DARK } from '../../utils/color';
 
 const classPrefix = 'iox-switch';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
   externalClasses: ['node-class', 'custom-class'],
+  // #endif
 })
 export default class IoxSwitch extends mixins(Base) {
   // props

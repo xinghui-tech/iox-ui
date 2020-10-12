@@ -44,6 +44,7 @@ import { addUnit } from '../../utils/utils';
 
 const classPrefix = 'iox-tree-select';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: [
     'main-item-class',
     'content-item-class',
@@ -52,6 +53,7 @@ const classPrefix = 'iox-tree-select';
     'main-disabled-class',
     'content-disabled-class',
   ],
+  // #endif
 })
 export default class IoxTreeSelect extends mixins(Base) {
   @Prop({

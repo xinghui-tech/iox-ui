@@ -58,8 +58,10 @@ import { canIUseModel } from '../../utils/utils';
 
 const classPrefix = 'iox-search';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
   externalClasses: [ 'field-class', 'input-class', 'cancel-class' ]
+  // #endif
 })
 export default class IoxSearch extends mixins(Base) {
   // props

@@ -25,14 +25,14 @@ const classPrefix = 'iox-col';
 })
 export default class IoxCol extends mixins(Base) {
   @Prop({
-    type: Number,
+    type: [Number, String]
   })
-  span?: number;
+  span?: number | string;
 
   @Prop({
-    type: Number,
+    type: [Number, String]
   })
-  offset?: number;
+  offset?: number | string;
 
   // data
   viewStyle = '';

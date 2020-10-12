@@ -19,7 +19,9 @@ import Base from '../../mixins/base';
 
 const classPrefix = 'iox-cell-group';
 @Component({
-  externalClasses: [ 'title-class', ]
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
+  externalClasses: [ 'title-class', 'custom-class']
+  // #endif
 })
 export default class IoxCellGroup extends mixins(Base) {
   @Prop({

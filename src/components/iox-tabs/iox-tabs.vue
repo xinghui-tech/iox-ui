@@ -75,7 +75,9 @@ type BoundingClientRect = WechatMiniprogram.BoundingClientRectCallbackResult;
 const classPrefix = 'iox-tabs';
 @Component({
   name: 'iox-tabs',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['nav-class', 'nav-wrop-class', 'tab-class', 'tab-active-class', 'line-class', 'custom-class'],
+  // #endif
 })
 export default class IoxTabs extends mixins(Base, Touch) {
   @Prop({

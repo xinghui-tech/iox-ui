@@ -30,7 +30,9 @@ import Base from '../../mixins/base';
 
 const classPrefix = 'iox-panel';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['header-class', 'footer-class', 'custom-class'],
+  // #endif
 })
 export default class IoxPanel extends mixins(Base) {
   @Prop({

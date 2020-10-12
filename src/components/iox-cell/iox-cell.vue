@@ -54,6 +54,7 @@ import Link from '../../mixins/link';
 
 const classPrefix = 'iox-cell';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: [
     'title-class',
     'label-class',
@@ -62,6 +63,7 @@ const classPrefix = 'iox-cell';
     'hover-class',
     'custom-class'
   ]
+  // #endif
 })
 export default class IoxCell extends mixins(Base, Link) {
   @Prop({

@@ -44,7 +44,9 @@ import { getSystemInfoSync } from '../../utils/utils';
 const classPrefix = 'iox-nav-bar';
 
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['title-class', 'custom-class']
+  // #endif
 })
 export default class IoxNavBar extends mixins(Base) {
   @Prop({
