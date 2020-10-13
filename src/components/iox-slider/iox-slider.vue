@@ -45,8 +45,11 @@ const classPrefix = 'iox-slider';
   // #endif
 })
 export default class IoxSlider extends mixins(Base, Touch) {
-
-  @Model('drag', { type: [String, Number] })
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  name?: string;
+  // #endif
+  
   @Model('change', { type: [String, Number] })
   readonly value!:  number;
 
@@ -80,9 +83,9 @@ export default class IoxSlider extends mixins(Base, Touch) {
   barHeight?: number;
 
   barStyle = '';
-  startValue: number = 0;
+  startValue = 0;
   dragStatus = '';
-  newValue: number = 0
+  newValue = 0
 
   // @Watch('value')
   // valueChanged(newVal: number, oldVal: number) {

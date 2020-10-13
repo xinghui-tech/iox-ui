@@ -25,6 +25,9 @@ const classPrefix = 'iox-switch';
 export default class IoxSwitch extends mixins(Base) {
   // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
   @Prop({type: String})
+  name?: string;
+
+  @Prop({type: String})
   nodeClass?: string;
   // #endif
 
@@ -69,8 +72,6 @@ export default class IoxSwitch extends mixins(Base) {
     default: false,
   })
   inactiveValue!: boolean | any;
-
-  name?: string;
 
   get classPrefix() {
     return classPrefix;

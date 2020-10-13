@@ -44,6 +44,9 @@ const classPrefix = 'iox-checkbox';
 export default class IoxCheckbox extends mixins(Base, Emitter) {
   // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
   @Prop({type: String})
+  name?: string;
+
+  @Prop({type: String})
   iconClass?: string;
 
   @Prop({type: String})
@@ -89,11 +92,6 @@ export default class IoxCheckbox extends mixins(Base, Emitter) {
     default: 20
   })
   iconSize!: string | number;
-
-  @Prop({
-    type: String,
-  })
-  name?: string;
   
   parent?: Vue;
   parentDisabled = false;

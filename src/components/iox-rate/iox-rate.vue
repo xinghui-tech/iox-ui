@@ -53,6 +53,9 @@ const classPrefix = 'iox-rate';
 export default class IoxRate extends mixins(Base) {
   // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
   @Prop({type: String})
+  name?: string;
+
+  @Prop({type: String})
   iconClass?: string;
   // #endif
 

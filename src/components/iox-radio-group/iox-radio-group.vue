@@ -19,6 +19,11 @@ const classPrefix = 'iox-radio-group';
   // #endif
 })
 export default class IoxRadioGroup extends mixins(Base, Emitter) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  name?: string;
+  // #endif
+  
   @Model('input', { type: [Array, Number, String], default: [] })
   readonly value!: string[] | number[] | number | string;
 

@@ -32,9 +32,16 @@ let Menus: IoxDrowdownMenu[] = [];
 const classPrefix = 'iox-dropdown-menu';
 @Component({
   name: 'iox-dropdown-menu',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
+  // #endif
 })
 export default class IoxDrowdownMenu extends mixins(Base, Emitter) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  name?: string;
+  // #endif
+
   @Prop({
     type: String,
   })

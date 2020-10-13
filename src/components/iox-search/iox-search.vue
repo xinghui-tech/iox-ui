@@ -66,6 +66,9 @@ const classPrefix = 'iox-search';
 export default class IoxSearch extends mixins(Base) {
   // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
   @Prop({type: String})
+  name?: string;
+
+  @Prop({type: String})
   fieldClass?: string;
 
   @Prop({type: String})

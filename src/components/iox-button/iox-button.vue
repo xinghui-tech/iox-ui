@@ -68,6 +68,9 @@ const classPrefix = 'iox-button';
 export default class IoxButton extends Mixins(Base, ButtonProps, OpenType) {
   // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
   @Prop({type: String})
+  name?: string;
+
+  @Prop({type: String})
   hoverClass?: string;
 
   @Prop({type: String})

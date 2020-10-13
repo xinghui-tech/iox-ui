@@ -159,6 +159,9 @@ const classPrefix = 'iox-field';
 export default class IoxField extends mixins(Base) {
   // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
   @Prop({type: String})
+  name?: string;
+  
+  @Prop({type: String})
   inputClass?: string;
 
   @Prop({type: String})

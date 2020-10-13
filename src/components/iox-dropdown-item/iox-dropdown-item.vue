@@ -66,6 +66,11 @@ const classPrefix = 'iox-dropdown-item';
   // #endif
 })
 export default class IoxDropdownItem extends mixins(Base, Emitter) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  name?: string;
+  // #endif
+  
   @Model('change', { type: [String, Number] })
   readonly value?: string | number;
 

@@ -65,6 +65,9 @@ const classPrefix = 'iox-stepper';
 export default class IoxStepper extends mixins(Base, Touch) {
   // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
   @Prop({type: String})
+  name?: string;
+
+  @Prop({type: String})
   inputClass?: string;
 
   @Prop({type: String})

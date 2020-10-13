@@ -19,6 +19,11 @@ const classPrefix = 'iox-checkbox-group';
   // #endif
 })
 export default class IoxCheckboxGroup extends mixins(Base, Emitter) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  name?: string;
+  // #endif
+  
   @Model('input', { type: Array, default: [] })
   readonly value!: string[] | number[];
 
