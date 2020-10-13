@@ -18,7 +18,7 @@
         </block>
         <slot v-else name="left" />
       </view>
-      <view class="iox-nav-bar__title title-class iox-ellipsis">
+      <view :class="titleClasses">
         <block v-if="title">{{ title }}</block>
         <slot v-else name="title" />
       </view>
@@ -49,6 +49,11 @@ const classPrefix = 'iox-nav-bar';
   // #endif
 })
 export default class IoxNavBar extends mixins(Base) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  titleClass?: string;
+  // #endif
+
   @Prop({
     type: String,
     default: ''
@@ -114,11 +119,20 @@ export default class IoxNavBar extends mixins(Base) {
 
   get mainClass() {
     const classes: string = this.bem('nav-bar', { fixed: this.fixed });
-    return `${classes} custom-class ${ this.border ? 'iox-hairline--bottom' : '' }`;
+    return `${classes} ${ this.border ? 'iox-hairline--bottom' : '' } ${this._rootClasses}`;
   }
 
   get mainStyle() {
-    return `${this.baseStyle} ${this.customStyle || ''}`;
+    return `${this.baseStyle} ${this._rootStyles}`;
+  }
+
+  get titleClasses() {
+    let cls = 'title-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.titleClass || '');
+    // #endif
+
+    return `iox-nav-bar__title iox-ellipsis ${cls}`;
   }
 
   created() {

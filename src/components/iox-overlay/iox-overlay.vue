@@ -1,7 +1,7 @@
 <template>
   <iox-transition
     :show="show"
-    :custom-class="classPrefix"
+    :custom-class="mainClass"
     :custom-style="mainStyle"
     :duration="duration"
     :name="transition"
@@ -52,7 +52,7 @@ export default class IoxOverlay extends mixins(Base) {
   }
 
   get mainStyle() {
-    return `z-index: ${this.zIndex}; ${this.customStyle || ''}`;
+    return `z-index: ${this.zIndex}; ${this._rootStyles}`;
   }
 
   onClick() {

@@ -13,6 +13,7 @@
     >
       <view
         :class="mainClass"
+        :style="mainStyle"
         @touchmove="noop"
       >
         <!-- text only -->
@@ -103,7 +104,7 @@ export default class IoxToast extends mixins(Base) {
 
   get mainClass() {
     const classes = this.bem('toast', [this.type === 'text' ? 'text' : 'icon', this.position]);
-    return `custom-class ${classes}`;
+    return `${classes} ${this._rootClasses}`;
   }
 
   @Watch('show')

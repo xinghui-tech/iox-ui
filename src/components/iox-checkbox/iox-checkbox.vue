@@ -1,20 +1,18 @@
 <template>
-  <view
-    :class="mainClass" :style="mainStyle"
-  >
-    <view class="iox-checkbox__icon-wrap" @tap="toggle">
+  <view :class="mainClass" :style="mainStyle" >
+    <view class="iox-checkbox__icon-wrap" @tap.stop="toggle">
       <slot v-if="useIconSlot" name="icon" />
       <iox-icon
         v-else
         name="check"
         size="0.8em"
-        :class="iconClass"
+        :class="iconClasses"
         :style="iconStyle"
-        custom-class="icon-class"
+        :custom-class="iconCustomClasses"
         custom-style="line-height: 1.25em;"
       />
     </view>
-    <view :class="'label-class ' + bem('checkbox__label', [labelPosition, { disabled: disabled || parentDisabled }])" @tap="onClickLabel">
+    <view :class="labelClasses" @tap.stop="onClickLabel">
       <slot />
     </view>
   </view>
@@ -44,8 +42,16 @@ const classPrefix = 'iox-checkbox';
   // #endif
 })
 export default class IoxCheckbox extends mixins(Base, Emitter) {
-  @Model('change', { type: [String, Number] })
-  readonly value?: string | number;
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  iconClass?: string;
+
+  @Prop({type: String})
+  labelClass?: string;
+  // #endif
+
+  @Model('change', { type: [String, Number, Boolean] })
+  readonly value?: string | number | boolean;
 
   @Prop({
     type: Boolean,
@@ -84,7 +90,11 @@ export default class IoxCheckbox extends mixins(Base, Emitter) {
   })
   iconSize!: string | number;
 
+  @Prop({
+    type: String,
+  })
   name?: string;
+  
   parent?: Vue;
   parentDisabled = false;
 
@@ -92,7 +102,25 @@ export default class IoxCheckbox extends mixins(Base, Emitter) {
     return classPrefix;
   }
 
-  get iconClass() {
+  get labelClasses() {
+    let cls = 'label-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.labelClass || '');
+    // #endif
+
+    return `${this.bem('checkbox__label', [this.labelPosition, { disabled: this.disabled || this.parentDisabled }])} ${cls}`;
+  }
+
+  get iconCustomClasses() {
+    let cls = 'icon-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.iconClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get iconClasses() {
     const { shape, disabled, parentDisabled, value } = this;
     return this.bem('checkbox__icon', [shape, { disabled: disabled || parentDisabled, checked: value }]);
   }

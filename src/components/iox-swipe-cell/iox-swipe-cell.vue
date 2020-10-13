@@ -68,7 +68,7 @@ export default class IoxSwipeCell extends mixins(Base, Touch) {
   }
 
   get mainClass() {
-    return `${this.classPrefix} custom-class`;
+    return `${this.classPrefix} ${this._rootClasses}`;
   }
 
 

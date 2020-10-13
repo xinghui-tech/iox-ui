@@ -1,5 +1,7 @@
 <template>
   <iox-popup
+    :class="mainClass"
+    :style="mainStyle"
     :show="show"
     position="bottom"
     :round="round"
@@ -74,25 +76,19 @@ import Base from '../../mixins/base';
 import Button from '../../mixins/button';
 import OpenType from '../../mixins/open-type';
 
-declare type Actions = [
-  {
-    disabled: Boolean;
-    loading: Boolean;
-    [key: string]: any;
-  }
-]
+type Action = {
+  disabled: boolean;
+  loading: boolean;
+  [key: string]: any;
+};
 
 const classPrefix = 'iox-action-sheet';
-@Component({
-
-})
+@Component
 export default class IoxActionSheet extends mixins(Base, Button, OpenType) {
-
-
-  @Prop() show!: boolean;
-  @Prop() title!: string;
-  @Prop() cancelText?: string;
-  @Prop() description?: string;
+  @Prop({type: Boolean}) show!: boolean;
+  @Prop({type: String}) title!: string;
+  @Prop({type: String}) cancelText?: string;
+  @Prop({type: String}) description?: string;
 
   @Prop({
     type: Boolean,
@@ -110,7 +106,7 @@ export default class IoxActionSheet extends mixins(Base, Button, OpenType) {
     type: Array,
     default: []
   })
-  actions!: Actions;
+  actions!: Action[];
 
   @Prop({
     type: Boolean,
@@ -136,28 +132,9 @@ export default class IoxActionSheet extends mixins(Base, Button, OpenType) {
   })
   safeAreaInsetBottom?: boolean;
 
-
-
   get classPrefix() {
     return classPrefix;
   }
-
-  get mainClass() {
-    return `${this.classPrefix} custom-class`;
-  }
-
-  beforeCreate() {
-  }
-
-  destroyed() {
-  }
-
-  created() {
-  }
-
-  mounted() {
-  }
-
 
   onSelect(event: any) {
     const { index } = event.currentTarget.dataset;

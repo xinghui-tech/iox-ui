@@ -1,8 +1,6 @@
 <template>
-  <view
-    :class="mainClass"
-    :style="mainStyle"
-  >
+  <view :class="mainClass"
+    :style="mainStyle" >
     <slot />
   </view>
 </template>
@@ -42,12 +40,12 @@ export default class IoxCol extends mixins(Base) {
   }
 
   get mainStyle() {
-    return `${this.viewStyle} ${this.customStyle || ''}`;
+    return `${this.viewStyle} ${this._rootStyles}`;
   }
 
   get mainClass() {
     const classes = this.bem('col', [this.span]);
-    return `custom-class ${classes} ${this.offset ? 'iox-col--offset-' + this.offset : ''}`;
+    return `${classes} ${this.offset ? 'iox-col--offset-' + this.offset : ''} ${this._rootClasses}`;
   }
 
   @Watch('gutter', { deep: true })

@@ -7,8 +7,8 @@
     @tap="onTap"
   >
     <view
-      :class="['iox-notify' , 'iox-notify--'+type]"
-      :style="'background:'+background+';color:'+color+';'"
+      :class="mainClass"
+      :style="mainStyle"
     >
       <view
         v-if="safeAreaInsetTop"
@@ -26,18 +26,6 @@ import Base from '../../mixins/base';
 import { addUnit, getSystemInfoSync } from '../../utils/utils';
 import { WHITE } from '../../utils/color';
 
-declare namespace NotifyOptions {
-  type show= boolean
-  type type= 'primary' | 'success' | 'danger' | 'warning'
-  type color= string
-  type zIndex= number
-  type top= number
-  type message= string
-  type duration= number
-  type background= string
-  type safeAreaInsetTop= boolean
-}
-
 const classPrefix = 'iox-notify';
 @Component
 export default class IoxNotify extends mixins(Base) {
@@ -45,55 +33,56 @@ export default class IoxNotify extends mixins(Base) {
   @Prop({
     type: Boolean,
   })
-  show?: NotifyOptions.show;
+  show?: boolean;
 
-  @Prop() message?: string;
-  @Prop() background?: string;
-  @Prop() top?: NotifyOptions.top;
+  @Prop({type: String}) message?: string;
+  @Prop({type: String}) background?: string;
+  @Prop({type: Number}) top?: number;
 
   @Prop({
     type: String,
     default: 'danger',
   })
-  type?: NotifyOptions.type;
+  type!: 'primary' | 'success' | 'danger' | 'warning';
 
   @Prop({
     type: String,
     default: WHITE,
   })
-  color?: NotifyOptions.color;
+  color!: string;
 
   @Prop({
     type: Number,
     default: 3000,
   })
-  duration?: NotifyOptions.duration;
+  duration!: number;
 
   @Prop({
     type: Number,
     default: 110,
   })
-  zIndex?: NotifyOptions.zIndex;
+  zIndex!: number;
 
   @Prop({
     type: Boolean,
     default: false,
   })
-  safeAreaInsetTop?: NotifyOptions.safeAreaInsetTop;
-
-
+  safeAreaInsetTop!: boolean;
 
   isShow = false;
   statusBarHeight = 0;
   timer?: number;
-
 
   get classPrefix() {
     return classPrefix;
   }
 
   get mainClass() {
-    return `${this.classPrefix} custom-class`;
+    return `${this.classPrefix} iox-notify--${this.type} ${this._rootClasses}`;
+  }
+
+  get mainStyle() {
+    return `background: ${this.background}; color: ${this.color}; ${this._rootStyles}`;
   }
 
   @Watch('show')

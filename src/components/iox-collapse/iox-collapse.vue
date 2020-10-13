@@ -1,7 +1,5 @@
 <template>
-  <view
-    :class="mainClass" :style="mainStyle"
-  >
+  <view :class="mainClass" :style="mainStyle" >
     <slot />
   </view>
 </template>
@@ -38,7 +36,7 @@ export default class IoxCollapse extends mixins(Base) {
   }
 
   get mainClass() {
-    return `custom-class ${classPrefix} ${ this.border ? 'iox-hairline--top-bottom' : '' }`;
+    return `${classPrefix} ${ this.border ? 'iox-hairline--top-bottom' : '' } ${this._rootClasses}`;
   }
 
   @Watch('value')

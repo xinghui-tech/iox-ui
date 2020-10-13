@@ -1025,6 +1025,11 @@
     recast "*"
     stricter-htmlparser2 "^3.9.6"
 
+"@dcloudio/uni-mp-alipay@^2.0.0-28920200927001":
+  version "2.0.0-28920200927001"
+  resolved "https://registry.npm.taobao.org/@dcloudio/uni-mp-alipay/download/@dcloudio/uni-mp-alipay-2.0.0-28920200927001.tgz#786fe4ab93671ee92821f283149a3b0442d6ec0d"
+  integrity sha1-eG/kq5NnHukoIfKDFJo7BELW7A0=
+
 "@dcloudio/uni-mp-weixin@^2.0.0-28920200927001":
   version "2.0.0-28920200927001"
   resolved "https://registry.npm.taobao.org/@dcloudio/uni-mp-weixin/download/@dcloudio/uni-mp-weixin-2.0.0-28920200927001.tgz#710b2c2a48c1adab2709d8f268bcf0ebd3470162"

@@ -62,7 +62,7 @@ export default class IoxDivider extends mixins(Base) {
   get mainClass() {
     const { dashed, hairline, contentPosition } = this;
     const classes: string = this.bem('divider', [{dashed, hairline}, contentPosition]);
-    return `${classes} custom-class`;
+    return `${classes} ${this._rootClasses}`;
   }
 
   get mainStyle() {

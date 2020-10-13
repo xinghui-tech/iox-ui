@@ -10,33 +10,51 @@ const classPrefix = 'iox';
   // #endif
 })
 export default class Base extends Vue {
-
-  @Prop({
-    type: String,
-  })
-  customStyle?: string;
-
   // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
-  @Prop({
-    type: String,
-  })
+  @Prop({type: String})
   customClass?: string;
   // #endif
+
+  // #ifdef MP-ALIPAY
+  @Prop({type: String})
+  className?: string;
+
+  @Prop({type: String})
+  style?: string;
+  // #endif
+
+  @Prop({type: String})
+  customStyle?: string;
 
   get classPrefix() {
     return classPrefix;
   }
 
-  get mainClass() {
-    let classes = `${this.classPrefix} custom-class`;
+  get _rootClasses() {
+    let cls = 'custom-class';
     // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
-    classes = `${this.classPrefix} ${this.customClass || ''}`;
+    cls = (this.customClass || '');
     // #endif
-    return classes;
+    // #ifdef MP-ALIPAY
+    cls = this.className ?  `${this.className} ${cls}` : cls;
+    // #endif
+    return cls;
+  }
+
+  get _rootStyles() {
+    let css = this.customStyle || '';
+    // #ifdef MP-ALIPAY
+    css = this.style ? `${this.style.trimEnd().endsWith(';') ? this.style : this.style + ';'} ${css}` : css;
+    // #endif
+    return css;
+  }
+
+  get mainClass() {
+    return `${this.classPrefix} ${this._rootClasses}`;
   }
 
   get mainStyle() {
-    return this.customStyle || '';
+    return this._rootStyles;
   }
 
   protected bem(name: string, conf?: any) {

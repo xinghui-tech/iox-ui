@@ -15,13 +15,13 @@
         :error="error"
         :border="false"
         confirm-type="search"
-        class="iox-search__field field-class"
+        :class="fieldClasses"
         :disabled="disabled"
         :readonly="readonly"
         :clearable="clearable"
         :maxlength="maxlength"
         :input-align="inputAlign"
-        input-class="input-class"
+        :input-class="inputClasses"
         :placeholder="placeholder"
         :placeholder-style="placeholderStyle"
         custom-style="padding: 5px 10px 5px 0; background-color: transparent;"
@@ -45,7 +45,7 @@
       hover-stay-time="70"
     >
       <slot v-if="useActionSlot" name="action" />
-      <view v-else @tap="onCancel" class="cancel-class">{{ actionText }}</view>
+      <view v-else @tap="onCancel" :class="cancelClasses">{{ actionText }}</view>
     </view>
   </view>
 </template>
@@ -60,10 +60,21 @@ const classPrefix = 'iox-search';
 @Component({
   // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
-  externalClasses: [ 'field-class', 'input-class', 'cancel-class' ]
+  externalClasses: [ 'field-class', 'input-class', 'cancel-class', 'custom-class' ]
   // #endif
 })
 export default class IoxSearch extends mixins(Base) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  fieldClass?: string;
+
+  @Prop({type: String})
+  inputClass?: string;
+
+  @Prop({type: String})
+  cancelClass?: string;
+  // #endif
+
   // props
   @Model('input', { type: [String, Number] })
   readonly value?: string | number;
@@ -174,11 +185,38 @@ export default class IoxSearch extends mixins(Base) {
   }
 
   get mainClass() {
-    return `${this.classPrefix} ${this.bem('search', { withaction: this.showAction || this.useActionSlot })} custom-class`;
+    return `${this.bem('search', { withaction: this.showAction || this.useActionSlot })} ${this._rootClasses}`;
   }
 
   get mainStyle() {
-    return `${this.customStyle || ''};background:${this.background};`;
+    return `background: ${this.background}; ${this._rootStyles}`;
+  }
+
+  get fieldClasses() {
+    let cls = 'field-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.fieldClass || '');
+    // #endif
+
+    return `iox-search__field ${cls}`;
+  }
+
+  get inputClasses() {
+    let cls = `input-class`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.inputClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get cancelClasses() {
+    let cls = `cancel-class`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.cancelClass || '');
+    // #endif
+
+    return cls;
   }
 
   onChange(value: string | number) {

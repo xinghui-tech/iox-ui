@@ -1,5 +1,5 @@
 <template>
-  <view :class="mainClass">
+  <view :class="mainClass" :style="mainStyle">
     <slot />
   </view>
 </template>
@@ -26,7 +26,11 @@ export default class IoxButtonGroup extends Mixins(Base) {
   }
 
   get mainClass() {
-    return `${this.bem('button-group', { safe: this.safeAreaInsetBottom }) } custom-class`;
+    let cls = `${this.bem('button-group', { safe: this.safeAreaInsetBottom }) } ${this._rootClasses}`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = `${this.bem('button-group', { safe: this.safeAreaInsetBottom }) } ${this.customClass || ''}`;
+    // #endif
+    return cls;
   }
 
   children!: Vue[];

@@ -18,11 +18,8 @@ export default class DemoBlock extends mixins(Base) {
   @Prop({type: Boolean})
   padding?: boolean;
 
-  @Prop({type: String})
-  customClass?: string;
-
   get mainClass() {
-    return `${this.customClass} demo-block iox-clearfix ${ this.padding ? 'demo-block--padding' : '' }`;
+    return `demo-block iox-clearfix ${ this.padding ? 'demo-block--padding' : '' } ${this._rootClasses} `;
   }
 }
 </script>

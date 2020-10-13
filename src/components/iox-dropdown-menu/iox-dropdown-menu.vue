@@ -85,7 +85,7 @@ export default class IoxDrowdownMenu extends mixins(Base, Emitter) {
   }
 
   get mainClass() {
-    return `custom-class ${this.classPrefix} ${this.classPrefix}--top-bottom`;
+    return `${this.classPrefix} ${this.classPrefix}--top-bottom ${this._rootClasses}`;
   }
 
   beforeCreate() {

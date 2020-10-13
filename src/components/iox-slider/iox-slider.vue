@@ -96,11 +96,11 @@ export default class IoxSlider extends mixins(Base, Touch) {
   }
 
   get mainClass() {
-    return `${this.classPrefix} ${this.bem('slider', { disabled: this.disabled })} custom-class`;
+    return `${this.classPrefix} ${this.bem('slider', { disabled: this.disabled })} ${this._rootClasses}`;
   }
 
   get mainStyle() {
-    return `${this.inactiveColor ? 'background:' + this.inactiveColor : ''} ${this.customStyle || ''}`;
+    return `${this.inactiveColor ? 'background:' + this.inactiveColor : ''} ${this._rootStyles}`;
   }
 
   get sliderBarStyle() {

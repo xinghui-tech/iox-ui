@@ -146,12 +146,12 @@ export default class IoxPopup extends mixins(Base, transition(false)) {
         safeTop: this.safeAreaInsetTop
       }
     ]);
-    return `custom-class ${this.classes} ${classes}`;
+    return `${this.classes} ${classes} ${this._rootClasses}`;
   }
 
   get mainStyle() {
     return `z-index: ${this.zIndex}; -webkit-transition-duration: ${this.currentDuration}ms; transition-duration: ${this.currentDuration}ms;`
-      + `${this.display ? "" : "display: none;"} ${this.customStyle || ''}`;
+      + `${this.display ? "" : "display: none;"} ${this._rootStyles}`;
   }
 
   get spinnerClass() {

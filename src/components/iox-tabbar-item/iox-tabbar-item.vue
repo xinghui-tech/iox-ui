@@ -74,12 +74,12 @@ export default class IoxTabbarItem extends mixins(Base, Emitter) {
   }
 
   get mainStyle() {
-    return `color: ${ this.active ? this.activeColor : this.inactiveColor } ${this.customStyle || ''}`;
+    return `color: ${ this.active ? this.activeColor : this.inactiveColor } ${this._rootStyles}`;
   }
 
   get mainClass() {
     const classes = this.bem('tabbar-item', { active: this.active });
-    return `${classes} custom-class`;
+    return `${classes} ${this._rootClasses}`;
   }
 
   onClick() {

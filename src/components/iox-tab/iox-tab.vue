@@ -64,12 +64,12 @@ export default class IoxTab extends mixins(Base, Emitter) {
   }
 
   get mainStyle() {
-    return `${this.shouldShow ? '' : 'display: none;'} ${this.customStyle || ''}`;
+    return `${this.shouldShow ? '' : 'display: none;'} ${this._rootStyles}`;
   }
 
   get mainClass() {
     const classes = this.bem('tab__pane', { active: this.active, inactive: !this.active });
-    return `${this.classPrefix} ${classes} custom-class`;
+    return `${this.classPrefix} ${classes} ${this._rootClasses}`;
   }
 
   get spinnerClass() {

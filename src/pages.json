@@ -402,7 +402,12 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "IOX-UI",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"mp-weixin": { 
+			"navigationBarBackgroundColor": "#F8F8F8"
+		},
+		"h5": { 
+			"navigationBarBackgroundColor": "#F8F8F8"
+		},
 		"backgroundTextStyle": "dark",
 		"backgroundColor": "#F8F8F8",
 		"usingComponents": {

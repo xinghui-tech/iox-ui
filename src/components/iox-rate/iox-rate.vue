@@ -14,7 +14,7 @@
           :name="(index + 1) <= innerValue ? icon : voidIcon"
           class="iox-rate__icon"
           :style="'font-size:' + [addUnit(size)] + ';'"
-          custom-class="icon-class"
+          :custom-class="iconClasses"
           :data-score="index"
           :color="disabled ? disabledColor : (index + 1) <= innerValue ? color : voidColor"
           @click="onSelect(index)"
@@ -51,10 +51,13 @@ const classPrefix = 'iox-rate';
   // #endif
 })
 export default class IoxRate extends mixins(Base) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  iconClass?: string;
+  // #endif
 
   @Model('input', { type: Number, default: 0 })
   readonly value!: number;
-
 
   @Prop({
     type: Boolean,
@@ -134,13 +137,17 @@ export default class IoxRate extends mixins(Base) {
     this.innerCountArray = Array.from({ length: newVal });
   }
 
-
   get classPrefix() {
     return classPrefix;
   }
 
-  get mainClass() {
-    return `${this.classPrefix} custom-class`;
+  get iconClasses() {
+    let cls = 'icon-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.iconClass || '');
+    // #endif
+
+    return cls;
   }
 
   created() {

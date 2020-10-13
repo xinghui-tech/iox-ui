@@ -1,9 +1,10 @@
 <template>
   <iox-picker
-    class="iox-datetime-picker"
-    active-class="active-class"
-    toolbar-class="toolbar-class"
-    column-class="column-class"
+    :class="mainClass"
+    :style="mainStyle"
+    :active-class="activeClasses"
+    :toolbar-class="toolbarClasses"
+    :column-class="columnClasses"
     :title="title"
     :columns="columns"
     :item-height="itemHeight"
@@ -66,10 +67,21 @@ const defaultFormatter = (_: string, value: string) => value;
 const classPrefix = 'iox-datetime-picker';
 @Component({
   // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
-  externalClasses: ['active-class', 'toolbar-class', 'column-class'],
+  externalClasses: ['active-class', 'toolbar-class', 'column-class', 'custom-class'],
   // #endif
 })
 export default class IoxDatetimePicker extends mixins(Base) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  activeClass?: string;
+
+  @Prop({type: String})
+  toolbarClass?: string;
+
+  @Prop({type: String})
+  columnClass?: string;
+  // #endif
+
   @Prop({
     type: String,
   })
@@ -173,6 +185,33 @@ export default class IoxDatetimePicker extends mixins(Base) {
 
   get classPrefix() {
     return classPrefix;
+  }
+
+  get activeClasses() {
+    let cls = 'active-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.activeClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get toolbarClasses() {
+    let cls = 'toolbar-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.toolbarClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get columnClasses() {
+    let cls = 'column-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.columnClass || '');
+    // #endif
+
+    return cls;
   }
 
   @Watch('value')

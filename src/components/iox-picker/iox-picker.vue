@@ -34,13 +34,13 @@
         class="iox-picker__column"
         v-for="(item, index) in (isSimple(columns) ? [columns] : columns)"
         :key="index"
-        custom-class="column-class"
+        :custom-class="columnClasses"
         :initial-options="isSimple(columns) ? item : item.values"
         :value-key="valueKey"
         :default-index="item.defaultIndex || defaultIndex"
         :item-height="itemHeight"
         :visible-item-count="visibleItemCount"
-        active-class="active-class"
+        :active-class="activeClasses"
         @change="onChange(index)"
         ref="columns"
       />
@@ -52,7 +52,7 @@
     </view>
     <view
       v-if="toolbarPosition === 'bottom' && showToolbar"
-      class="iox-picker__toolbar toolbar-class"
+      :class="toolbarClasses"
     >
       <view
         class="iox-picker__cancel"
@@ -81,17 +81,28 @@ import { Prop, Watch } from 'vue-property-decorator';
 import Base from '../../mixins/base';
 
 interface Column {
-  values: object[];
+  values: any[];
   defaultIndex?: number;
 }
 
 const classPrefix = 'iox-picker';
 @Component({
   // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
-  externalClasses: ['active-class', 'toolbar-class', 'column-class'],
+  externalClasses: ['active-class', 'toolbar-class', 'column-class', 'custom-class'],
   // #endif
 })
 export default class IoxPicker extends mixins(Base) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  activeClass?: string;
+
+  @Prop({type: String})
+  toolbarClass?: string;
+
+  @Prop({type: String})
+  columnClass?: string;
+  // #endif
+
   @Prop({
     type: String,
   })
@@ -160,6 +171,33 @@ export default class IoxPicker extends mixins(Base) {
 
   get classPrefix() {
     return classPrefix;
+  }
+
+  get activeClasses() {
+    let cls = 'active-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.activeClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get toolbarClasses() {
+    let cls = 'toolbar-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.toolbarClass || '');
+    // #endif
+
+    return `iox-picker__toolbar ${cls}`;
+  }
+
+  get columnClasses() {
+    let cls = 'column-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.columnClass || '');
+    // #endif
+
+    return cls;
   }
 
   beforeCreate() {

@@ -72,11 +72,11 @@ export default class IoxIcon extends mixins(Base) {
   }
 
   get mainClass() {
-    return `custom-class ${this.classPrefix} ${ this.isImageName ? this.classPrefix + '--image' : this.lib + ' ' + this.lib + '-' + this.name }`;
+    return `${this.classPrefix} ${ this.isImageName ? this.classPrefix + '--image' : this.lib + ' ' + this.lib + '-' + this.name } ${this._rootClasses}`;
   }
 
   get mainStyle() {
-    return `${ this.color ? 'color: ' + this.color + ";" : '' } font-size: ${ utils.addUnit(this.size) }; ${this.customStyle || ''}`;
+    return `${ this.color ? 'color: ' + this.color + ";" : '' } font-size: ${ utils.addUnit(this.size) }; ${this._rootStyles}`;
   }
 
   onClick(event: Event) {

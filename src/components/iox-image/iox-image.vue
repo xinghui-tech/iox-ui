@@ -9,7 +9,7 @@
       :src="src"
       :mode="mode"
       :lazy-load="lazyLoad"
-      class="image-class iox-image__img"
+      :class="imageClasses"
       :show-menu-by-longpress="showMenuByLongpress"
       @load="onImageLoad"
       @error="onImageError"
@@ -17,14 +17,14 @@
 
     <view
       v-if="loading && showLoading"
-      class="loading-class iox-image__loading"
+      :class="loadingClasses"
     >
       <slot v-if="useLoadingSlot" name="loading" />
       <iox-icon v-else name="photo" size="22" />
     </view>
     <view
       v-if="error && showError"
-      class="error-class iox-image__error"
+      :class="errorClasses"
     >
       <slot v-if="useErrorSlot" name="error" />
       <iox-icon v-else name="warning" size="22" />
@@ -56,6 +56,17 @@ const classPrefix = 'iox-image';
   // #endif
 })
 export default class IoxImage extends mixins(Base, Button, OpenType) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  loadingClass?: string;
+
+  @Prop({type: String})
+  errorClass?: string;
+
+  @Prop({type: String})
+  imageClass?: string;
+  // #endif
+
   @Prop({
     type: String,
     required: true
@@ -131,12 +142,39 @@ export default class IoxImage extends mixins(Base, Button, OpenType) {
 
   get mainClass() {
     const classes = this.bem('image', { round: this.round });
-    return `custom-class ${classes}`;
+    return `${classes} ${this._rootClasses}`;
   }
 
   get mainStyle() {
-    return `${this.viewStyle} ${this.customStyle || ''}`;
+    return `${this.viewStyle} ${this._rootStyles}`;
   }
+
+  get loadingClasses() {
+    let cls = 'loading-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.loadingClass || '');
+    // #endif
+
+    return `iox-image__loading ${cls}`;
+  }
+
+  get errorClasses() {
+    let cls = 'error-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.errorClass || '');
+    // #endif
+
+    return `iox-image__error ${cls}`;
+  }
+
+  get imageClasses() {
+    let cls = `image-class`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.imageClass || '');
+    // #endif
+
+    return `iox-image__img ${cls}`;
+  } 
 
   @Watch('src')
   onSrcChanged() {

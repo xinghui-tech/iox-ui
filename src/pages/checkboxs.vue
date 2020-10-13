@@ -102,7 +102,7 @@
     </demo-block>
 
     <demo-block title="限制最大可选数">
-      <iox-checkbox-group v-model="result2" data-key="result2" max="2">
+      <iox-checkbox-group v-model="result2" data-key="result2" :max="2">
         <iox-checkbox
           v-for="item in list"
           :key="item"
@@ -125,7 +125,7 @@
             clickable
             @click="toggle(index)"
           >
-            <iox-checkbox @tap.stop="noop" :class="'checkboxes-' + index" :name="item" />
+            <iox-checkbox :class="'checkboxes-' + index" ref="checkbox" :name="item" />
           </iox-cell>
         </iox-cell-group>
       </iox-checkbox-group>
@@ -154,11 +154,8 @@ export default class Index extends mixins(Fonts) {
   inactiveIcon = 'https://img.yzcdn.cn/vant/user-inactive.png';
 
   toggle(index: number) {
-    const checkbox = (this as any).$scope.selectComponent(`.checkboxes-${index}`);
-    checkbox.$vm.toggle();
+    (this.$refs.checkbox as any)[index].toggle();
   }
-
-  noop() {}
 
   onShareAppMessage() {
     

@@ -6,13 +6,13 @@
           :key="index"
           @tap="onClick"
           :data-index="index"
-          :class="[bem('step', [direction, status(index, active)])] + 'iox-hairline'"
+          :class="[bem('step', [direction, status(index, active)]), 'iox-hairline']"
           :style="status(index, active) === 'inactive' ? 'color: ' + inactiveColor: ''"
         >
           <view class="iox-step__title" :style="(index === active) ? 'color: ' + activeColor : ''">
-            <view :class="(index === active) ? 'text-class' : 'inactive-text-class'">{{ item.text }}</view>
-            <view v-if="item.title" :class="(index === active) ? 'title-class' : 'inactive-title-class'">{{ item.title }}</view>
-            <view :class="(index === active) ? 'desc-class' : 'inactive-desc-class'">{{ item.desc }}</view>
+            <view :class="(index === active) ? textClasses : inactiveTextClasses">{{ item.text }}</view>
+            <view v-if="item.title" :class="(index === active) ? titleClasses : inactiveTitleClasses">{{ item.title }}</view>
+            <view :class="(index === active) ? descClasses : inactiveDescClasses">{{ item.desc }}</view>
           </view>
           <view class="iox-step__circle-container">
             <block v-if="index !== active">
@@ -43,17 +43,36 @@
 
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component';
-import { Prop, Watch } from "vue-property-decorator";
+import { Prop } from "vue-property-decorator";
 import Base from '../../mixins/base';
 import { GREEN, GRAY_DARK } from '../../utils/color';
 
 const classPrefix = 'iox-steps';
 @Component({
   // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
-  externalClasses: [ 'text-class', 'title-class', 'desc-class', 'inactive-text-class', 'inactive-title-class', 'inactive-desc-class' ]
+  externalClasses: [ 'text-class', 'title-class', 'desc-class', 'inactive-text-class', 'inactive-title-class', 'inactive-desc-class', 'custom-class' ]
   // #endif
 })
 export default class IoxSteps extends mixins(Base) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  textClass?: string;
+
+  @Prop({type: String})
+  titleClass?: string;
+
+  @Prop({type: String})
+  descClass?: string;
+
+  @Prop({type: String})
+  inactiveTextClass?: string;
+
+  @Prop({type: String})
+  inactiveTitleClass?: string;
+
+  @Prop({type: String})
+  inactiveDescClass?: string;
+  // #endif
 
   @Prop({
     type: String,
@@ -106,11 +125,61 @@ export default class IoxSteps extends mixins(Base) {
   }
 
   get mainClass() {
-    return `${this.bem('steps', [this.direction])} custom-class`;
+    return `${this.bem('steps', [this.direction])} ${this._rootClasses}`;
   }
 
-  get mainStyle() {
-    return `${this.customStyle || ''}`;
+  get titleClasses() {
+    let cls = 'title-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.titleClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get textClasses() {
+    let cls = 'text-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.textClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get descClasses() {
+    let cls = `desc-class`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.descClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get inactiveTitleClasses() {
+    let cls = `inactive-title-class`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.inactiveTitleClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get inactiveTextClasses() {
+    let cls = 'inactive-text-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.inactiveTextClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get inactiveDescClasses() {
+    let cls = 'inactive-desc-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.inactiveTextClass || '');
+    // #endif
+
+    return cls;
   }
 
   status(index?: any, active?: any) {

@@ -14,17 +14,17 @@
           :scroll-x="scrollable"
           scroll-with-animation
           :scroll-left="scrollLeft"
-          :class="[bem('tabs__scroll', [type]), 'nav-wrop-class']"
+          :class="navWrapClasses"
           :style="color ? 'border-color: ' + color : ''"
         >
-          <view :class="[bem('tabs__nav', [type, { complete: !ellipsis }]), 'nav-class']"
+          <view :class="navClasses"
             :style="'' + tabCardTypeBorderStyle(color, type)">
             <view v-if="type === 'line'" class="iox-tabs__line" :style="lineStyle" />
             <view
               v-for="(item, index) in tabs"
               :key="index"
               :data-index="index"
-              :class="[tabClass(index === currentIndex, ellipsis), bem('tab', { active: index === currentIndex, disabled: item.disabled, complete: !ellipsis })]"
+              :class="[tabClasses(index === currentIndex, ellipsis), bem('tab', { active: index === currentIndex, disabled: item.disabled, complete: !ellipsis })]"
               :style="'' + tabStyle(index === currentIndex, ellipsis, color, type, item.disabled, titleActiveColor, titleInactiveColor, swipeThreshold, scrollable)"
               @tap="onTap"
             >
@@ -76,10 +76,27 @@ const classPrefix = 'iox-tabs';
 @Component({
   name: 'iox-tabs',
   // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
-  externalClasses: ['nav-class', 'nav-wrop-class', 'tab-class', 'tab-active-class', 'line-class', 'custom-class'],
+  externalClasses: ['nav-class', 'nav-wrap-class', 'tab-class', 'tab-active-class', 'line-class', 'custom-class'],
   // #endif
 })
 export default class IoxTabs extends mixins(Base, Touch) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  navClass?: string;
+
+  @Prop({type: String})
+  navWrapClass?: string;
+
+  @Prop({type: String})
+  tabClass?: string;
+
+  @Prop({type: String})
+  tabActiveClass?: string;
+
+  @Prop({type: String})
+  lineClass?: string;
+  // #endif
+
   @Prop({
     type: Boolean,
   })
@@ -191,7 +208,34 @@ export default class IoxTabs extends mixins(Base, Touch) {
 
   get mainClass() {
     const classes = this.bem('tabs', [this.type]);
-    return `${classes} custom-class`;
+    return `${classes} ${this._rootClasses}`;
+  }
+
+  get navClasses() {
+    let cls = 'nav-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.navClass || '');
+    // #endif
+
+    return `${this.bem('tabs__nav', [this.type, { complete: !this.ellipsis }])} ${cls}`;
+  }
+
+  get navWrapClasses() {
+    let cls = 'nav-wrap-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.navWrapClass || '');
+    // #endif
+
+    return `${this.bem('tabs__scroll', [this.type])} ${cls}`;
+  }
+
+  get lineClasses() {
+    let cls = 'line-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.lineClass || '');
+    // #endif
+
+    return cls;
   }
 
   @Watch('color')
@@ -475,11 +519,22 @@ export default class IoxTabs extends mixins(Base, Touch) {
     return -1;
   }
 
-  tabClass(active?: boolean, ellipsis?: boolean) {
-    const classes = ['tab-class'];
+  tabClasses(active?: boolean, ellipsis?: boolean) {
+    const classes: string[] = [];
+    // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
+    classes.push('tab-class');
+    // #endif
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    classes.push(this.tabClass || '');
+    // #endif
 
     if (active) {
+      // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
       classes.push('tab-active-class');
+      // #endif
+      // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+      classes.push(this.tabActiveClass || '');
+      // #endif
     }
 
     if (ellipsis) {

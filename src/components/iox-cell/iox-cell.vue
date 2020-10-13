@@ -2,7 +2,7 @@
   <view
     :class="mainClass"
     :style="mainStyle"
-    hover-class="iox-cell--hover hover-class"
+    :hover-class="hoverClasses"
     hover-stay-time="70"
     @tap="onClick"
   >
@@ -16,20 +16,20 @@
     />
     <slot v-else name="icon" />
 
-    <view
+    <view v-if="showTitle"
       :style="(titleWidth ? 'max-width:' + titleWidth + ';min-width:' + titleWidth + ';' : '') + titleStyle"
-      class="iox-cell__title title-class"
+      :class="titleClasses"
     >
       <block v-if="title">{{ title }}</block>
       <slot v-else name="title" />
 
-      <view v-if="label || useLabelSlot" class="iox-cell__label label-class">
+      <view v-if="label || useLabelSlot" :class="labelClasses">
         <slot v-if="useLabelSlot" name="label" />
         <block v-else-if="label">{{ label }}</block>
       </view>
     </view>
 
-    <view class="iox-cell__value value-class">
+    <view :class="valueClasses">
       <block v-if="value || value === 0">{{ value }}</block>
       <slot v-else />
     </view>
@@ -37,7 +37,7 @@
     <iox-icon
       v-if="isLink && !useRightIconSlot"
       :name="arrowDirection ? 'angle' + '-' + arrowDirection : 'angle-right'"
-      class="iox-cell__right-icon-wrap right-icon-class"
+      :class="rightIconClasses"
       custom-class="iox-cell__right-icon"
     />
     <slot v-else name="right-icon" />
@@ -66,6 +66,23 @@ const classPrefix = 'iox-cell';
   // #endif
 })
 export default class IoxCell extends mixins(Base, Link) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  titleClass?: string;
+
+  @Prop({type: String})
+  labelClass?: string;
+
+  @Prop({type: String})
+  valueClass?: string;
+
+  @Prop({type: String})
+  rightIconClass?: string;
+
+  @Prop({type: String})
+  hoverClass?: string;
+  // #endif
+
   @Prop({
     type: String,
     default: null
@@ -150,6 +167,12 @@ export default class IoxCell extends mixins(Base, Link) {
   })
   extraPosition!: string;
 
+  @Prop({
+    type: Boolean,
+    default: true
+  })
+  showTitle!: boolean;
+
   get classPrefix() {
     return classPrefix;
   }
@@ -164,7 +187,52 @@ export default class IoxCell extends mixins(Base, Link) {
         clickable: this.isLink || this.clickable,
       }
     ]);
-    return `${classes} custom-class`;
+    return `${classes} ${this._rootClasses}`;
+  }
+
+  get titleClasses() {
+    let cls = 'title-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.titleClass || '');
+    // #endif
+
+    return `iox-cell__title ${cls}`;
+  }
+
+  get labelClasses() {
+    let cls = 'label-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.labelClass || '');
+    // #endif
+
+    return `iox-cell__label ${cls}`;
+  }
+
+  get valueClasses() {
+    let cls = `value-class`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.valueClass || '');
+    // #endif
+
+    return `iox-cell__value ${cls}`;
+  }
+
+  get rightIconClasses() {
+    let cls = `right-icon-class`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.rightIconClass || '');
+    // #endif
+
+    return `iox-cell__right-icon-wrap ${cls}`;
+  }
+
+  get hoverClasses() {
+    let cls = 'hover-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.hoverClass || '');
+    // #endif
+
+    return `iox-cell--hover ${cls}`;
   }
 
   onClick(event: TouchEvent) {

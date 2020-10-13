@@ -1,7 +1,8 @@
 <template>
   <iox-popup
     round
-    class="iox-share-sheet"
+    :class="mainClass"
+    :style="mainStyle"
     :show="show"
     position="bottom"
     :overlay="overlay"
@@ -128,14 +129,6 @@ export default class IoxShareSheet extends mixins(Base) {
 
   get classPrefix() {
     return classPrefix;
-  }
-
-  get mainClass() {
-    return `custom-class`;
-  }
-
-  get mainStyle() {
-    return `${this.customStyle || ''}`;
   }
 
   onClickOverlay() {

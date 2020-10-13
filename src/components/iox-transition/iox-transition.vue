@@ -35,12 +35,12 @@ export default class IoxTransition extends mixins(Base, transition(true)) {
   }
 
   get mainClass() {
-    return `custom-class ${this.classPrefix} ${this.classes}`;
+    return `${this.classPrefix} ${this.classes} ${this._rootClasses}`;
   }
 
   get mainStyle() {
     return `-webkit-transition-duration: ${this.currentDuration}ms; transition-duration: ${this.currentDuration}ms; `
-            + `${this.display ? '' : 'display: none;'} ${this.customStyle || ''}`;
+            + `${this.display ? '' : 'display: none;'} ${this._rootStyles}`;
   }
 }
 </script>

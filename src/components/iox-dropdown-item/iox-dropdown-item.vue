@@ -114,11 +114,11 @@ export default class IoxDropdownItem extends mixins(Base, Emitter) {
 
   get mainClass() {
     const classes = this.bem('dropdown-item', this.direction);
-    return `custom-class ${classes}`;
+    return `${classes} ${this._rootClasses}`;
   }
 
   get mainStyle() {
-    return `${this.wrapperStyle} ${this.customStyle || ''}`;
+    return `${this.wrapperStyle} ${this._rootStyles}`;
   }
 
   @Watch('value')

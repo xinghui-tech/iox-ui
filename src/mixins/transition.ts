@@ -1,12 +1,24 @@
 import Vue from 'vue';
 import { isObj, requestAnimationFrame } from '../utils/utils';
 
-const getClassNames = (name: string) => ({
-  enter: `iox-${name}-enter iox-${name}-enter-active enter-class enter-active-class`,
-  'enter-to': `iox-${name}-enter-to iox-${name}-enter-active enter-to-class enter-active-class`,
-  leave: `iox-${name}-leave iox-${name}-leave-active leave-class leave-active-class`,
-  'leave-to': `iox-${name}-leave-to iox-${name}-leave-active leave-to-class leave-active-class`,
-});
+const getClassNames = function (this: any, name: string) {
+  let classes = {
+    enter: `iox-${name}-enter iox-${name}-enter-active enter-class enter-active-class`,
+    'enter-to': `iox-${name}-enter-to iox-${name}-enter-active enter-to-class enter-active-class`,
+    leave: `iox-${name}-leave iox-${name}-leave-active leave-class leave-active-class`,
+    'leave-to': `iox-${name}-leave-to iox-${name}-leave-active leave-to-class leave-active-class`,
+  };
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  classes = {
+    enter: `iox-${name}-enter iox-${name}-enter-active ${this.enterClass} ${this.enterActiveClass}`,
+    'enter-to': `iox-${name}-enter-to iox-${name}-enter-active ${this.enterToClass} ${this.enterActiveClass}`,
+    leave: `iox-${name}-leave iox-${name}-leave-active ${this.leaveClass} ${this.leaveActiveClass}`,
+    'leave-to': `iox-${name}-leave-to iox-${name}-leave-active ${this.leaveToClass} ${this.leaveActiveClass}`,
+  };
+  // #endif
+
+  return classes;
+};
 
 export type Duration = {
   enter: number;
@@ -16,6 +28,15 @@ export type Duration = {
 export const transition = function (showDefaultValue: boolean) {
   return Vue.extend({
     props: {
+      // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+      enterClass: String,
+      enterActiveClass: String,
+      enterToClass: String,
+      leaveClass: String,
+      leaveActiveClass: String,
+      leaveToClass: String,
+      closeIconClass: String,
+      // #endif
       show: {
         type: Boolean,
         default: showDefaultValue,
@@ -69,7 +90,7 @@ export const transition = function (showDefaultValue: boolean) {
     methods: {
       enter() {
         const { duration, name } = (this as any);
-        const classNames = getClassNames(name);
+        const classNames = getClassNames.call(this, name);
         const currentDuration = isObj(duration) ? duration.enter : duration;
 
         this.status = 'enter';
@@ -99,7 +120,7 @@ export const transition = function (showDefaultValue: boolean) {
         }
 
         const { duration, name } = (this as any);
-        const classNames = getClassNames(name);
+        const classNames = getClassNames.call(this, name);
         const currentDuration = isObj(duration) ? duration.leave : duration;
 
         this.status = 'leave';

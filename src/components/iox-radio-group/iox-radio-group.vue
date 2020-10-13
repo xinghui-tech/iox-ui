@@ -1,5 +1,5 @@
 <template>
-  <block>
+  <block :class="mainClass" :style="mainStyle">
     <slot />
   </block>
 </template>
@@ -19,8 +19,8 @@ const classPrefix = 'iox-radio-group';
   // #endif
 })
 export default class IoxRadioGroup extends mixins(Base, Emitter) {
-  @Model('input', { type: Array, default: [] })
-  readonly value!: string[] | number[];
+  @Model('input', { type: [Array, Number, String], default: [] })
+  readonly value!: string[] | number[] | number | string;
 
   @Prop({
     type: Boolean,

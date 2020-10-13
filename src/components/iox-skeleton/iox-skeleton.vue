@@ -7,19 +7,19 @@
     >
       <view
         v-if="avatar"
-        :class="['avatar-class', bem('skeleton__avatar', [avatarShape])]"
+        :class="avatarClasses"
         :style="'width:' + avatarSize + ';height:' + avatarSize"
       />
       <view :class="[bem('skeleton__content')]">
         <view
           v-if="title"
-          :class="['title-class', bem('skeleton__title')]"
+          :class="titleClasses"
           :style="'width:' + titleWidth"
         />
         <view
           v-for="(item, index) in rowArray"
           :key="index"
-          :class="['row-class', bem('skeleton__row')]"
+          :class="rowClasses"
           :style="'width:' + (isArray ? rowWidth[index] : rowWidth)"
         />
       </view>
@@ -43,6 +43,17 @@ const classPrefix = 'iox-skeleton';
   // #endif
 })
 export default class IoxSkeleton extends mixins(Base) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  avatarClass?: string;
+
+  @Prop({type: String})
+  titleClass?: string;
+
+  @Prop({type: String})
+  rowClass?: string;
+  // #endif
+
   @Prop({
     type: Number,
     default: 0
@@ -108,9 +119,36 @@ export default class IoxSkeleton extends mixins(Base) {
   get mainClass() {
     const classes: string = this.loading ? this.bem('skeleton', [{animate: this.animate}])
       : this.bem('skeleton__content');
-    return `${classes} custom-class`;
+    return `${classes} ${this._rootClasses}`;
   }
 
+  get titleClasses() {
+    let cls = 'title-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.titleClass || '');
+    // #endif
+
+    return `${this.bem('skeleton__title')} ${cls}`;
+  }
+
+  get avatarClasses() {
+    let cls = 'avatar-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.avatarClass || '');
+    // #endif
+
+    return `${this.bem('skeleton__avatar', [this.avatarShape])} ${cls}`;
+  }
+
+  get rowClasses() {
+    let cls = `row-class`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.rowClass || '');
+    // #endif
+
+    return `${this.bem('skeleton__row')} ${cls}`;
+  }
+  
   isArray = false;
   rowArray = [];
 

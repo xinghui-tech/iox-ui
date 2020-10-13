@@ -129,11 +129,11 @@ export default class IoxNoticeBar extends mixins(Base) {
 
   get mainClass() {
     const classes: string = this.bem('notice-bar', { withicon: this.mode, wrapable: this.wrapable });
-    return `${classes} custom-class`;
+    return `${classes} ${this._rootClasses}`;
   }
 
   get mainStyle() {
-    return `color: ${ this.color }; background-color: ${ this.backgroundColor }; background: ${ this.background } ${this.customStyle || ''}`;
+    return `color: ${ this.color }; background-color: ${ this.backgroundColor }; background: ${ this.background } ${this._rootStyles}`;
   }
 
   created() {
