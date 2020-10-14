@@ -1,36 +1,36 @@
 <template>
-  <iox-button
-    :class="mainClass"
-    :style="mainStyle"
-    :id="id"
-    :lang="lang"
-    :type="type"
-    :color="color"
-    :plain="plain"
-    :loading="loading"
-    :disabled="disabled"
-    :open-type="openType"
-    :business-id="businessId"
-    :session-from="sessionFrom"
-    custom-class="iox-button-item__inner"
-    :hover-class="hoverClasses"
-    :loading-class="loadingClasses"
-    :app-parameter="appParameter"
-    :send-message-img="sendMessageImg"
-    :send-message-path="sendMessagePath"
-    :show-message-card="showMessageCard"
-    :send-message-title="sendMessageTitle"
-    @click="onClick"
-    @error="onError"
-    @contact="onContact"
-    @opensetting="onOpenSetting"
-    @getuserinfo="onGetUserInfo"
-    @getphonenumber="onGetPhoneNumber"
-    @launchapp="onLaunchApp"
-  >
-    {{ text }}
-    <slot></slot>
-  </iox-button>
+  <view :class="mainClass" :style="mainStyle">
+    <iox-button
+      :id="id"
+      :lang="lang"
+      :type="type"
+      :color="color"
+      :plain="plain"
+      :loading="loading"
+      :disabled="disabled"
+      :open-type="openType"
+      :business-id="businessId"
+      :session-from="sessionFrom"
+      custom-class="iox-button-item__inner"
+      :hover-class="hoverClasses"
+      :loading-class="loadingClasses"
+      :app-parameter="appParameter"
+      :send-message-img="sendMessageImg"
+      :send-message-path="sendMessagePath"
+      :show-message-card="showMessageCard"
+      :send-message-title="sendMessageTitle"
+      @click="onClick"
+      @error="onError"
+      @contact="onContact"
+      @opensetting="onOpenSetting"
+      @getuserinfo="onGetUserInfo"
+      @getphonenumber="onGetPhoneNumber"
+      @launchapp="onLaunchApp"
+    >
+      {{ text }}
+      <slot></slot>
+    </iox-button>
+  </view>
 </template>
 
 <script lang="ts">
