@@ -259,6 +259,13 @@ export default class IoxCircle extends mixins(Base) {
       this.interval = null;
     }
   }
+
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
+  toJSON() {
+    // console.log('toJSON(): should not be invoked. fix debug exception from UNIAPP.');
+    return 'iox-circle';
+  }
+  // #endif
 }
 </script>
 

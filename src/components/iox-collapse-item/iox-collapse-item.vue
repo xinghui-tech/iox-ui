@@ -1,10 +1,8 @@
 <template>
-  <view
-  :class="mainClass" :style="mainStyle"
-  >
+  <view :class="mainClass" :style="mainStyle" >
     <iox-cell
       :title="title"
-      title-class="title-class"
+      :title-class="titleClasses"
       :icon="icon"
       :value="value"
       :label="label"
@@ -27,9 +25,7 @@
       style="height: 0;"
       :animation="animations"
     >
-      <view
-        class="iox-collapse-item__content content-class"
-      >
+      <view :class="contentClasses">
         <slot />
       </view>
     </view>
@@ -38,7 +34,7 @@
 
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component';
-import { Prop, Watch } from 'vue-property-decorator';
+import { Prop } from 'vue-property-decorator';
 import Base from '../../mixins/base';
 import Emitter from '../../mixins/emitter';
 
@@ -46,9 +42,19 @@ const classPrefix = 'iox-collapse-item';
 
 @Component({
   name: 'iox-collapse-item',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['title-class', 'content-class', 'custom-class'],
+  // #endif
 })
 export default class IoxCollapseItem extends mixins(Base, Emitter) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  titleClass?: string;
+
+  @Prop({type: String})
+  contentClass?: string;
+  // #endif
+
   @Prop({
     type: String,
     default: null
@@ -109,7 +115,25 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
   }
 
   get mainClass() {
-    return `iox-collapse-item custom-class ${ this.index !== 0 ? 'iox-hairline--top' : '' }`;
+    return `iox-collapse-item ${ this.index !== 0 ? 'iox-hairline--top' : '' } ${this._rootClasses}`;
+  }
+
+  get titleClasses() {
+    let cls = 'title-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.titleClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get contentClasses() {
+    let cls = 'content-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.contentClass || '');
+    // #endif
+
+    return `iox-collapse-item__content ${cls}`;
   }
 
   created() {

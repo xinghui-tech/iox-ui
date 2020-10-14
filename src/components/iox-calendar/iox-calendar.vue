@@ -14,7 +14,7 @@
       @after-enter="onOpened"
       @after-leave="onClosed"
     >
-      <view :class="mainClass">
+      <view :class="mainClass" :style="mainStyle">
         <calendar-header
           :title="title"
           :show-title="showTitle"
@@ -69,7 +69,7 @@
       </view>
     </iox-popup>
 
-    <view v-else :class="mainClass">
+    <view v-else :class="mainClass" :style="mainStyle">
       <calendar-header
         :title="title"
         :show-title="showTitle"
@@ -562,6 +562,13 @@ export default class IoxCalendar extends mixins(Base) {
 
     return !currentDate;
   }
+
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
+  toJSON() {
+    // console.log('toJSON(): should not be invoked. fix debug exception from UNIAPP.');
+    return 'iox-calendar';
+  }
+  // #endif
 }
 </script>
 

@@ -2,26 +2,26 @@
   <view :class="mainClass" :style="mainStyle">
     <view
       v-if="labelPosition === 'left'"
-      :class="labelClass"
-      @tap="onClickLabel"
+      :class="labelClasses"
+      @tap.stop="onClickLabel"
     >
       <slot />
     </view>
-    <view class="iox-radio__icon-wrap" :style="'font-size: ' + iconSized" @tap="onChange">
+    <view class="iox-radio__icon-wrap" :style="'font-size: ' + iconSized" @tap.stop="onChange">
       <slot v-if="useIconSlot" name="icon" />
       <iox-icon
         v-else
         name="check"
-        :class="iconClass"
+        :class="iconClasses"
         :style="iconStyle"
-        custom-class="icon-class"
+        custom-class="iconCustomclasses"
         :custom-style="'line-height: ' + iconSized + '; font-size: .8em; display: block;'"
       />
     </view>
     <view
       v-if="labelPosition === 'right'"
       :class="labelClass"
-      @tap="onClickLabel"
+      @tap.stop="onClickLabel"
     >
       <slot />
     </view>
@@ -38,10 +38,23 @@ import { addUnit } from '../../utils/utils';
 const classPrefix = 'iox-radio';
 @Component({
   name: 'iox-radio',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
   externalClasses: ['icon-class', 'label-class', 'custom-class'],
+  // #endif
 })
 export default class IoxRadio extends mixins(Base, Emitter) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String, required: true})
+  name!: string;
+  
+  @Prop({type: String})
+  iconClass?: string;
+
+  @Prop({type: String})
+  labelClass?: string;
+  // #endif
+
   @Model('change', { type: [String, Number] })
   readonly value?: string | number;
 
@@ -83,7 +96,6 @@ export default class IoxRadio extends mixins(Base, Emitter) {
   })
   iconSize!: string | number;
 
-  name!: string;
   parent?: Vue;
   parentDisabled = false;
 
@@ -91,12 +103,25 @@ export default class IoxRadio extends mixins(Base, Emitter) {
     return classPrefix;
   }
 
-  get labelClass() {
-    const classes = this.bem('radio__label', [this.labelPosition, { disabled: this.disabled }]);
-    return `label-class ${classes}`;
+  get labelClasses() {
+    let cls = 'label-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.labelClass || '');
+    // #endif
+
+    return `${this.bem('radio__label', [this.labelPosition, { disabled: this.disabled }])} ${cls}`;
   }
 
-  get iconClass() {
+  get iconCustomClasses() {
+    let cls = 'icon-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.iconClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get iconClasses() {
     const { shape, disabled, value, name } = this;
     return this.bem('radio__icon', [shape, { disabled, checked: value === name }]);
   }

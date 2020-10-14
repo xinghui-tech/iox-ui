@@ -24,7 +24,7 @@
         :class="[bem('dropdown-item__option', { active: item.value === value } )]"
         clickable
         :icon="item.icon"
-        @tap="onOptionTap(item)"
+        @click="onOptionTap(item)"
       >
         <view
           slot="title"
@@ -61,9 +61,16 @@ type Option = {
 const classPrefix = 'iox-dropdown-item';
 @Component({
   name: 'iox-dropdown-item',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
+  // #endif
 })
 export default class IoxDropdownItem extends mixins(Base, Emitter) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  name?: string;
+  // #endif
+  
   @Model('change', { type: [String, Number] })
   readonly value?: string | number;
 
@@ -112,11 +119,11 @@ export default class IoxDropdownItem extends mixins(Base, Emitter) {
 
   get mainClass() {
     const classes = this.bem('dropdown-item', this.direction);
-    return `custom-class ${classes}`;
+    return `${classes} ${this._rootClasses}`;
   }
 
   get mainStyle() {
-    return `${this.wrapperStyle} ${this.customStyle || ''}`;
+    return `${this.wrapperStyle} ${this._rootStyles}`;
   }
 
   @Watch('value')

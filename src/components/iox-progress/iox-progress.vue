@@ -80,7 +80,7 @@ export default class IoxProgress extends mixins(Base) {
   }
 
   get mainStyle() {
-    return `height: ${ addUnit(this.strokeWidth) }; ${ this.trackColor ? 'background: ' + this.trackColor : '' } ${this.customStyle || ''}`;
+    return `height: ${ addUnit(this.strokeWidth) }; ${ this.trackColor ? 'background: ' + this.trackColor : '' } ${this._rootStyles}`;
   }
 
   text(pivotText: string, percentage: number) {

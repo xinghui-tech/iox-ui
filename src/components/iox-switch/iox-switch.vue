@@ -3,7 +3,7 @@
     :class="mainClass" :style="mainStyle"
     @tap="onClick"
   >
-    <view class="iox-switch__node node-class">
+    <view :class="nodeClasses">
       <iox-loading v-if="loading" :color="loadingColor" custom-class="iox-switch__loading" />
     </view>
   </view>
@@ -17,10 +17,20 @@ import { BLUE, GRAY_DARK } from '../../utils/color';
 
 const classPrefix = 'iox-switch';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
   externalClasses: ['node-class', 'custom-class'],
+  // #endif
 })
 export default class IoxSwitch extends mixins(Base) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  name?: string;
+
+  @Prop({type: String})
+  nodeClass?: string;
+  // #endif
+
   // props
   @Model('change', { type: [Object, Boolean], default: true })
   readonly value!: boolean | any;
@@ -63,8 +73,6 @@ export default class IoxSwitch extends mixins(Base) {
   })
   inactiveValue!: boolean | any;
 
-  name?: string;
-
   get classPrefix() {
     return classPrefix;
   }
@@ -72,12 +80,21 @@ export default class IoxSwitch extends mixins(Base) {
   get mainClass() {
     const { value, activeValue, disabled } = this;
     const classes: string = this.bem('switch', { on: value === activeValue, disabled: disabled });
-    return `custom-class ${classes}`;
+    return `${classes} ${this._rootClasses}`;
   }
 
   get mainStyle() {
     const { size, value, activeColor, inactiveColor } = this;
-    return `font-size: ${size}; ${(value ? activeColor : inactiveColor) ? 'background-color: ' + (value ? activeColor : inactiveColor ) : ''} ${this.customStyle || ''}`;
+    return `font-size: ${size}; ${(value ? activeColor : inactiveColor) ? 'background-color: ' + (value ? activeColor : inactiveColor ) : ''} ${this._rootStyles}`;
+  }
+
+  get nodeClasses() {
+    let cls = 'node-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.nodeClass || '');
+    // #endif
+
+    return `iox-switch__node ${cls}`;
   }
 
   get loadingColor() {

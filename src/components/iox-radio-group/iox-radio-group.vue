@@ -1,5 +1,5 @@
 <template>
-  <block>
+  <block :class="mainClass" :style="mainStyle">
     <slot />
   </block>
 </template>
@@ -14,11 +14,18 @@ const classPrefix = 'iox-radio-group';
 
 @Component({
   name: 'iox-radio-group',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
+  // #endif
 })
 export default class IoxRadioGroup extends mixins(Base, Emitter) {
-  @Model('input', { type: Array, default: [] })
-  readonly value!: string[] | number[];
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  name?: string;
+  // #endif
+  
+  @Model('input', { type: [Array, Number, String], default: [] })
+  readonly value!: string[] | number[] | number | string;
 
   @Prop({
     type: Boolean,

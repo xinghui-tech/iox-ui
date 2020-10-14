@@ -23,10 +23,10 @@ export default class IoxInfo extends mixins(Base) {
   name!: string;
 
   @Prop({
-    type: String,
+    type: [String, Number],
     default: null,
   })
-  info!: string | null;
+  info!: string | number | null;
 
   @Prop({
     type: Boolean,
@@ -49,7 +49,7 @@ export default class IoxInfo extends mixins(Base) {
   }
 
   get mainClass() {
-    return `custom-class ${this.classPrefix} ${this.dot ? this.classPrefix + '--dot' : ''}`;
+    return `${this.classPrefix} ${this.dot ? this.classPrefix + '--dot' : ''} ${this._rootClasses}`;
   }
 
   onClick() {

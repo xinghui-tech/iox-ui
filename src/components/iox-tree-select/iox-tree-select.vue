@@ -5,9 +5,9 @@
         <iox-sidebar-item
           v-for="(item, index) in items"
           :key="index"
-          custom-class="main-item-class"
-          active-class="main-active-class"
-          disabled-class="main-disabled-class"
+          :custom-class="mainItemClasses"
+          :active-class="mainActiveClasses"
+          :disabled-class="mainDisabledClasses"
           :badge="item.badge"
           :dot="item.dot"
           :title="item.text"
@@ -20,7 +20,7 @@
       <view
         v-for="(item, index) in subItems"
         :key="index"
-        :class="['iox-ellipsis', 'content-item-class', bem('tree-select__item', { active: isActive(activeId, item.id), disabled: item.disabled }), isActive(activeId, item.id) ? 'content-active-class' : '', item.disabled ? 'content-disabled-class' : '' ]"
+        :class="['iox-ellipsis', contentItemClasses, bem('tree-select__item', { active: isActive(activeId, item.id), disabled: item.disabled }), isActive(activeId, item.id) ? contentActiveClasses : '', item.disabled ? contentDisabledClasses : '' ]"
         data-item="item"
         @tap="onSelectItem(item)"
       >
@@ -44,6 +44,7 @@ import { addUnit } from '../../utils/utils';
 
 const classPrefix = 'iox-tree-select';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: [
     'main-item-class',
     'content-item-class',
@@ -52,8 +53,29 @@ const classPrefix = 'iox-tree-select';
     'main-disabled-class',
     'content-disabled-class',
   ],
+  // #endif
 })
 export default class IoxTreeSelect extends mixins(Base) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  mainItemClass?: string;
+
+  @Prop({type: String})
+  contentItemClass?: string;
+
+  @Prop({type: String})
+  mainActiveClass?: string;
+
+  @Prop({type: String})
+  contentActiveClass?: string;
+
+  @Prop({type: String})
+  mainDisabledClass?: string;
+
+  @Prop({type: String})
+  contentDisabledClass?: string;
+  // #endif
+
   @Prop({
     type: Array,
   })
@@ -95,7 +117,61 @@ export default class IoxTreeSelect extends mixins(Base) {
   }
 
   get mainStyle() {
-    return `height: ${ addUnit(this.height) } ${this.customStyle || ''}`;
+    return `height: ${ addUnit(this.height) } ${this._rootStyles}`;
+  }
+
+  get mainItemClasses() {
+    let cls = 'main-item-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.mainItemClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get mainActiveClasses() {
+    let cls = 'main-active-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.mainActiveClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get contentItemClasses() {
+    let cls = `content-item-class`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.contentItemClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get contentActiveClasses() {
+    let cls = `content-active-class`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.contentActiveClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get contentDisabledClasses() {
+    let cls = 'content-disabled-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.contentDisabledClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get mainDisabledClasses() {
+    let cls = 'main-disabled-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.mainDisabledClass || '');
+    // #endif
+
+    return cls;
   }
 
   created() {

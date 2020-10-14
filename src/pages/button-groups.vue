@@ -1,7 +1,7 @@
 <template>
   <block>
     <demo-block title="基础用法">
-      <iox-button-group custom-class="button-group-position" safe-area-inset-bottom="false">
+      <iox-button-group custom-class="button-group-position" :safe-area-inset-bottom="false">
         <iox-button-icon
           icon="commenting-o"
           text="客服"
@@ -25,7 +25,7 @@
     </demo-block>
 
     <demo-block title="提示信息">
-      <iox-button-group custom-class="button-group-position" safe-area-inset-bottom="false">
+      <iox-button-group custom-class="button-group-position" :safe-area-inset-bottom="false">
         <iox-button-icon icon="commenting-o" text="客服" dot />
         <iox-button-icon icon="shopping-cart" text="购物车" info="5" />
         <iox-button-icon icon="shopping-bag" text="店铺" />
@@ -34,7 +34,7 @@
     </demo-block>
 
     <demo-block title="自定义按钮颜色">
-      <iox-button-group custom-class="button-group-position" safe-area-inset-bottom="false">
+      <iox-button-group custom-class="button-group-position" :safe-area-inset-bottom="false">
         <iox-button-icon icon="commenting-o" text="客服" />
         <iox-button-icon icon="shopping-bag" text="店铺" />
         <iox-button-item color="#be99ff" type="warning" text="加入购物车" />
@@ -43,7 +43,7 @@
     </demo-block>
 
     <demo-block title="朴素按钮">
-      <iox-button-group custom-class="button-group-position" safe-area-inset-bottom="false">
+      <iox-button-group custom-class="button-group-position" :safe-area-inset-bottom="false">
         <iox-button-icon icon="commenting-o" text="客服" />
         <iox-button-icon icon="shopping-bag" text="店铺" />
         <iox-button-item color="#7232dd"  text="加入购物车" type="warning" />
@@ -86,7 +86,7 @@ export default class Index extends mixins(Fonts) {
     this.toast = toast('点击按钮');
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

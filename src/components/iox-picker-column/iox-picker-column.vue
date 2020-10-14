@@ -11,7 +11,7 @@
         v-for="(option, index) in options"
         :key="index"
         :style="'height: ' + itemHeight + 'px;'"
-        :class="`iox-ellipsis iox-picker-column__item ` + (option && option.disabled ? 'iox-picker-column__item--disabled ' : '' ) + ( index === currentIndex ? 'iox-picker-column__item--selected active-class' : '' )"
+        :class="`iox-ellipsis iox-picker-column__item ` + (option && option.disabled ? 'iox-picker-column__item--disabled ' : '' ) + ( index === currentIndex ? activeClasses : '' )"
         @tap="onClickItem(index)"
       >{{ getOptionText(option, valueKey) }}</view>
     </view>
@@ -28,9 +28,16 @@ const DEFAULT_DURATION = 200;
 
 const classPrefix = 'iox-picker-column';
 @Component({
-  externalClasses: ['active-class'],
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
+  externalClasses: ['active-class', 'custom-class'],
+  // #endif
 })
 export default class IoxPickerColumn extends mixins(Base) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  activeClass?: string;
+  // #endif
+
   @Prop({
     type: String,
     required: true
@@ -79,7 +86,16 @@ export default class IoxPickerColumn extends mixins(Base) {
   }
 
   get mainStyle() {
-    return `height: ${ this.itemHeight * this.visibleItemCount }px; ${this.customStyle || ''}`;
+    return `height: ${ this.itemHeight * this.visibleItemCount }px; ${this._rootStyles}`;
+  }
+
+  get activeClasses() {
+    let cls = 'active-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.activeClass || '');
+    // #endif
+
+    return `iox-picker-column__item--selected ${cls}`;
   }
 
   get optionsStyle() {

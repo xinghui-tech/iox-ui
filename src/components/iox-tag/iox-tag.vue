@@ -86,11 +86,11 @@ export default class IoxTag extends mixins(Base) {
         round: this.round,
       }
     ]);
-    return `${classes} ${this.plain ? 'iox-hairline--surround' : ''} custom-class`;
+    return `${classes} ${this.plain ? 'iox-hairline--surround' : ''} ${this._rootClasses}`;
   }
 
   get mainStyle() {
-    return `${this.color && !this.plain ? 'background-color: '+ this.color + ';' : ''} ${this.textColor || (this.color && this.plain) ? 'color: ' + (this.textColor || this.color) + ';' : '' } ${this.customStyle || ''}`;
+    return `${this.color && !this.plain ? 'background-color: '+ this.color + ';' : ''} ${this.textColor || (this.color && this.plain) ? 'color: ' + (this.textColor || this.color) + ';' : '' } ${this._rootStyles}`;
   }
 
   get spinnerClass() {

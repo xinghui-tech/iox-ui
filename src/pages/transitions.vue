@@ -19,7 +19,7 @@
 
     <iox-transition
       :show="showCustom"
-      name=""
+      name="custom"
       :duration="{ enter: 300, leave: 1000 }"
       custom-class="block"
       enter-class="iox-enter-class"
@@ -123,7 +123,7 @@ export default class Index extends mixins(Fonts) {
     console.log('after leave');
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

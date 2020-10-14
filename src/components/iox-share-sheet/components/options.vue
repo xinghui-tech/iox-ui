@@ -31,9 +31,7 @@ declare type Arr = [
     [key: string]: any
   }
 ]
-@Component({
-  externalClasses: []
-})
+@Component
 export default class Options extends mixins(Base) {
 
   @Prop({
@@ -52,11 +50,7 @@ export default class Options extends mixins(Base) {
   }
 
   get mainClass() {
-    return `custom-class ${this.bem('share-sheet__options', { border: this.showBorder })}`;
-  }
-
-  get mainStyle() {
-    return `${this.customStyle || ''}`;
+    return `${this.bem('share-sheet__options', { border: this.showBorder })} ${this._rootClasses}`;
   }
 
   onSelect(event: any) {

@@ -1,5 +1,7 @@
 <template>
   <iox-button
+    :class="mainClass"
+    :style="mainStyle"
     :id="id"
     :lang="lang"
     :type="type"
@@ -10,10 +12,9 @@
     :open-type="openType"
     :business-id="businessId"
     :session-from="sessionFrom"
-    :class="mainClass"
     custom-class="iox-button-item__inner"
-    hover-class="hover-class"
-    loading-class="loading-class"
+    :hover-class="hoverClasses"
+    :loading-class="loadingClasses"
     :app-parameter="appParameter"
     :send-message-img="sendMessageImg"
     :send-message-path="sendMessagePath"
@@ -45,9 +46,19 @@ import Emitter from '../../mixins/emitter';
 const classPrefix = 'iox-button-button';
 @Component({
   name: 'iox-button-item',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['hover-class', 'loading-class', 'custom-class'],
+  // #endif
 })
 export default class IoxButtonItem extends Mixins(Base, Link, ButtonProps, OpenType, Emitter) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  hoverClass?: string;
+
+  @Prop({type: String})
+  loadingClass?: string;
+  // #endif
+
   @Prop({
     type: String,
   })
@@ -93,7 +104,25 @@ export default class IoxButtonItem extends Mixins(Base, Link, ButtonProps, OpenT
   get mainClass() {
     const {type, isFirst, isLast, plain} = this;
     const classes = this.bem('button-item', [type, { first: isFirst, last: isLast, plain: plain }]);
-    return `custom-class ${classes}`;
+    return `${classes} ${this._rootClasses}`;
+  }
+
+  get hoverClasses() {
+    let cls = 'hover-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.hoverClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get loadingClasses() {
+    let cls = 'loading-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.loadingClass || '');
+    // #endif
+
+    return cls;
   }
 
   updateStyle() {

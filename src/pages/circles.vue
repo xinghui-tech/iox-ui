@@ -14,8 +14,8 @@
       </view>
     </demo-block>
     <view>
-      <iox-button type="primary" size="small" @tap="run(10)">增加</iox-button>
-      <iox-button type="danger" size="small" @tap="run(-10)">减少</iox-button>
+      <iox-button type="primary" size="small" @click="run(10)">增加</iox-button>
+      <iox-button type="danger" size="small" @click="run(-10)">减少</iox-button>
     </view>
   </block>
 </template>
@@ -39,7 +39,7 @@ export default class Index extends mixins(Fonts) {
     this.value = format((this.value += step));
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

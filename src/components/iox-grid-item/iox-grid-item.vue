@@ -4,19 +4,19 @@
     :style="mainStyle"
     @tap="onClick">
     <view
-      :class="contentClass"
+      :class="contentClasses"
       :style="contentStyle"
     >
       <block v-if="useSlot">
         <slot />
       </block>
       <block v-else>
-        <view class="iox-grid-item__icon icon-class">
+        <view :class="iconClasses">
           <iox-icon v-if="icon" :name="icon" :color="iconColor" 
             :dot="dot" :info="badge || info" :size="iconSize" />
           <slot v-else name="icon"></slot>
         </view>
-        <view class="iox-grid-item__text text-class">
+        <view :class="textClasses">
           <text v-if="text">{{ text }}</text>
           <slot v-else name="text"></slot>
         </view>
@@ -27,7 +27,7 @@
 
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component';
-import { Prop, Watch } from 'vue-property-decorator';
+import { Prop } from 'vue-property-decorator';
 import Base from '../../mixins/base';
 import Emitter from '../../mixins/emitter';
 import Link from '../../mixins/link';
@@ -37,9 +37,22 @@ const classPrefix = 'iox-grid-item';
 
 @Component({
   name: 'iox-grid-item',
-  externalClasses: ['content-class', 'icon-class', 'text-class'],
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
+  externalClasses: ['content-class', 'icon-class', 'text-class', 'custom-class'],
+  // #endif
 })
 export default class IoxGridItem extends mixins(Base, Emitter, Link) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  contentClass?: string;
+
+  @Prop({type: String})
+  iconClass?: string;
+
+  @Prop({type: String})
+  textClass?: string;
+  // #endif
+
   @Prop({
     type: String,
   })
@@ -56,9 +69,9 @@ export default class IoxGridItem extends mixins(Base, Emitter, Link) {
   dot?: boolean;
 
   @Prop({
-    type: String,
+    type: [String, Number]
   })
-  info?: string;
+  info?: string | number;
 
   @Prop({
     type: String,
@@ -94,18 +107,40 @@ export default class IoxGridItem extends mixins(Base, Emitter, Link) {
   }
 
   get mainStyle() {
-    return `${this.viewStyle} ${this.customStyle || ''}`;
+    return `${this.viewStyle} ${this._rootStyles}`;
   }
 
   get mainClass() {
     const classes = this.bem('grid-item', { square: this.square });
-    return `custom-class ${classes}`;
+    return `${classes} ${this._rootClasses}`;
   }
 
-  get contentClass() {
+  get contentClasses() {
     const { direction, center, square, clickable, border, gutter } = this;
     const classes = this.bem('grid-item__content', [direction, { center, square, clickable, surround: border && gutter }]);
-    return `content-class ${ classes } ${ this.border ? 'iox-hairline--surround' : '' }`;
+    let cls = 'content-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.contentClass || '');
+    // #endif
+    return `${ classes } ${ this.border ? 'iox-hairline--surround' : '' } ${cls}`;
+  }
+
+  get iconClasses() {
+    let cls = 'icon-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.iconClass || '');
+    // #endif
+
+    return `iox-grid-item__icon ${cls}`;
+  }
+
+  get textClasses() {
+    let cls = `text-class`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.textClass || '');
+    // #endif
+
+    return `iox-grid-item__text ${cls}`;
   }
 
   beforeMount() {

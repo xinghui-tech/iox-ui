@@ -11,7 +11,7 @@
     </demo-block>
 
     <demo-block title="填充模式" padding>
-      <iox-row gutter="20">
+      <iox-row :gutter="20">
         <iox-col
           v-for="(fit) in fits"
           :key="fit"
@@ -29,7 +29,7 @@
     </demo-block>
 
     <demo-block title="圆形图片" padding>
-      <iox-row gutter="20">
+      <iox-row :gutter="20">
         <iox-col
           v-for="(fit) in fits"
           :key="fit"
@@ -48,7 +48,7 @@
     </demo-block>
 
     <demo-block title="加载中提示" padding>
-      <iox-row gutter="20">
+      <iox-row :gutter="20">
         <iox-col span="8">
           <iox-image
             width="100%"
@@ -76,7 +76,7 @@
     </demo-block>
 
     <demo-block title="加载失败提示" padding>
-      <iox-row gutter="20">
+      <iox-row :gutter="20">
         <iox-col span="8">
           <iox-image
             width="100%"
@@ -120,7 +120,7 @@ export default class Index extends mixins(Fonts) {
   ];
   src = 'https://img.yzcdn.cn/vant/cat.jpeg';
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

@@ -3,7 +3,7 @@
     <view
       v-if="showMinus"
       :style="'width: ' + addUnit(buttonSize) + ';height:' + addUnit(buttonSize) + ';'"
-      :class="['minus-class', bem('stepper__minus', { disabled: disabled || disableMinus || currentValue <= min })]"
+      :class="minusClasses"
       hover-class="iox-stepper__minus--hover"
       hover-stay-time="70"
       @tap="onTap('minus')"
@@ -12,7 +12,7 @@
     />
     <input
       :type="integer ? 'number' : 'digit'"
-      :class="['input-class', bem('stepper__input', { disabled: disabled || disableInput })]"
+      :class="inputClasses"
       :style="'width:' + addUnit(inputWidth) + ';height:' + addUnit(buttonSize) + ';'"
       :value="currentValue"
       :focus="focus"
@@ -24,7 +24,7 @@
     <view
       v-if="showPlus"
       :style="'width:' + addUnit(buttonSize) + ';height:' + addUnit(buttonSize) + ';'"
-      :class="['plus-class',bem('stepper__plus', { disabled: disabled || disablePlus || currentValue >= max })]"
+      :class="plusClasses"
       hover-class="iox-stepper__plus--hover"
       hover-stay-time="70"
       @tap="onTap('plus')"
@@ -57,10 +57,26 @@ function equal(value1: number | string, value2: number | string) {
 
 const classPrefix = 'iox-stepper';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
   externalClasses: ['input-class', 'plus-class', 'minus-class', 'custom-class'],
+  // #endif
 })
 export default class IoxStepper extends mixins(Base, Touch) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  name?: string;
+
+  @Prop({type: String})
+  inputClass?: string;
+
+  @Prop({type: String})
+  plusClass?: string;
+
+  @Prop({type: String})
+  minusClass?: string;
+  // #endif
+
   @Model('change', { type: [String, Number] })
   readonly value!:  number | string;
 
@@ -143,8 +159,31 @@ export default class IoxStepper extends mixins(Base, Touch) {
     return classPrefix;
   }
 
-  get mainClass() {
-    return `${this.classPrefix} custom-class`;
+  get inputClasses() {
+    let cls = 'input-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.inputClass || '');
+    // #endif
+
+    return `${this.bem('stepper__input', { disabled: this.disabled || this.disableInput })} ${cls}`;
+  }
+
+  get plusClasses() {
+    let cls = 'plus-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.plusClass || '');
+    // #endif
+
+    return `${this.bem('stepper__plus', { disabled: this.disabled || this.disablePlus || this.currentValue >= this.max })} ${cls}`;
+  }
+
+  get minusClasses() {
+    let cls = `minus-class`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.minusClass || '');
+    // #endif
+
+    return `${this.bem('stepper__minus', { disabled: this.disabled || this.disableMinus || this.currentValue <= this.min })} ${cls}`;
   }
 
   mounted() {

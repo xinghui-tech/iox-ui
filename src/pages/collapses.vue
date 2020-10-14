@@ -90,7 +90,7 @@ export default class Index extends mixins(Fonts) {
     this.toast = toast(`关闭: ${name}`);
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

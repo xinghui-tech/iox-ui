@@ -71,11 +71,11 @@ export default class IoxTabs extends mixins(Base) {
   }
 
   get mainClass() {
-    return `custom-class ${this.classPrefix} ${ this.border && !this.gutter ? 'iox-hairline--top' : '' }`;
+    return `${this.classPrefix} ${ this.border && !this.gutter ? 'iox-hairline--top' : '' } ${this._rootClasses}`;
   }
 
   get mainStyle() {
-    return `${this.viewStyle} ${this.customStyle || ''}`;
+    return `${this.viewStyle} ${this._rootStyles}`;
   }
 
   created() {

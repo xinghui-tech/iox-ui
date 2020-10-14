@@ -73,7 +73,7 @@ export default class Index extends mixins(Fonts) {
     this.checked2 = value;
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

@@ -3,6 +3,8 @@
     v-if="inited"
     :class="mainClass" :style="mainStyle"
     @transitionend="onTransitionEnd"
+    @tap="onClick"
+    @touchmove.stop="noop"
   >
     <slot />
   </view>
@@ -16,6 +18,7 @@ import { transition } from '../../mixins/transition';
 const classPrefix = 'iox-transition';
 
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: [
     'enter-class',
     'enter-active-class',
@@ -25,6 +28,7 @@ const classPrefix = 'iox-transition';
     'leave-to-class',
     'custom-class'
   ]
+  // #endif
 })
 export default class IoxTransition extends mixins(Base, transition(true)) {
   
@@ -33,13 +37,19 @@ export default class IoxTransition extends mixins(Base, transition(true)) {
   }
 
   get mainClass() {
-    return `custom-class ${this.classPrefix} ${this.classes}`;
+    return `${this.classPrefix} ${this.classes} ${this._rootClasses}`;
   }
 
   get mainStyle() {
     return `-webkit-transition-duration: ${this.currentDuration}ms; transition-duration: ${this.currentDuration}ms; `
-            + `${this.display ? '' : 'display: none;'} ${this.customStyle || ''}`;
+            + `${this.display ? '' : 'display: none;'} ${this._rootStyles}`;
   }
+
+  onClick(event: Event) {
+    this.$emit('click', event);
+  }
+
+  noop() {}
 }
 </script>
 

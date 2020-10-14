@@ -73,7 +73,7 @@ export default class IoxSticky extends mixins(Base, PageScroll) {
 
   get mainStyle() {
     const { fixed, height, zIndex } = this;
-    return `${this.containerStyle({ fixed, height, zIndex })} ${this.customStyle || ''}`;
+    return `${this.containerStyle({ fixed, height, zIndex })} ${this._rootStyles}`;
   }
 
   mounted() {

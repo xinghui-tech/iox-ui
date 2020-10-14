@@ -402,16 +402,24 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "IOX-UI",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"mp-weixin": { 
+			"navigationBarBackgroundColor": "#F8F8F8"
+		},
+		"h5": { 
+			"navigationBarBackgroundColor": "#F8F8F8"
+		},
+		"mp-alipay": {
+			"allowsBounceVertical": "NO"
+		},
 		"backgroundTextStyle": "dark",
 		"backgroundColor": "#F8F8F8",
 		"usingComponents": {
-			"demo-block": "/wxcomponents/demo-block/index"
 		}
 	},
 	"easycom": {
 		"autoscan": true,
 		"custom": {
+			"demo-block": "@/demo-components/demo-block.vue",
 			"iox-(.*)": "@/components/iox-$1/iox-$1.vue"
 		}
 	}

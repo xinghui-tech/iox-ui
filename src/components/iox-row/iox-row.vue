@@ -2,6 +2,7 @@
   <view
     :class="mainClass"
     :style="mainStyle"
+    @tap="onClick"
   >
     <slot />
   </view>
@@ -38,7 +39,7 @@ export default class IoxRow extends mixins(Base) {
   }
 
   get mainStyle() {
-    return `${this.viewStyle} ${this.customStyle || ''}`;
+    return `${this.viewStyle} ${this._rootStyles}`;
   }
 
   @Watch('gutter')
@@ -59,6 +60,10 @@ export default class IoxRow extends mixins(Base) {
     if (this.gutter) {
       this.setGutter(this.gutter);
     }
+  }
+
+  onClick(event: Event) {
+    this.$emit('click', event);
   }
 }
 </script>

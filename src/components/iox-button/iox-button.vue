@@ -2,7 +2,7 @@
 	<button
     :class="mainClass"
     :style="mainStyle"
-    hover-class="iox-button--active hover-class"
+    :hover-class="hoverClasses"
     :lang="lang"
     :open-type="openType"
     :session-from="sessionFrom"
@@ -23,7 +23,7 @@
   >
     <template v-if="loading">
       <iox-loading
-        custom-class="loading-class"
+        :custom-class="loadingClasses"
         :size="loadingSize"
         :type="loadingType"
         :color="loadingColor"
@@ -60,10 +60,23 @@ import OpenType from '../../mixins/open-type';
 
 const classPrefix = 'iox-button';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
   externalClasses: ['hover-class', 'loading-class', 'custom-class']
+  // #endif
 })
 export default class IoxButton extends Mixins(Base, ButtonProps, OpenType) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  name?: string;
+
+  @Prop({type: String})
+  hoverClass?: string;
+
+  @Prop({type: String})
+  loadingClass?: string;
+  // #endif
+
   @Prop({
     type: String,
     default: 'default'
@@ -182,14 +195,33 @@ export default class IoxButton extends Mixins(Base, ButtonProps, OpenType) {
       block, round, plain, square, loading, disabled, hairline, 
       unclickable: this.disabled || this.loading 
     }]);
-    
-    return `custom-class ${classes} ${this.hairline ? 'iox-hairline--surround' : ''}`;
+
+    let cls = `${classes} ${this.hairline ? 'iox-hairline--surround' : ''} ${this._rootClasses}`;
+    return cls;
+  }
+
+  get hoverClasses() {
+    let cls = 'hover-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.hoverClass || '');
+    // #endif
+
+    return `iox-button--active ${cls}`;
+  }
+
+  get loadingClasses() {
+    let cls = 'loading-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.loadingClass || '');
+    // #endif
+
+    return cls;
   }
 
   get mainStyle() {
     // calculate style
     this.colorChanged(this.color);
-    return `${this.baseStyle} ${this.customStyle || ''}`;
+    return `${this.baseStyle} ${this._rootStyles}`;
   }
 
   get loadingColor() {

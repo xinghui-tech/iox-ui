@@ -134,7 +134,7 @@ export default class Index extends mixins(Fonts) {
     uni.showToast({ title: `点击标签 ${value as number + 1}`, icon: 'none' });
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

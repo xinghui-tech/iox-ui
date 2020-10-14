@@ -184,7 +184,7 @@ export default class Index extends mixins(Fonts) {
     this.toggle('customIconPosition', false);
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

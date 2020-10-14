@@ -30,21 +30,23 @@
 
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component';
-import { Prop, Watch, Model } from 'vue-property-decorator';
+import { Prop, Model } from 'vue-property-decorator';
 import Touch from '../../mixins/touch';
 import Base from '../../mixins/base';
 import { addUnit } from '../../utils/utils';
-import { canIUseModel } from '../../utils/utils';
-
-
 
 const classPrefix = 'iox-slider';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
+  // #endif
 })
 export default class IoxSlider extends mixins(Base, Touch) {
-
-  @Model('drag', { type: [String, Number] })
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  name?: string;
+  // #endif
+  
   @Model('change', { type: [String, Number] })
   readonly value!:  number;
 
@@ -78,9 +80,9 @@ export default class IoxSlider extends mixins(Base, Touch) {
   barHeight?: number;
 
   barStyle = '';
-  startValue: number = 0;
+  startValue = 0;
   dragStatus = '';
-  newValue: number = 0
+  newValue = 0
 
   // @Watch('value')
   // valueChanged(newVal: number, oldVal: number) {
@@ -94,11 +96,11 @@ export default class IoxSlider extends mixins(Base, Touch) {
   }
 
   get mainClass() {
-    return `${this.classPrefix} ${this.bem('slider', { disabled: this.disabled })} custom-class`;
+    return `${this.bem('slider', { disabled: this.disabled })} ${this._rootClasses}`;
   }
 
   get mainStyle() {
-    return `${this.inactiveColor ? 'background:' + this.inactiveColor : ''} ${this.customStyle || ''}`;
+    return `${this.inactiveColor ? 'background:' + this.inactiveColor : ''} ${this._rootStyles}`;
   }
 
   get sliderBarStyle() {

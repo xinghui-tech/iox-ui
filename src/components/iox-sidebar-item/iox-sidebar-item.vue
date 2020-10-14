@@ -28,18 +28,28 @@ const classPrefix = 'iox-sidebar-item';
 
 @Component({
   name: 'iox-sidebar-item',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   externalClasses: ['active-class', 'disabled-class', 'custom-class']
+  // #endif
 })
 export default class IoxSidebarItem extends mixins(Base, Emitter) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  activeClass?: string;
+
+  @Prop({type: String})
+  disabledClass?: string;
+  // #endif
+
   @Prop({
     type: Boolean,
   })
   dot?: boolean;
 
   @Prop({
-    type: String,
+    type: [String, Number]
   })
-  info?: string;
+  info?: string | number;
 
   @Prop({
     type: String,
@@ -52,9 +62,9 @@ export default class IoxSidebarItem extends mixins(Base, Emitter) {
   disabled?: boolean;
 
   @Prop({
-    type: String,
+    type: [String, Number]
   })
-  badge?: string;
+  badge?: string | number;
 
   // data
   parent?: Vue;
@@ -66,7 +76,25 @@ export default class IoxSidebarItem extends mixins(Base, Emitter) {
 
   get mainClass() {
     const classes = this.bem('sidebar-item', { selected: this.selected, disabled: this.disabled });
-    return `${classes} ${ this.selected ? 'active-class' : '' } ${ this.disabled ? 'disabled-class' : '' } custom-class`;
+    return `${classes} ${ this.selected ? this.activeClasses : '' } ${ this.disabled ? this.disabledClasses : '' } ${this._rootClasses}`;
+  }
+
+  get activeClasses() {
+    let cls = 'active-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.activeClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get disabledClasses() {
+    let cls = 'disabled-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.disabledClass || '');
+    // #endif
+
+    return cls;
   }
 
   beforeMount() {

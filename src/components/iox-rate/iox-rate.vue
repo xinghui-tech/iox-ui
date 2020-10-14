@@ -14,7 +14,7 @@
           :name="(index + 1) <= innerValue ? icon : voidIcon"
           class="iox-rate__icon"
           :style="'font-size:' + [addUnit(size)] + ';'"
-          custom-class="icon-class"
+          :custom-class="iconClasses"
           :data-score="index"
           :color="disabled ? disabledColor : (index + 1) <= innerValue ? color : voidColor"
           @click="onSelect(index)"
@@ -40,19 +40,25 @@ import Component, { mixins } from 'vue-class-component';
 import { Prop, Watch, Model } from 'vue-property-decorator';
 import Base from '../../mixins/base';
 import { addUnit } from '../../utils/utils';
-import { canIUseModel } from '../../utils/utils';
-
 
 const classPrefix = 'iox-rate';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
   externalClasses: ['icon-class', 'custom-class'],
+  // #endif
 })
 export default class IoxRate extends mixins(Base) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  name?: string;
+
+  @Prop({type: String})
+  iconClass?: string;
+  // #endif
 
   @Model('input', { type: Number, default: 0 })
   readonly value!: number;
-
 
   @Prop({
     type: Boolean,
@@ -132,13 +138,17 @@ export default class IoxRate extends mixins(Base) {
     this.innerCountArray = Array.from({ length: newVal });
   }
 
-
   get classPrefix() {
     return classPrefix;
   }
 
-  get mainClass() {
-    return `${this.classPrefix} custom-class`;
+  get iconClasses() {
+    let cls = 'icon-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.iconClass || '');
+    // #endif
+
+    return cls;
   }
 
   created() {
@@ -149,13 +159,12 @@ export default class IoxRate extends mixins(Base) {
     return addUnit(value);
   }
 
-  onSelect(v: number) {
-    const score = v;
+  onSelect(score: number) {
     if (!this.disabled && !this.readonly) {
       this.innerValue = score + 1;
       this.$nextTick(() => {
-        this.$emit('input', score + 1);
-        this.$emit('change', score + 1);
+        this.$emit('input', this.innerValue);
+        this.$emit('change', this.innerValue);
       });
     }
   }
@@ -166,13 +175,14 @@ export default class IoxRate extends mixins(Base) {
 
     const { clientX } = event.touches[0];
 
+    // TODO use pure vue feature to compatiable with other MP except wechat.
     this.getRect('.iox-rate__icon', true).then(
       (list: any) => {
         const target = list
           .sort((item: any) => item.right - item.left)
           .find((item: any) => clientX >= item.left && clientX <= item.right);
-        if (target != null) {
-          const { score } = target.dataset
+        if (target && target.dataset) {
+          const { score } = target.dataset;
           this.onSelect(score);
         }
       }

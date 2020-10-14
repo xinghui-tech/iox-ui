@@ -2,8 +2,7 @@
   <view
     :class="mainClass"
     :style="mainStyle"
-    data-key="cell"
-    @tap.stop="onClick"
+    @tap.stop="onClick('cell')"
     @touchstart="startDrag"
     @touchmove.stop="catchMove ? 'noop' : ''"
     @touchmove.capture="onDrag"
@@ -11,11 +10,11 @@
     @touchcancel="endDrag"
   >
     <view :style="wrapperStyle">
-      <view v-if="leftWidth" class="iox-swipe-cell__left" data-key="left" @tap.stop="onClick">
+      <view v-if="leftWidth" class="iox-swipe-cell__left" @tap.stop="onClick('left')">
         <slot name="left" />
       </view>
       <slot />
-      <view v-if="rightWidth" class="iox-swipe-cell__right" data-key="right" @tap.stop="onClick">
+      <view v-if="rightWidth" class="iox-swipe-cell__right" @tap.stop="onClick('right')">
         <slot name="right" />
       </view>
     </view>
@@ -30,7 +29,7 @@ import Touch from '../../mixins/touch';
 import { range } from '../../utils/utils';
 
 const THRESHOLD = 0.3;
-let ARRAY: WechatMiniprogram.Component.TrivialInstance[] = [];
+let ARRAY: Vue[] = [];
 
 const classPrefix = 'iox-swipe-cell';
 @Component({})
@@ -59,12 +58,16 @@ export default class IoxSwipeCell extends mixins(Base, Touch) {
 
   catchMove = false;
   offset = 0;
-  dragging: boolean = false;
+  dragging = false;
   wrapperStyle = '';
   startOffset: number | null = null;
 
+  get classPrefix() {
+    return classPrefix;
+  }
+
   get mainClass() {
-    return `${this.classPrefix} custom-class`;
+    return `${this.classPrefix} ${this._rootClasses}`;
   }
 
 
@@ -163,7 +166,7 @@ export default class IoxSwipeCell extends mixins(Base, Touch) {
     }
 
     this.dragging = true;
-    ARRAY.filter((item) => item !== this).forEach((item) => item.close());
+    ARRAY.filter((item) => item !== this).forEach((item: any) => item.close());
     this.catchMove = true;
     this.swipeMove(this.startOffset! + this.deltaX);
   }
@@ -177,8 +180,7 @@ export default class IoxSwipeCell extends mixins(Base, Touch) {
     this.swipeLeaveTransition();
   }
 
-  onClick(event: any) {
-    const { key: position = 'outside' } = event.currentTarget.dataset;
+  onClick(position = 'outside') {
     this.$emit('click', position);
 
     if (!this.offset) {
@@ -188,7 +190,6 @@ export default class IoxSwipeCell extends mixins(Base, Touch) {
     if (this.asyncClose) {
       this.$emit('close', {
         position,
-        instance: this,
         name: this.name,
       });
     } else {

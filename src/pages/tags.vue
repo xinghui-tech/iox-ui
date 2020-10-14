@@ -82,7 +82,7 @@ export default class Index extends mixins(Fonts) {
     (this.show as any)[tag] = false;
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

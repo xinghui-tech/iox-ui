@@ -11,7 +11,7 @@
     </demo-block>
 
     <demo-block title="异步关闭">
-      <iox-swipe-cell id="swipe-cell" :right-width="65" :left-width="65" async-close @close="onClose">
+      <iox-swipe-cell id="swipe-cell" :right-width="65" :left-width="65" async-close @close="onClose" ref="swiper">
         <view slot="left" class="iox-swipe-cell__left">选择</view>
         <iox-cell-group>
           <iox-cell title="单元格" value="内容" />
@@ -36,7 +36,9 @@
       :message="dialog.message"
       :theme="dialog.theme"
       :show-cancel-button="dialog.showCancelButton"
-      @close="dialog.show = false"/>
+      @close="dialog.show = false"
+      @confirm="confirmClose"
+    />
 
     <iox-notify
       :show="notify.show"
@@ -86,21 +88,22 @@ export default class Index extends mixins(Fonts) {
   destroy() {
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
   }
 
+  confirmClose() {
+    (this.$refs.swiper as any).close();
+  }
 
   onClose(event: any) {
-    console.log('onClose===', event);
-    const { position, instance } = event;
+    const { position } = event;
     switch (position) {
       case 'left':
       case 'cell':
-        instance.close();
+        (this.$refs.swiper as any).close();
         break;
       case 'right':
         this.dialog = confirmDialog(message, '确定删除吗？');
-        instance.close();
         break;
     }
   }

@@ -9,7 +9,7 @@
     </demo-block>
 
     <demo-block title="吸顶距离">
-      <iox-sticky offset-top="50">
+      <iox-sticky :offset-top="50">
         <iox-button type="info" custom-style="margin-left: 115px">
           吸顶距离
         </iox-button>
@@ -83,7 +83,7 @@ export default class Index extends mixins(Fonts) {
     }
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

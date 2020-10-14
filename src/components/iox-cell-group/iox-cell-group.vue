@@ -1,15 +1,15 @@
 <template>
-  <block>
+  <view :class="mainClass" :style="mainStyle">
     <view
       v-if="title"
-      class="iox-cell-group__title title-class"
+      :class="titleClasses"
     >
       {{ title }}
     </view>
-    <view :class="mainClass">
+    <view :class="cellsClass">
       <slot />
     </view>
-  </block>
+  </view>
 </template>
 
 <script lang="ts">
@@ -19,9 +19,18 @@ import Base from '../../mixins/base';
 
 const classPrefix = 'iox-cell-group';
 @Component({
-  externalClasses: [ 'title-class', ]
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
+  externalClasses: [ 'title-class', 'custom-class']
+  // #endif
 })
 export default class IoxCellGroup extends mixins(Base) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({
+    type: String,
+  })
+  titleClass?: string;
+  // #endif
+
   @Prop({
     type: String,
     default: null
@@ -38,8 +47,16 @@ export default class IoxCellGroup extends mixins(Base) {
     return classPrefix;
   }
 
-  get mainClass() {
-    return `custom-class ${this.classPrefix} ${ this.border ? 'iox-hairline--top-bottom' : '' }`;
+  get cellsClass() {
+    return `${ this.border ? 'iox-hairline--top-bottom' : '' }`;
+  }
+
+  get titleClasses() {
+    let cls = 'title-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.titleClass || '' );
+    // #endif
+    return `iox-cell-group__title ${cls}`;
   }
 
 }

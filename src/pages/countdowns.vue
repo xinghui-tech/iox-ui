@@ -42,7 +42,7 @@
         ref="countdown"
       />
 
-      <iox-grid clickable column-num="3">
+      <iox-grid clickable :column-num="3">
         <iox-grid-item text="开始" icon="play-circle-o" @click="start" />
         <iox-grid-item text="暂停" icon="pause-circle-o" @click="pause" />
         <iox-grid-item text="重置" icon="refresh" @click="reset" />
@@ -109,7 +109,7 @@ export default class Index extends mixins(Fonts) {
     this.showToast('倒计时结束');
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

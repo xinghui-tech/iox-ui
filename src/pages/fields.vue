@@ -29,6 +29,30 @@
       </iox-cell-group>
     </demo-block>
 
+    <demo-block title="自定义图标">
+      <iox-cell-group>
+        <iox-field
+          placeholder="请输入用户名"
+          label="用户名"
+          :border="false"
+        >
+        <iox-icon name="bell" slot="left-icon" />
+        </iox-field>
+      </iox-cell-group>
+    </demo-block>
+
+    <demo-block title="自定义标签">
+      <iox-cell-group>
+        <iox-field
+          placeholder="请输入用户名"
+          :border="false"
+          left-icon="user"
+        >
+          <view slot="label">自定义</view>
+        </iox-field>
+      </iox-cell-group>
+    </demo-block>
+
     <demo-block title="禁用输入框">
       <iox-cell-group>
         <iox-field
@@ -125,7 +149,7 @@ export default class Index extends mixins(Fonts) {
     });
   }
 
-  onShareAppMessage(share: WechatMiniprogram.ShowShareMenuOption) {
+  onShareAppMessage() {
     
   }
 }

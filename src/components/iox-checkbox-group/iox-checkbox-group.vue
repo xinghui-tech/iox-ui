@@ -1,5 +1,5 @@
 <template>
-  <block>
+  <block :class="mainClass" :style="mainStyle">
     <slot />
   </block>
 </template>
@@ -14,9 +14,16 @@ const classPrefix = 'iox-checkbox-group';
 
 @Component({
   name: 'iox-checkbox-group',
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
+  // #endif
 })
 export default class IoxCheckboxGroup extends mixins(Base, Emitter) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  name?: string;
+  // #endif
+  
   @Model('input', { type: Array, default: [] })
   readonly value!: string[] | number[];
 

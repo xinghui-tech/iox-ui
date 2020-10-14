@@ -1,5 +1,7 @@
 <template>
   <iox-cell
+    :custom-class="mainClass"
+    :custom-style="mainStyle"
     :size="size"
     :icon="leftIcon"
     :center="center"
@@ -10,21 +12,20 @@
     :title-width="titleWidth"
     :arrow-direction="arrowDirection"
     title-style="margin-right: 12px;"
-    custom-class="iox-field custom-class"
-    :custom-style="mainStyle"
-    title-class="label-class"
+    :title-class="labelClasses"
+    :show-title="!!label || !!$slots.label"
   >
-    <block><block slot="icon"><slot name="left-icon" /></block></block>
-    <view v-if="label" :class="[bem('field__label', { disabled })]" slot="title">
-      {{ label }}
-    </view>
-    <block v-else slot="title">
-      <slot name="label" />
+    <block slot="icon"><slot name="left-icon" /></block>
+    <block slot="title">
+      <view v-if="label" :class="[bem('field__label', { disabled })]">
+        {{ label }}
+      </view>
+      <slot v-else name="label" />
     </block>
     <view :class="[bem('field__body', [type])]">
       <textarea
         v-if="type === 'textarea'"
-        :class="['input-class', bem('field__input', [inputAlign, type, { disabled, error }])]"
+        :class="[inputClasses, bem('field__input', [inputAlign, type, { disabled, error }])]"
         :fixed="fixed"
         :focus="focus"
         :cursor="cursor"
@@ -36,6 +37,7 @@
         :placeholder-style="placeholderStyle"
         :placeholder-class="bem('field__placeholder', { error, disabled })"
         :auto-height="!!autosize"
+        :data-style="inputStyle(autosize)"
         :style="'' + inputStyle(autosize)"
         :cursor-spacing="cursorSpacing"
         :adjust-position="adjustPosition"
@@ -54,7 +56,7 @@
       </textarea>
       <input
         v-else
-        :class="['input-class', bem('field__input', [inputAlign, { disabled, error }])]"
+        :class="[inputClasses, bem('field__input', [inputAlign, { disabled, error }])]"
         :type="type"
         :focus="focus"
         :cursor="cursor"
@@ -79,18 +81,15 @@
         @confirm="onConfirm"
         @keyboardheightchange="onKeyboardHeightChange"
       />
-      <iox-icon
-        v-if="showClear"
-        name="times-circle-o"
-        class="iox-field__clear-root iox-field__icon-root"
-        @touchstart="onClear"
-      />
-      <view class="iox-field__icon-container" @tap="onClickIcon">
+      <view @touchstart.capture="onClear" v-if="showClear" class="iox-field__clear-root iox-field__icon-root">
+        <iox-icon name="times-circle-o" />
+      </view>
+      <view class="iox-field__icon-container" @tap.stop="onClickIcon">
         <iox-icon
           v-if="rightIcon || icon"
           :name="rightIcon || icon"
           :class="['iox-field__icon-root', iconClass]"
-          custom-class="right-icon-class"
+          :custom-class="rightIconClasses"
         />
         <slot name="right-icon" />
         <slot name="icon" />
@@ -110,15 +109,17 @@
 
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component';
-import { Model, Watch } from 'vue-property-decorator';
+import { Model, Prop, Watch } from 'vue-property-decorator';
 import * as utils from '../../utils/utils';
 import Base from '../../mixins/base';
 import { commonProps, inputProps, textareaProps } from './props';
 
 const classPrefix = 'iox-field';
 @Component({
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
   behaviors: ['uni://form-field'],
-  externalClasses: ['input-class', 'right-icon-class', 'label-class', 'custom-class'],
+  externalClasses: ['input-class', 'icon-class', 'right-icon-class', 'label-class', 'custom-class'],
+  // #endif
   props: {
     ...commonProps,
     ...inputProps,
@@ -153,6 +154,20 @@ const classPrefix = 'iox-field';
   },
 })
 export default class IoxField extends mixins(Base) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  name?: string;
+  
+  @Prop({type: String})
+  inputClass?: string;
+
+  @Prop({type: String})
+  labelClass?: string;
+
+  @Prop({type: String})
+  rightIconClass?: string;
+  // #endif
+  
   // props
   @Model('input', { type: [String, Number] })
   readonly value?: string | number;
@@ -171,6 +186,33 @@ export default class IoxField extends mixins(Base) {
 
   get classPrefix() {
     return classPrefix;
+  }
+
+  get labelClasses() {
+    let cls = 'label-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.labelClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get inputClasses() {
+    let cls = `input-class`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.inputClass || '');
+    // #endif
+
+    return cls;
+  }
+
+  get rightIconClasses() {
+    let cls = `right-icon-class`;
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.rightIconClass || '');
+    // #endif
+
+    return cls;
   }
 
   get length() {
@@ -234,7 +276,7 @@ export default class IoxField extends mixins(Base) {
   }
 
   inputStyle(autosize: any) {
-    if (autosize && autosize.constructor === 'Object') {
+    if (autosize && Object.prototype.toString.call(autosize) === '[object Object]') {
       let style = '';
       if (autosize.minHeight) {
         style += 'min-height:' + utils.addUnit(autosize.minHeight) + ';';

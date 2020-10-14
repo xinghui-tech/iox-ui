@@ -65,11 +65,11 @@ export default class IoxTabbar extends mixins(Base, Touch) {
 
   get mainClass() {
     const classes = this.bem('tabbar', { fixed: this.fixed, safe: this.safeAreaInsetBottom });
-    return `${ this.border ? 'van-hairline--top-bottom' : '' } ${classes} custom-class`;
+    return `${ this.border ? 'van-hairline--top-bottom' : '' } ${classes} ${this._rootClasses}`;
   }
 
   get mainStyle() {
-    return `${ this.zIndex ? 'z-index: ' + this.zIndex : '' } ${this.customStyle || ''}`;
+    return `${ this.zIndex ? 'z-index: ' + this.zIndex : '' } ${this._rootStyles}`;
   }
 
   @Watch('active')

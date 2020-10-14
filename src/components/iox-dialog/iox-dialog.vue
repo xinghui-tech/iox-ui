@@ -205,11 +205,11 @@ export default class IoxDialog extends mixins(Base, Button, OpenType) {
 
   get mainClass() {
     const classes: string = this.bem('dialog', this.theme);
-    return `custom-class ${classes} ${ this.className || '' }`;
+    return `${classes} ${ this.className || '' } ${this._rootClasses}`;
   }
 
   get mainStyle() {
-    return `width: ${addUnit(this.width) }; ${this.customStyle || ''}`;
+    return `width: ${addUnit(this.width) }; ${this._rootStyles}`;
   }
 
   onConfirm() {

@@ -1,10 +1,11 @@
 <template>
   <view class="iox-index-anchor-wrapper"
-    :style="wrapperStyle"
+    :class="mainClass"
+    :style="mainStyle"
   >
     <view
-      :class="mainClass"
-      :style="mainStyle"
+      :class="anchorClass"
+      :style="anchorStyle"
     >
       <slot v-if="useSlot"/>
       <block v-else>
@@ -50,11 +51,11 @@ export default class IoxIndexAnchor extends mixins(Base, Emitter) {
   }
 
   get mainStyle() {
-    return `${this.anchorStyle} ${this.customStyle || ''}`;
+    return `${this.wrapperStyle}; ${this._rootStyles}`;
   }
 
-  get mainClass() {
-    return `${this.classPrefix} ${ this.active ? 'iox-index-anchor--active iox-hairline--bottom' : '' } custom-class`;
+  get anchorClass() {
+    return `${this.classPrefix} ${ this.active ? 'iox-index-anchor--active iox-hairline--bottom' : '' }`;
   }
 
   beforeMount() {
