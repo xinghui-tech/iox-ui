@@ -1,22 +1,22 @@
 <template>
   <block>
     <demo-block title="文字提示" padding>
-      <iox-button type="primary" @tap="showToast" class="demo-margin-right">文字提示</iox-button>
-      <iox-button type="primary" @tap="showLongToast">长文字提示</iox-button>
+      <iox-button type="primary" @click="showToast" class="demo-margin-right">文字提示</iox-button>
+      <iox-button type="primary" @click="showLongToast">长文字提示</iox-button>
     </demo-block>
 
     <demo-block title="加载提示" padding>
-      <iox-button type="primary" @tap="showLoadingToast" class="demo-margin-right">加载提示</iox-button>
-      <iox-button type="primary" @tap="showCustomLoadingToast">自定义加载图标</iox-button>
+      <iox-button type="primary" @click="showLoadingToast" class="demo-margin-right">加载提示</iox-button>
+      <iox-button type="primary" @click="showCustomLoadingToast">自定义加载图标</iox-button>
     </demo-block>
 
     <demo-block title="成功/失败提示" padding>
-      <iox-button type="info" @tap="showSuccessToast" class="demo-margin-right">成功提示</iox-button>
-      <iox-button type="danger" @tap="showFailToast">失败提示</iox-button>
+      <iox-button type="info" @click="showSuccessToast" class="demo-margin-right">成功提示</iox-button>
+      <iox-button type="danger" @click="showFailToast">失败提示</iox-button>
     </demo-block>
 
     <demo-block title="动态更新提示" padding>
-      <iox-button type="primary" @tap="showCustomizedToast">动态更新提示</iox-button>
+      <iox-button type="primary" @click="showCustomizedToast">动态更新提示</iox-button>
     </demo-block>
 
     <iox-toast

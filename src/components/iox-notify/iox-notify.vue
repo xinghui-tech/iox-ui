@@ -4,7 +4,7 @@
     :show="isShow"
     custom-class="iox-notify__container"
     :custom-style="'z-index:'+zIndex+';top:'+[addUnit(top)]+';'"
-    @tap="onTap"
+    @click="onTap"
   >
     <view
       :class="mainClass"

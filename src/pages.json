@@ -408,6 +408,9 @@
 		"h5": { 
 			"navigationBarBackgroundColor": "#F8F8F8"
 		},
+		"mp-alipay": {
+			"allowsBounceVertical": "NO"
+		},
 		"backgroundTextStyle": "dark",
 		"backgroundColor": "#F8F8F8",
 		"usingComponents": {

@@ -25,9 +25,9 @@ export default class IoxTab extends mixins(Base, Emitter) {
   dot?: boolean;
 
   @Prop({
-    type: String,
+    type: [String, Number],
   })
-  info?: string;
+  info?: string | number;
 
   @Prop({
     type: String,

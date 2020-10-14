@@ -85,9 +85,9 @@ export default class IoxButtonIcon extends Mixins(Base, Link, ButtonProps, OpenT
   dot?: boolean;
 
   @Prop({
-    type: String,
+    type: [String, Number]
   })
-  info?: string;
+  info?: string | number;
   
   @Prop({
     type: Boolean,

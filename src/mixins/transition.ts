@@ -2,18 +2,21 @@ import Vue from 'vue';
 import { isObj, requestAnimationFrame } from '../utils/utils';
 
 const getClassNames = function (this: any, name: string) {
-  let classes = {
+  let classes: {[name: string]: string} = {};
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
+  classes = {
     enter: `iox-${name}-enter iox-${name}-enter-active enter-class enter-active-class`,
     'enter-to': `iox-${name}-enter-to iox-${name}-enter-active enter-to-class enter-active-class`,
     leave: `iox-${name}-leave iox-${name}-leave-active leave-class leave-active-class`,
     'leave-to': `iox-${name}-leave-to iox-${name}-leave-active leave-to-class leave-active-class`,
   };
+  // #endif
   // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
   classes = {
-    enter: `iox-${name}-enter iox-${name}-enter-active ${this.enterClass} ${this.enterActiveClass}`,
-    'enter-to': `iox-${name}-enter-to iox-${name}-enter-active ${this.enterToClass} ${this.enterActiveClass}`,
-    leave: `iox-${name}-leave iox-${name}-leave-active ${this.leaveClass} ${this.leaveActiveClass}`,
-    'leave-to': `iox-${name}-leave-to iox-${name}-leave-active ${this.leaveToClass} ${this.leaveActiveClass}`,
+    enter: `iox-${name}-enter iox-${name}-enter-active ${this.enterClass || ''} ${this.enterActiveClass || ''}`,
+    'enter-to': `iox-${name}-enter-to iox-${name}-enter-active ${this.enterToClass || ''} ${this.enterActiveClass || ''}`,
+    leave: `iox-${name}-leave iox-${name}-leave-active ${this.leaveClass || ''} ${this.leaveActiveClass || ''}`,
+    'leave-to': `iox-${name}-leave-to iox-${name}-leave-active ${this.leaveToClass || ''} ${this.leaveActiveClass || ''}`,
   };
   // #endif
 
@@ -35,7 +38,6 @@ export const transition = function (showDefaultValue: boolean) {
       leaveClass: String,
       leaveActiveClass: String,
       leaveToClass: String,
-      closeIconClass: String,
       // #endif
       show: {
         type: Boolean,

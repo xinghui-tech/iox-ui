@@ -19,7 +19,8 @@
         v-if="closeable"
         :name="closeIcon"
         :class="spinnerClass"
-        @tap="onClickCloseIcon"
+        @click="onClickCloseIcon"
+        :custom-class="closeIconClasses"
       />
     </view>
   </block>
@@ -47,6 +48,11 @@ const classPrefix = "iox-popup";
   // #endif
 })
 export default class IoxPopup extends mixins(Base, transition(false)) {
+  // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+  @Prop({type: String})
+  closeIconClass?: string;
+  // #endif
+
   // props
   @Prop({
     type: Boolean,
@@ -156,6 +162,15 @@ export default class IoxPopup extends mixins(Base, transition(false)) {
 
   get spinnerClass() {
     return `${this.classPrefix}__close-icon ${this.classPrefix}__close-icon--${this.closeIconPosition}`;
+  }
+
+  get closeIconClasses() {
+    let cls = 'close-icon-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.closeIconClass || '');
+    // #endif
+
+    return cls;
   }
 
   protected created() {

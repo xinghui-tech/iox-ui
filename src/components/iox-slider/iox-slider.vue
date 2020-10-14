@@ -30,13 +30,10 @@
 
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component';
-import { Prop, Watch, Model } from 'vue-property-decorator';
+import { Prop, Model } from 'vue-property-decorator';
 import Touch from '../../mixins/touch';
 import Base from '../../mixins/base';
 import { addUnit } from '../../utils/utils';
-import { canIUseModel } from '../../utils/utils';
-
-
 
 const classPrefix = 'iox-slider';
 @Component({
@@ -99,7 +96,7 @@ export default class IoxSlider extends mixins(Base, Touch) {
   }
 
   get mainClass() {
-    return `${this.classPrefix} ${this.bem('slider', { disabled: this.disabled })} ${this._rootClasses}`;
+    return `${this.bem('slider', { disabled: this.disabled })} ${this._rootClasses}`;
   }
 
   get mainStyle() {

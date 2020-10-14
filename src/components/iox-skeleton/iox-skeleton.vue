@@ -20,7 +20,7 @@
           v-for="(item, index) in rowArray"
           :key="index"
           :class="rowClasses"
-          :style="'width:' + (isArray ? rowWidth[index] : rowWidth)"
+          :style="'width:' + getRowWidth(index)"
         />
       </view>
     </view>
@@ -149,12 +149,10 @@ export default class IoxSkeleton extends mixins(Base) {
     return `${this.bem('skeleton__row')} ${cls}`;
   }
   
-  isArray = false;
   rowArray = [];
 
   created() {
     this.rowArray = Array.from({ length: this.row });
-    this.isArray = Array.isArray(this.rowWidth);
   }
 
   @Watch('row')
@@ -162,9 +160,8 @@ export default class IoxSkeleton extends mixins(Base) {
     this.rowArray = Array.from({ length: val });
   }
 
-  @Watch('rowWidth')
-  onRowWidthChanged(val: number) {
-    this.isArray = Array.isArray(val);
+  getRowWidth(index: number) {
+    return Array.isArray(this.rowWidth) ? this.rowWidth[index] : this.rowWidth;
   }
 }
 </script>

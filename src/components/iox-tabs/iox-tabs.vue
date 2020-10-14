@@ -24,7 +24,7 @@
               v-for="(item, index) in tabs"
               :key="index"
               :data-index="index"
-              :class="[tabClasses(index === currentIndex, ellipsis), bem('tab', { active: index === currentIndex, disabled: item.disabled, complete: !ellipsis })]"
+              :class="[tabClasses(index === currentIndex, ellipsis), bem('tabs__tab', { active: index === currentIndex, disabled: item.disabled, complete: !ellipsis })]"
               :style="'' + tabStyle(index === currentIndex, ellipsis, color, type, item.disabled, titleActiveColor, titleInactiveColor, swipeThreshold, scrollable)"
               @tap="onTap"
             >
@@ -34,7 +34,7 @@
                   v-if="item.info !== null || item.dot"
                   :info="item.info"
                   :dot="item.dot"
-                  custom-class="iox-tab__title__info"
+                  custom-class="iox-tabs__tab__title__info"
                 />
               </view>
             </view>
@@ -53,7 +53,7 @@
       @touchcancel="onTouchEnd"
     >
       <view
-        :class="[bem('tabs__track', [{ animated }]), iox-tabs__track]"
+        :class="[bem('tabs__track', [{ animated }]), 'iox-tabs__track']"
         :style="'' + trackStyles({ duration, currentIndex, animated })"
       >
         <slot />
@@ -70,7 +70,6 @@ import Touch from '../../mixins/touch';
 import { isDef, addUnit } from '../../utils/utils';
 import { wrapFunc, releaseFunc } from '../../utils/func-utils';
 
-type BoundingClientRect = WechatMiniprogram.BoundingClientRectCallbackResult;
 
 const classPrefix = 'iox-tabs';
 @Component({
@@ -155,7 +154,8 @@ export default class IoxTabs extends mixins(Base, Touch) {
     type: String,
     default: 'line',
   })
-  type!: string
+  // line or card
+  type!: string;
 
   @Prop({
     type: Boolean,
@@ -412,7 +412,7 @@ export default class IoxTabs extends mixins(Base, Touch) {
       lineHeight,
     } = this;
 
-    this.getRect('.iox-tab', true).then(
+    this.getRect('.iox-tabs__tab', true).then(
       (rects: UniApp.NodeInfo | UniApp.NodeInfo[] = []) => {
         const rect = (rects as UniApp.NodeInfo[])[currentIndex || 0];
         if (rect == null) {
@@ -451,7 +451,7 @@ export default class IoxTabs extends mixins(Base, Touch) {
     }
 
     Promise.all([
-      this.getRect('.iox-tab', true),
+      this.getRect('.iox-tabs__tab', true),
       this.getRect('.iox-tabs__nav'),
     ]).then(
       ([tabRects, navRect]: [

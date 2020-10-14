@@ -18,7 +18,7 @@
     </demo-block>
 
     <demo-block title="在列元素之间增加间距" padding>
-      <iox-row :gutter="gutter" @tap="gutter = (gutter === 10 ? 20 : 10)">
+      <iox-row :gutter="gutter" @click="gutter = (gutter === 10 ? 20 : 10)">
         <iox-col span="8" custom-class="dark">span: 8</iox-col>
         <iox-col span="8" custom-class="light">span: 8</iox-col>
         <iox-col span="8" custom-class="dark">span: 8</iox-col>

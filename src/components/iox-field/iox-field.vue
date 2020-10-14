@@ -81,13 +81,10 @@
         @confirm="onConfirm"
         @keyboardheightchange="onKeyboardHeightChange"
       />
-      <iox-icon
-        v-if="showClear"
-        name="times-circle-o"
-        class="iox-field__clear-root iox-field__icon-root"
-        @touchstart="onClear"
-      />
-      <view class="iox-field__icon-container" @tap="onClickIcon">
+      <view @touchstart.capture="onClear" v-if="showClear" class="iox-field__clear-root iox-field__icon-root">
+        <iox-icon name="times-circle-o" />
+      </view>
+      <view class="iox-field__icon-container" @tap.stop="onClickIcon">
         <iox-icon
           v-if="rightIcon || icon"
           :name="rightIcon || icon"
