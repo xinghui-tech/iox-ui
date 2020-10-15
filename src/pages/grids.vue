@@ -67,7 +67,12 @@ export default class Index extends mixins(Fonts) {
   array8 = [0, 1, 2, 3, 4, 5, 6, 7];
 
   onShareAppMessage() {
-    
+    return {
+      title: 'IOX UI 宫格',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-grid'
+      // #endif
+    };
   }
 }
 </script>

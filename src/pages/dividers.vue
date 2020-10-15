@@ -29,7 +29,12 @@ import Fonts from '../mixins/font';
 export default class Index extends mixins(Fonts) {
 
   onShareAppMessage() {
-    
+    return {
+      title: 'IOX UI 分割线',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-divider'
+      // #endif
+    };
   }
 }
 </script>

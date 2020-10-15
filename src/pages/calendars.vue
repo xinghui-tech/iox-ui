@@ -322,7 +322,12 @@ export default class Index extends mixins(Fonts) {
   }
 
   onShareAppMessage() {
-
+    return {
+      title: 'IOX UI 日历',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-calendar'
+      // #endif
+    };
   }
 
   setFormater(formater: Function) {

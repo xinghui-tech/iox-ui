@@ -113,7 +113,12 @@ export default class Index extends mixins(Fonts) {
 
 
   onShareAppMessage() {
-
+    return {
+      title: 'IOX UI 上拉菜单',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-action-sheet'
+      // #endif
+    };
   }
 }
 </script>

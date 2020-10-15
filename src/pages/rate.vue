@@ -82,7 +82,12 @@ export default class Index extends mixins(Fonts) {
   value6= 3;
 
   onShareAppMessage() {
-
+    return {
+      title: 'IOX UI 评分',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-rate'
+      // #endif
+    };
   }
 }
 </script>

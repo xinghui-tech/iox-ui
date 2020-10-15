@@ -110,7 +110,12 @@ export default class Index extends mixins(Fonts) {
   }
 
   onShareAppMessage() {
-    
+    return {
+      title: 'IOX UI 计数器',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-count-down'
+      // #endif
+    };
   }
 }
 </script>

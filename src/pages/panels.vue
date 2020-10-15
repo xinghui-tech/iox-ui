@@ -26,7 +26,12 @@ import Fonts from '../mixins/font';
 @Component
 export default class Index extends mixins(Fonts) {
   onShareAppMessage() {
-    
+    return {
+      title: 'IOX UI 面板',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-panel'
+      // #endif
+    };
   }
 }
 </script>

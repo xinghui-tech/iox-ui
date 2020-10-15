@@ -17,6 +17,18 @@
         </view>
       </iox-overlay>
     </demo-block>
+
+    <demo-block title="显示遮罩" padding>
+      <iox-overlay show show-mask custom-style="position: absolute;" @click="onClickHideMask">
+        <view >
+          这些内容被遮挡了。
+        </view>
+        <view class="mask-wrapper" slot="mask">
+          <iox-loading type="spinner" class="demo-margin-bottom" vertical>正在加载...</iox-loading>
+          <iox-button type="warning" size="small" @click="onClickHideMask">取消</iox-button>
+        </view>
+      </iox-overlay>
+    </demo-block>
   </block>
 </template>
 
@@ -29,6 +41,7 @@ import Fonts from '../mixins/font';
 export default class Index extends mixins(Fonts) {
   show = false;
   showEmbedded = false;
+  showMask = false;
 
   onClickShow() {
     this.show = true;
@@ -44,6 +57,14 @@ export default class Index extends mixins(Fonts) {
 
   onClickHideEmbedded() {
     this.showEmbedded = false;
+  }
+
+  onClickShowMask() {
+    this.showMask = true;
+  }
+
+  onClickHideMask() {
+    this.showMask = false;
   }
 
   noop() {}
@@ -62,6 +83,18 @@ export default class Index extends mixins(Fonts) {
 <style lang="less">
 .wrapper {
   display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.mask {
+  position: absolute !important;
+}
+
+.mask-wrapper {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;

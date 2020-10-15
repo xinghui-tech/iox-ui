@@ -86,7 +86,12 @@ export default class Index extends mixins(Fonts) {
   iconVantX = "https://res.oss.zhuyin.club/assets/images/iox-ui.png";
 
   onShareAppMessage() {
-
+    return {
+      title: 'IOX UI 组件演示',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI（Vant UI的UNIAPP版）组件功能演示'
+      // #endif
+    };
   }
 }
 </script>
