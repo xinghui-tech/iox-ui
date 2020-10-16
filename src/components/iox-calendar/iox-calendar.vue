@@ -160,7 +160,6 @@ import {
 import { 
   ToastOptions, toast,
 } from '../../utils/toast';
-import { extractFunc } from '../../utils/func-utils';
 
 const classPrefix = 'iox-calendar';
 @Component({
@@ -250,10 +249,10 @@ export default class IoxCalendar extends mixins(Base) {
   position!: string;
 
   @Prop({
-    type: [Number, String],
+    type: Number,
     default: ROW_HEIGHT,
   })
-  rowHeight?: number | string;
+  rowHeight!: number;
 
   @Prop({
     type: Boolean,

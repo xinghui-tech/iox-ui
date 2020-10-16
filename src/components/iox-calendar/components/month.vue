@@ -1,5 +1,5 @@
 <template>
-  <view class="iox-calendar__month" :style="'' + getMonthStyle(visible, date, rowHeight)">
+  <view :class="mainClass" :style="mainStyle" :data-date="date">
     <view v-if="showMonthTitle" class="iox-calendar__month-title">
       {{ formatMonthTitle(date) }}
     </view>
@@ -89,9 +89,10 @@ export default class IoxCalendarMonth extends mixins(Base) {
   showMark?: boolean;
 
   @Prop({
-    type: [String, Number],
+    type: Number,
+    required: true,
   })
-  rowHeight?: string | number;
+  rowHeight!: number;
 
   @Prop({
     type: String,
@@ -124,6 +125,28 @@ export default class IoxCalendarMonth extends mixins(Base) {
 
   get classPrefix() {
     return classPrefix;
+  }
+
+  get mainClass() {
+    return `iox-calendar__month ${this._rootClasses}`;
+  }
+
+  get mainStyle() {
+    const { visible, date: now, rowHeight} = this;
+    if (!visible) {
+      const date = new Date(now);
+
+      const totalDay = getMonthEndDay(
+        date.getFullYear(),
+        date.getMonth() + 1
+      );
+      const offset = new Date(now).getDay();
+      const padding = Math.ceil((totalDay + offset) / 7) * rowHeight;
+
+      return 'padding-bottom:' + padding + 'px';
+    }
+
+    return '';
   }
 
   @Watch('date')
@@ -310,23 +333,6 @@ export default class IoxCalendarMonth extends mixins(Base) {
   formatMonthTitle(date: Date | number | string) {
     date = new Date(date);
     return date.getFullYear() + '年' + (date.getMonth() + 1) + '月';
-  }
-
-  getMonthStyle(visible: boolean, date: Date | number | string, rowHeight: number) {
-    if (!visible) {
-      date = new Date(date);
-
-      const totalDay = getMonthEndDay(
-        date.getFullYear(),
-        date.getMonth() + 1
-      );
-      const offset = new Date(date).getDay();
-      const padding = Math.ceil((totalDay + offset) / 7) * rowHeight;
-
-      return 'padding-bottom:' + padding + 'px';
-    }
-
-    return '';
   }
 }
 </script>
