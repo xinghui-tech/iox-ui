@@ -1,7 +1,7 @@
 <template>
   <block>
     <demo-block title="基础用法">
-      <iox-circle :value="value" :text="value + '%'" />
+      <iox-circle type="2d" :value="value" :text="value + '%'" />
     </demo-block>
 
     <demo-block title="样式定制">
@@ -40,7 +40,12 @@ export default class Index extends mixins(Fonts) {
   }
 
   onShareAppMessage() {
-    
+    return {
+      title: 'IOX UI 圆形进度条',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-circle'
+      // #endif
+    };
   }
 }
 </script>

@@ -130,7 +130,12 @@ export default class Index extends mixins(Fonts) {
   }
 
   onShareAppMessage() {
-    
+    return {
+      title: 'IOX UI 单选框',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-radio'
+      // #endif
+    };
   }
 }
 </script>

@@ -1,4 +1,4 @@
-type CanvasContext = WechatMiniprogram.CanvasContext;
+type CanvasContext = UniApp.CanvasContext;
 
 export default function adaptor(
   ctx: CanvasRenderingContext2D

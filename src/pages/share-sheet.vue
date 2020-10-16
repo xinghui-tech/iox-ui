@@ -145,7 +145,7 @@ export default class Index extends mixins(Fonts) {
       withDesc: false,
       multiLine: false,
       customIcon: false,
-    }
+    };
   }
 
   onSelect(event: any) {
@@ -156,7 +156,12 @@ export default class Index extends mixins(Fonts) {
 
 
   onShareAppMessage() {
-
+    return {
+      title: 'IOX UI 分享菜单',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-share-sheet'
+      // #endif
+    };
   }
 }
 </script>

@@ -89,6 +89,12 @@ export default class Index extends mixins(Fonts) {
   }
 
   onShareAppMessage() {
+    return {
+      title: 'IOX UI 滑动单元格',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-swipe-cell'
+      // #endif
+    };
   }
 
   confirmClose() {

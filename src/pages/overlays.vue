@@ -49,7 +49,12 @@ export default class Index extends mixins(Fonts) {
   noop() {}
 
   onShareAppMessage() {
-    
+    return {
+      title: 'IOX UI 遮罩层',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-overlay'
+      // #endif
+    };
   }
 }
 </script>

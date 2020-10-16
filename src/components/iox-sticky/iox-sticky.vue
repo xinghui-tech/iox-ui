@@ -9,6 +9,7 @@
 </template>
 
 <script lang="ts">
+import { nextSequence } from '../../utils/utils';
 import Component, { mixins } from 'vue-class-component';
 import { Prop, Watch } from 'vue-property-decorator';
 import Base from '../../mixins/base';
@@ -24,10 +25,7 @@ const PageScroll = pagescroll(function (this: Vue, event?: IPageScrollOption) {
   (this as any).onScroll(event);
 });
 
-const ROOT_ELEMENT = '.iox-sticky';
-
 const classPrefix = 'iox-sticky';
-
 // FIXME for uniapp framework, page which using iox-sticky must have function onPageScroll() {}.
 @Component
 export default class IoxSticky extends mixins(Base, PageScroll) {
@@ -66,6 +64,8 @@ export default class IoxSticky extends mixins(Base, PageScroll) {
   fixed = false;
   transform = 0;
   currentScrollTop: null | number = null;
+
+  uuidClass = `${this.classPrefix}__uuid${nextSequence()}`;
 
   get classPrefix() {
     return classPrefix;
@@ -106,8 +106,13 @@ export default class IoxSticky extends mixins(Base, PageScroll) {
 
     this.currentScrollTop = scrollTop || this.currentScrollTop;
 
+    let selector = '.iox-sticky';
+    // #ifdef MP-ALIPAY
+    selector = `.${this.uuidClass}`;
+    // #endif
+
     if (container) {
-      Promise.all([this.getRect(ROOT_ELEMENT), this.getContainerRect()]).then(
+      Promise.all([this.getRect(selector), this.getContainerRect()]).then(
         ([root, container]) => {
           if (offsetTop + (root as UniApp.NodeInfo).height! > container.height! + container.top!) {
             this.setDataAfterDiff({
@@ -129,7 +134,8 @@ export default class IoxSticky extends mixins(Base, PageScroll) {
       return;
     }
 
-    this.getRect(ROOT_ELEMENT).then(root => {
+
+    this.getRect(selector).then(root => {
       if (offsetTop >= (root as UniApp.NodeInfo).top!) {
         this.setDataAfterDiff({ fixed: true, height: (root as UniApp.NodeInfo).height! });
         this.transform = 0;

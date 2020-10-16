@@ -39,6 +39,7 @@
         <iox-cell title="Dialog 对话框" url="/pages/dialogs" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="DropdownMenu 下拉菜单" url="/pages/dropdowns" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Loading 加载" url="/pages/loadings" :icon="iconVant" value="老糊涂" isLink />
+        <iox-cell title="Mask 蒙板" url="/pages/masks" :icon="iconXinghui" value="老糊涂" isLink />
         <iox-cell title="Notify 消息通知" url="/pages/notify" :icon="iconVant" value="春雨" isLink />
         <iox-cell title="Overlay 遮罩层" url="/pages/overlays" :icon="iconVant" value="老糊涂" isLink />
         <iox-cell title="Share Sheet 分享面板" url="/pages/share-sheet" :icon="iconVant" value="春雨" isLink />
@@ -84,9 +85,15 @@ export default class Index extends mixins(Fonts) {
 
   iconVant = "https://img.yzcdn.cn/vant/logo.png";
   iconVantX = "https://res.oss.zhuyin.club/assets/images/iox-ui.png";
+  iconXinghui = "https://res.oss.zhuyin.club/assets/images/iox-ui.png";
 
   onShareAppMessage() {
-
+    return {
+      title: 'IOX UI 组件演示',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI（Vant UI的UNIAPP版）组件功能演示'
+      // #endif
+    };
   }
 }
 </script>

@@ -87,7 +87,12 @@ export default class Index extends mixins(Fonts) {
   }
 
   onShareAppMessage() {
-
+    return {
+      title: 'IOX UI 步进器',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-stepper'
+      // #endif
+    };
   }
 }
 </script>

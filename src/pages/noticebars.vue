@@ -44,7 +44,12 @@ export default class Index extends mixins(Fonts) {
   shortText = '技术是开发它的人的共同灵魂。';
 
   onShareAppMessage() {
-    
+    return {
+      title: 'IOX UI 通知栏',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-notify-bar'
+      // #endif
+    };
   }
 }
 </script>

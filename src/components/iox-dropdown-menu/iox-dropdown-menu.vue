@@ -25,7 +25,7 @@ import Component, { mixins } from 'vue-class-component';
 import { Prop, Watch } from 'vue-property-decorator';
 import Base from '../../mixins/base';
 import Emitter from '../../mixins/emitter';
-import { addUnit, getSystemInfoSync } from '../../utils/utils';
+import { addUnit, getSystemInfoSync, nextSequence } from '../../utils/utils';
 
 let Menus: IoxDrowdownMenu[] = [];
 
@@ -87,12 +87,14 @@ export default class IoxDrowdownMenu extends mixins(Base, Emitter) {
   children!: Vue[];
   windowHeight: number|undefined = 0;
 
+  uuidClass = `${this.classPrefix}__uuid${nextSequence()}`;
+
   get classPrefix() {
     return classPrefix;
   }
 
   get mainClass() {
-    return `${this.classPrefix} ${this.classPrefix}--top-bottom ${this._rootClasses}`;
+    return `${this.uuidClass} ${this.classPrefix} ${this.classPrefix}--top-bottom ${this._rootClasses}`;
   }
 
   beforeCreate() {
@@ -180,7 +182,12 @@ export default class IoxDrowdownMenu extends mixins(Base, Emitter) {
   getChildWrapperStyle() {
     const { zIndex, direction } = this;
 
-    return this.getRect('.iox-dropdown-menu').then(
+    let selector = '.iox-dropdown-menu';
+    // #ifdef MP-ALIPAY
+    selector = `.${this.uuidClass}`;
+    // #endif
+
+    return this.getRect(selector).then(
       (rect) => {
         const { top = 0, bottom = 0 } = rect as UniApp.NodeInfo;
         const offset = direction === 'down' ? bottom : this.windowHeight! - top;

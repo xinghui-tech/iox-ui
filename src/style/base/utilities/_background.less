@@ -1,0 +1,18 @@
+each(@theme-colors, #(@value, @color) {
+	#bg-variant(~".bg-@{color}", @value, true);
+});
+
+& when (@enable-gradients) {
+	each(@theme-colors, #(@value, @color) {
+		#bg-gradient-variant(~".bg-gradient-@{color}", @value);
+	});
+}
+
+
+.bg-white {
+	background-color: @white !important;
+}
+
+.bg-transparent {
+	background-color: transparent !important;
+}

@@ -24,7 +24,7 @@
               v-for="(item, index) in tabs"
               :key="index"
               :data-index="index"
-              :class="[tabClasses(index === currentIndex, ellipsis), bem('tabs__tab', { active: index === currentIndex, disabled: item.disabled, complete: !ellipsis })]"
+              :class="[tabClasses(index === currentIndex, ellipsis), uuidTabClass, bem('tabs__tab', { active: index === currentIndex, disabled: item.disabled, complete: !ellipsis })]"
               :style="'' + tabStyle(index === currentIndex, ellipsis, color, type, item.disabled, titleActiveColor, titleInactiveColor, swipeThreshold, scrollable)"
               @tap="onTap"
             >
@@ -67,7 +67,7 @@ import Component, { mixins } from 'vue-class-component';
 import { Prop, Watch } from 'vue-property-decorator';
 import Base from '../../mixins/base';
 import Touch from '../../mixins/touch';
-import { isDef, addUnit } from '../../utils/utils';
+import { isDef, addUnit, nextSequence } from '../../utils/utils';
 import { wrapFunc, releaseFunc } from '../../utils/func-utils';
 
 
@@ -137,7 +137,6 @@ export default class IoxTabs extends mixins(Base, Touch) {
   })
   lineWidth!: number;
 
-
   @Prop({
     type: [Number, String],
     default: -1,
@@ -202,13 +201,17 @@ export default class IoxTabs extends mixins(Base, Touch) {
   container: string | null = null;
   children!: Vue[];
 
+  uuidClass = `${this.classPrefix}__uuid${nextSequence()}`;
+  uuidTabClass = `${this.classPrefix}__tab__uuid${nextSequence()}`;
+  uuidNavClass = `${this.classPrefix}__nav__uuid${nextSequence()}`;
+
   get classPrefix() {
     return classPrefix;
   }
 
   get mainClass() {
     const classes = this.bem('tabs', [this.type]);
-    return `${classes} ${this._rootClasses}`;
+    return `${this.uuidClass} ${classes} ${this._rootClasses}`;
   }
 
   get navClasses() {
@@ -217,7 +220,7 @@ export default class IoxTabs extends mixins(Base, Touch) {
     cls = (this.navClass || '');
     // #endif
 
-    return `${this.bem('tabs__nav', [this.type, { complete: !this.ellipsis }])} ${cls}`;
+    return `${this.uuidNavClass} ${this.bem('tabs__nav', [this.type, { complete: !this.ellipsis }])} ${cls}`;
   }
 
   get navWrapClasses() {
@@ -300,8 +303,21 @@ export default class IoxTabs extends mixins(Base, Touch) {
     if (this.container) {
       releaseFunc(this.container);
     }
+    let selector = '.iox-tabs';
+    // #ifdef MP-ALIPAY
+    selector = `.${this.uuidClass}`;
+    // #endif
 
-    this.container = wrapFunc(() => uni.createSelectorQuery().in(this).select('.iox-tabs'));
+    this.container = wrapFunc(() => {
+      let c: UniApp.NodesRef;
+      // #ifdef MP-ALIPAY
+      c = uni.createSelectorQuery().in(this).select(selector);
+      // #endif
+      // #ifdef MP-ALIPAY
+      c = uni.createSelectorQuery().in(this).select(selector);
+      // #endif
+      return c;
+    });
   }
 
   updateTabs() {
@@ -412,7 +428,12 @@ export default class IoxTabs extends mixins(Base, Touch) {
       lineHeight,
     } = this;
 
-    this.getRect('.iox-tabs__tab', true).then(
+    let selector = '.iox-tabs__tab';
+    // #ifdef MP-ALIPAY
+    selector = `.${this.uuidTabClass}`;
+    // #endif
+
+    this.getRect(selector, true).then(
       (rects: UniApp.NodeInfo | UniApp.NodeInfo[] = []) => {
         const rect = (rects as UniApp.NodeInfo[])[currentIndex || 0];
         if (rect == null) {
@@ -450,9 +471,19 @@ export default class IoxTabs extends mixins(Base, Touch) {
       return;
     }
 
+    let tabSelector = '.iox-tabs__tab';
+    // #ifdef MP-ALIPAY
+    tabSelector = `.${this.uuidTabClass}`;
+    // #endif
+
+    let navSelector = '.iox-tabs__nav';
+    // #ifdef MP-ALIPAY
+    navSelector = `.${this.uuidNavClass}`;
+    // #endif
+
     Promise.all([
-      this.getRect('.iox-tabs__tab', true),
-      this.getRect('.iox-tabs__nav'),
+      this.getRect(tabSelector, true),
+      this.getRect(navSelector),
     ]).then(
       ([tabRects, navRect]: [
         UniApp.NodeInfo | UniApp.NodeInfo[],

@@ -1,7 +1,6 @@
 <template>
   <view :class="mainClass" :style="mainStyle">
     <iox-button
-      :id="id"
       :lang="lang"
       :type="type"
       :color="color"

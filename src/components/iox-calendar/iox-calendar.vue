@@ -24,12 +24,12 @@
           <block><block slot="title"><slot name="title" /></block></block>
         </calendar-header>
 
-        <scroll-view class="iox-calendar__body" scroll-y :scroll-into-view="scrollIntoView">
+        <scroll-view :class="[uuidBodyClass, 'iox-calendar__body']" scroll-y :scroll-into-view="scrollIntoView">
           <month
             v-for="(item, index) in months"
             :key="index"
             :id="'month' + index"
-            class="month"
+            :class="[uuidMonthClass, 'month']"
             :data-date="item"
             :date="item"
             :type="type"
@@ -79,12 +79,12 @@
         <block><block slot="title"><slot name="title" /></block></block>
       </calendar-header>
 
-      <scroll-view class="iox-calendar__body" scroll-y :scroll-into-view="scrollIntoView">
+      <scroll-view :class="[uuidBodyClass, 'iox-calendar__body']" scroll-y :scroll-into-view="scrollIntoView">
         <month
           v-for="(item, index) in months"
           :key="index"
           :id="'month' + index"
-          class="month"
+          :class="[uuidMonthClass, 'month']"
           :data-date="item"
           :date="item"
           :type="type"
@@ -144,7 +144,7 @@ import { Prop, Watch } from 'vue-property-decorator';
 import Base from '../../mixins/base';
 import Header from './components/header.vue';
 import Month from './components/month.vue';
-import { requestAnimationFrame } from '../../utils/utils';
+import { nextSequence, requestAnimationFrame } from '../../utils/utils';
 import {
   ROW_HEIGHT,
   getNextDay,
@@ -160,7 +160,6 @@ import {
 import { 
   ToastOptions, toast,
 } from '../../utils/toast';
-import { extractFunc } from '../../utils/func-utils';
 
 const classPrefix = 'iox-calendar';
 @Component({
@@ -250,10 +249,10 @@ export default class IoxCalendar extends mixins(Base) {
   position!: string;
 
   @Prop({
-    type: [Number, String],
+    type: Number,
     default: ROW_HEIGHT,
   })
-  rowHeight?: number | string;
+  rowHeight!: number;
 
   @Prop({
     type: Boolean,
@@ -316,6 +315,9 @@ export default class IoxCalendar extends mixins(Base) {
   scrollIntoView = '';
   contentObserver?: UniApp.IntersectionObserver;
 
+  uuidMonthClass = `${this.classPrefix}__month__uuid${nextSequence()}`;
+  uuidBodyClass = `${this.classPrefix}__body__uuid${nextSequence()}`;
+
   get classPrefix() {
     return classPrefix;
   }
@@ -373,8 +375,17 @@ export default class IoxCalendar extends mixins(Base) {
 
     this.contentObserver = contentObserver;
 
-    contentObserver.relativeTo('.iox-calendar__body', 0);
-    contentObserver.observe('.month', (res) => {
+    let bodySelector = '.iox-calendar__body';
+    // #ifdef MP-ALIPAY
+    bodySelector = `.${this.uuidBodyClass}`;
+    // #endif
+    let monthSelector = '.month';
+    // #ifdef MP-ALIPAY
+    monthSelector = `.${this.uuidMonthClass}`;
+    // #endif
+
+    contentObserver.relativeTo(bodySelector, 0);
+    contentObserver.observe(monthSelector, (res) => {
       if (res.boundingClientRect!.top! <= res.relativeRect!.top!) {
         this.subtitle = formatMonthTitle((res as any).dataset.date);
       }

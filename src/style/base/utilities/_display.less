@@ -1,0 +1,24 @@
+//
+// Utilities for common `display` values
+//
+
+each(map-keys(@grid-breakpoints), #(@breakpoint) {
+	#media-breakpoint-up(@breakpoint, {
+		@infix: breakpoint-infix(@breakpoint, @grid-breakpoints);
+
+		each(@displays, #(@value) {
+			.d@{infix}-@{value} { display: @value !important; }
+		});
+	});
+});
+
+
+//
+// Utilities for toggling `display` in print
+//
+
+@media print {
+	each(@displays, #(@value) {
+		.d-print-@{value} { display: @value !important; }
+	});
+}

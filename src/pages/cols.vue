@@ -37,7 +37,12 @@ export default class Index extends mixins(Fonts) {
   gutter = 20;
 
   onShareAppMessage() {
-    
+    return {
+      title: 'IOX UI 布局',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-col'
+      // #endif
+    };
   }
 }
 </script>

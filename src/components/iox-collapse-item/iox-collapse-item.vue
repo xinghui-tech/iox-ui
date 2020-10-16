@@ -33,6 +33,7 @@
 </template>
 
 <script lang="ts">
+import { nextSequence } from '../../utils/utils';
 import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
 import Base from '../../mixins/base';
@@ -110,6 +111,8 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
   animations: WechatMiniprogram.AnimationExportResult | null = null;
   inited = false;
 
+  uuidClass = `${this.classPrefix}__content__uuid${nextSequence()}`;
+
   get classPrefix() {
     return classPrefix;
   }
@@ -133,7 +136,7 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
     cls = (this.contentClass || '');
     // #endif
 
-    return `iox-collapse-item__content ${cls}`;
+    return `${this.uuidClass} iox-collapse-item__content ${cls}`;
   }
 
   created() {
@@ -182,7 +185,12 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
 
   updateStyle(expanded: boolean) {
     const { inited } = this;
-    this.getRect('.iox-collapse-item__content')
+    let selector = '.iox-collapse-item__content';
+    // #ifdef MP-ALIPAY
+    selector = `.${this.uuidClass}`;
+    // #endif
+
+    this.getRect(selector)
       .then((rect) => (rect as UniApp.NodeInfo).height!)
       .then((height: number) => {
         const { animation } = this;

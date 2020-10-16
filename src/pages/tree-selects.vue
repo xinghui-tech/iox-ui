@@ -178,7 +178,12 @@ export default class Index extends mixins(Fonts) {
   }
 
   onShareAppMessage() {
-    
+    return {
+      title: 'IOX UI 分类选择',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-tree-select'
+      // #endif
+    };
   }
 }
 </script>

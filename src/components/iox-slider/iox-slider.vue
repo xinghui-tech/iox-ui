@@ -33,7 +33,7 @@ import Component, { mixins } from 'vue-class-component';
 import { Prop, Model } from 'vue-property-decorator';
 import Touch from '../../mixins/touch';
 import Base from '../../mixins/base';
-import { addUnit } from '../../utils/utils';
+import { addUnit, nextSequence } from '../../utils/utils';
 
 const classPrefix = 'iox-slider';
 @Component({
@@ -82,7 +82,9 @@ export default class IoxSlider extends mixins(Base, Touch) {
   barStyle = '';
   startValue = 0;
   dragStatus = '';
-  newValue = 0
+  newValue = 0;
+
+  uuidClass = `${this.classPrefix}__uuid${nextSequence()}`;
 
   // @Watch('value')
   // valueChanged(newVal: number, oldVal: number) {
@@ -96,7 +98,7 @@ export default class IoxSlider extends mixins(Base, Touch) {
   }
 
   get mainClass() {
-    return `${this.bem('slider', { disabled: this.disabled })} ${this._rootClasses}`;
+    return `${this.uuidClass} ${this.bem('slider', { disabled: this.disabled })} ${this._rootClasses}`;
   }
 
   get mainStyle() {
@@ -147,7 +149,12 @@ export default class IoxSlider extends mixins(Base, Touch) {
     this.touchMove(event);
     this.dragStatus = 'draging';
 
-    this.getRect('.iox-slider').then(
+    let selector = '.iox-slider';
+    // #ifdef MP-ALIPAY
+    selector = `.${this.uuidClass}`;
+    // #endif
+
+    this.getRect(selector).then(
       (rect: any) => {
         const diff = (this.deltaX / rect.width) * 100;
         this.newValue = this.startValue + diff;
@@ -168,7 +175,13 @@ export default class IoxSlider extends mixins(Base, Touch) {
   onClick(event: any) {
     if (this.disabled) return;
     const { min } = this as any;
-    this.getRect('.iox-slider').then(
+
+    let selector = '.iox-slider';
+    // #ifdef MP-ALIPAY
+    selector = `.${this.uuidClass}`;
+    // #endif
+
+    this.getRect(selector).then(
       (rect: any) => {
         const value = ((event.detail.x - rect.left) / rect.width) * this.getRange() + min;
         this.updateValue(value, true);

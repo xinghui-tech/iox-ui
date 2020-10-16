@@ -72,6 +72,7 @@ export default class Base extends Vue {
 
   public getRect(selector: string, all?: boolean): Promise<UniApp.NodeInfo | UniApp.NodeInfo[]> {
     return new Promise((resolve) => {
+      // #ifndef MP-ALIPAY
       uni.createSelectorQuery()
         .in(this)[all ? 'selectAll' : 'select'](selector)
         .boundingClientRect((rect) => {
@@ -83,6 +84,19 @@ export default class Base extends Vue {
           }
         })
         .exec();
+      // #endif
+      // #ifdef MP-ALIPAY
+      uni.createSelectorQuery()[all ? 'selectAll' : 'select'](selector)
+        .boundingClientRect((rect) => {
+          if (all && Array.isArray(rect) && rect.length) {
+            resolve(rect);
+          }
+          if (!all && rect) {
+            resolve(rect);
+          }
+        })
+        .exec();
+      // #endif
     });
   }
 }

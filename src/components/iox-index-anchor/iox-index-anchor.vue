@@ -1,8 +1,5 @@
 <template>
-  <view class="iox-index-anchor-wrapper"
-    :class="mainClass"
-    :style="mainStyle"
-  >
+  <view  :class="mainClass" :style="mainStyle" >
     <view
       :class="anchorClass"
       :style="anchorStyle"
@@ -16,12 +13,11 @@
 </template>
 
 <script lang="ts">
+import { nextSequence } from '../../utils/utils';
 import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
 import Base from '../../mixins/base';
 import Emitter from '../../mixins/emitter';
-
-type BoundingClientRect = WechatMiniprogram.BoundingClientRectCallbackResult;
 
 const classPrefix = 'iox-index-anchor';
 @Component({
@@ -42,6 +38,8 @@ export default class IoxIndexAnchor extends mixins(Base, Emitter) {
   wrapperStyle = '';
   anchorStyle = '';
 
+  uuidClass = `${this.classPrefix}__uuid${nextSequence()}`;
+
   height = 0;
   top = 0;
   parent?: Vue;
@@ -55,7 +53,7 @@ export default class IoxIndexAnchor extends mixins(Base, Emitter) {
   }
 
   get anchorClass() {
-    return `${this.classPrefix} ${ this.active ? 'iox-index-anchor--active iox-hairline--bottom' : '' }`;
+    return `${this.uuidClass} ${this.classPrefix} iox-index-anchor-wrapper ${ this.active ? 'iox-index-anchor--active iox-hairline--bottom' : '' }`;
   }
 
   beforeMount() {
@@ -82,7 +80,12 @@ export default class IoxIndexAnchor extends mixins(Base, Emitter) {
   }
 
   getBoundingClientRect() {
-    return this.getRect('.iox-index-anchor-wrapper');
+    let selector = '.iox-index-anchor-wrapper';
+    // #ifdef MP-ALIPAY
+    selector = `.${this.uuidClass}`;
+    // #endif
+
+    return this.getRect(selector);
   }
 }
 </script>
