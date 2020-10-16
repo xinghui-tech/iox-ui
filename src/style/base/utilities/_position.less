@@ -1,8 +1,5 @@
 // Common values
 
-//@each $position in $positions {
-//  .position-#{$position} { position: $position !important; }
-//}
 each(@positions, #(@position) {
 	.position-@{position} { position: @position !important; }
 });

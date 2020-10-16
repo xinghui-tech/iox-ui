@@ -64,21 +64,6 @@ function getBreakpoints(context, breakpoints) {
 // Less Functions
 //
 
-functions.add('breakpoint-next', function ({ value: breakpointName }, breakpoints) {
-	const breakpointsMap  = getBreakpoints(this.context, breakpoints)
-	const breakpointNames = Object.keys(breakpointsMap)
-	const breakpointIndex = breakpointNames.indexOf(breakpointName)
-
-	if (breakpointIndex === -1)
-		return new tree.Quoted('"')
-
-	// Next breakpoint is null for the last breakpoint.
-	if ((breakpointIndex + 1) === breakpointNames.length)
-		return new tree.Quoted('"')
-
-	return new tree.Quoted('"', breakpointNames[breakpointIndex + 1])
-})
-
 functions.add('breakpoint-min', function ({ value: breakpointName }, breakpoints) {
 	const breakpointsMap  = getBreakpoints(this.context, breakpoints)
 	const breakpointNames = Object.keys(breakpointsMap)
@@ -92,23 +77,6 @@ functions.add('breakpoint-min', function ({ value: breakpointName }, breakpoints
 		return new tree.Quoted('"')
 
 	return breakpointsMap[breakpointName]
-})
-
-functions.add('breakpoint-max', function ({ value: breakpointName }, breakpoints) {
-	const breakpointsMap  = getBreakpoints(this.context, breakpoints)
-	const breakpointNames = Object.keys(breakpointsMap)
-	const breakpointIndex = breakpointNames.indexOf(breakpointName)
-
-	if (breakpointIndex === -1)
-		return new tree.Quoted('"')
-
-	// Maximum breakpoint width is null for the last breakpoint.
-	if ((breakpointIndex + 1) === breakpointNames.length)
-		return new tree.Quoted('"')
-
-	const nextBreakpoint = breakpointsMap[breakpointNames[breakpointIndex + 1]]
-
-	return new tree.Dimension(nextBreakpoint.value - 0.02, nextBreakpoint.unit)
 })
 
 functions.add('breakpoint-infix', function ({ value: breakpointName }, breakpoints) {

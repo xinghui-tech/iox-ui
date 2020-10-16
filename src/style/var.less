@@ -652,3 +652,146 @@
 @skeleton-row-margin-top: @padding-sm;
 @skeleton-avatar-background-color: @gray-2;
 @skeleton-animation-duration: 1.2s;
+
+
+/*
+  the variables from bootstrap V4
+*/
+// Color system
+@gray-100: #f8f9fa;
+@gray-200: #e9ecef;
+@gray-300: #dee2e6;
+@gray-400: #ced4da;
+@gray-500: #adb5bd;
+@gray-600: #6c757d;
+@gray-700: #495057;
+@gray-800: #343a40;
+@gray-900: #212529;
+@black   : #000;
+
+
+@indigo: #6610f2;
+@purple: #6f42c1;
+@pink  : #e83e8c;
+@yellow: #ffc107;
+@teal  : #20c997;
+@cyan  : #17a2b8;
+
+@primary  : @blue;
+@secondary: @gray-600;
+@success  : @green;
+@info     : @cyan;
+@warning  : @yellow;
+@danger   : @red;
+@light    : @gray-100;
+@dark     : @gray-800;
+
+@theme-colors: {
+  primary  : @primary;
+  secondary: @secondary;
+  success  : @success;
+  info     : @info;
+  warning  : @warning;
+  danger   : @danger;
+  light    : @light;
+  dark     : @dark;
+};
+
+
+// LESS PORT: Because of the unconventional use of special characters here, the value of this
+// variable is considered to be a whole string -- not a ruleset!
+@escaped-characters: {
+  <: %3c;
+  >: %3e;
+  #: %23;
+};
+
+// Options
+@enable-caret                             : true;
+@enable-rounded                           : true;
+@enable-shadows                           : false;
+@enable-gradients                         : false;
+@enable-transitions                       : true;
+@enable-prefers-reduced-motion-media-query: true;
+@enable-hover-media-query                 : false; // Deprecated, no longer affects any compiled CSS
+@enable-grid-classes                      : true;
+@enable-pointer-cursor-for-buttons        : true;
+@enable-print-styles                      : true;
+@enable-responsive-font-sizes             : false;
+@enable-validation-icons                  : true;
+@enable-deprecation-messages              : true;
+
+
+// Spacing
+@spacer: 1rem;
+
+@spacers: {
+  0: 0;
+  1: (@spacer * 0.25);
+  2: (@spacer * 0.5);
+  3: @spacer;
+  4: (@spacer * 1.5);
+  5: (@spacer * 3);
+};
+
+// This variable affects the `.h-*` and `.w-*` classes.
+@sizes: {
+  25  : 25%;
+  50  : 50%;
+  75  : 75%;
+  100 : 100%;
+  auto: auto;
+};
+
+// Body
+@body-bg   : @white;
+@body-color: @gray-900;
+
+// Links
+@link-decoration                        : none;
+@link-hover-decoration                  : underline;
+// Darken percentage for links with `.text-*` class (e.g. `.text-success`)
+@emphasized-link-hover-darken-percentage: 15%;
+
+// Grid breakpoints
+@grid-breakpoints: {
+  xs: 0;
+  sm: 576px;
+  md: 768px;
+  lg: 992px;
+  xl: 1200px;
+};
+
+// Components
+@border-width: @border-width-base;
+@border-radius   : 0.25rem;
+@rounded-pill: 50rem;
+
+@box-shadow-sm: 0 0.125rem 0.25rem fade(@black, 7.5%);
+@box-shadow   : 0 0.5rem 1rem fade(@black, 15%);
+@box-shadow-lg: 0 1rem 3rem fade(@black, 17.5%);
+
+@caret-width         : 0.3em;
+@caret-vertical-align: (@caret-width * 0.85);
+@caret-spacing       : (@caret-width * 0.85);
+
+// Typography
+@font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+@font-size-base: 1rem; // Assumes the browser default, typically `16px`
+
+@font-weight-lighter: lighter;
+@font-weight-light  : 300;
+@font-weight-normal : 400;
+@font-weight-bolder : bolder;
+
+@text-muted: @gray-600;
+
+// Z-index master list
+@zindex-sticky: 1020;
+@zindex-fixed : 1030;
+
+// Utilities
+@displays : none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex;
+@overflows: auto, hidden;
+@positions: static, relative, absolute, fixed, sticky;

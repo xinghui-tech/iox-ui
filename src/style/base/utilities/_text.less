@@ -14,15 +14,6 @@
 
 // Responsive alignment
 
-//@each $breakpoint in map-keys($grid-breakpoints) {
-//  @include media-breakpoint-up($breakpoint) {
-//    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
-//
-//    .text#{$infix}-left   { text-align: left !important; }
-//    .text#{$infix}-right  { text-align: right !important; }
-//    .text#{$infix}-center { text-align: center !important; }
-//  }
-//}
 each(map-keys(@grid-breakpoints), #(@breakpoint) {
 	#media-breakpoint-up(@breakpoint, {
 		@infix: breakpoint-infix(@breakpoint, @grid-breakpoints);
@@ -52,9 +43,6 @@ each(map-keys(@grid-breakpoints), #(@breakpoint) {
 
 .text-white { color: @white !important; }
 
-//@each $color, $value in $theme-colors {
-//  @include text-emphasis-variant(".text-#{$color}", $value);
-//}
 each(@theme-colors, #(@value, @color) {
 	#text-emphasis-variant(~".text-@{color}", @value, true);
 });
