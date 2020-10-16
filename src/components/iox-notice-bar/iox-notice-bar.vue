@@ -13,8 +13,8 @@
     />
     <slot v-else name="left-icon" />
 
-    <view class="iox-notice-bar__wrap">
-      <view :class="['iox-notice-bar__content', !scrollable && !wrapable ? 'iox-ellipsis' : '']" :animation="animationData">
+    <view :class="[uuidWrapClass, 'iox-notice-bar__wrap']">
+      <view :class="[uuidContentClass, 'iox-notice-bar__content', !scrollable && !wrapable ? 'iox-ellipsis' : '']" :animation="animationData">
         {{ text }}
       </view>
     </view>
@@ -40,7 +40,7 @@
 import Component, { mixins } from 'vue-class-component';
 import { Prop, Watch } from 'vue-property-decorator';
 import Base from '../../mixins/base';
-import { requestAnimationFrame } from '../../utils/utils';
+import { nextSequence, requestAnimationFrame } from '../../utils/utils';
 
 const classPrefix = 'iox-notice-bar';
 
@@ -123,6 +123,9 @@ export default class IoxNoticeBar extends mixins(Base) {
   duration = 300;
   animationData: WechatMiniprogram.AnimationExportResult | null = null;
 
+  uuidWrapClass = `${this.classPrefix}__wrap__uuid${nextSequence()}`;
+  uuidContentClass = `${this.classPrefix}__content__uuid${nextSequence()}`;
+
   get classPrefix() {
     return classPrefix;
   }
@@ -158,9 +161,19 @@ export default class IoxNoticeBar extends mixins(Base) {
   }
 
   init() {
+    let contentSelector = '.iox-notice-bar__content';
+    // #ifdef MP-ALIPAY
+    contentSelector = `.${this.uuidContentClass}`;
+    // #endif
+
+    let wrapSelector = '.iox-notice-bar__wrap';
+    // #ifdef MP-ALIPAY
+    wrapSelector = `.${this.uuidWrapClass}`;
+    // #endif
+
     Promise.all([
-      this.getRect('.iox-notice-bar__content'),
-      this.getRect('.iox-notice-bar__wrap'),
+      this.getRect(contentSelector),
+      this.getRect(wrapSelector),
     ]).then((rects) => {
       const [contentRect, wrapRect] = rects as UniApp.NodeInfo[];
       if ( contentRect == null || wrapRect == null || !contentRect.width || !wrapRect.width

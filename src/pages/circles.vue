@@ -1,7 +1,7 @@
 <template>
   <block>
     <demo-block title="基础用法">
-      <iox-circle :value="value" :text="value + '%'" />
+      <iox-circle type="2d" :value="value" :text="value + '%'" />
     </demo-block>
 
     <demo-block title="样式定制">

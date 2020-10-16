@@ -17,7 +17,7 @@
     <slot v-else name="icon" />
 
     <view v-if="showTitle"
-      :style="(titleWidth ? 'max-width:' + titleWidth + ';min-width:' + titleWidth + ';' : '') + titleStyle"
+      :style="(titleWidth ? 'max-width:' + titleWidth + ';min-width:' + titleWidth + ';' : '') + (titleStyle || '')"
       :class="titleClasses"
     >
       <block v-if="title">{{ title }}</block>

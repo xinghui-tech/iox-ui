@@ -3,7 +3,6 @@
     :class="mainClass"
     :style="mainStyle"
     square
-    :id="id"
     size="large"
     :lang="lang"
     :loading="loading"

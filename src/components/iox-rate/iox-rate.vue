@@ -10,15 +10,17 @@
         :key="index"
         :style="'padding-right:'+(index !== count - 1 ? [addUnit(gutter)] : '')"
       >
-        <iox-icon
-          :name="(index + 1) <= innerValue ? icon : voidIcon"
-          class="iox-rate__icon"
-          :style="'font-size:' + [addUnit(size)] + ';'"
-          :custom-class="iconClasses"
-          :data-score="index"
-          :color="disabled ? disabledColor : (index + 1) <= innerValue ? color : voidColor"
-          @click="onSelect(index)"
-        />
+        <view :class="uuidClass" :data-score="index">
+          <iox-icon
+            :name="(index + 1) <= innerValue ? icon : voidIcon"
+            class="iox-rate__icon"
+            :style="'font-size:' + [addUnit(size)] + ';'"
+            :custom-class="iconClasses"
+            :data-score="index"
+            :color="disabled ? disabledColor : (index + 1) <= innerValue ? color : voidColor"
+            @click="onSelect(index)"
+          />
+        </view>
 
         <iox-icon
           v-if="allowHalf"
@@ -39,7 +41,7 @@
 import Component, { mixins } from 'vue-class-component';
 import { Prop, Watch, Model } from 'vue-property-decorator';
 import Base from '../../mixins/base';
-import { addUnit } from '../../utils/utils';
+import { addUnit, nextSequence } from '../../utils/utils';
 
 const classPrefix = 'iox-rate';
 @Component({
@@ -125,6 +127,8 @@ export default class IoxRate extends mixins(Base) {
   innerValue = 0;
   innerCountArray = Array.from({ length: 5 });
 
+  uuidClass = `${this.classPrefix}__icon__uuid${nextSequence()}`;
+
 
   @Watch('value')
   valueChanged(newVal: number, oldVal: number) {
@@ -175,15 +179,24 @@ export default class IoxRate extends mixins(Base) {
 
     const { clientX } = event.touches[0];
 
-    // TODO use pure vue feature to compatiable with other MP except wechat.
-    this.getRect('.iox-rate__icon', true).then(
+    let selector = '.iox-rate__icon';
+    // #ifdef MP-ALIPAY
+    selector = `.${this.uuidClass}`;
+    // #endif
+
+    this.getRect(selector, true).then(
       (list: any) => {
-        const target = list
-          .sort((item: any) => item.right - item.left)
+        const target = (list as any[])
+          .sort((item: any) => item.left - item.right)
+          .map((item, index) => {return {...item, index};})
           .find((item: any) => clientX >= item.left && clientX <= item.right);
-        if (target && target.dataset) {
-          const { score } = target.dataset;
-          this.onSelect(score);
+        if (target) {
+          if (target.dataset) {
+            const { score } = target.dataset;
+            this.onSelect(score);
+          } else {
+            this.onSelect(target.index);
+          }
         }
       }
     );

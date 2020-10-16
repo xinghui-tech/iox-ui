@@ -83,10 +83,17 @@ export function requestAnimationFrame(cb: Function) {
     return nextTick(cb);
   }
 
-  return wx.createSelectorQuery()
+  return uni.createSelectorQuery()
     .selectViewport()
-    .boundingClientRect()
+    .boundingClientRect(() => {
+    })
     .exec(() => {
       cb();
     });
+}
+
+let globalSequence = 0;
+
+export function nextSequence() {
+  return globalSequence++;
 }

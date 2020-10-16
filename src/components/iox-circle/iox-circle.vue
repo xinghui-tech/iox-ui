@@ -18,7 +18,7 @@ import { BLUE, WHITE } from '../../utils/color';
 import { getSystemInfoSync, addUnit, isObj } from '../../utils/utils';
 import adaptor from './canvas';
 
-type CanvasContext = WechatMiniprogram.CanvasContext;
+type CanvasContext = UniApp.CanvasContext;
 
 function format(rate: number) {
   return Math.min(Math.max(rate, 0), 100);
@@ -125,16 +125,18 @@ export default class IoxCircle extends mixins(Base) {
     const { type, size } = this;
 
     if (type === '') {
-      const ctx = wx.createCanvasContext('iox-circle', (this as any).$scope);
+      const ctx = uni.createCanvasContext('iox-circle', this);
       return Promise.resolve(ctx);
     }
 
     const dpr = getSystemInfoSync().pixelRatio;
 
     return new Promise<CanvasContext & CanvasRenderingContext2D>((resolve) => {
-      uni.createSelectorQuery().in(this)
+      uni.createSelectorQuery()
+        .in(this)
         .select('.iox-circle__canvas')
-        .fields({node: true} as any, () => {}).exec((res) => {
+        .fields({node: true} as any, () => {})
+        .exec((res) => {
           const canvas = res[0].node;
           const ctx = canvas.getContext(type);
     
@@ -156,7 +158,7 @@ export default class IoxCircle extends mixins(Base) {
 
     if (isObj(color)) {
       return this.getContext().then(context => {
-        const LinearColor = context.createLinearGradient(size, 0, 0, 0);
+        const LinearColor = (context as any).createLinearGradient(size, 0, 0, 0);
         Object.keys(color)
           .sort((a, b) => parseFloat(a) - parseFloat(b))
           .map((key) =>

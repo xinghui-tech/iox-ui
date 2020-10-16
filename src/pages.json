@@ -265,6 +265,14 @@
 				"navigationBarTextStyle": "black"
 			}
 		},{
+			"path": "pages/masks",
+			"style": {
+				"navigationStyle": "default",
+				"navigationBarTitleText": "Masks 蒙板",
+				"backgroundColor": "#ffffff",
+				"navigationBarTextStyle": "black"
+			}
+		},{
 			"path": "pages/notify",
 			"style": {
 				"navigationStyle": "default",

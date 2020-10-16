@@ -7,7 +7,7 @@
 
     <view
       v-if="showSidebar"
-      class="iox-index-bar__sidebar"
+      :class="[uuidSidebarClass, 'iox-index-bar__sidebar']"
       @touchmove.stop="onTouchMove"
       @touchend="onTouchStop"
       @touchcancel="onTouchStop"
@@ -27,6 +27,7 @@
 </template>
 
 <script lang="ts">
+import { nextSequence } from '../../utils/utils';
 import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
 import Base from '../../mixins/base';
@@ -97,8 +98,15 @@ export default class IoxIndexBar extends mixins(Base, PageScroll) {
   scrollToAnchorIndex: number | null = null;
   activeAnchorIndex = -1;
 
+  uuidClass = `${this.classPrefix}__uuid${nextSequence()}`;
+  uuidSidebarClass = `${this.classPrefix}__sidebar__uuid${nextSequence()}`;
+
   get classPrefix() {
     return classPrefix;
+  }
+
+  get mainClass() {
+    return `${this.uuidClass} ${this.classPrefix} ${this._rootClasses}`;
   }
 
   created() {
@@ -147,19 +155,27 @@ export default class IoxIndexBar extends mixins(Base, PageScroll) {
 
   setAnchorsRect() {
     return Promise.all(
-      this.children.map((anchor: Vue) =>
-        (anchor as Base).getRect('.iox-index-anchor-wrapper')
+      this.children.map((anchor: Vue) => {
+        let selector = '.iox-index-anchor-wrapper';
+        // #ifdef MP-ALIPAY
+        selector = `.${this.uuidClass}`;
+        // #endif
+        return  (anchor as Base).getRect(selector)
           .then(rect => {
-              (anchor as any).height = (rect as UniApp.NodeInfo).height;
-              (anchor as any).top = (rect as UniApp.NodeInfo).top! + this.scrollTop;
-            }
-          )
-      )
+            (anchor as any).height = (rect as UniApp.NodeInfo).height;
+            (anchor as any).top = (rect as UniApp.NodeInfo).top! + this.scrollTop;
+          }
+        );
+      })
     );
   }
 
   setListRect() {
-    return this.getRect('.iox-index-bar').then(
+    let selector = '.iox-index-bar';
+    // #ifdef MP-ALIPAY
+    selector = `.${this.uuidClass}`;
+    // #endif
+    return this.getRect(selector).then(
       (rect) => {
         this.height = (rect as UniApp.NodeInfo).height!;
         this.top = (rect as UniApp.NodeInfo).top! + this.scrollTop;
@@ -168,7 +184,11 @@ export default class IoxIndexBar extends mixins(Base, PageScroll) {
   }
 
   setSiderbarRect() {
-    return this.getRect('.iox-index-bar__sidebar').then((rect) => {
+    let selector = '.iox-index-bar__sidebar';
+    // #ifdef MP-ALIPAY
+    selector = `.${this.uuidSidebarClass}`;
+    // #endif
+    return this.getRect(selector).then((rect) => {
       this.sidebar = {
         height: (rect as UniApp.NodeInfo).height!,
         top: (rect as UniApp.NodeInfo).top!,
@@ -191,7 +211,11 @@ export default class IoxIndexBar extends mixins(Base, PageScroll) {
   }
 
   getAnchorRect(anchor: Base) {
-    return anchor.getRect('.iox-index-anchor-wrapper')
+    let selector = '.iox-index-anchor-wrapper';
+    // #ifdef MP-ALIPAY
+    selector = `.${(anchor as any).uuidClass}`;
+    // #endif
+    return anchor.getRect(selector)
       .then((rect) => ({
         height: (rect as UniApp.NodeInfo).height,
         top: (rect as UniApp.NodeInfo).top,

@@ -39,7 +39,7 @@
 import Component, { mixins } from 'vue-class-component';
 import { Prop, Watch } from 'vue-property-decorator';
 import Base from '../../mixins/base';
-import { getSystemInfoSync } from '../../utils/utils';
+import { getSystemInfoSync, nextSequence } from '../../utils/utils';
 
 const classPrefix = 'iox-nav-bar';
 
@@ -113,13 +113,15 @@ export default class IoxNavBar extends mixins(Base) {
   height = 44;
   baseStyle = '';
 
+  uuidClass = `${this.classPrefix}__uuid${nextSequence()}`;
+
   get classPrefix() {
     return classPrefix;
   }
 
   get mainClass() {
     const classes: string = this.bem('nav-bar', { fixed: this.fixed });
-    return `${classes} ${ this.border ? 'iox-hairline--bottom' : '' } ${this._rootClasses}`;
+    return `${this.uuidClass} ${classes} ${ this.border ? 'iox-hairline--bottom' : '' } ${this._rootClasses}`;
   }
 
   get mainStyle() {
@@ -165,7 +167,12 @@ export default class IoxNavBar extends mixins(Base) {
     }
 
     this.$nextTick(() => {
-      this.getRect('.iox-nav-bar').then(
+      let selector = '.iox-nav-bar';
+      // #ifdef MP-ALIPAY
+      selector = `.${this.uuidClass}`;
+      // #endif
+
+      this.getRect(selector).then(
         (res) => {
           this.height = (res as UniApp.NodeInfo).height!;
         }
