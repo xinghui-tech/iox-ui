@@ -132,9 +132,9 @@ export default class IoxCircle extends mixins(Base) {
     const dpr = getSystemInfoSync().pixelRatio;
 
     return new Promise<CanvasContext & CanvasRenderingContext2D>((resolve) => {
-      wx.createSelectorQuery().in((this as any).$scope)
+      uni.createSelectorQuery().in(this)
         .select('.iox-circle__canvas')
-        .node().exec((res) => {
+        .fields({node: true} as any, () => {}).exec((res) => {
           const canvas = res[0].node;
           const ctx = canvas.getContext(type);
     
