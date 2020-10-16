@@ -6,9 +6,6 @@ each(map-keys(@grid-breakpoints), #(@breakpoint) {
 	#media-breakpoint-up(@breakpoint, {
 		@infix: breakpoint-infix(@breakpoint, @grid-breakpoints);
 
-		//@each $value in $displays {
-		//  .d#{$infix}-#{$value} { display: $value !important; }
-		//}
 		each(@displays, #(@value) {
 			.d@{infix}-@{value} { display: @value !important; }
 		});
@@ -21,9 +18,6 @@ each(map-keys(@grid-breakpoints), #(@breakpoint) {
 //
 
 @media print {
-	//@each $value in $displays {
-	//  .d-print-#{$value} { display: $value !important; }
-	//}
 	each(@displays, #(@value) {
 		.d-print-@{value} { display: @value !important; }
 	});
