@@ -42,7 +42,7 @@
         ref="countdown"
       />
 
-      <iox-grid clickable column-num="3">
+      <iox-grid clickable :column-num="3">
         <iox-grid-item text="开始" icon="play-circle-o" @click="start" />
         <iox-grid-item text="暂停" icon="pause-circle-o" @click="pause" />
         <iox-grid-item text="重置" icon="refresh" @click="reset" />
@@ -110,7 +110,12 @@ export default class Index extends mixins(Fonts) {
   }
 
   onShareAppMessage() {
-    
+    return {
+      title: 'IOX UI 计数器',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-count-down'
+      // #endif
+    };
   }
 }
 </script>

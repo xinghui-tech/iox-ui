@@ -23,10 +23,10 @@ export default class IoxInfo extends mixins(Base) {
   name!: string;
 
   @Prop({
-    type: String,
+    type: [String, Number],
     default: null,
   })
-  info!: string | null;
+  info!: string | number | null;
 
   @Prop({
     type: Boolean,

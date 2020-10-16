@@ -91,7 +91,12 @@ export default class Index extends mixins(Fonts) {
   }
 
   onShareAppMessage() {
-    
+    return {
+      title: 'IOX UI 折叠面板',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-collapse'
+      // #endif
+    };
   }
 }
 </script>

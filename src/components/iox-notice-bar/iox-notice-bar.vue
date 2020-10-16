@@ -23,7 +23,7 @@
       v-if="mode === 'closeable'"
       class="iox-notice-bar__right-icon"
       name="close"
-      @tap.stop="onClickIcon"
+      @click="onClickIcon"
     />
     <navigator
       v-else-if="mode === 'link'"
@@ -110,9 +110,9 @@ export default class IoxNoticeBar extends mixins(Base) {
   background?: string;
 
   @Prop({
-    type: String,
+    type: Boolean,
   })
-  wrapable?: string;
+  wrapable?: boolean;
 
   show = true;
   animation!: WechatMiniprogram.Animation;

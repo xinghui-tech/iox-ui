@@ -47,9 +47,9 @@ export default class IoxSidebarItem extends mixins(Base, Emitter) {
   dot?: boolean;
 
   @Prop({
-    type: String,
+    type: [String, Number]
   })
-  info?: string;
+  info?: string | number;
 
   @Prop({
     type: String,
@@ -62,9 +62,9 @@ export default class IoxSidebarItem extends mixins(Base, Emitter) {
   disabled?: boolean;
 
   @Prop({
-    type: String,
+    type: [String, Number]
   })
-  badge?: string;
+  badge?: string | number;
 
   // data
   parent?: Vue;

@@ -10,17 +10,17 @@
         :class="avatarClasses"
         :style="'width:' + avatarSize + ';height:' + avatarSize"
       />
-      <view :class="[bem('skeleton__content')]">
+      <view class="iox-skeleton__content">
         <view
           v-if="title"
           :class="titleClasses"
           :style="'width:' + titleWidth"
         />
         <view
-          v-for="(item, index) in rowArray"
+          v-for="(item, index) in row"
           :key="index"
           :class="rowClasses"
-          :style="'width:' + (isArray ? rowWidth[index] : rowWidth)"
+          :style="'width:' + getRowWidth(index)"
         />
       </view>
     </view>
@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import Component, { mixins } from 'vue-class-component';
-import { Prop, Watch } from 'vue-property-decorator';
+import { Prop } from 'vue-property-decorator';
 import Base from '../../mixins/base';
 
 const classPrefix = 'iox-skeleton';
@@ -118,7 +118,7 @@ export default class IoxSkeleton extends mixins(Base) {
 
   get mainClass() {
     const classes: string = this.loading ? this.bem('skeleton', [{animate: this.animate}])
-      : this.bem('skeleton__content');
+      : 'iox-skeleton__content';
     return `${classes} ${this._rootClasses}`;
   }
 
@@ -128,7 +128,7 @@ export default class IoxSkeleton extends mixins(Base) {
     cls = (this.titleClass || '');
     // #endif
 
-    return `${this.bem('skeleton__title')} ${cls}`;
+    return `iox-skeleton__title ${cls}`;
   }
 
   get avatarClasses() {
@@ -146,25 +146,14 @@ export default class IoxSkeleton extends mixins(Base) {
     cls = (this.rowClass || '');
     // #endif
 
-    return `${this.bem('skeleton__row')} ${cls}`;
+    return `iox-skeleton__row ${cls}`;
   }
   
-  isArray = false;
-  rowArray = [];
-
   created() {
-    this.rowArray = Array.from({ length: this.row });
-    this.isArray = Array.isArray(this.rowWidth);
   }
 
-  @Watch('row')
-  onRowChanged(val: number) {
-    this.rowArray = Array.from({ length: val });
-  }
-
-  @Watch('rowWidth')
-  onRowWidthChanged(val: number) {
-    this.isArray = Array.isArray(val);
+  getRowWidth(index: number) {
+    return Array.isArray(this.rowWidth) ? this.rowWidth[index] : this.rowWidth;
   }
 }
 </script>

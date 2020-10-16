@@ -69,9 +69,9 @@ export default class IoxGridItem extends mixins(Base, Emitter, Link) {
   dot?: boolean;
 
   @Prop({
-    type: String,
+    type: [String, Number]
   })
-  info?: string;
+  info?: string | number;
 
   @Prop({
     type: String,

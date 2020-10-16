@@ -24,7 +24,7 @@
         :class="[bem('dropdown-item__option', { active: item.value === value } )]"
         clickable
         :icon="item.icon"
-        @tap="onOptionTap(item)"
+        @click="onOptionTap(item)"
       >
         <view
           slot="title"

@@ -2,8 +2,7 @@
   <view
     :class="mainClass"
     :style="mainStyle"
-    data-key="cell"
-    @tap.stop="onClick"
+    @tap.stop="onClick('cell')"
     @touchstart="startDrag"
     @touchmove.stop="catchMove ? 'noop' : ''"
     @touchmove.capture="onDrag"
@@ -11,11 +10,11 @@
     @touchcancel="endDrag"
   >
     <view :style="wrapperStyle">
-      <view v-if="leftWidth" class="iox-swipe-cell__left" data-key="left" @tap.stop="onClick">
+      <view v-if="leftWidth" class="iox-swipe-cell__left" @tap.stop="onClick('left')">
         <slot name="left" />
       </view>
       <slot />
-      <view v-if="rightWidth" class="iox-swipe-cell__right" data-key="right" @tap.stop="onClick">
+      <view v-if="rightWidth" class="iox-swipe-cell__right" @tap.stop="onClick('right')">
         <slot name="right" />
       </view>
     </view>
@@ -181,8 +180,7 @@ export default class IoxSwipeCell extends mixins(Base, Touch) {
     this.swipeLeaveTransition();
   }
 
-  onClick(event: any) {
-    const { key: position = 'outside' } = event.currentTarget.dataset;
+  onClick(position = 'outside') {
     this.$emit('click', position);
 
     if (!this.offset) {
@@ -192,7 +190,6 @@ export default class IoxSwipeCell extends mixins(Base, Touch) {
     if (this.asyncClose) {
       this.$emit('close', {
         position,
-        instance: this,
         name: this.name,
       });
     } else {

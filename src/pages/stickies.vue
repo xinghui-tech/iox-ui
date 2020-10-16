@@ -84,7 +84,12 @@ export default class Index extends mixins(Fonts) {
   }
 
   onShareAppMessage() {
-    
+    return {
+      title: 'IOX UI 粘性布局',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-sticky'
+      // #endif
+    };
   }
 }
 </script>

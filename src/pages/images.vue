@@ -121,7 +121,12 @@ export default class Index extends mixins(Fonts) {
   src = 'https://img.yzcdn.cn/vant/cat.jpeg';
 
   onShareAppMessage() {
-    
+    return {
+      title: 'IOX UI 图片',
+      // #ifdef MP-ALIPAY
+      desc: 'IOX UI 组件 iox-image'
+      // #endif
+    };
   }
 }
 </script>

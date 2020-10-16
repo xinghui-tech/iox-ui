@@ -562,6 +562,13 @@ export default class IoxCalendar extends mixins(Base) {
 
     return !currentDate;
   }
+
+  // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
+  toJSON() {
+    // console.log('toJSON(): should not be invoked. fix debug exception from UNIAPP.');
+    return 'iox-calendar';
+  }
+  // #endif
 }
 </script>
 
