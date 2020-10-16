@@ -1,0 +1,20 @@
+// Contextual backgrounds
+
+#bg-variant(@parent, @color, @ignore-warning: false) {
+	@{parent} {
+		background-color: @color !important;
+	}
+	a@{parent},
+	button@{parent} {
+		#hover-focus({
+			background-color: darken(@color, 10%) !important;
+		});
+	}
+	#deprecate("The `#bg-variant` mixin", "v4.4.0", "v5", @ignore-warning);
+}
+
+#bg-gradient-variant(@parent, @color) {
+	@{parent} {
+		background: @color linear-gradient(180deg, mix(@body-bg, @color, 15%), @color) repeat-x !important;
+	}
+}
