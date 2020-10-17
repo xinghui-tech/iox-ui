@@ -1,33 +1,47 @@
 <template>
   <block>
     <demo-block title="基础用法" padding>
-      <iox-button type="primary" @click="onClickShow">
-        显示遮罩层
-      </iox-button>
-      <iox-overlay :show="show" @click="onClickHide" />
-    </demo-block>
-
-    <demo-block title="嵌入内容" padding>
-      <iox-button type="primary" @click="onClickShowEmbedded">
-        嵌入内容
-      </iox-button>
-      <iox-overlay :show="showEmbedded" @click="onClickHideEmbedded">
-        <view class="wrapper">
-          <div class="block" @tap.stop="noop" />
+      <view class="demo-margin-bottom">
+        <iox-button type="primary" size="small" class="demo-margin-right" @click="onClickShow1">
+          显示蒙板
+        </iox-button>
+        <iox-button type="primary" size="small" @click="onClickHide1">
+          隐藏蒙板
+        </iox-button>
+      </view>
+      <iox-mask :show-mask="show1" @click="onClickHide">
+        <view >
+          今天，因应大数据、人工智能、私域流量、新零售新营销的时代潮流，我们为客户实现“X+新媒体”，贡献自己的解决方案。
         </view>
-      </iox-overlay>
+      </iox-mask>
     </demo-block>
 
-    <demo-block title="显示遮罩" padding>
-      <iox-overlay show show-mask custom-style="position: absolute;" @click="onClickHideMask">
+    <demo-block title="自定义内容" padding>
+      <iox-mask :show-mask="show2" @click="onClickHide2">
         <view >
           这些内容被遮挡了。
         </view>
-        <view class="mask-wrapper" slot="mask">
-          <iox-loading type="spinner" class="demo-margin-bottom" vertical>正在加载...</iox-loading>
-          <iox-button type="warning" size="small" @click="onClickHideMask">取消</iox-button>
+        <iox-skeleton
+          title
+          avatar
+          row-class="row"
+          avatar-class="row"
+          title-class="row"
+          :row="3"
+        />
+        <view class="demo-margin-bottom">
+          <iox-button type="primary" size="small" @click="onClickShow2">
+            提交
+          </iox-button>
         </view>
-      </iox-overlay>
+
+        <view slot="overlay" class="overlay">
+          <iox-loading type="spinner" class="mb-2" />
+          <iox-button type="warning" size="small" @click="onClickHide2">
+            取消
+          </iox-button>
+        </view>
+      </iox-mask>
     </demo-block>
   </block>
 </template>
@@ -39,41 +53,30 @@ import Fonts from '../mixins/font';
 
 @Component
 export default class Index extends mixins(Fonts) {
-  show = false;
-  showEmbedded = false;
-  showMask = false;
+  show1 = true;
+  show2 = false;
 
-  onClickShow() {
-    this.show = true;
+  onClickShow1() {
+    this.show1 = true;
   }
 
-  onClickHide() {
-    this.show = false;
+  onClickHide1() {
+    this.show1 = false;
   }
 
-  onClickShowEmbedded() {
-    this.showEmbedded = true;
+  onClickShow2() {
+    this.show2 = true;
   }
 
-  onClickHideEmbedded() {
-    this.showEmbedded = false;
+  onClickHide2() {
+    this.show2 = false;
   }
-
-  onClickShowMask() {
-    this.showMask = true;
-  }
-
-  onClickHideMask() {
-    this.showMask = false;
-  }
-
-  noop() {}
 
   onShareAppMessage() {
     return {
       title: 'IOX UI 遮罩层',
       // #ifdef MP-ALIPAY
-      desc: 'IOX UI 组件 iox-overlay'
+      desc: 'IOX UI 组件 iox-mask'
       // #endif
     };
   }
@@ -81,28 +84,23 @@ export default class Index extends mixins(Fonts) {
 </script>
 
 <style lang="less">
-.wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+page {
+  background-color: white;
 }
 
-.mask {
-  position: absolute !important;
-}
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
 
-.mask-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
 }
 
-.block {
-  width: 120px;
-  height: 120px;
-  background-color: #fff;
+.row {
+  background-color: chocolate !important;
 }
 </style>
