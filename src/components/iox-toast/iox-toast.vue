@@ -14,7 +14,7 @@
       <view
         :class="mainClass"
         :style="mainStyle"
-        @touchmove="noop"
+        @touchmove.stop="noop"
       >
         <!-- text only -->
         <text v-if="type === 'text'">{{ message }}</text>

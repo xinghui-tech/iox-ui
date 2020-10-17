@@ -9,7 +9,7 @@
       :is-link="isLink"
       :clickable="clickable"
       :border="border && expanded"
-      :class="[bem('collapse-item__title', { disabled, expanded })]"
+      :class="cellClass"
       right-icon-class="iox-cell__right-icon"
       custom-class="iox-cell"
       hover-class="iox-cell--hover"
@@ -21,7 +21,7 @@
       <block><block slot="right-icon"><slot name="right-icon" /></block></block>
     </iox-cell>
     <view
-      :class="[bem('collapse-item__wrapper')]"
+      :class="iox-collapse-item__wrapper"
       style="height: 0;"
       :animation="animations"
     >
@@ -119,6 +119,10 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
 
   get mainClass() {
     return `iox-collapse-item ${ this.index !== 0 ? 'iox-hairline--top' : '' } ${this._rootClasses}`;
+  }
+
+  get cellClass() {
+    return this.bem('collapse-item__title', { disabled: this.disabled, expanded: this.expanded });
   }
 
   get titleClasses() {

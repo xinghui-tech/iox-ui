@@ -12,7 +12,7 @@
   >
     <view
       v-if="title || useTitleSlot "
-      :class="[bem('dialog__header', { isolated: !(message || useSlot) })]"
+      :class="headerClass"
     >
       <slot v-if="useTitleSlot" name="title" />
       <block v-else-if="title">{{ title }}</block>
@@ -21,7 +21,7 @@
     <slot v-if="useSlot" />
     <view
       v-else-if="message"
-      :class="[bem('dialog__message', [theme, messageAlign, { hasTitle: title }])]"
+      :class="messageClass"
     >
       <text class="iox-dialog__message-text">{{ message }}</text>
     </view>
@@ -64,7 +64,7 @@
         @launchapp="onLaunchApp"
         @opensetting="onOpenSetting"
       >
-        {{ confirmButtonText }}
+        <view>{{ confirmButtonText }}</view>
       </iox-button-item>
     </iox-button-group>
 
@@ -136,9 +136,11 @@ const classPrefix = 'iox-dialog';
       default: 'default'
     },
     useSlot: Boolean,
-    className: String,
     customStyle: String,
-    messageAlign: String,
+    messageAlign: {
+      type: String,
+      default: ''
+    },
     overlayStyle: String,
     useTitleSlot: Boolean,
     showCancelButton: Boolean,
@@ -185,8 +187,11 @@ export default class IoxDialog extends mixins(Base, Button, OpenType) {
   show?: boolean;
   theme!: string;
   width?: string | number;
-  className?: string;
   value?: any;
+  title?: string;
+  messageAlign!: string;
+  message?: string;
+  useSlot?: boolean;
 
 
   @Watch('show')
@@ -205,11 +210,19 @@ export default class IoxDialog extends mixins(Base, Button, OpenType) {
 
   get mainClass() {
     const classes: string = this.bem('dialog', this.theme);
-    return `${classes} ${ this.className || '' } ${this._rootClasses}`;
+    return `${classes} ${this._rootClasses}`;
   }
 
   get mainStyle() {
     return `width: ${addUnit(this.width) }; ${this._rootStyles}`;
+  }
+
+  get headerClass() {
+    return this.bem('dialog__header', { isolated: !(this.message || this.useSlot) });
+  }
+
+  get messageClass() {
+    return this.bem('dialog__message', [this.theme, this.messageAlign, { hasTitle: !!this.title }]);
   }
 
   onConfirm() {

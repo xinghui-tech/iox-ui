@@ -17,12 +17,12 @@
   >
     <block slot="icon"><slot name="left-icon" /></block>
     <block slot="title">
-      <view v-if="label" :class="[bem('field__label', { disabled })]">
+      <view v-if="label" :class="''+bem('field__label', { disabled })">
         {{ label }}
       </view>
       <slot v-else name="label" />
     </block>
-    <view :class="[bem('field__body', [type])]">
+    <view :class="''+ bem('field__body', [type])">
       <textarea
         v-if="type === 'textarea'"
         :class="[inputClasses, bem('field__input', [inputAlign, type, { disabled, error }])]"
@@ -99,9 +99,9 @@
       </view>
     </view>
     <view v-if="showWordLimit && maxlength" class="iox-field__word-limit">
-      <view :class="[bem('field__word-num', { full: length >= maxlength })]">{{ length }}</view>/{{ maxlength }}
+      <view :class="''+bem('field__word-num', { full: length >= maxlength })">{{ length }}</view>/{{ maxlength }}
     </view>
-    <view v-if="errorMessage" :class="[bem('field__error-message', [errorMessageAlign, { disabled, error }])]">
+    <view v-if="errorMessage" :class="''+bem('field__error-message', [errorMessageAlign, { disabled, error }])">
       {{ errorMessage }}
     </view>
   </iox-cell>

@@ -3,7 +3,7 @@
     :class="mainClass"
     :style="mainStyle"
   >
-    <view :class="[bem('search__content', [shape])]">
+    <view :class="''+bem('search__content', [shape])">
       <view class="iox-search__label" v-if="label">{{ label }}</view>
       <slot v-else name="label" />
 

@@ -29,7 +29,7 @@
         <iox-button-icon icon="commenting-o" text="客服" dot />
         <iox-button-icon icon="shopping-cart" text="购物车" info="5" />
         <iox-button-icon icon="shopping-bag" text="店铺" />
-        <iox-button-item text="立即购买" />
+        <iox-button-item >立即购买</iox-button-item>
       </iox-button-group>
     </demo-block>
 

@@ -1,7 +1,7 @@
 <template>
   <view :class="mainClass" 
     :style="mainStyle">
-    <view :class="[bem('sticky-wrap', { fixed })]" 
+    <view :class="''+bem('sticky-wrap', { fixed })" 
       :style="'' + wrapStyle({ fixed, offsetTop, transform, zIndex })">
       <slot />
     </view>

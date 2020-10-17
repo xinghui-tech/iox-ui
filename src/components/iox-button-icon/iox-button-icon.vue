@@ -36,7 +36,7 @@
         :custom-class="iconClasses"
       />
       <slot name="icon" />
-      <text :class="textClasses">{{ text }}</text>
+      <text :class="textClasses">{{ text || '' }}</text>
     </view>
   </iox-button>
 </template>

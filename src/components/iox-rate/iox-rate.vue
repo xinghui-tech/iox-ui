@@ -25,7 +25,7 @@
         <iox-icon
           v-if="allowHalf"
           :name="(index + 0.5) <= innerValue ? icon : voidIcon"
-          :class="[bem('rate__icon', ['half'])]"
+          :class="''+bem('rate__icon', ['half'])"
           :style="'font-size:'+[addUnit(size)]+';'"
           custom-class="icon-class"
           :data-score="index - 0.5"

@@ -3,7 +3,7 @@
     <view
       v-for="(item, index) in itemListData"
       :key="index"
-      :class="[bem('dropdown-menu__item', { disabled: item.disabled })]"
+      :class="''+bem('dropdown-menu__item', { disabled: item.disabled })"
       @tap="onTitleTap(index)"
     >
       <view

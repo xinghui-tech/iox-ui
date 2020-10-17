@@ -5,8 +5,9 @@
     :custom-style="mainStyle"
     :duration="duration"
     :name="transition"
-    @click="onClick"
+    @touchmove.stop="noop"
   >
+    <view class="iox-overlay__backdrop" @touchmove.stop="noop" @tap.stop="onClick"/>
     <slot />
   </iox-transition>
 </template>
