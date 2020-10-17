@@ -1,27 +1,34 @@
 @import '../../theme.less';
 
 .iox-mask {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  .theme(background-color, '@overlay-background-color');
+  position: relative;
 
-  &__mask {
+  &__wrap {
     position: absolute;
     z-index: 10;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    backdrop-filter: blur(2px);
 
-    &--loading {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-    }
   }
+
+  &__mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.85;
+    backdrop-filter: blur(2px);
+    .theme(background-color, '@mask-background-color');
+  }
+
+  &__loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+
 }

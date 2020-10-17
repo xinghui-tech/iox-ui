@@ -5,8 +5,9 @@
     :custom-style="mainStyle"
     :duration="duration"
     :name="transition"
-    @click="onClick"
+    @touchmove.stop="noop"
   >
+    <view class="iox-overlay__backdrop" @touchmove.stop="noop" @tap.stop="onClick"/>
     <slot />
   </iox-transition>
 </template>
@@ -57,6 +58,8 @@ export default class IoxOverlay extends mixins(Base) {
   onClick() {
     this.$emit('click');
   }
+
+  noop() {}
 }
 </script>
 

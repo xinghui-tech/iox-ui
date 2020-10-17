@@ -10,7 +10,6 @@ export type DialogOptions = {
   message?: string;
   overlay?: boolean;
   ariaLabel?: string;
-  className?: string;
   customStyle?: string;
   transition?: string;
   businessId?: number;
@@ -32,30 +31,23 @@ export type DialogOptions = {
 
 export const defaultOptions: DialogOptions = {
   show: false,
-  title: '',
   theme: 'default',
-  message: '',
   zIndex: 100,
   overlay: true,
-  className: '',
   transition: 'scale',
-  customStyle: '',
-  messageAlign: '',
-  overlayStyle: '',
   confirmButtonText: '确认',
   cancelButtonText: '取消',
   showConfirmButton: true,
   showCancelButton: false,
   closeOnClickOverlay: false,
-  confirmButtonOpenType: ''
 };
 
-export function dialog(message?: string, title = '', options?: DialogOptions) {
+export function dialog(message?: string, title?: string, options?: DialogOptions) {
   const show = typeof message !== 'undefined';
   return {...defaultOptions, message, title, show, ...options};
 }
 
-export function confirm(message: string , title = '', options?: DialogOptions) {
+export function confirm(message: string , title?: string, options?: DialogOptions) {
   return dialog(message, title, {showCancelButton: true, ...options});
 }
 

@@ -2,7 +2,7 @@ export { Day } from '../../utils/calendar';
 
 export const ROW_HEIGHT = 64;
 
-export function formatMonthTitle(date: Date) {
+export function formatMonthTitle(date: Date | number | string) {
   if (!(date instanceof Date)) {
     date = new Date(date);
   }

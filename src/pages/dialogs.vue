@@ -83,7 +83,7 @@ export default class Index extends mixins(Fonts) {
   }
 
   onClickThemeAlert2() {
-    this.dialog = dialog(message, '', {
+    this.dialog = dialog(message, undefined, {
       theme: 'round-button',
     });
   }

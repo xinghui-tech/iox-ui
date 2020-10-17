@@ -66,11 +66,6 @@ export default class IoxSwipeCell extends mixins(Base, Touch) {
     return classPrefix;
   }
 
-  get mainClass() {
-    return `${this.classPrefix} ${this._rootClasses}`;
-  }
-
-
   @Watch('leftWidth')
   leftWidthChanged(newV: number){
     if (this.offset > 0) {

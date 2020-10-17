@@ -1,17 +1,18 @@
 <template>
-  <iox-transition
-    :show="show"
-    :custom-class="mainClass"
-    :custom-style="mainStyle"
-    :duration="duration"
-    :name="transition"
-    @click="onClick"
-  >
+  <view :class="mainClass" :style="mainStyle">
     <slot />
-    <view v-if="showMask" :class="maskClasses" @click.stop="onClickMask">
-      <slot name="mask"><view class="iox-overlay__mask--loading"><iox-loading /></view></slot>
-    </view>
-  </iox-transition>
+    <iox-transition
+      :show="showMask"
+      custom-class="iox-mask__wrap"
+      :duration="duration"
+      :name="transition"
+      @touchmove.stop="noop"
+    >
+      <view :class="maskClasses" @click.stop="onClickMask">
+      </view>
+      <slot name="overlay"><view class="iox-mask__loading"><iox-loading /></view></slot>
+    </iox-transition>
+  </view>
 </template>
 
 <script lang="ts">
@@ -20,7 +21,7 @@ import { Prop } from 'vue-property-decorator';
 import Base from '../../mixins/base';
 import { Duration } from '../../mixins/transition';
 
-const classPrefix = 'iox-overlay';
+const classPrefix = 'iox-mask';
 
 @Component({
   // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
@@ -38,7 +39,7 @@ export default class IoxOverlay extends mixins(Base) {
     type: Boolean,
     default: false,
   })
-  show!: boolean;
+  showMask!: boolean;
 
   @Prop({
     type: [Number, Object],
@@ -47,29 +48,17 @@ export default class IoxOverlay extends mixins(Base) {
   duration!: number | Duration;
 
   @Prop({
-    type: Number,
-    default: 1,
-  })
-  zIndex!: number;
-
-  @Prop({
     type: String,
     default: 'fade',
   })
   transition!: string;
 
-  @Prop({
-    type: Boolean,
-    default: false
-  })
-  showMask!: boolean;
-
   get classPrefix() {
     return classPrefix;
   }
 
-  get mainStyle() {
-    return `z-index: ${this.zIndex}; ${this._rootStyles}`;
+  get mainClass() {
+    return `position-relative ${this.classPrefix} ${this._rootClasses}`;
   }
 
   get maskClasses() {
@@ -78,20 +67,18 @@ export default class IoxOverlay extends mixins(Base) {
     cls = (this.maskClass || '');
     // #endif
 
-    return `iox-overlay__mask ${cls}`;
-  }
-
-  onClick() {
-    this.$emit('click');
+    return `iox-mask__mask ${cls}`;
   }
 
   onClickMask() {
     this.$emit('click-mask');
   }
+
+  noop() {}
 }
 </script>
 
 <style lang="less">
-@import '../../style/widget/iox-overlay/iox-overlay.less';
+@import '../../style/widget/iox-mask/iox-mask.less';
 
 </style>

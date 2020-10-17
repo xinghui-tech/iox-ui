@@ -13,7 +13,7 @@
       </iox-button>
       <iox-overlay :show="showEmbedded" @click="onClickHideEmbedded">
         <view class="wrapper">
-          <div class="block" @tap.stop="noop" />
+          <view class="block" @tap.stop="noop" />
         </view>
       </iox-overlay>
     </demo-block>
@@ -46,7 +46,9 @@ export default class Index extends mixins(Fonts) {
     this.showEmbedded = false;
   }
 
-  noop() {}
+  noop() {
+    console.log('tap on wrpper block.');
+  }
 
   onShareAppMessage() {
     return {
@@ -61,10 +63,10 @@ export default class Index extends mixins(Fonts) {
 
 <style lang="less">
 .wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
 }
 
 .block {

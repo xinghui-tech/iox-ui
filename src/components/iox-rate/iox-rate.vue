@@ -25,7 +25,7 @@
         <iox-icon
           v-if="allowHalf"
           :name="(index + 0.5) <= innerValue ? icon : voidIcon"
-          :class="[bem('rate__icon', ['half'])]"
+          :class="''+bem('rate__icon', ['half'])"
           :style="'font-size:'+[addUnit(size)]+';'"
           custom-class="icon-class"
           :data-score="index - 0.5"
@@ -187,7 +187,7 @@ export default class IoxRate extends mixins(Base) {
     this.getRect(selector, true).then(
       (list: any) => {
         const target = (list as any[])
-          .sort((item: any) => item.left - item.right)
+          .sort((a, b) => a.left - b.right)
           .map((item, index) => {return {...item, index};})
           .find((item: any) => clientX >= item.left && clientX <= item.right);
         if (target) {

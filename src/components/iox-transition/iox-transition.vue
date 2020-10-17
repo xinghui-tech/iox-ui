@@ -3,8 +3,6 @@
     v-if="inited"
     :class="mainClass" :style="mainStyle"
     @transitionend="onTransitionEnd"
-    @tap="onClick"
-    @touchmove.stop="noop"
   >
     <slot />
   </view>
@@ -44,12 +42,6 @@ export default class IoxTransition extends mixins(Base, transition(true)) {
     return `-webkit-transition-duration: ${this.currentDuration}ms; transition-duration: ${this.currentDuration}ms; `
             + `${this.display ? '' : 'display: none;'} ${this._rootStyles}`;
   }
-
-  onClick(event: Event) {
-    this.$emit('click', event);
-  }
-
-  noop() {}
 }
 </script>
 

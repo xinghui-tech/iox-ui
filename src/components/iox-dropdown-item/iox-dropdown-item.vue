@@ -21,7 +21,7 @@
       <iox-cell
         v-for="item in options"
         :key="item.value"
-        :class="[bem('dropdown-item__option', { active: item.value === value } )]"
+        :class="'' + bem('dropdown-item__option', { active: item.value === value } )"
         clickable
         :icon="item.icon"
         @click="onOptionTap(item)"

@@ -4,11 +4,11 @@
     :show="isShow"
     custom-class="iox-notify__container"
     :custom-style="'z-index:'+zIndex+';top:'+[addUnit(top)]+';'"
-    @click="onTap"
   >
     <view
       :class="mainClass"
       :style="mainStyle"
+      @click="onTap"
     >
       <view
         v-if="safeAreaInsetTop"

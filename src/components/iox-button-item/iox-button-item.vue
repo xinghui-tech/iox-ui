@@ -26,7 +26,7 @@
       @getphonenumber="onGetPhoneNumber"
       @launchapp="onLaunchApp"
     >
-      {{ text }}
+      {{ text || '' }}
       <slot></slot>
     </iox-button>
   </view>

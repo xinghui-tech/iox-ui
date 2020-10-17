@@ -387,7 +387,19 @@ export default class IoxCalendar extends mixins(Base) {
     contentObserver.relativeTo(bodySelector, 0);
     contentObserver.observe(monthSelector, (res) => {
       if (res.boundingClientRect!.top! <= res.relativeRect!.top!) {
-        this.subtitle = formatMonthTitle((res as any).dataset.date);
+        if ((res as any).dataset.date) {
+          this.subtitle = formatMonthTitle((res as any).dataset.date);
+        } else {
+          // compatible with alipay
+          this.getRect(monthSelector, true).then(ms => {
+            const index = (ms as UniApp.NodeInfo[]).sort((a, b) => a.top - b.top)
+              .findIndex(m => ((res.relativeRect.top + 20) >= m.top  && res.relativeRect.top <= m.bottom) 
+                || (m.top >= res.relativeRect.top && m.bottom <= res.relativeRect.bottom));
+            if (index >= 0) {
+              this.subtitle = formatMonthTitle(this.months[index]);
+            }
+          });
+        }
       }
     });
   }
@@ -444,6 +456,7 @@ export default class IoxCalendar extends mixins(Base) {
   }
 
   onOpened() {
+    this.initRect();
     this.$emit('opened');
   }
 

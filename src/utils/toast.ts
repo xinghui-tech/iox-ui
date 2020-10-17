@@ -13,7 +13,6 @@ export type ToastOptions = {
 export const defaultOptions: ToastOptions = {
   type: 'text',
   mask: false,
-  message: '',
   show: false,
   zIndex: 1000,
   duration: 2000,
