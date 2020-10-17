@@ -76,6 +76,10 @@ export default class IoxSticky extends mixins(Base, PageScroll) {
     return `${this.containerStyle({ fixed, height, zIndex })} ${this._rootStyles}`;
   }
 
+  get mainClass() {
+    return `${this.uuidClass} ${this.classPrefix} ${this._rootClasses}`;
+  }
+
   mounted() {
     this.onScroll();
   }
@@ -175,7 +179,7 @@ export default class IoxSticky extends mixins(Base, PageScroll) {
     const nodesRef: UniApp.NodesRef = extractFunc(this.container)();
     
     return new Promise((resolve) =>
-      nodesRef.boundingClientRect(resolve).exec()
+      nodesRef.boundingClientRect(()=>{}).exec(resolve)
     );
   }
 

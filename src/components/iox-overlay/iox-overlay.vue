@@ -57,6 +57,8 @@ export default class IoxOverlay extends mixins(Base) {
   onClick() {
     this.$emit('click');
   }
+
+  noop() {}
 }
 </script>
 

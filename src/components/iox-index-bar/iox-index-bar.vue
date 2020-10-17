@@ -158,7 +158,7 @@ export default class IoxIndexBar extends mixins(Base, PageScroll) {
       this.children.map((anchor: Vue) => {
         let selector = '.iox-index-anchor-wrapper';
         // #ifdef MP-ALIPAY
-        selector = `.${this.uuidClass}`;
+        selector = `.${(anchor as any).uuidClass}`;
         // #endif
         return  (anchor as Base).getRect(selector)
           .then(rect => {

@@ -81,7 +81,7 @@
         @confirm="onConfirm"
         @keyboardheightchange="onKeyboardHeightChange"
       />
-      <view @touchstart.capture="onClear" v-if="showClear" class="iox-field__clear-root iox-field__icon-root">
+      <view @touchstart.stop="onClear" v-if="showClear" class="iox-field__clear-root iox-field__icon-root">
         <iox-icon name="times-circle-o" />
       </view>
       <view class="iox-field__icon-container" @tap.stop="onClickIcon">

@@ -4,7 +4,6 @@
     :class="mainClass" :style="mainStyle"
     @transitionend="onTransitionEnd"
     @tap="onClick"
-    @touchmove.stop="noop"
   >
     <slot />
   </view>
@@ -48,8 +47,6 @@ export default class IoxTransition extends mixins(Base, transition(true)) {
   onClick(event: Event) {
     this.$emit('click', event);
   }
-
-  noop() {}
 }
 </script>
 
