@@ -143,7 +143,7 @@ export default class IoxCalendarMonth extends mixins(Base) {
       const offset = new Date(now).getDay();
       const padding = Math.ceil((totalDay + offset) / 7) * rowHeight;
 
-      return 'padding-bottom:' + padding + 'px';
+      return 'padding-bottom: ' + padding + 'px';
     }
 
     return '';
