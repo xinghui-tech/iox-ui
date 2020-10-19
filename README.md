@@ -17,6 +17,7 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 参考uniapp的[easycom](https://uniapp.dcloud.io/collocation/pages?id=easycom)配置。
 ### 引入
 >pages.json
+
 ```json
 {
   //...
@@ -29,6 +30,7 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
   //...
 }
 ```
+
 ### 使用
 ```vue
 <template>
@@ -51,6 +53,8 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 
 ## 参考手册
 <img alt="logo" src="https://img.yzcdn.cn/vant/logo.png" width="32" height="32" style="margin-bottom: 10px;" align="middle">https://youzan.github.io/vant/
+
+**说明：** 由于小程序原生实现和Vue实现会有一些差异，差异化的使用请参考源代码里面的demo。
 
 ## 组件一览表
 
@@ -76,7 +80,7 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 |Rate 评分|✅|✅|✅||春雨|
 |Search 搜索|✅|✅|✅||春雨|
 |Slider 滑块|✅|✅|✅||春雨|
-|Stepper 步进器|✅|✅||春雨|
+|Stepper 步进器|✅|✅|✅||春雨|
 |Switch 开关|✅|✅|✅||老糊涂|
 |Uploader 文件上传|✅|✅|✅||老糊涂|
 ||
@@ -102,7 +106,7 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 |Panel 面板|✅|✅|✅||老糊涂|
 |Progress 进度条|✅|✅|✅||老糊涂|
 |Skeleton 骨架屏|✅|✅|✅||老糊涂|
-|Steps 步骤条|✅|✅|✅|✅||春雨|
+|Steps 步骤条|✅|✅|✅||春雨|
 |Sticky 粘性布局|✅|✅|✅||老糊涂|
 |Tag 标记|✅|✅|✅||老糊涂|
 |Tree Select 分类选择|✅|✅|✅||老糊涂|
