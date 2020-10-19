@@ -29,7 +29,7 @@ const classPrefix = 'iox-transition';
   // #endif
 })
 export default class IoxTransition extends mixins(Base, transition(true)) {
-  
+
   get classPrefix() {
     return classPrefix;
   }

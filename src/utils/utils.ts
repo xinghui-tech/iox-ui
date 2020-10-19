@@ -83,7 +83,7 @@ export function requestAnimationFrame(cb: Function) {
     return nextTick(cb);
   }
 
-  return uni.createSelectorQuery()
+  return wx.createSelectorQuery()
     .selectViewport()
     .boundingClientRect(() => {
     })
