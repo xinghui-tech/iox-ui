@@ -115,13 +115,13 @@ export default class IoxNoticeBar extends mixins(Base) {
   wrapable?: boolean;
 
   show = true;
-  animation!: WechatMiniprogram.Animation;
-  resetAnimation!: WechatMiniprogram.Animation;
+  animation!: UniApp.Animation;
+  resetAnimation!: UniApp.Animation;
   timer?: number | null;
   wrapWidth = 0;
   contentWidth = 0;
   duration = 300;
-  animationData: WechatMiniprogram.AnimationExportResult | null = null;
+  animationData: any | null = null;
 
   uuidWrapClass = `${this.classPrefix}__wrap__uuid${nextSequence()}`;
   uuidContentClass = `${this.classPrefix}__content__uuid${nextSequence()}`;
@@ -140,7 +140,7 @@ export default class IoxNoticeBar extends mixins(Base) {
   }
 
   created() {
-    this.resetAnimation = wx.createAnimation({
+    this.resetAnimation = uni.createAnimation({
       duration: 0,
       timingFunction: 'linear',
     });
@@ -189,7 +189,7 @@ export default class IoxNoticeBar extends mixins(Base) {
         this.wrapWidth = wrapRect.width;
         this.contentWidth = contentRect.width;
         this.duration = duration;
-        this.animation = wx.createAnimation({
+        this.animation = uni.createAnimation({
           duration,
           timingFunction: 'linear',
           delay,
@@ -204,16 +204,16 @@ export default class IoxNoticeBar extends mixins(Base) {
     this.timer && clearTimeout(this.timer);
     this.timer = null;
 
-    this.animationData = this.resetAnimation
+    this.resetAnimation
         .translateX(this.wrapWidth)
-        .step()
-        .export();
+        .step();
+    this.animationData = this.resetAnimation.export();
 
     requestAnimationFrame(() => {
-      this.animationData = this.animation
+      this.animation
           .translateX(-this.contentWidth)
-          .step()
-          .export();
+          .step();
+      this.animationData = this.animation.export();
     });
 
     this.timer = setTimeout(() => {

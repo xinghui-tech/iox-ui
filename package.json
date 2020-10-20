@@ -51,7 +51,7 @@
   "devDependencies": {
     "@babel/plugin-syntax-typescript": "^7.12.1",
     "@babel/plugin-transform-async-to-generator": "^7.12.1",
-    "@dcloudio/types": "^2.0.12",
+    "@dcloudio/types": "^2.0.13",
     "@dcloudio/uni-app-plus": "^2.0.0-29320201014001",
     "@dcloudio/uni-cli-shared": "^2.0.0-29320201014001",
     "@dcloudio/uni-h5": "^2.0.0-29320201014001",

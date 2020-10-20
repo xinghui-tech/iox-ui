@@ -107,8 +107,8 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
   index = 0;
   expanded = false;
   parent?: Vue;
-  animation!: WechatMiniprogram.Animation;
-  animations: WechatMiniprogram.AnimationExportResult | null = null;
+  animation!: UniApp.Animation;
+  animations: any | null = null;
   inited = false;
 
   uuidClass = `${this.classPrefix}__content__uuid${nextSequence()}`;
@@ -144,7 +144,7 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
   }
 
   created() {
-    this.animation = wx.createAnimation({
+    this.animation = uni.createAnimation({
       duration: 0,
       timingFunction: 'ease-in-out',
     });
@@ -204,23 +204,23 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
 
         if (expanded) {
           if (height === 0) {
-            animation.height('auto').top(1).step();
+            (animation as any).height('auto').top(1).animation.step();
           } else {
             animation
               .height(height)
               .top(1)
               .step({
                 duration: inited ? 300 : 1,
-              })
-              .height('auto')
-              .step();
+              });
+            (animation as any).height('auto').step();
           }
 
           this.animations = animation.export();
           return;
         }
 
-        animation.height(height).top(0).step({ duration: 1 }).height(0).step({
+        animation.height(height).top(0).step({ duration: 1 });
+        animation.height(0).step({
           duration: 300,
         });
 

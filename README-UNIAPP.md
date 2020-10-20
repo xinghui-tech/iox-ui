@@ -7,6 +7,9 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 
 >当前参考的vant-weapp版本为：1.5.0。
 
+## 使用样例
+[iox-ui-example](https://github.com/xinghui-tech/iox-ui-example)
+
 ## 安装
 安装UI库：
 >yarn add @zhuyin/iox-ui
