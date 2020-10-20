@@ -21,7 +21,7 @@
       <block><block slot="right-icon"><slot name="right-icon" /></block></block>
     </iox-cell>
     <view
-      :class="iox-collapse-item__wrapper"
+      class="iox-collapse-item__wrapper"
       style="height: 0;"
       :animation="animations"
     >
