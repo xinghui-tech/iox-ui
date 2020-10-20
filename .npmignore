@@ -16,7 +16,7 @@ yarn-error.log
 vue.config.js
 .eslintrc.js
 .editorconfig
-LICENSE
 uni.scss
 yarn.lock
 *.tgz
+*.zip

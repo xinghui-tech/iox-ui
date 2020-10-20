@@ -11,7 +11,16 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
 >当前参考的vant-weapp版本为：1.5.0。
 
 ## 安装
+安装UI库：
 >yarn add @zhuyin/iox-ui
+
+安装微信typescript类型定义：
+>yarn add -D @zhuyin/mp-api-typings
+
+安装less：
+>yarn add -D less less-loader
+
+增加Vue对[TypeScript 支持](https://cn.vuejs.org/v2/guide/typescript.html)
 
 ## UNIAPP使用
 参考uniapp的[easycom](https://uniapp.dcloud.io/collocation/pages?id=easycom)配置。
@@ -49,6 +58,65 @@ IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实�
         }
     }
 </script>
+```
+
+### 加载字体图标
+全局加载
+>App.vue
+
+```js
+export default Vue.extend({
+  mpType: 'app',
+  globalData: {
+    ioxIconUrl: 'https://res.oss.zhuyin.club/assets/fonts/fontawesome-webfont.woff'
+  },
+  onLaunch(options: App.LaunchShowOption) {
+    console.log("App Launch");
+    const fontUrl = (this as any).globalData.ioxIconUrl;
+    wx.loadFontFace({
+      global: true,
+      family: 'FontAwesome',
+      source: `url("${fontUrl}")`,
+      success: console.log,
+      fail: console.warn
+    });
+    this.checkUpdate();
+  }
+}
+```
+
+每个页面加载：
+>index.vue
+
+```js
+export default Vue.extend({
+    created() {
+        const app = getApp().$vm;
+        const info = getSystemInfoSync();
+        if (info && compareVersion(info.SDKVersion, '2.10.0') < 0) {
+            const fontUrl = app.globalData.ioxIconUrl;
+            uni.loadFontFace({
+                family: 'FontAwesome',
+                source: `url("${fontUrl}")`,
+                success: console.log,
+                fail: console.warn
+            });
+        }
+    }
+}
+```
+
+## 加载样式
+创建一个空文件
+>/src/sytle/iox-ui.less
+
+全局加载
+>App.vue
+
+```vue
+<style lang="less">
+@import "~@zhuyin/iox-ui/lib/style/index.less";
+</style>
 ```
 
 ## 参考手册

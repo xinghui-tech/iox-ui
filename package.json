@@ -36,8 +36,7 @@
     "dev:mp-toutiao": "cross-env NODE_ENV=development UNI_PLATFORM=mp-toutiao vue-cli-service uni-build --watch",
     "dev:mp-weixin": "cross-env NODE_ENV=development UNI_PLATFORM=mp-weixin vue-cli-service uni-build --watch",
     "info": "node node_modules/@dcloudio/vue-cli-plugin-uni/commands/info.js",
-    "utils": "lessc --source-map src/style/base/_utilities.less dist/css/_utilities.css",
-    "utils2": "lessc --source-map src/style/index.less dist/css/index.css"
+    "utils": "lessc --source-map src/style/index.less dist/css/index.css"
   },
   "dependencies": {},
   "peerDependencies": {
@@ -52,7 +51,7 @@
   "devDependencies": {
     "@babel/plugin-syntax-typescript": "^7.12.1",
     "@babel/plugin-transform-async-to-generator": "^7.12.1",
-    "@dcloudio/types": "^2.0.11",
+    "@dcloudio/types": "^2.0.12",
     "@dcloudio/uni-app-plus": "^2.0.0-29320201014001",
     "@dcloudio/uni-cli-shared": "^2.0.0-29320201014001",
     "@dcloudio/uni-h5": "^2.0.0-29320201014001",

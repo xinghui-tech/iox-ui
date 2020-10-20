@@ -1,17 +1,15 @@
 <script lang="ts">
 import Vue from "vue";
-import defaultConfig from "./config";
 
 
 export default Vue.extend({
   mpType: 'app',
   globalData: {
-    config: defaultConfig
+    ioxIconUrl: 'https://res.oss.zhuyin.club/assets/fonts/fontawesome-webfont.woff'
   },
   onLaunch(options: App.LaunchShowOption) {
-    const fontUrl = `${defaultConfig.urls.baseResUrl}/assets/fonts/fontawesome-webfont.woff`;
-    wx.loadFontFace({
-      global: true,
+    const fontUrl = (this as any).globalData.ioxIconUrl;
+    uni.loadFontFace({
       family: 'FontAwesome',
       source: `url("${fontUrl}")`,
       success: console.log,
