@@ -1,7 +1,7 @@
 <template>
-  <view :class="mainClass" 
+  <view :class="mainClass"
     :style="mainStyle">
-    <view :class="''+bem('sticky-wrap', { fixed })" 
+    <view :class="''+bem('sticky-wrap', { fixed })"
       :style="'' + wrapStyle({ fixed, offsetTop, transform, zIndex })">
       <slot />
     </view>
@@ -177,7 +177,7 @@ export default class IoxSticky extends mixins(Base, PageScroll) {
       return Promise.reject('no container.');
     }
     const nodesRef: UniApp.NodesRef = extractFunc(this.container)();
-    
+
     return new Promise((resolve) =>
       nodesRef.boundingClientRect(()=>{}).exec(resolve)
     );

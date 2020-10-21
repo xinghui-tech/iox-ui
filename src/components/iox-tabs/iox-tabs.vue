@@ -310,11 +310,11 @@ export default class IoxTabs extends mixins(Base, Touch) {
 
     this.container = wrapFunc(() => {
       let c: UniApp.NodesRef;
-      // #ifdef MP-ALIPAY
+      // #ifndef MP-ALIPAY
       c = uni.createSelectorQuery().in(this).select(selector);
       // #endif
       // #ifdef MP-ALIPAY
-      c = uni.createSelectorQuery().in(this).select(selector);
+      c = uni.createSelectorQuery().select(selector);
       // #endif
       return c;
     });
