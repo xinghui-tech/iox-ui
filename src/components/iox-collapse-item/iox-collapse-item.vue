@@ -204,7 +204,7 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
 
         if (expanded) {
           if (height === 0) {
-            (animation as any).height('auto').top(1).animation.step();
+            animation.height('auto').top(1).step();
           } else {
             animation
               .height(height)
@@ -212,7 +212,7 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
               .step({
                 duration: inited ? 300 : 1,
               });
-            (animation as any).height('auto').step();
+            animation.height('auto').step();
           }
 
           this.animations = animation.export();
