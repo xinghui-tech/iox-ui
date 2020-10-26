@@ -11,7 +11,7 @@
       :border="border && expanded"
       :class="cellClass"
       right-icon-class="iox-cell__right-icon"
-      custom-class="iox-cell"
+      :custom-class="itemClasses"
       hover-class="iox-cell--hover"
       @click="onClick"
     >
@@ -44,7 +44,7 @@ const classPrefix = 'iox-collapse-item';
 @Component({
   name: 'iox-collapse-item',
   // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
-  externalClasses: ['title-class', 'content-class', 'custom-class'],
+  externalClasses: ['title-class', 'content-class', 'custom-class', 'item-class'],
   // #endif
 })
 export default class IoxCollapseItem extends mixins(Base, Emitter) {
@@ -54,6 +54,9 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
 
   @Prop({type: String})
   contentClass?: string;
+
+  @Prop({type: String})
+  itemClass?: string;
   // #endif
 
   @Prop({
@@ -91,7 +94,7 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
     type: Boolean,
   })
   clickable?: boolean;
-  
+
   @Prop({
     type: Boolean,
     default: true
@@ -141,6 +144,15 @@ export default class IoxCollapseItem extends mixins(Base, Emitter) {
     // #endif
 
     return `${this.uuidClass} iox-collapse-item__content ${cls}`;
+  }
+
+  get itemClasses() {
+    let cls = 'item-class';
+    // #ifndef APP-PLUS || MP-WEIXIN || MP-QQ
+    cls = (this.itemClass || '');
+    // #endif
+
+    return `iox-cell ${cls}`;
   }
 
   created() {

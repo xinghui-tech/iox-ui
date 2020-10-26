@@ -1015,10 +1015,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@dcloudio/types@^2.0.14":
-  version "2.0.14"
-  resolved "https://registry.npm.taobao.org/@dcloudio/types/download/@dcloudio/types-2.0.14.tgz#b0732df0f44701c7d746380a92787a01ea608fab"
-  integrity sha1-sHMt8PRHAcfXRjgKknh6Aepgj6s=
+"@dcloudio/types@^2.0.16":
+  version "2.0.16"
+  resolved "https://registry.npm.taobao.org/@dcloudio/types/download/@dcloudio/types-2.0.16.tgz#c91b72567605f864dd5d74b71b4745cc51c0b717"
+  integrity sha1-yRtyVnYF+GTdXXS3G0dFzFHAtxc=
 
 "@dcloudio/uni-app-plus@^2.0.0-29320201014001":
   version "2.0.0-29320201014001"
