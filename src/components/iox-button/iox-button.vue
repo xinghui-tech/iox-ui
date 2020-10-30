@@ -38,11 +38,12 @@
     <template v-else>
       <iox-icon
         v-if="icon"
-        size="1.2em"
+        :size="iconSize"
         :name="icon"
         class="iox-button__icon"
         custom-style="line-height: inherit;"
       />
+      <slot v-else name="icon" />
       <view class="iox-button__text">
         <slot />
       </view>
@@ -91,9 +92,15 @@ export default class IoxButton extends Mixins(Base, ButtonProps, OpenType) {
 
   @Prop({
     type: String,
+    default: '1.2em'
+  })
+  iconSize?: string;
+
+  @Prop({
+    type: String,
   })
   color?: string;
-  
+
   @Prop({
     type: String,
   })
@@ -191,9 +198,9 @@ export default class IoxButton extends Mixins(Base, ButtonProps, OpenType) {
 
   get mainClass() {
     const { block, round, plain, square, loading, disabled, hairline } = this;
-    const classes = this.bem('button', [this.type, this.size, { 
-      block, round, plain, square, loading, disabled, hairline, 
-      unclickable: this.disabled || this.loading 
+    const classes = this.bem('button', [this.type, this.size, {
+      block, round, plain, square, loading, disabled, hairline,
+      unclickable: this.disabled || this.loading
     }]);
 
     let cls = `${classes} ${this.hairline ? 'iox-hairline--surround' : ''} ${this._rootClasses}`;
