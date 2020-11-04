@@ -20,6 +20,7 @@
       :style="(titleWidth ? 'max-width:' + titleWidth + ';min-width:' + titleWidth + ';' : '') + (titleStyle || '')"
       :class="titleClasses"
     >
+      <slot name="corner" />
       <block v-if="title">{{ title }}</block>
       <slot v-else name="title" />
 
