@@ -15,10 +15,10 @@
       hover-class="iox-cell--hover"
       @click="onClick"
     >
-      <block><block slot="title" ><slot name="title" /></block></block>
-      <block><block slot="icon"><slot name="icon" /></block></block>
-      <block><block slot="value"><slot name="value" /></block></block>
-      <block><block slot="right-icon"><slot name="right-icon" /></block></block>
+      <block slot="title" ><slot name="title" /></block>
+      <block slot="icon"><slot name="icon" /></block>
+      <slot name="value" />
+      <block slot="right-icon"><slot name="right-icon" /></block>
     </iox-cell>
     <view
       class="iox-collapse-item__wrapper"

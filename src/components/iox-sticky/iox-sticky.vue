@@ -1,8 +1,8 @@
 <template>
   <view :class="mainClass"
     :style="mainStyle">
-    <view :class="''+bem('sticky-wrap', { fixed })"
-      :style="'' + wrapStyle({ fixed, offsetTop, transform, zIndex })">
+    <view :class="wrapClass"
+      :style="wrapStyle">
       <slot />
     </view>
   </view>
@@ -78,6 +78,15 @@ export default class IoxSticky extends mixins(Base, PageScroll) {
 
   get mainClass() {
     return `${this.uuidClass} ${this.classPrefix} ${this._rootClasses}`;
+  }
+
+  get wrapClass() {
+    return this.bem('sticky-wrap', { fixed: this.fixed });
+  }
+
+  get wrapStyle() {
+    const { fixed, offsetTop, transform, zIndex} = this;
+    return this.wrapStyles({ fixed, offsetTop, transform, zIndex });
   }
 
   mounted() {
@@ -183,7 +192,7 @@ export default class IoxSticky extends mixins(Base, PageScroll) {
     );
   }
 
-  wrapStyle(data: any) {
+  wrapStyles(data: any) {
     let style = '';
 
     if (data.transform) {
