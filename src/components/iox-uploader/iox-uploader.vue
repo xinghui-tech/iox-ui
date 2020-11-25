@@ -15,13 +15,13 @@
             :src="item.url || item.path"
             :alt="item.name || ('图片' + index)"
             class="iox-uploader__preview-image"
-            :style="'width: ' + addUnit(previewSize) + '; height: ' + addUnit(previewSize)"
+            :style="'width: ' + addUnit(previewSize) + '; height: ' + addUnit(previewSize) + ';' + previewCustomStyle"
             @tap="onPreviewImage(index)"
           />
           <view
             v-else
             class="iox-uploader__file"
-            :style="'width: ' + addUnit(previewSize) + '; height: ' + addUnit(previewSize)"
+            :style="'width: ' + addUnit(previewSize) + '; height: ' + addUnit(previewSize) + ';' + previewCustomStyle"
           >
             <iox-icon name="file-text-o" class="iox-uploader__file-icon" />
             <view class="iox-uploader__file-name iox-ellipsis">{{ item.name || item.url || item.path }}</view>
@@ -53,7 +53,7 @@
         <view
           v-if="showUpload"
           :class="['iox-uploader__upload', disabled ? 'iox-uploader__upload--disabled': '']"
-          :style="'width: ' + addUnit(previewSize) + '; height: ' + addUnit(previewSize)"
+          :style="'width: ' + addUnit(previewSize) + '; height: ' + addUnit(previewSize) + ';' + previewCustomStyle"
           @tap="startUpload"
         >
           <iox-icon :name="uploadIcon" class="iox-uploader__upload-icon" />
@@ -103,6 +103,9 @@ const classPrefix = 'iox-uploader';
     previewSize: {
       type: [String, Number],
       default: 80,
+    },
+    previewCustomStyle: {
+      type: String
     },
     name: {
       type: [Number, String],
@@ -180,7 +183,8 @@ export default class IoxUploader extends mixins(Base) {
   }
 
   addUnit(value: number | string) {
-    addUnit(value);
+    const v = addUnit(value);
+    return v;
   }
 
   created() {
