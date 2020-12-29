@@ -260,7 +260,7 @@ export default class IoxUploader extends mixins(Base) {
           file,
           ...this.getDetail(),
           callback: (ok: boolean) => {
-            ok ? resolve() : reject();
+            ok ? resolve(file) : reject();
           },
         });
       });
