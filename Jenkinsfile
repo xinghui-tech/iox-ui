@@ -11,7 +11,7 @@ pipeline {
       gitlabBuilds(builds: ['prepare', 'checkout', 'install', 'build', 'release'])
     }
     triggers {
-      gitlab(triggerOnPush: true, triggerOnMergeRequest: true, branchFilterType: 'All', secretToken: '1d16fd751f2b1f69168a9dc3fba285e7')
+      gitlab(triggerOnPush: true, triggerOnMergeRequest: true, branchFilterType: 'All', secretToken: 'cdfc8aaf18104bed4afe1c1694c24fac')
     }
     stages {
       stage('prepare') {
