@@ -20,3 +20,4 @@ uni.scss
 yarn.lock
 *.tgz
 *.zip
+Jenkinsfile
