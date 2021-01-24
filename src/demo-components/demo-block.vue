@@ -1,5 +1,5 @@
 <template>
-  <view :class="mainClass">
+  <view :class="mainClass" :style="boxingStyles">
     <view v-if="title" class="demo-block__title">{{ title }}</view>
     <slot />
   </view>
@@ -9,9 +9,10 @@
 import Component, { mixins } from 'vue-class-component';
 import { Prop } from 'vue-property-decorator';
 import Base from '../mixins/base';
+import Boxing from '../mixins/boxing';
 
 @Component
-export default class DemoBlock extends mixins(Base) {
+export default class DemoBlock extends mixins(Base, Boxing) {
   @Prop({type: String})
   title?: string;
 
@@ -19,7 +20,7 @@ export default class DemoBlock extends mixins(Base) {
   padding?: boolean;
 
   get mainClass() {
-    return `demo-block iox-clearfix ${ this.padding ? 'demo-block--padding' : '' } ${this._rootClasses} `;
+    return `demo-block boxing-class iox-clearfix ${ this.padding ? 'demo-block--padding' : '' } ${this._rootClasses} `;
   }
 }
 </script>
