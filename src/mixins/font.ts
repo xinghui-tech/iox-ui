@@ -13,11 +13,12 @@ export default Vue.extend({
       const fontUrl = (this as any).ioxIconUrl || app.globalData.ioxIconUrl
         || `${app.globalData.config.urls.baseResUrl}/assets/fonts/fontawesome-webfont.woff`;
       uni.loadFontFace({
+        global: true,
         family: 'FontAwesome',
         source: `url("${fontUrl}")`,
         success: console.log,
         fail: console.warn
-      });
+      } as any);
     }
   }
 });

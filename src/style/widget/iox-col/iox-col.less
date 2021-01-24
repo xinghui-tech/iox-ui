@@ -8,10 +8,10 @@
 .generate(24);
 .generate(@n, @i: 1) when (@i =< @n) {
   .iox-col--@{i} {
-    width: @i * 100% / 24;
+    width: calc(@i * 100% / 24);
   }
   .iox-col--offset-@{i} {
-    margin-left: @i * 100% / 24;
+    margin-left: calc(@i * 100% / 24);
   }
   .generate(@n, (@i + 1));
 }

@@ -10,11 +10,12 @@ export default Vue.extend({
   onLaunch(options: App.LaunchShowOption) {
     const fontUrl = (this as any).globalData.ioxIconUrl;
     uni.loadFontFace({
+      global: true,
       family: 'FontAwesome',
       source: `url("${fontUrl}")`,
       success: console.log,
       fail: console.warn
-    });
+    } as any);
     console.log("App Launch");
     this.checkUpdate();
   },
