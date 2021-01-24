@@ -36,7 +36,7 @@ export default class Boxing extends Vue {
   get boxingStyles(): string {
     // custom style
     let style = this.boxingStyle || '';
-    if (!style.trimEnd().endsWith(';')) {
+    if (style.trim().length > 0 && !style.trimEnd().endsWith(';')) {
       style += ';';
     }
 
