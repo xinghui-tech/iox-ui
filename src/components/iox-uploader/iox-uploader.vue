@@ -255,12 +255,12 @@ export default class IoxUploader extends mixins(Base) {
     }
 
     if (useBeforeRead) {
-      res = new Promise((resolve, reject) => {
+      res = new Promise<void>((resolve, reject) => {
         this.$emit('before-read', {
           file,
           ...this.getDetail(),
           callback: (ok: boolean) => {
-            ok ? resolve(file) : reject();
+            ok ? resolve() : reject();
           },
         });
       });

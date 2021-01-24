@@ -1,6 +1,6 @@
 <template>
 <block>
-  <demo-block title="按钮类型" padding>
+  <demo-block title="按钮类型" padding shadow boxing-class="shadow m-2 p-2">
     <view class="row">
       <iox-button class="demo-margin-right">默认按钮</iox-button>
       <iox-button type="primary" class="demo-margin-right">主要按钮</iox-button>
@@ -10,7 +10,7 @@
     <iox-button type="warning">警告按钮</iox-button>
   </demo-block>
 
-  <demo-block title="朴素按钮" padding>
+  <demo-block title="朴素按钮" padding boxing-style="margin-top: -20px;">
     <iox-button type="primary" plain class="demo-margin-right">朴素按钮</iox-button>
     <iox-button type="info" plain>朴素按钮</iox-button>
   </demo-block>
