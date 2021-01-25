@@ -11,11 +11,10 @@ import { isDef, addUnit } from '../utils/utils';
  * 4. padding
  * 5. text-color
  * 6. background-color
- * 7. background-image
  */
 @Component({
   // #ifdef APP-PLUS || MP-WEIXIN || MP-QQ
-  externalClasses: ['boxing-class', 'background-image']
+  externalClasses: ['boxing-class']
   // #endif
 })
 export default class Boxing extends Vue {
@@ -27,6 +26,9 @@ export default class Boxing extends Vue {
   @Prop({type: String})
   boxingStyle?: string;
 
+  @Prop({type: String})
+  boxingBgdUrl?: string;
+
   @Prop({type: [Number, String]})
   boxingWidth?: number | string;
 
@@ -37,17 +39,22 @@ export default class Boxing extends Vue {
     // custom style
     let style = this.boxingStyle || '';
     if (style.trim().length > 0 && !style.trimEnd().endsWith(';')) {
-      style += ';';
+      style += '; ';
+    }
+
+    // append background url
+    if (isDef(this.boxingBgdUrl)) {
+      style += `background-image: url('${addUnit(this.boxingBgdUrl)}'); `;
     }
 
     // append width
     if (isDef(this.boxingWidth)) {
-      style += `${addUnit(this.boxingWidth)} ;`;
+      style += `${addUnit(this.boxingWidth)}; `;
     }
 
     // append height
     if (isDef(this.boxingHeight)) {
-      style += `${addUnit(this.boxingHeight)} ;`;
+      style += `${addUnit(this.boxingHeight)}; `;
     }
     return style;
   }
