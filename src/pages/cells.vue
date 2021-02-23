@@ -1,6 +1,6 @@
 <template>
   <view>
-    <demo-block title="基础用法">
+    <demo-block title="基础用法" boxing-bgd-url="https://res.oss.zhuyin.club/res/0/60/picture/0/202007/23/2020072316355-7731.jpg">
       <iox-cell-group>
         <iox-cell title="单元格" value="内容" />
         <iox-cell
@@ -12,7 +12,7 @@
       </iox-cell-group>
     </demo-block>
 
-    <demo-block title="单元格大小">
+    <demo-block title="单元格大小" :boxing-height="600" boxing-width="" boxing-bgd-url="https://res.oss.zhuyin.club/res/0/60/picture/0/202007/23/2020072316355-7731.jpg">
       <iox-cell-group>
         <iox-cell
           title="单元格"

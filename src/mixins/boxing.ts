@@ -49,12 +49,12 @@ export default class Boxing extends Vue {
 
     // append width
     if (isDef(this.boxingWidth)) {
-      style += `${addUnit(this.boxingWidth)}; `;
+      style += `;width:${addUnit(this.boxingWidth)}; `;
     }
 
     // append height
     if (isDef(this.boxingHeight)) {
-      style += `${addUnit(this.boxingHeight)}; `;
+      style += `;height:${addUnit(this.boxingHeight)}; `;
     }
     return style;
   }
