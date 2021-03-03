@@ -19,6 +19,7 @@
         active-icon="check"
         active-color="#38f"
         inactive-icon="angle-right"
+        text-class="text-class"
       />
     </demo-block>
 
@@ -68,6 +69,7 @@ const steps = [
   {
     text: '步骤二',
     desc: '描述信息',
+    color: '#f0f'
   },
   {
     text: '步骤三',
@@ -139,5 +141,7 @@ export default class Index extends mixins(Fonts) {
 </script>
 
 <style lang="less">
-
+.text-class {
+  color: red;
+}
 </style>

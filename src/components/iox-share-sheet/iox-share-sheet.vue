@@ -72,7 +72,7 @@ export default class IoxShareSheet extends mixins(Base) {
   @Prop({
     type: Object,
   },)
-  overlayStyle!: object;
+  overlayStyle!: any;
 
   @Prop({
     type: Number,

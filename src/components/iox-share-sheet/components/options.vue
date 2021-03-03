@@ -8,7 +8,7 @@
         @tap="onSelect"
       >
         <button class="iox-share-sheet__button" :open-type="item.openType">
-          <image :src="getIconURL(item.icon)" class="iox-share-sheet__icon" />
+          <iox-icon :name="getIconURL(item.icon)" custom-class="iox-share-sheet__icon" size="48px" />
         </button>
         <view v-if="item.name" class="iox-share-sheet__name">{{ item.name }}</view>
         <view v-if="item.description" class="iox-share-sheet__option-description">
@@ -62,7 +62,7 @@ export default class Options extends mixins(Base) {
 
   getIconURL(icon: any) {
     if (PRESET_ICONS.indexOf(icon) !== -1) {
-      return 'https://img.yzcdn.cn/vant/share-icon-' + icon + '.png';
+      return 'https://res.oss.zhuyin.club/ioxui/share-icon-' + icon + '.png';
     }
     return icon;
   }

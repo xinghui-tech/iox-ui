@@ -9,31 +9,31 @@
           :class="[bem('step', [direction, status(index, active)]), 'iox-hairline']"
           :style="status(index, active) === 'inactive' ? 'color: ' + inactiveColor: ''"
         >
-          <view class="iox-step__title" :style="(index === active) ? 'color: ' + activeColor : ''">
-            <view :class="(index === active) ? textClasses : inactiveTextClasses">{{ item.text }}</view>
-            <view v-if="item.title" :class="(index === active) ? titleClasses : inactiveTitleClasses">{{ item.title }}</view>
-            <view :class="(index === active) ? descClasses : inactiveDescClasses">{{ item.desc }}</view>
+          <view class="iox-step__title" :style="item.color ? 'color: ' + item.color : ((index === active) ? 'color: ' + activeColor : '')">
+            <view :class="(index === active) ? textClasses : inactiveTextClasses" :style="item.color ? 'color: ' + item.color : ''">{{ item.text }}</view>
+            <view v-if="item.title" :class="(index === active) ? titleClasses : inactiveTitleClasses" :style="item.color ? 'color: ' + item.color : ''">{{ item.title }}</view>
+            <view :class="(index === active) ? descClasses : inactiveDescClasses" :style="item.color ? 'color: ' + item.color : ''">{{ item.desc }}</view>
           </view>
           <view class="iox-step__circle-container">
             <block v-if="index !== active">
               <iox-icon
                 v-if="item.inactiveIcon || inactiveIcon"
-                :color="status(index, active) === 'inactive' ? inactiveColor: activeColor"
+                :color="item.color || (status(index, active) === 'inactive' ? inactiveColor: activeColor)"
                 :name="item.inactiveIcon || inactiveIcon"
                 custom-class="iox-step__icon"
               />
               <view
                 v-else
                 class="iox-step__circle"
-                :style="'background-color: ' + (index < active ? activeColor : inactiveColor)"
+                :style="'background-color: ' + (item.color || (index < active ? activeColor : inactiveColor))"
               />
             </block>
 
-            <iox-icon v-else :name="item.activeIcon || activeIcon" :color="activeColor" custom-class="iox-step__icon"/>
+            <iox-icon v-else :name="item.activeIcon || activeIcon" :color="item.color || activeColor" custom-class="iox-step__icon"/>
           </view>
           <view
             v-if="index !== (steps.length - 1)"
-            class="iox-step__line" :style="'background-color: ' + (index < active ? activeColor : inactiveColor)"
+            class="iox-step__line" :style="'background-color: ' + (steps[index+1].color || (index < active ? activeColor : inactiveColor))"
           />
         </view>
       </template>
