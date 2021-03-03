@@ -94,7 +94,8 @@ export default class Index extends mixins(Fonts) {
     [
       { name: '微信', icon: 'wechat' },
       { name: '微博', icon: 'weibo' },
-      { name: 'QQ', icon: 'qq' },
+      { name: 'QQ', icon: 'check-circle' },
+      { name: 'Home', icon: 'home' },
     ],
     [
       { name: '复制链接', icon: 'link' },

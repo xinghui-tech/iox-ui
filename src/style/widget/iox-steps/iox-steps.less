@@ -133,14 +133,21 @@
       }
     }
 
-    .iox-step__icon,
-    .iox-step__circle,
+    .iox-step__circle-container,
+    // .iox-step__icon,
+    // .iox-step__circle,
     .iox-step__line {
       position: absolute;
       top: 19px;
       left: -14px;
       z-index: 2;
       transform: translate3d(-50%, -50%, 0);
+    }
+
+    .iox-step__circle-container {
+      z-index: 3;
+      .theme(background-color, '@white');
+      .theme(padding, '@padding-xs 0');
     }
 
     .iox-step__icon {
