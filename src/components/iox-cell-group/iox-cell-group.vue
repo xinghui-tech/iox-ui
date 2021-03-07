@@ -6,6 +6,7 @@
     >
       {{ title }}
     </view>
+    <slot v-else name="title" />
     <view :class="cellsClass">
       <slot />
     </view>

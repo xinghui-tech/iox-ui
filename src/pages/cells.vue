@@ -12,7 +12,7 @@
       </iox-cell-group>
     </demo-block>
 
-    <demo-block title="单元格大小" :boxing-height="600" boxing-width="" boxing-bgd-url="https://res.oss.zhuyin.club/res/0/60/picture/0/202007/23/2020072316355-7731.jpg">
+    <demo-block title="单元格大小">
       <iox-cell-group>
         <iox-cell
           title="单元格"
@@ -70,6 +70,16 @@
       </iox-cell-group>
     </demo-block>
 
+    <demo-block title="自定义分组标题">
+      <iox-cell-group>
+        <iox-cell slot="title" is-link title="分组标题" @click="onClickGroup" value="更多" custom-class="bg-transparent" />
+        <iox-cell title="单元格" value="内容" />
+      </iox-cell-group>
+      <iox-cell-group title="分组 2">
+        <iox-cell title="单元格" value="内容" />
+      </iox-cell-group>
+    </demo-block>
+
     <demo-block title="使用插槽">
       <iox-cell value="内容" icon="shopping-cart " is-link>
         <view slot="title">
@@ -106,6 +116,10 @@ export default class Index extends mixins(Fonts) {
   };
 
   onLoad() {
+  }
+
+  onClickGroup() {
+    uni.showToast({title: '点击了分组标题'});
   }
 
   onShareAppMessage() {
