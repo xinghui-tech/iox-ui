@@ -18,6 +18,8 @@
           @click="onClickButton"
         />
         <iox-button-item
+          loading
+          loading-text="加载中"
           text="立即购买"
           @click="onClickButton"
         />

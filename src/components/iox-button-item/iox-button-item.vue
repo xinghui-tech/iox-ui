@@ -12,6 +12,9 @@
       :session-from="sessionFrom"
       custom-class="iox-button-item__inner"
       :hover-class="hoverClasses"
+      :loading-text="loadingText"
+      :loading-type="loadingType"
+      :loading-size="loadingSize"
       :loading-class="loadingClasses"
       :app-parameter="appParameter"
       :send-message-img="sendMessageImg"
@@ -73,6 +76,23 @@ export default class IoxButtonItem extends Mixins(Base, Link, ButtonProps, OpenT
     default: false,
   })
   loading!: boolean;
+
+  @Prop({
+    type: String,
+  })
+  loadingText?: string;
+
+  @Prop({
+    type: String,
+    default: 'circular',
+  })
+  loadingType!: string;
+
+  @Prop({
+    type: [Number, String],
+    default: '20px',
+  })
+  loadingSize!: string | number;
 
   @Prop({
     type: Boolean,
