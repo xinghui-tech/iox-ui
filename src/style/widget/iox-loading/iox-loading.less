@@ -77,7 +77,7 @@
 .generate(@n, @i: 1) when (@i =< @n) {
   .iox-loading__dot:nth-of-type(@{i}) {
     transform: rotate(@i * 30deg);
-    opacity: 1 - (0.75 / 12) * (@i - 1);
+    opacity: (1 - (0.75 / 12) * (@i - 1));
   }
   .generate(@n, (@i + 1));
 }
