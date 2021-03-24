@@ -15,7 +15,7 @@
         :style="'height:'+statusBarHeight+'px;'"
       />
       <text v-if="message">{{ message }}</text>
-      <slot v-else name="title"></slot>
+      <slot v-else></slot>
     </view>
   </iox-transition>
 </template>
