@@ -14,7 +14,8 @@
         v-if="safeAreaInsetTop"
         :style="'height:'+statusBarHeight+'px;'"
       />
-      <text>{{ message }}</text>
+      <text v-if="message">{{ message }}</text>
+      <slot v-else name="title"></slot>
     </view>
   </iox-transition>
 </template>
