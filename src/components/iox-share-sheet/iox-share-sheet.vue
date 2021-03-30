@@ -54,7 +54,7 @@ import { Prop, Watch } from "vue-property-decorator";
 import options from './components/options.vue';
 import Base from '../../mixins/base';
 
-const PRESET_ICONS = ['qq', 'weibo', 'wechat', 'link', 'qrcode', 'poster'];
+const PRESET_ICONS = ['qq', 'weibo', 'wechat', 'link', 'qrcode', 'poster', 'poster2', 'clone'];
 const classPrefix = 'iox-share-sheet';
 @Component({
   components: {
