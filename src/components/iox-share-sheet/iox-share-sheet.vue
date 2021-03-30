@@ -35,12 +35,11 @@
           :show-border="index !== 0"
           :options="item"
           @select="onSelect"
-          custom-class="d-flex justify-content-around"
         />
       </template>
     </block>
 
-    <options v-else :options="options" @select="onSelect" custom-class="d-flex justify-content-around"/>
+    <options v-else :options="options" @select="onSelect" />
 
     <button type="button" class="iox-share-sheet__cancel" @tap="onCancel">
       {{ cancelText }}
@@ -161,7 +160,6 @@ export default class IoxShareSheet extends mixins(Base) {
 </script>
 
 <style lang="less">
-@import '~@/style/index.less';
 @import '../../style/widget/iox-share-sheet/iox-share-sheet.less';
 
 </style>
