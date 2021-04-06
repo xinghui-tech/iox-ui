@@ -124,14 +124,14 @@
     </view>
 
     <iox-toast
-      :show="toast.show" 
-      :type="toast.type" 
-      :mask="toast.mask" 
-      :z-index="toast.zIndex" 
-      :position="toast.position" 
-      :forbid-click="toast.forbidClick" 
-      :loading-type="toast.loadingType" 
-      :message="toast.message" 
+      :show="toast.show"
+      :type="toast.type"
+      :mask="toast.mask"
+      :z-index="toast.zIndex"
+      :position="toast.position"
+      :forbid-click="toast.forbidClick"
+      :loading-type="toast.loadingType"
+      :message="toast.message"
       :duration="toast.duration"
       @close="toast.show = false"
     />
@@ -155,11 +155,9 @@ import {
   compareMonth,
   getMonths,
   getDayByOffset,
-  Day,
 } from './utils';
-import { 
-  ToastOptions, toast,
-} from '../../utils/toast';
+import { Day } from '../../utils/calendar';
+import { ToastOptions, toast, } from '../../utils/toast';
 
 const classPrefix = 'iox-calendar';
 @Component({
@@ -393,7 +391,7 @@ export default class IoxCalendar extends mixins(Base) {
           // compatible with alipay
           this.getRect(monthSelector, true).then(ms => {
             const index = (ms as UniApp.NodeInfo[]).sort((a, b) => a.top - b.top)
-              .findIndex(m => ((res.relativeRect.top + 20) >= m.top  && res.relativeRect.top <= m.bottom) 
+              .findIndex(m => ((res.relativeRect.top + 20) >= m.top  && res.relativeRect.top <= m.bottom)
                 || (m.top >= res.relativeRect.top && m.bottom <= res.relativeRect.bottom));
             if (index >= 0) {
               this.subtitle = formatMonthTitle(this.months[index]);
