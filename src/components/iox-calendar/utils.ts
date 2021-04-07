@@ -1,4 +1,4 @@
-export { Day } from '../../utils/calendar';
+// export { Day } from '../../utils/calendar';
 
 export const ROW_HEIGHT = 64;
 

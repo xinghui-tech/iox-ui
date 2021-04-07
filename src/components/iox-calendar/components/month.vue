@@ -44,12 +44,12 @@ import { Prop, Watch } from 'vue-property-decorator';
 import Base from '../../../mixins/base';
 import {
   ROW_HEIGHT,
-  Day,
   getMonthEndDay,
   compareDay,
   getPrevDay,
   getNextDay,
 } from '../utils';
+import { Day } from '../../../utils/calendar';
 import { extractFunc } from '../../../utils/func-utils';
 
 const classPrefix = 'iox-calendar';
@@ -317,7 +317,7 @@ export default class IoxCalendarMonth extends mixins(Base) {
     }
 
     if (color) {
-      if (type === 'start' || type === 'end' 
+      if (type === 'start' || type === 'end'
         || type === 'multiple-selected' || type === 'multiple-middle') {
         style.push(['background', color]);
       } else if (type === 'middle') {
