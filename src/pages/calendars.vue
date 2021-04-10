@@ -124,7 +124,7 @@ import Vue from "vue";
 import Component, { mixins } from 'vue-class-component';
 import Fonts from '../mixins/font';
 import { wrapFunc, releaseFunc } from '../utils/func-utils';
-import { Day } from '@/components/iox-calendar/utils';
+import { Day } from '../utils/calendar';
 
 @Component
 export default class Index extends mixins(Fonts) {
