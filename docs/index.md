@@ -1,9 +1,3 @@
-# iox-ui
-<p align="center">
-    <img alt="logo" src="https://res.oss.zhuyin.club/assets/images/iox-ui.png" width="120" height="120" style="margin-bottom: 10px;">
-</p>
-<h1 align="center">IOX UI</h1>
-
 IOX UI参考Vant（轻量、可靠的移动端 Vue 组件库）的设计和实现，在微信小程序组件库版本[vant-weapp](https://github.com/youzan/vant-weapp "vant-weapp")基础上实现的[uniapp](https://github.com/dcloudio/uni-app)版本。
 
 针对uniapp的一些特性进行了修改和调整，同时增加一些新的组件，对一些组件功能也有所增强。
